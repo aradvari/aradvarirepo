@@ -236,7 +236,7 @@ $this->params['breadcrumbs'] = [
 
                         <img src="/images/cxs_logo.svg" alt="CXS logo - Coreshop.hu"/>
                         <p>Kiszállítás: <a href="<?= Url::to(['site/content', 'page' => 'shipping']) ?>"
-                                           target="_blank"><?= Coreshop::GlsDeliveryDate() ?></a>
+                                           target="_blank"><?=Coreshop::dateToHU(Coreshop::GlsDeliveryDate())?></a>
                         </p>
 
                         <br/>

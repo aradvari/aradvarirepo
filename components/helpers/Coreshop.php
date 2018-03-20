@@ -11,7 +11,7 @@ namespace app\components\helpers;
 class Coreshop
 {
 
-    public static function randomPassword($length=6)
+    public static function randomPassword($length = 6)
     {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass = array(); //remember to declare $pass as an array
@@ -127,6 +127,14 @@ class Coreshop
         }
 
         return $dispatch;
+    }
+
+    public static function dateToHU($str)
+    {
+        $en = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun");
+        $hu = array("január", "február", "március", "április", "május", "június", "július", "augusztus", "szeptember", "október", "november", "december", "hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap");
+
+        return str_replace($en, $hu, $str);
     }
 
 }

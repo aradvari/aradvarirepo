@@ -56,7 +56,7 @@ use yii\helpers\Url;
             <br>
 
             <span>
-	Ha most rendelsz, csomagod <br><font style="color:#2a87e4;"><?=Coreshop::GlsDeliveryDate()?></font><br>
+	Ha most rendelsz, csomagod <br><font style="color:#2a87e4;"><?=Coreshop::dateToHU(Coreshop::GlsDeliveryDate())?> / 8:00 - 16:00 óra</font><br>
 	között kerül kiszállításra.
 	</span>
 
