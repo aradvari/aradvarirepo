@@ -147,7 +147,7 @@ class Termekek extends ActiveRecord
             ->andOnCondition(['vk.aktiv' => 1])
             ->andOnCondition(['>', 'vk.keszlet_1', 0])
             ->leftJoin('vonalkod_sorrendek', 'vk.megnevezes = vonalkod_sorrendek.vonalkod_megnevezes')
-            ->orderBy('vonalkod_sorrendek.sorrend');
+            ->orderBy('vonalkod_sorrendek.sorrend, vk.megnevezes');
     }
 
     public function getKeszlet()
