@@ -1,6 +1,7 @@
 <?php
 
 use app\components\helpers\Coreshop;
+use app\models\GlobalisAdatok;
 use app\models\Kategoriak;
 use app\models\TermekekSearch;
 use yii\helpers\Html;
@@ -56,7 +57,13 @@ use yii\helpers\Url;
             <br>
 
             <span>
-	Ha most rendelsz, csomagod <br><font style="color:#2a87e4;"><?=Coreshop::dateToHU(Coreshop::GlsDeliveryDate())?> / 8:00 - 16:00 óra</font><br>
+	Ha most rendelsz, csomagod <br><font style="color:#2a87e4;">
+                    <?php
+                    if (GlobalisAdatok::getParam('egyedi_szallitas_idopont'))
+                        echo GlobalisAdatok::getParam('egyedi_szallitas_idopont');
+                    else
+                        echo Coreshop::dateToHU(Coreshop::GlsDeliveryDate()) . ' / 8:00 - 16:00 óra';
+                    ?></font><br>
 	között kerül kiszállításra.
 	</span>
 
@@ -69,7 +76,7 @@ use yii\helpers\Url;
             <br>
 
             <span>
-	Az ingyenes szállításhoz 10.000 Ft szükséges	</span>
+	Az ingyenes szállításhoz <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?> Ft szükséges	</span>
 
 
         </div>

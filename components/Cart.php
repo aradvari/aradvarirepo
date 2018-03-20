@@ -2,6 +2,7 @@
 
 namespace app\components;
 
+use app\models\GlobalisAdatok;
 use app\models\Vonalkodok;
 use yii\base\Component;
 use Yii;
@@ -24,6 +25,10 @@ class Cart extends Component
         parent::init();
         $this->items = $this->getItems();
         $this->couponCode = $this->getCouponCode();
+
+        //Free shipping check
+        if ($this->totalAmount > GlobalisAdatok::getParam('ingyenes_szallitas'))
+            $this->shippingAmount = 0;
 
     }
 

@@ -2,6 +2,7 @@
 
 use app\assets\TermekAsset;
 use app\components\helpers\Coreshop;
+use app\models\GlobalisAdatok;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -235,14 +236,24 @@ $this->params['breadcrumbs'] = [
                     <div class="product-shipping-info">
 
                         <img src="/images/cxs_logo.svg" alt="CXS logo - Coreshop.hu"/>
-                        <p>Kiszállítás: <a href="<?= Url::to(['site/content', 'page' => 'shipping']) ?>"
-                                           target="_blank"><?=Coreshop::dateToHU(Coreshop::GlsDeliveryDate())?></a>
+                        <p>Kiszállítás:
+                            <a href="<?= Url::to(['site/content', 'page' => 'shipping']) ?>"
+                               target="_blank">
+                                <?php
+                                if (GlobalisAdatok::getParam('egyedi_szallitas_idopont'))
+                                    echo GlobalisAdatok::getParam('egyedi_szallitas_idopont');
+                                else
+                                    echo Coreshop::dateToHU(Coreshop::GlsDeliveryDate());
+                                ?>
+                            </a>
                         </p>
 
                         <br/>
 
                         <img src="/images/shipping_logo.svg" alt="Shippin logo - Coreshop.hu"/>
-                        <p>Ingyenes kiszállítás xxxxx Ft felett.</p>
+                        <p>Ingyenes
+                            kiszállítás <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?>
+                            Ft felett.</p>
 
                         <br/>
 
