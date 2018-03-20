@@ -1,0 +1,46 @@
+.field-felhasznalok-tel1_1,
+.field-felhasznalok-tel2_1{
+    width:15%;
+    float:left;
+    margin-right:10px;
+}
+
+.field-felhasznalok-tel1_2,
+.field-felhasznalok-tel2_2{
+    width:15%;
+    float:left;
+    margin-right:10px;
+}
+
+.field-felhasznalok-tel1_3,
+.field-felhasznalok-tel2_3{
+    width:65%;
+    float:right;
+}
+
+.field-felhasznalok-irszam{
+    width:30%;
+    float:left;
+    margin-right:10px;
+}
+
+.field-felhasznalok-id_megye{
+    width:66%;
+    float:right;
+}
+
+.field-felhasznalok-utcanev{
+    width:55%;
+    float:left;
+    margin-right:10px;
+}
+
+.field-felhasznalok-id_kozterulet{
+    width:20%;
+    float:left;
+}
+
+.field-felhasznalok-hazszam{
+    width:20%;
+    float:right;
+}

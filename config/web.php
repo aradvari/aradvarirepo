@@ -29,11 +29,14 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => true,
-            'messageConfig'=>[
-                'charset'=>'UTF-8',
-                'from'=>'info@coreshop.hu',
-            ]
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => false,
+            'messageConfig' => [
+                'charset' => 'UTF-8',
+                'from' => 'info@coreshop.hu',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -80,8 +83,8 @@ $config = [
                 ],
                 'google' => [
                     'class' => 'yii\authclient\clients\Google',
-                    'clientId' => '386760716692-p2rr1k25745d7ss2j0dtr1rpmu318ubq.apps.googleusercontent.com',
-                    'clientSecret' => 'DWaopw7hO5NpcEUDx4sbI23b',
+                    'clientId' => '922019182809-d30op6esq27umndhd2vii3t5uorsoibf.apps.googleusercontent.com',
+                    'clientSecret' => '9XR3SIoNY9eQOzyJEmkdN3HS',
                 ],
             ],
         ],

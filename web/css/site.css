@@ -1,3 +1,21 @@
+@font-face{
+    font-family: proxima_nova_black;
+    src: url("../fonts/ProximaNova-Black.otf");
+}
+
+
+@font-face{
+    font-family: proxima_nova_regular;
+    src: url("../fonts/ProximaNova-Regular.otf");
+}
+
+
+@font-face{
+    font-family: proxima_nova_bold;
+    src: url("../fonts/ProximaNova-Bold.otf");
+}
+
+
 #facebox {
     position: absolute;
     top: 0;
@@ -951,17 +969,13 @@ a.highslide-credits:hover i {
     background-position: -120px -20px;
 }
 
-@font-face {
-    font-family: proxima_novablack;
-    src: url(/fonts/ProximaNova-Black.otf);
-}
 
 body {
-    margin: 122px 0 0 0;
+    margin: 0;
     padding: 0;
     background-color: #eff2f3;
     font-size: 16px;
-    font-family: proxima_nova_rgbold, sans-serif;
+    font-family: 'proxima_nova_regular', sans-serif;
     color: #222;
 }
 
@@ -2700,15 +2714,17 @@ body {
 
 /* header */
 .header {
-    position: fixed;
     top: 0;
     width: 100%;
     height: 120px;
     z-index: 99;
+
 }
 
 .header-topline {
-    background-color: #000;
+    background-color: #1D1D1B;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .header-topline a {
@@ -2721,7 +2737,6 @@ body {
 }
 
 .header-topline-container {
-    max-width: 1280px;
     text-align: right;
     padding: 8px 0;
     margin: 0;
@@ -2731,7 +2746,7 @@ body {
 }
 
 .header-topline-container span {
-    margin: 0 20px;
+    margin: 0 30px;
 }
 
 .header-topline-container img {
@@ -2745,7 +2760,7 @@ body {
 
 .header-topline-tel {
     float: left;
-    margin-top: 4px;
+    line-height: 21px;
     padding: 0;
 }
 
@@ -2817,13 +2832,8 @@ body {
 }
 
 .desktop-cart {
-    margin-top: 25px;
-    float: right;
     font-weight: bold;
-    color: #2a87e4;
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
+    padding-top: 29px;
 }
 
 .desktop-cart a {
@@ -4553,4 +4563,56 @@ img.horizontal-image {
 
 main{
     padding-top:50px;
+}
+
+/* =================== Redesign ==================== */
+
+/* Navigation */ 
+.navbar {
+    background:#FFFFFF;
+    padding:0 15px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-family: proxima_nova_bold;
+    font-weight : bold;
+    font-size : 14px;
+    letter-spacing : 0.59px;
+    text-transform : uppercase;
+    color : #1D1D1B;
+    color : rgb(29, 29, 27);
+    padding: 30px 25px 26px 25px;
+    border-bottom: 4px solid #FFF;
+}
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        color : #1D1D1B;
+        color : rgb(29, 29, 27);
+        border-bottom: 4px solid #2a87e4;
+    }
+
+.search-icon {
+    background-image: url(../images/icons/search.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width:27px;
+    height:81px;
+    padding-left:25px;
+    padding-right: 25px;
+}
+
+    .search-icon:hover {
+        background-image: url(../images/icons/search_hover.png);
+    }
+
+.form-inline .form-control.search-input {
+    display: block;
+    width:100%;
+    background: #EFF2F3;
+    line-height: 1.8rem;
+    font-family: proxima_nova_regular;
+}
+
+.form-control {
+    border-radius: 0;
 }
