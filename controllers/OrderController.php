@@ -1,0 +1,287 @@
+<?php
+
+namespace app\controllers;
+
+use app\extensions\cib\CIB;
+use app\models\BankTranzakciok;
+use app\models\Felhasznalok;
+use app\models\Helyseg;
+use app\models\LoginForm;
+use app\models\MegrendelesFej;
+use app\models\MegrendelesTetel;
+use app\models\Megyek;
+use app\models\User;
+use Yii;
+use app\components\web\Controller;
+use yii\db\Expression;
+use yii\helpers\Url;
+use yii\web\Response;
+
+class OrderController extends Controller
+{
+
+    public function actionCreate()
+    {
+
+        if (!Yii::$app->cart->items)
+            return $this->render('/cart/_empty_cart');
+
+        //Bejelentkezés
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+//            return $this->refresh();
+        }
+
+        if (Yii::$app->user->isGuest)
+            $felhasznaloModel = new Felhasznalok();
+        else
+            $felhasznaloModel = Yii::$app->user->identity;
+
+        $megrendelesModel = new MegrendelesFej();
+
+        if (Yii::$app->request->post()) {
+
+            $transaction = Yii::$app->db->beginTransaction();
+
+            $transError = false;
+
+            if ($felhasznaloModel->load(Yii::$app->request->post()) &&
+                $megrendelesModel->load(Yii::$app->request->post()) &&
+                $felhasznaloModel->save() &&
+                $megrendelesModel->save()
+            ) {
+
+                $megrendelesModel->id_felhasznalo = $felhasznaloModel->getPrimaryKey();
+                $megrendelesModel->fizetendo = Yii::$app->cart->totalAmount;
+                $megrendelesModel->tetel_szam = Yii::$app->cart->getCount();
+                $megrendelesModel->szallitasi_dij = Yii::$app->cart->shippingAmount;
+                $megrendelesModel->kedvezmeny_erteke = Yii::$app->cart->totalDiscountAmount;
+                $megrendelesModel->id_penznem = 1;
+                $megrendelesModel->id_orszag = 1;
+                if (!$megrendelesModel->save())
+                    $transError = true;
+
+                //Tételek
+                foreach (Yii::$app->cart->items as $item) {
+                    $tetelModel = new MegrendelesTetel();
+                    $tetelModel->id_megrendeles_fej = $megrendelesModel->getPrimaryKey();
+                    $tetelModel->id_termek = $item['item']->termek->id;
+                    $tetelModel->id_marka = $item['item']->termek->markaid;
+                    $tetelModel->id_vonalkod = $item['item']->id_vonalkod;
+                    $tetelModel->termek_nev = $item['item']->termek->termeknev;
+                    $tetelModel->termek_ar = $item['item']->termek->vegleges_ar;
+                    $tetelModel->afa_kulcs = Yii::$app->params['vat'];
+                    $tetelModel->afa_ertek = round(($item['item']->termek->vegleges_ar * $item['quantity']) * (Yii::$app->params['vat'] / 100));
+                    $tetelModel->vonalkod = $item['item']->vonalkod;
+                    $tetelModel->tulajdonsag = $item['item']->megnevezes;
+                    $tetelModel->szin = $item['item']->termek->szin;
+                    $tetelModel->termek_opcio = $item['item']->termek->opcio;
+                    if (!$tetelModel->save())
+                        $transError = true;
+                }
+
+                //Készlet ellenőrzés
+                foreach (Yii::$app->cart->items as $item) {
+                    if ($item['item']->keszlet_1 < $item['quantity']) {
+                        Yii::$app->session->addFlash('danger', 'A(z) "' . $item['item']->termek->termeknev . ' (' . $item['item']->megnevezes . ')" termékből az általad vásárolni kívánt ' . $item['quantity'] . ' db-ból már csak ' . $item['item']->keszlet_1 . ' db elérhető.');
+                        $transError = true;
+                    }
+                }
+
+                //BANKI FIZETÉS
+                if ($megrendelesModel->id_fizetesi_mod == MegrendelesFej::FIZETESI_MOD_BANKI) {
+
+                    //cib
+                    $cib = new CIB(Yii::$app->language, 'HUF');
+                    $cib->userId = $felhasznaloModel->getPrimaryKey();
+
+                    $trid = mt_rand(1000, 9999) . date("is", mktime()) . mt_rand(1000, 9999) . date("is", mktime());
+                    $ts = date('YmdHis');
+                    $bankLink = $cib->msg10((int)$megrendelesModel->id_megrendeles_fej, $trid, 'CSH' . str_pad($cib->userId, 8, "0", STR_PAD_LEFT), Yii::$app->cart->totalAmountWithShipping, $ts);
+
+                    if ($bankLink == "") {
+                        Yii::$app->session->setFlash('danger', 'A Bankkártyás fizetés kódolásánál hiba lépett fel. A fizetést próbáld meg újra!');
+                        $transError = true;
+                    }
+
+                    $megrendelesModel->id_statusz = 50;
+                    if (!$megrendelesModel->save())
+                        $transError = true;
+
+                    if (!$transError)
+                        $transaction->commit();
+
+                    return $this->redirect($bankLink);
+
+                }
+
+                if (!$megrendelesModel->close())
+                    $transError = true;
+
+                if (!$transError) {
+
+                    $transaction->commit();
+
+                } else {
+
+                    Yii::$app->session->setFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
+                    $transaction->rollBack();
+
+                }
+
+            } else {
+
+                Yii::$app->session->setFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
+                $transaction->rollBack();
+
+            }
+
+        } else {
+
+            $megrendelesModel->szallitasi_nev = $felhasznaloModel->vezeteknev . ' ' . $felhasznaloModel->keresztnev;
+            $megrendelesModel->szallitasi_irszam = $felhasznaloModel->irszam;
+            $megrendelesModel->szallitasi_utcanev = $felhasznaloModel->utcanev;
+            $megrendelesModel->szallitasi_id_kozterulet = $felhasznaloModel->id_kozterulet;
+            $megrendelesModel->szallitasi_hazszam = $felhasznaloModel->hazszam;
+            $megrendelesModel->szallitasi_id_megye = $felhasznaloModel->id_megye;
+            $megrendelesModel->szallitasi_id_varos = $felhasznaloModel->id_varos;
+            $megrendelesModel->szallitasi_varos = $felhasznaloModel->varos_nev;
+
+            $felhasznaloModel->create_user = false;
+
+        }
+
+        return $this->render('/user/order_data', [
+            'model' => $model,
+            'felhasznaloModel' => $felhasznaloModel,
+            'megrendelesModel' => $megrendelesModel,
+        ]);
+    }
+
+    public function actionCib($userId)
+    {
+
+        $cib = new CIB(Yii::$app->language, 'HUF');
+        $cib->userId = $userId;
+
+        $parse = $cib->getData(Yii::$app->request->queryString);
+
+        $transModel = BankTranzakciok::findOne(['id_felhasznalo' => $userId, 'trid' => $parse["TRID"], 'lezarva' => null]);
+        $transModel = BankTranzakciok::findOne(['id_felhasznalo' => $userId, 'trid' => $parse["TRID"]]);
+
+        if ($parse["MSGT"] == "21" && $transModel) {
+
+            $transModel->history = $cib->getHistory($parse["TRID"], $transModel->amo);
+            $transModel->save();
+
+            $response = $cib->msg32($parse["TRID"], $transModel->amo);
+
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+
+                if ($response["ANUM"] != "" && $response["RT"] != "" && $response["RC"] == "00") { //SIKERES TRANZAKCIÓ
+
+                    $transModel->rc = $response["RC"];
+                    $transModel->rt = iconv("ISO-8859-2", "UTF-8", $response["RT"]);
+                    $transModel->anum = $response["ANUM"];
+                    $transModel->lezarva = new Expression('NOW()');
+                    $transModel->save();
+
+                    $megrendelesModel = $transModel->getMegrendelesFej();
+                    $megrendelesModel->id_statusz = 1;
+                    $megrendelesModel->save();
+
+                    //KÉSZLET KEZELÉS
+                    $megrendelesModel->close();
+
+                    //KOSÁR TÖRLÉSE
+                    Yii::$app->cart->delete();
+
+                    //MAIL
+
+                    $transaction->commit();
+
+                } else { //SIKERTELEN TRANZAKCIÓ
+
+                    $transModel->rc = $response["RC"];
+                    $transModel->rt = iconv("ISO-8859-2", "UTF-8", $response["RT"]);
+                    $transModel->lezarva = new Expression('NOW()');
+                    $transModel->save();
+
+                    $megrendelesModel = $transModel->megrendelesFej;
+                    $megrendelesModel->id_statusz = 99;
+                    $megrendelesModel->save();
+
+                    //MAIL HERE
+
+                    $transaction->rollback();
+
+                }
+
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+            }
+
+        } else {
+
+            if ($parse["TRID"] == "") {
+                return $this->goHome();
+            } else {
+
+                $transModel->history = $cib->getHistory($parse["TRID"], $transModel->amo);
+
+                //Lezárás
+                $cib->msg32($parse["TRID"], $transModel->amo);
+                $response = $cib->msg33($parse["TRID"], $transModel->amo);
+
+            }
+
+        }
+
+        if ($transModel->rc == "00") {
+            return $this->render('cib_success', ['model' => $transModel]);
+        } elseif ($transModel->rc != "00") {
+            return $this->render('cib_error', ['model' => $transModel]);
+        } else {
+            return $this->render('cib_timeout', ['model' => $transModel]);
+        }
+
+    }
+
+    public function actionAjaxGetCity()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $irsz = Yii::$app->request->post('irsz');
+        $megye = Yii::$app->request->post('megye');
+
+        if ($irsz) {
+            if (substr($irsz, 0, 1) == '1')
+                $irsz = '1011';
+
+//            $selected = Helyseg::findOne(['IRANYITOSZAM' => $irsz]);
+            $items = Helyseg::findAll(['IRANYITOSZAM' => $irsz]);
+
+            return [
+//                'selected' => $selected,
+                'items' => $items,
+                'itemsCount' => count($items),
+            ];
+        }
+
+        if ($megye) {
+
+            $items = Helyseg::findAll(['ID_MEGYE' => $megye]);
+
+            return [
+                'selected' => $megye,
+                'items' => $items,
+                'itemsCount' => count($items),
+            ];
+
+        }
+
+    }
+
+
+}
