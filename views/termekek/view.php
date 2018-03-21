@@ -253,7 +253,7 @@ JS
                                    onclick="selectSize('<?= $vonalkod->vonalkod ?>')"
                             />
                             <label for="v_<?= $vonalkod->vonalkod ?>"
-                                   class="product-size"><?= $vonalkod->megnevezes ?></label>
+                                   class="product-size" data-toggle="tooltip" data-placement="top" title="<?= $vonalkod->keszlet_1 ?> db raktáron"><?= $vonalkod->megnevezes ?></label>
 
                             <?php
                         }
