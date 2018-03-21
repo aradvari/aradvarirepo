@@ -79,7 +79,7 @@ class TermekekSearch extends Termekek
                 'k.url_segment sub_category_url_segment',
                 'm.markanev markanev',
                 'm.url_segment marka_url_segment',
-                ])
+            ])
             ->groupBy(['t.id']);
 
         $dataProvider = new ActiveDataProvider([
@@ -99,7 +99,9 @@ class TermekekSearch extends Termekek
             't.szinszuro' => $this->szin,
         ]);
 
-        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
+        $q = (array)explode(" ", $this->q);
+        foreach ($q as $text)
+            $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $text]);
 
         $query->orderBy($sortOrder[$this->s]);
 
