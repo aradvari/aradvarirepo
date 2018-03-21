@@ -26,7 +26,8 @@
         "skeeks/yii2-mobile-detect": "^1.0",
         "yiisoft/yii2-authclient": "*",
         "yii2mod/yii2-sweet-alert": "*",
-        "akavov/yii2-bootstrap-tokenfield": "^0.1.0"
+        "akavov/yii2-bootstrap-tokenfield": "^0.1.0",
+        "kartik-v/yii2-widget-rating": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
