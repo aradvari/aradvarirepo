@@ -76,11 +76,9 @@ use yii\helpers\Url;
                             echo Html::beginTag('li');
                             echo Html::a($item['megnevezes'],
                                 [
-                                    'href' => Url::to([
-                                        'termekek/index',
-                                        'mainCategory' => $item['pk_url_segment'],
-                                        'subCategory' => $item['url_segment'],
-                                    ]),
+                                    'termekek/index',
+                                    'mainCategory' => $item['pk_url_segment'],
+                                    'subCategory' => $item['url_segment'],
                                 ],
                                 ['class' => 'dropdown-item']);
                             echo Html::endTag('li');
@@ -99,11 +97,9 @@ use yii\helpers\Url;
                             echo Html::beginTag('li');
                             echo Html::a($item['megnevezes'],
                                 [
-                                    'href' => Url::to([
-                                        'termekek/index',
-                                        'mainCategory' => $item['pk_url_segment'],
-                                        'subCategory' => $item['url_segment'],
-                                    ]),
+                                    'termekek/index',
+                                    'mainCategory' => $item['pk_url_segment'],
+                                    'subCategory' => $item['url_segment'],
                                 ],
                                 ['class' => 'dropdown-item']);
                             echo Html::endTag('li');
@@ -133,11 +129,9 @@ use yii\helpers\Url;
                             echo Html::beginTag('li');
                             echo Html::a($item['megnevezes'],
                                 [
-                                    'href' => Url::to([
-                                        'termekek/index',
-                                        'mainCategory' => $item['pk_url_segment'],
-                                        'subCategory' => $item['url_segment'],
-                                    ]),
+                                    'termekek/index',
+                                    'mainCategory' => $item['pk_url_segment'],
+                                    'subCategory' => $item['url_segment'],
                                 ],
                                 ['class' => 'dropdown-item']);
                             echo Html::endTag('li');
@@ -156,11 +150,9 @@ use yii\helpers\Url;
                             echo Html::beginTag('li');
                             echo Html::a($item['megnevezes'],
                                 [
-                                    'href' => Url::to([
-                                        'termekek/index',
-                                        'mainCategory' => $item['pk_url_segment'],
-                                        'subCategory' => $item['url_segment'],
-                                    ]),
+                                    'termekek/index',
+                                    'mainCategory' => $item['pk_url_segment'],
+                                    'subCategory' => $item['url_segment'],
                                 ],
                                 ['class' => 'dropdown-item']);
                             echo Html::endTag('li');

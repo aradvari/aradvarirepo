@@ -84,8 +84,30 @@ class MigrationController extends Controller
 //            if (!$user->save())
 //                var_dump($user->getErrors());
 //        }
+
+
 //
 //
+
+//        CREATE TABLE `termek_ertekeles` (
+//    `id_termek_ertekeles` int(11) unsigned NOT NULL AUTO_INCREMENT,
+//  `id_termek` int(11) DEFAULT NULL,
+//  `ertek1` int(11) DEFAULT NULL,
+//  `ertek2` int(11) DEFAULT NULL,
+//  `ertek3` int(11) DEFAULT NULL,
+//  `ertek4` int(11) DEFAULT NULL,
+//  `ertek5` int(11) DEFAULT NULL,
+//  PRIMARY KEY (`id_termek_ertekeles`)
+//) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+//        CREATE TABLE `termek_ertekeles_felhasznalo` (
+//    `id_termek_ertekeles_felhasznalo` int(11) unsigned NOT NULL AUTO_INCREMENT,
+//  `id_termek` int(11) DEFAULT NULL,
+//  `id_felhasznalo` int(11) DEFAULT NULL,
+//  `datum` datetime DEFAULT NULL,
+//  `ertek` int(11) DEFAULT NULL,
+//  PRIMARY KEY (`id_termek_ertekeles_felhasznalo`)
+//) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
     }

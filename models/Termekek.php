@@ -192,4 +192,29 @@ class Termekek extends ActiveRecord
         return $this->akcios_kisker_ar > 0;
     }
 
+    public function getErtekeles()
+    {
+        return $this->hasOne(TermekErtekeles::className(), ['id_termek' => 'id']);
+    }
+
+    public function getErtekelesAVG()
+    {
+        $model = $this->ertekeles;
+
+        if (!$model)
+            return 0;
+
+
+        $sum = ($model->ertek1 * 1) +
+            ($model->ertek2 * 2) +
+            ($model->ertek3 * 3) +
+            ($model->ertek4 * 4) +
+            ($model->ertek5 * 5);
+
+        $count = $model->ertek1 + $model->ertek2 + $model->ertek3 + $model->ertek4 + $model->ertek5;
+
+        return $sum / $count;
+
+    }
+
 }

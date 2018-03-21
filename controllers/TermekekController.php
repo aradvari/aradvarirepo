@@ -4,11 +4,14 @@ namespace app\controllers;
 
 use app\models\Kategoriak;
 use app\models\Markak;
+use app\models\TermekErtekeles;
+use app\models\TermekErtekelesFelhasznalo;
 use app\models\Vonalkodok;
 use Yii;
 use app\models\Termekek;
 use app\models\TermekekSearch;
 use app\components\web\Controller;
+use yii\db\Expression;
 use yii\db\Query;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -104,6 +107,47 @@ class TermekekController extends Controller
             'model' => $model,
             'history' => $history,
         ]);
+    }
+
+    public function actionAjaxRate()
+    {
+        $error = null;
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        if (Yii::$app->user->isGuest)
+            $error = 'Sajnáljuk, de értékelni csak regisztrált és bejelentkezett felhasználóval tudsz!';
+
+        //Korábbi szavazás ellenőrzése
+        if (TermekErtekelesFelhasznalo::findOne(['id_termek' => Yii::$app->request->post('id'), 'id_felhasznalo' => Yii::$app->user->id]))
+            $error = 'Sajnáljuk, de egy terméket többször nem értékelhetsz!';
+
+        //Átlag rögzítés
+        $model = TermekErtekeles::findOne(['id_termek' => Yii::$app->request->post('id')]);
+        if (!$model)
+            $model = new TermekErtekeles();
+
+        $value = 'ertek' . Yii::$app->request->post('value');
+        $model->id_termek = Yii::$app->request->post('id');
+        $model->{$value} += 1;
+        $model->save();
+
+        //Személy rögzítés
+        $logModel = TermekErtekelesFelhasznalo::findOne(['id_termek' => Yii::$app->request->post('id'), 'id_felhasznalo' => Yii::$app->user->id]);
+        if (!$logModel)
+            $logModel = new TermekErtekelesFelhasznalo();
+
+        $logModel->id_termek = Yii::$app->request->post('id');
+        $logModel->id_felhasznalo = Yii::$app->user->id;
+        $logModel->ertek = Yii::$app->request->post('value');
+        $logModel->datum = new Expression('now()');
+        $logModel->save();
+
+        return [
+            'error' => $error,
+            'value' => $model->termek->ertekelesAVG,
+        ];
+
     }
 
     public function actionAjaxGetQuantity()

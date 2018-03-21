@@ -3,6 +3,7 @@
 use app\assets\TermekAsset;
 use app\components\helpers\Coreshop;
 use app\models\GlobalisAdatok;
+use kartik\rating\StarRating;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -173,6 +174,47 @@ $this->params['breadcrumbs'] = [
                 }
                 ?>
 
+            </div>
+
+            <div class="rating">
+                <?php
+                echo StarRating::widget([
+                    'id' => 'product-rating',
+                    'name' => 'product-rating',
+                    'pluginOptions' => [
+                        'theme' => 'krajee-svg',
+                        'size' => 'xs',
+                        'step' => 1,
+                        'showClear' => false,
+                        'showCaption' => false,
+                    ],
+                    'value' => $model->ertekelesAVG,
+                ]);
+
+                echo $this->registerJs(<<<JS
+$('#product-rating').on('rating:change', function (event, value, caption) {
+
+    $.ajax({
+        method: "POST",
+        url: "/termekek/ajax-rate",
+        data: {
+            'id': {$model->id},
+            'value': value,
+        }
+    }).done(function (result) {
+        if (result.error){
+            addNotice(result.error);    
+            $('#product-rating').rating('update', {$model->ertekelesAVG});
+        }else{
+            addNotice('Köszönjük az értékelésedet!', '');
+            $('#product-rating').rating('update', result.value);
+        }
+    });
+
+});
+JS
+                );
+                ?>
             </div>
 
             <?php
