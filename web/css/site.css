@@ -1,14 +1,22 @@
-@font-face {
+@font-face{
     font-family: proxima_nova_black;
     src: url("../fonts/ProximaNova-Black.otf");
 }
 
-@font-face {
+@font-face{
+    font-family: proxima_nova_light;
+    src: url("../fonts/ProximaNova-Light.otf");
+}
+
+
+
+@font-face{
     font-family: proxima_nova_regular;
     src: url("../fonts/ProximaNova-Regular.otf");
 }
 
-@font-face {
+
+@font-face{
     font-family: proxima_nova_bold;
     src: url("../fonts/ProximaNova-Bold.otf");
 }
@@ -978,14 +986,6 @@ a.highslide-credits:hover i {
     background-position: -120px -20px;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #eff2f3;
-    font-size: 16px;
-    font-family: 'proxima_nova_regular', sans-serif;
-    color: #222;
-}
 
 .callbacks_container {
     width: 100%;
@@ -2841,7 +2841,8 @@ body {
 
 .desktop-cart {
     font-weight: bold;
-    padding-top: 29px;
+    position: relative;
+    top: 17px;
 }
 
 .desktop-cart a {
@@ -2871,15 +2872,6 @@ body {
 }
 
 /* footer */
-.footer {
-    clear: both;
-    background-color: #000;
-    color: #eee;
-    overflow: auto;
-    text-align: center;
-    font-size: 0.8em;
-    padding: 0 2%;
-}
 
 .footer-container {
     width: 100%;
@@ -3180,7 +3172,7 @@ input[type="radio"]:checked + label {
 
 .product-order-desktop input,
 .product-order-desktop button,
-select {
+select{
     width: 100%;
     margin-bottom: 10px;
     padding: 14px;
@@ -4565,57 +4557,54 @@ img.horizontal-image {
     z-index: 1;
 }
 
-.help-block {
+.help-block{
     color: #CC0000;
 }
 
-main {
-    padding-top: 50px;
-}
 
 /* =================== Redesign ==================== */
 
-/* Navigation */
+/* Navigation */ 
 .navbar {
-    background: #FFFFFF;
-    padding: 0 15px;
+    background:#FFFFFF;
+    padding:0 15px;
 }
 
 .navbar-light .navbar-nav .nav-link {
     font-family: proxima_nova_bold;
-    font-weight: bold;
-    font-size: 14px;
-    letter-spacing: 0.59px;
-    text-transform: uppercase;
-    color: #1D1D1B;
-    color: rgb(29, 29, 27);
+    font-weight : bold;
+    font-size : 14px;
+    letter-spacing : 0.59px;
+    text-transform : uppercase;
+    color : #1D1D1B;
+    color : rgb(29, 29, 27);
     padding: 30px 25px 26px 25px;
     border-bottom: 4px solid #FFF;
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
-    color: #1D1D1B;
-    color: rgb(29, 29, 27);
-    border-bottom: 4px solid #2a87e4;
-}
+    .navbar-light .navbar-nav .nav-link:hover {
+        color : #1D1D1B;
+        color : rgb(29, 29, 27);
+        border-bottom: 4px solid #2a87e4;
+    }
 
 .search-icon {
     background-image: url(../images/icons/search.png);
     background-repeat: no-repeat;
     background-position: center;
-    width: 27px;
-    height: 81px;
-    padding-left: 25px;
+    width:27px;
+    height:81px;
+    padding-left:25px;
     padding-right: 25px;
 }
 
-.search-icon:hover {
-    background-image: url(../images/icons/search_hover.png);
-}
+    .search-icon:hover {
+        background-image: url(../images/icons/search_hover.png);
+    }
 
 .form-inline .form-control.search-input {
     display: block;
-    width: 100%;
+    width:100%;
     background: #EFF2F3;
     line-height: 1.8rem;
     font-family: proxima_nova_regular;
@@ -4625,9 +4614,338 @@ main {
     border-radius: 0;
 }
 
+/* Slider */
+.carousel-caption {
+    top: 110px;
+    right: initial;
+    text-align:left;
+} 
+
+.carousel-caption h5 {
+    font-family: proxima_nova_black;
+    font-size:95px;
+    text-transform: uppercase;
+    color:#FFF;
+    letter-spacing: 2px;
+}
+
+.carousel-caption p {
+    font-size:45px;
+    text-transform: uppercase;
+    letter-spacing: 3.2px;
+    font-family: proxima_nova_light;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    width:3%;
+}
+
+.carousel-control-prev-icon {
+    background-image: url(../images/icons/slider-left.png);
+    width:42px;
+    height:85px;
+} 
+
+.carousel-control-next-icon {
+    background-image: url(../images/icons/slider-right.png);
+    width:42px;
+    height:85px;
+} 
+
+.carousel-indicators {
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 2%;
+}
+
+.carousel-indicators li {
+    width:19px;
+    height:19px;
+    background: url(../images/icons/indicator.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.carousel-indicators .active {
+     background: url(../images/icons/indicator_focus.png);
+     background-repeat: no-repeat;
+     background-position: center;
+}
+
+/* Customer logo */
+#customerLogos {
+    align-items: center;
+    justify-content: center;
+}
+
+.customer-logo-container {
+    padding:0;
+} 
+@media (min-width: 768px) {
+
+
+    /* show 3 items */
+    #customerLogos .carousel-inner .active,
+    #customerLogos .carousel-inner .active + .carousel-item,
+    #customerLogos .carousel-inner .active + .carousel-item + .carousel-item,
+    #customerLogos .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
+        display: block;
+    }
+    
+    #customerLogos .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    #customerLogos .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    #customerLogos .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+    #customerLogos .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
+        transition: none;
+    }
+    
+    #customerLogos .carousel-inner .carousel-item-next,
+    #customerLogos .carousel-inner .carousel-item-prev {
+      position: relative;
+      transform: translate3d(0, 0, 0);
+    }
+    
+    #customerLogos .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -25%;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    
+    /* left or forward direction */
+    #customerLogos .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    #customerLogos .carousel-item-next.carousel-item-left + .carousel-item,
+    #customerLogos .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    #customerLogos .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+    #customerLogos .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    
+    /* farthest right hidden item must be abso position for animations */
+    #customerLogos .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    
+    /* right or prev direction */
+    #customerLogos .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    #customerLogos .carousel-item-prev.carousel-item-right + .carousel-item,
+    #customerLogos .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    #customerLogos .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+    #customerLogos .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+
+}
+
+/* Fonts */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFF;
+    font-size: 18px;
+    font-family: 'proxima_nova_regular', sans-serif;
+    color: #222;
+}
+
+h2 {
+    font-family: proxima_nova_black;
+    font-size: 40px;
+    text-transform: uppercase;
+    color: #1D1D1B;
+    letter-spacing: 2px;
+    padding-bottom:20px;
+    background: url(../images/icons/h2-underline.png) no-repeat center bottom;
+    margin-bottom:40px;
+}
+
+h2.inverse {
+    color:#FFF;
+    background: url(../images/icons/h2-underline-inverse.png) no-repeat center bottom;
+}
+
+h4 {
+    font-family: proxima_nova_black;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #2A87E4;
+    letter-spacing: 1.5px;
+    margin-bottom:20px;
+}
+
+.link, footer a {
+    letter-spacing: 1.5px;
+    font-family: proxima_nova_light;
+} 
+
+    .link:hover, footer a:hover {
+        color:#FFF;
+    }
+
+/* Buttons */
+.btn {
+    color:#FFF;
+    text-transform: uppercase;
+    font-family: proxima_nova_bold;
+    border-radius: 0;
+    letter-spacing: 1.25px;
+    font-size: 15px;
+}
+
+.btn-primary {
+    background-color:#2A87E4;
+    line-height: 14px;
+    padding: 16px 54px 16px 34px;
+    background-image: url(../images/icons/button-arrow.png);
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    border-color:#2A87E4;
+}
+
+    .btn-primary:hover, .btn-primary:active, .btn:focus {
+        background-color:#2373B5;
+        border-color:#2373B5;
+    }
+
+.btn-transparent {
+    border:2px solid #FFF;
+    padding: 16px 54px;
+}
+
+    .btn-transparent:hover {
+        color:#FFF;
+        border-color: #1D1D1B;
+        background: #1D1D1B;
+    }
+
+/* Images */
+.image-vans-x-peanuts {
+    background: url(../images/photos/vans_x_peanuts.png);
+    height:432px;
+    background-repeat: no-repeat;
+}
+
+.image-vans-girls {
+    background: url(../images/photos/vans_girls.png);
+    height:487px;
+    background-repeat: no-repeat;
+}
+
+.image-vans-old-skool {
+    background: url(../images/photos/vans_old_skool.png);
+    height:377px;
+    background-repeat: no-repeat;
+}
+/* Spaces */
+.margin-top-50 {
+    margin-top:50px;
+}
+
+.margin-top-20 {
+    margin-top:20px;
+}
+
+/* Colors (font) */
+.white {
+    color:#FFF;
+}
+
+.blue {
+    color:#2A87E4;
+}
+
+.maire {
+    color:#1D1D1B;
+}
+
+.alice-blue {
+    color:#EFF2F3;
+}
+
+.charcoal {
+    color:#444444;
+}
+
+/* Background colors */
+
+.white-bg {
+    background-color:#FFF;
+}
+
+.blue-bg {
+    background-color:#2A87E4;
+}
+
+.maire-bg {
+    background-color:#1D1D1B;
+}
+
+.alice-blue-bg {
+    background-color:#EFF2F3;
+}
+
+.charcoal-bg {
+    background-color:#444444;
+}
+
+/* Footer */
+.footer {
+    background-color: #444444;
+    font-size:18px;
+    color:#EFF2F3;
+}
+
+.footer-pad {
+    padding:50px;
+}
+
+.footer .media {
+    margin-bottom:20px;
+}
+
+.footer-bottom {
+    position: relative;
+}
+
+.footer-bottom .container-fluid {
+     position: absolute;
+    bottom:0;
+    right:0;
+}
+.quote {
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    margin-top:20px;
+    margin-bottom:20px; 
+}
+
+.white-highlighted {
+    display: inline-block;
+    background: #FFF;
+    text-transform: uppercase;
+    font-family: proxima_nova_light;
+    letter-spacing: 1.2px;
+    color:#444444;
+    padding:5px;
+}
+
 /**
 BOOTSTRAP NAVBAR
  */
+
 
 /*=-====Bootstrapthemes.co btco-hover-menu=====*/
 
@@ -4635,128 +4953,132 @@ BOOTSTRAP NAVBAR
     color: rgb(64, 64, 64);
 }
 
-.btco-hover-menu a, .navbar > li > a {
+.btco-hover-menu a , .navbar > li > a {
     text-transform: capitalize;
     padding: 10px 15px;
 }
+
 
 .btco-hover-menu .active a,
 .btco-hover-menu .active a:focus,
 .btco-hover-menu .active a:hover,
 .btco-hover-menu li a:hover,
-.btco-hover-menu li a:focus,
-.navbar > .show > a, .navbar > .show > a:focus, .navbar > .show > a:hover {
+.btco-hover-menu li a:focus ,
+.navbar>.show>a,  .navbar>.show>a:focus,  .navbar>.show>a:hover{
     color: #000;
     background: transparent;
     outline: 0;
 }
 
+
+
 /*submenu style start from here*/
 
 .dropdown-menu {
-    padding: 0px 0;
     margin: 0 0 0;
     border: 0px solid transition !important;
-    border: 0px solid rgba(0, 0, 0, .15);
+    border: 0px solid rgba(0,0,0,.15);
     border-radius: 0px;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-
 }
 
 /*first level*/
-.btco-hover-menu .collapse ul > li:hover > a {
-    background: #f5f5f5;
+
+
+.btco-hover-menu .collapse ul ul > li:hover > a, .navbar .show .dropdown-menu > li > a:focus, .navbar .show .dropdown-menu > li > a:hover{
+	background: #fff;
 }
 
-.btco-hover-menu .collapse ul ul > li:hover > a, .navbar .show .dropdown-menu > li > a:focus, .navbar .show .dropdown-menu > li > a:hover {
-    background: #fff;
+.dropdown-item {
+    color: #444444;
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 0.7px;
 }
+
 
 /*second level*/
-.btco-hover-menu .collapse ul ul ul > li:hover > a {
-    background: #fff;
+.btco-hover-menu .collapse ul ul ul > li:hover > a{
+	background: #fff;
 }
 
 /*third level*/
-.btco-hover-menu .collapse ul ul, .btco-hover-menu .collapse ul ul.dropdown-menu {
-    background: #f5f5f5;
+.btco-hover-menu .collapse ul ul, .btco-hover-menu .collapse ul ul.dropdown-menu{
+	background:#FFF;
 }
 
-.btco-hover-menu .collapse ul ul ul, .btco-hover-menu .collapse ul ul ul.dropdown-menu {
-    background: #f5f5f5
+
+.btco-hover-menu .collapse ul ul ul, .btco-hover-menu .collapse ul ul ul.dropdown-menu{
+	background:#f5f5f5;
 }
 
-.btco-hover-menu .collapse ul ul ul ul, .btco-hover-menu .collapse ul ul ul ul.dropdown-menu {
-    background: #f5f5f5
+.btco-hover-menu .collapse ul ul ul ul, .btco-hover-menu .collapse ul ul ul ul.dropdown-menu{
+	background:#f5f5f5;
 }
 
 /*Drop-down menu work on hover*/
-.btco-hover-menu {
-    background: none;
-    margin: 0;
-    padding: 0;
-    min-height: 20px
+
+.btco-hover-menu{
+	margin: 0;
+	padding: 0;
+	min-height:20px
 }
 
 @media only screen and (max-width: 991px) {
-    .btco-hover-menu .show > .dropdown-toggle::after {
+    .btco-hover-menu .show > .dropdown-toggle::after{
         transform: rotate(-90deg);
     }
 }
 
 @media only screen and (min-width: 991px) {
 
-    .btco-hover-menu .collapse ul li {
-        position: relative;
+    .btco-hover-menu .collapse ul li{
+    	position:relative;
+    }
+    .btco-hover-menu .collapse ul li:hover> ul{
+    	display:block
     }
 
-    .btco-hover-menu .collapse ul li:hover > ul {
-        display: block
+    .btco-hover-menu .collapse ul ul{
+    	position:absolute;
+    	top:100%;
+    	left:0;
+    	min-width:250px;
+    	display:none
+    }
+    .btco-hover-menu .collapse ul ul li{
+    	position:relative
+    }
+    .btco-hover-menu .collapse ul ul li:hover> ul{
+    	display:block
     }
 
-    .btco-hover-menu .collapse ul ul {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        min-width: 250px;
-        display: none
-    }
-
-    /*******/
-    .btco-hover-menu .collapse ul ul li {
-        position: relative
-    }
-
-    .btco-hover-menu .collapse ul ul li:hover > ul {
-        display: block
-    }
-
-    .btco-hover-menu .collapse ul ul ul {
-        position: absolute;
-        top: 0;
-        left: 100%;
-        min-width: 250px;
-        display: none
+    .btco-hover-menu .collapse ul ul ul{
+    	position:absolute;
+    	top:0;
+    	left:100%;
+    	min-width:250px;
+    	display:none
     }
 
     /*******/
-    .btco-hover-menu .collapse ul ul ul li {
-        position: relative
+
+    .btco-hover-menu .collapse ul ul ul li{
+    	position:relative;
     }
 
-    .btco-hover-menu .collapse ul ul ul li:hover ul {
-        display: block
+    .btco-hover-menu .collapse ul ul ul li:hover ul{
+    	display:block;
     }
 
-    .btco-hover-menu .collapse ul ul ul ul {
-        position: absolute;
-        top: 0;
-        left: -100%;
-        min-width: 250px;
-        display: none;
-        z-index: 1
+    .btco-hover-menu .collapse ul ul ul ul{
+    	position:absolute;
+    	top:0;
+    	left:-100%;
+    	min-width:250px;
+    	display:none;
+    	z-index:1
     }
-
 }
 
