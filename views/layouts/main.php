@@ -59,7 +59,7 @@ AppAsset::register($this);
 </header>
 
 <main>
-    <div class="container">
+    <div class="container-fluid">
         <div class="arrow_box_light notice" style="display:none"></div>
         <?php
         foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
