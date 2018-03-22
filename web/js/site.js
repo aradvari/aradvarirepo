@@ -21,16 +21,14 @@ var refreshCartCount = function () {
 
 }
 
-var getCart = function (containerSelector) {
-
-    if (!$(containerSelector).length)
-        return false;
+var getCart = function () {
 
     $.ajax({
         method: "GET",
         url: "/cart/get-cart",
     }).done(function (result) {
-        $(containerSelector).html(result);
+        $('.cart-container').html(result);
+        $('.cart-container-top').html(result);
     });
 
 }
@@ -45,7 +43,7 @@ var deleteCartItem = function (meret) {
         }
     }).done(function (result) {
         refreshCartCount();
-        getCart('.cart-container');
+        getCart();
     });
 
 }
@@ -65,7 +63,7 @@ $(document).on("change", 'select[name="quantity"]', function () {
     }).done(function (result) {
 
         refreshCartCount();
-        getCart('.cart-container');
+        getCart();
 
     });
 
@@ -81,7 +79,7 @@ $(document).on("change", 'input[name="kupon"]', function () {
         }
     }).done(function (result) {
 
-        getCart('.cart-container');
+        getCart();
 
     });
 
@@ -89,7 +87,7 @@ $(document).on("change", 'input[name="kupon"]', function () {
 
 $(function () {
     refreshCartCount();
-    getCart('.cart-container');
+    getCart();
 
     $( '.dropdown-menu a.dropdown-toggle' ).on( 'click', function ( e ) {
         var $el = $( this );

@@ -91,7 +91,7 @@ class CartController extends Controller
 
     public function actionGetCart()
     {
-        return $this->renderAjax('_cart');;
+        return $this->renderAjax('_cart');
     }
 
 }

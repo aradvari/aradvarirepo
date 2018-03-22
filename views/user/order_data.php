@@ -105,7 +105,7 @@ OrderAsset::register($this);
         <div class="col">
 
             <h4>Kosarad tartalma</h4>
-            <div class="cart-container"></div>
+            <div class="cart-container no-cash"></div>
 
             <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList([1 => 'Csomagküldő szolgálattal', 3=>'GLS csomagpontba', 2 => 'Személyes átvétel irodánkban']) ?>
 

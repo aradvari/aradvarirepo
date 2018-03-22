@@ -165,16 +165,21 @@ use yii\helpers\Url;
                     <a class="nav-link" href="<?= Url::to(['termekek/index', 'mainCategory' => 'outlet']) ?>"
                        style="color:red;">SALE %</a>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+                       href="<?= Url::to(['cart/view']) ?>"><img src="/images/cart-black.png" alt="Kosár">&nbsp;<span
+                                class="cart-count"></span></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <div class="cart-container-top"></div>
+                    </div>
+                </li>
+
             </ul>
             <a class="search-icon" data-toggle="collapse" href="#toggleSearch" role="button" aria-expanded="false"
                aria-controls="collapseExample">
             </a>
 
-            <!-- cart float right -->
-            <a href="<?= Url::to(['cart/view']) ?>" class="nav-item desktop-cart">
-                <img src="/images/cart-black.png" alt="Kosár">&nbsp;
-                <span class="cart-count"></span>
-            </a>
         </div>
     </nav>
 </div>

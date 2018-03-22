@@ -1,20 +1,29 @@
-@font-face{
+@font-face {
     font-family: proxima_nova_black;
     src: url("../fonts/ProximaNova-Black.otf");
 }
 
-
-@font-face{
+@font-face {
     font-family: proxima_nova_regular;
     src: url("../fonts/ProximaNova-Regular.otf");
 }
 
-
-@font-face{
+@font-face {
     font-family: proxima_nova_bold;
     src: url("../fonts/ProximaNova-Bold.otf");
 }
 
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+    pointer-events: none;
+}
+
+.cart-container.no-cash .cash-btn {
+    display: none;
+}
 
 #facebox {
     position: absolute;
@@ -968,7 +977,6 @@ a.highslide-credits:hover i {
 .controls-in-heading .highslide-controls .highslide-close a:hover {
     background-position: -120px -20px;
 }
-
 
 body {
     margin: 0;
@@ -3172,7 +3180,7 @@ input[type="radio"]:checked + label {
 
 .product-order-desktop input,
 .product-order-desktop button,
-select{
+select {
     width: 100%;
     margin-bottom: 10px;
     padding: 14px;
@@ -4557,57 +4565,57 @@ img.horizontal-image {
     z-index: 1;
 }
 
-.help-block{
+.help-block {
     color: #CC0000;
 }
 
-main{
-    padding-top:50px;
+main {
+    padding-top: 50px;
 }
 
 /* =================== Redesign ==================== */
 
-/* Navigation */ 
+/* Navigation */
 .navbar {
-    background:#FFFFFF;
-    padding:0 15px;
+    background: #FFFFFF;
+    padding: 0 15px;
 }
 
 .navbar-light .navbar-nav .nav-link {
     font-family: proxima_nova_bold;
-    font-weight : bold;
-    font-size : 14px;
-    letter-spacing : 0.59px;
-    text-transform : uppercase;
-    color : #1D1D1B;
-    color : rgb(29, 29, 27);
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.59px;
+    text-transform: uppercase;
+    color: #1D1D1B;
+    color: rgb(29, 29, 27);
     padding: 30px 25px 26px 25px;
     border-bottom: 4px solid #FFF;
 }
 
-    .navbar-light .navbar-nav .nav-link:hover {
-        color : #1D1D1B;
-        color : rgb(29, 29, 27);
-        border-bottom: 4px solid #2a87e4;
-    }
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #1D1D1B;
+    color: rgb(29, 29, 27);
+    border-bottom: 4px solid #2a87e4;
+}
 
 .search-icon {
     background-image: url(../images/icons/search.png);
     background-repeat: no-repeat;
     background-position: center;
-    width:27px;
-    height:81px;
-    padding-left:25px;
+    width: 27px;
+    height: 81px;
+    padding-left: 25px;
     padding-right: 25px;
 }
 
-    .search-icon:hover {
-        background-image: url(../images/icons/search_hover.png);
-    }
+.search-icon:hover {
+    background-image: url(../images/icons/search_hover.png);
+}
 
 .form-inline .form-control.search-input {
     display: block;
-    width:100%;
+    width: 100%;
     background: #EFF2F3;
     line-height: 1.8rem;
     font-family: proxima_nova_regular;
@@ -4621,37 +4629,35 @@ main{
 BOOTSTRAP NAVBAR
  */
 
-
 /*=-====Bootstrapthemes.co btco-hover-menu=====*/
 
 .navbar-light .navbar-nav .nav-link {
     color: rgb(64, 64, 64);
 }
-.btco-hover-menu a ,  .navbar > li > a {
+
+.btco-hover-menu a, .navbar > li > a {
     text-transform: capitalize;
     padding: 10px 15px;
 }
+
 .btco-hover-menu .active a,
 .btco-hover-menu .active a:focus,
 .btco-hover-menu .active a:hover,
 .btco-hover-menu li a:hover,
-.btco-hover-menu li a:focus ,
-.navbar>.show>a,  .navbar>.show>a:focus,  .navbar>.show>a:hover{
+.btco-hover-menu li a:focus,
+.navbar > .show > a, .navbar > .show > a:focus, .navbar > .show > a:hover {
     color: #000;
     background: transparent;
     outline: 0;
 }
 
-
-
 /*submenu style start from here*/
-
 
 .dropdown-menu {
     padding: 0px 0;
     margin: 0 0 0;
     border: 0px solid transition !important;
-    border: 0px solid rgba(0,0,0,.15);
+    border: 0px solid rgba(0, 0, 0, .15);
     border-radius: 0px;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -4659,37 +4665,98 @@ BOOTSTRAP NAVBAR
 }
 
 /*first level*/
-.btco-hover-menu .collapse ul > li:hover > a{background: #f5f5f5;}
-.btco-hover-menu .collapse ul ul > li:hover > a, .navbar .show .dropdown-menu > li > a:focus, .navbar .show .dropdown-menu > li > a:hover{background: #fff;}
+.btco-hover-menu .collapse ul > li:hover > a {
+    background: #f5f5f5;
+}
+
+.btco-hover-menu .collapse ul ul > li:hover > a, .navbar .show .dropdown-menu > li > a:focus, .navbar .show .dropdown-menu > li > a:hover {
+    background: #fff;
+}
+
 /*second level*/
-.btco-hover-menu .collapse ul ul ul > li:hover > a{background: #fff;}
+.btco-hover-menu .collapse ul ul ul > li:hover > a {
+    background: #fff;
+}
 
 /*third level*/
-.btco-hover-menu .collapse ul ul, .btco-hover-menu .collapse ul ul.dropdown-menu{background:#f5f5f5;}
-.btco-hover-menu .collapse ul ul ul, .btco-hover-menu .collapse ul ul ul.dropdown-menu{background:#f5f5f5}
-.btco-hover-menu .collapse ul ul ul ul, .btco-hover-menu .collapse ul ul ul ul.dropdown-menu{background:#f5f5f5}
+.btco-hover-menu .collapse ul ul, .btco-hover-menu .collapse ul ul.dropdown-menu {
+    background: #f5f5f5;
+}
+
+.btco-hover-menu .collapse ul ul ul, .btco-hover-menu .collapse ul ul ul.dropdown-menu {
+    background: #f5f5f5
+}
+
+.btco-hover-menu .collapse ul ul ul ul, .btco-hover-menu .collapse ul ul ul ul.dropdown-menu {
+    background: #f5f5f5
+}
 
 /*Drop-down menu work on hover*/
-.btco-hover-menu{background: none;margin: 0;padding: 0;min-height:20px}
+.btco-hover-menu {
+    background: none;
+    margin: 0;
+    padding: 0;
+    min-height: 20px
+}
 
 @media only screen and (max-width: 991px) {
-    .btco-hover-menu .show > .dropdown-toggle::after{
+    .btco-hover-menu .show > .dropdown-toggle::after {
         transform: rotate(-90deg);
     }
 }
+
 @media only screen and (min-width: 991px) {
 
-    .btco-hover-menu .collapse ul li{position:relative;}
-    .btco-hover-menu .collapse ul li:hover> ul{display:block}
-    .btco-hover-menu .collapse ul ul{position:absolute;top:100%;left:0;min-width:250px;display:none}
+    .btco-hover-menu .collapse ul li {
+        position: relative;
+    }
+
+    .btco-hover-menu .collapse ul li:hover > ul {
+        display: block
+    }
+
+    .btco-hover-menu .collapse ul ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 250px;
+        display: none
+    }
+
     /*******/
-    .btco-hover-menu .collapse ul ul li{position:relative}
-    .btco-hover-menu .collapse ul ul li:hover> ul{display:block}
-    .btco-hover-menu .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
+    .btco-hover-menu .collapse ul ul li {
+        position: relative
+    }
+
+    .btco-hover-menu .collapse ul ul li:hover > ul {
+        display: block
+    }
+
+    .btco-hover-menu .collapse ul ul ul {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        min-width: 250px;
+        display: none
+    }
+
     /*******/
-    .btco-hover-menu .collapse ul ul ul li{position:relative}
-    .btco-hover-menu .collapse ul ul ul li:hover ul{display:block}
-    .btco-hover-menu .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}
+    .btco-hover-menu .collapse ul ul ul li {
+        position: relative
+    }
+
+    .btco-hover-menu .collapse ul ul ul li:hover ul {
+        display: block
+    }
+
+    .btco-hover-menu .collapse ul ul ul ul {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        min-width: 250px;
+        display: none;
+        z-index: 1
+    }
 
 }
 

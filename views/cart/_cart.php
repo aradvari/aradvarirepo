@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $model app\models\Termekek */
 ?>
@@ -131,4 +132,12 @@ use yii\helpers\Html;
             </tbody>
         </table>
     </div>
+
+    <a href="<?= Url::to(['order/create']) ?>" class="btn btn-success btn-sm cash-btn">Tovább a pénztárhoz</a>
+<?php endif; ?>
+
+<?php if (!Yii::$app->cart->items): ?>
+<div id="kosar" style="clear:both;">
+    ÜRES A KOSARAD
+</div>
 <?php endif; ?>
