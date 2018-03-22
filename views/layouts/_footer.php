@@ -143,14 +143,10 @@ use yii\helpers\Url;
   </div>
   <div class="footer-bottom">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12">
           <!--Footer Bottom-->
-          <p class="text-right">&copy; Copyright 2018 - Coreshop.hu</p>
-        </div>
-      </div>
+          <p>&copy; Copyright 2018 - Coreshop.hu</p>
     </div>
-
+  </div>
 
 <!-- <footer class="footer container-fluid">
     <div class="row">
