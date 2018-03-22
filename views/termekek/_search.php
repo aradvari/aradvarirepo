@@ -171,7 +171,7 @@ use yii\helpers\ArrayHelper;
                 <?php
                 echo Html::a(
                     'Szűrők törlése',
-                    ['termekek/index', 'mainCategory' => $params['mainCategory'], 'subCategory' => $params['subCategory'], 'brand' => $params['brand']],
+                    ['termekek/index', 'mainCategory' => $params['mainCategory'], 'subCategory' => $params['subCategory']],
                     ['class' => 'sizeButtonSelected']
                 );
                 ?>
