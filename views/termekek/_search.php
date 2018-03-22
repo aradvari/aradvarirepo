@@ -152,7 +152,7 @@ use yii\helpers\ArrayHelper;
             if (ArrayHelper::getValue($params, 'q'))
                 echo Html::hiddenInput('q', $params[q]);
             ?>
-            <div class="filter-topnav">
+            <div class="filter-topnav text-right">
                 <p>
                     <span><?= $dataProvider->getTotalCount() ?> termék</span>
                     <select name="s">
@@ -167,6 +167,15 @@ use yii\helpers\ArrayHelper;
                         </option>
                     </select>
                 </p>
+
+                <?php
+                echo Html::a(
+                    'Szűrők törlése',
+                    ['termekek/index', 'mainCategory' => $params['mainCategory'], 'subCategory' => $params['subCategory'], 'brand' => $params['brand']],
+                    ['class' => 'sizeButtonSelected']
+                );
+                ?>
+
             </div>
         </form>
 
