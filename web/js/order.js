@@ -63,36 +63,27 @@ $('#felhasznalok-irszam, #megrendelesfej-szallitasi_irszam').change(function () 
 
 });
 
-$('#megrendelesfej-gls').change(function () {
+$('input[name="MegrendelesFej[id_szallitasi_mod]"]').change(function () {
 
-    var checked = $(this).is(':checked');
+    console.log($(this).val());
+    var checked = ($(this).val() == 3);
 
     if (checked) {
+
         $('.gls-container').show();
         initGLSPSMap();
+
     } else {
+
         $('.gls-container').hide();
+
     }
 
-    // $('#megrendelesfej-szallitasi_nev').attr('readonly', checked);
     $('#megrendelesfej-szallitasi_irszam').attr('readonly', checked);
     $('#megrendelesfej-szallitasi_varos').attr('readonly', checked);
     $('#megrendelesfej-szallitasi_utcanev').attr('readonly', checked);
     $('#megrendelesfej-szallitasi_hazszam').attr('readonly', checked);
     $('#megrendelesfej-gls_kod').attr('readonly', checked);
-
-});
-
-$('input[name="MegrendelesFej[id_szallitasi_mod]"]').change(function () {
-
-    if ($(this).val() == 1) {
-        $('#megrendelesfej-gls-container').show();
-        $('#megrendelesfej-gls').prop('checked', true).trigger('change');
-    }
-    if ($(this).val() == 2) {
-        $('#megrendelesfej-gls').prop('checked', false).trigger('change');
-        $('#megrendelesfej-gls-container').hide();
-    }
 
 });
 
@@ -114,6 +105,7 @@ window.glsPSMap_OnSelected_Handler = function (data) {
     $('#megrendelesfej-szallitasi_varos').val(data.city);
     $('#megrendelesfej-szallitasi_utcanev').val(data.address);
     $('#megrendelesfej-gls_kod').val(data.pclshopid);
+    $('#megrendelesfej-eltero_szallitasi_adatok').prop('checked', true).trigger('change');
 }
 
 $(function () {

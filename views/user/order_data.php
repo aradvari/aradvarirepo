@@ -107,10 +107,7 @@ OrderAsset::register($this);
             <h4>Kosarad tartalma</h4>
             <div class="cart-container"></div>
 
-            <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList([1 => 'Csomagküldő szolgálattal', 2 => 'Személyes átvétel irodánkban']) ?>
-            <div id="<?= Html::getInputId($megrendelesModel, 'gls') ?>-container" style="display: none">
-                <?= $form->field($megrendelesModel, 'gls')->checkbox([], false)->label('Csomagomat GLS csomagpontba kérem') ?>
-            </div>
+            <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList([1 => 'Csomagküldő szolgálattal', 3=>'GLS csomagpontba', 2 => 'Személyes átvétel irodánkban']) ?>
 
             <div class="gls-container" style="display: none">
                 <?php
