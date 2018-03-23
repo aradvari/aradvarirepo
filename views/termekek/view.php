@@ -340,9 +340,10 @@ JS
     </div>
 
 <?php
-if ($history) {
-    echo $this->render('_history', ['history' => $history]);
-} else {
-    echo $this->render('_ajanlo', ['subCategory' => ArrayHelper::getValue($model, 'defaultSubCategory.url_segment')]);
-}
+//if ($history) {
+//    echo $this->render('_history', ['history' => $history]);
+//} else {
+//    echo $this->render('_ajanlo', ['subCategory' => ArrayHelper::getValue($model, 'defaultSubCategory.url_segment')]);
+//}
+    echo $this->render('_ajanlo', ['q' => $model->termeknev]);
 ?>

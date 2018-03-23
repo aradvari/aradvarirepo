@@ -5,7 +5,7 @@ use app\assets\OrderAsset;
 use app\models\Kozterulet;
 use app\widgets\gls\GlsWidget;
 use yii\helpers\ArrayHelper;
-use yii\widgets\ActiveForm;
+use luya\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
 OrderAsset::register($this);

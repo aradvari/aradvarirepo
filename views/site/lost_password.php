@@ -1,6 +1,6 @@
 <?php
 
-use yii\widgets\ActiveForm;
+use luya\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
 ?>

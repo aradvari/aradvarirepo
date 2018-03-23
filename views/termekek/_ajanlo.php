@@ -3,7 +3,7 @@
 use app\models\TermekekSearch;
 use yii\widgets\ListView;
 
-$dataProvider = (new TermekekSearch())->search(['subCategory' => $subCategory]);
+$dataProvider = (new TermekekSearch())->search(['q' => $q]);
 $dataProvider->pagination = false;
 $dataProvider->query->limit(5);
 $dataProvider->query->orderBy('rand()');

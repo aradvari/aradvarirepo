@@ -5,7 +5,7 @@ use app\models\Helyseg;
 use app\models\Kozterulet;
 use app\models\Megyek;
 use yii\helpers\ArrayHelper;
-use yii\widgets\ActiveForm;
+use luya\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
 OrderAsset::register($this);

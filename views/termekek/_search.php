@@ -169,6 +169,7 @@ use yii\helpers\ArrayHelper;
                 </p>
 
                 <?php
+                if ($params['brand'] || $params['meret'] || $params['szin'] || $params['q'])
                 echo Html::a(
                     'Szűrők törlése',
                     ['termekek/index', 'mainCategory' => $params['mainCategory'], 'subCategory' => $params['subCategory']],

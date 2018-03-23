@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae5553f431679307dce732236a93d567",
+    "content-hash": "2361018e8bd3ae314830dd88a74ded15",
     "packages": [
         {
             "name": "akavov/yii2-bootstrap-tokenfield",
@@ -610,6 +610,71 @@
                 "yii2"
             ],
             "time": "2016-07-06T19:56:33+00:00"
+        },
+        {
+            "name": "luyadev/luya-bootstrap4",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/luyadev/luya-bootstrap4.git",
+                "reference": "98be5e2de28f438af49e6613a403266605874c20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/luyadev/luya-bootstrap4/zipball/98be5e2de28f438af49e6613a403266605874c20",
+                "reference": "98be5e2de28f438af49e6613a403266605874c20",
+                "shasum": ""
+            },
+            "require-dev": {
+                "luyadev/luya-testsuite": "~1.0.0"
+            },
+            "type": "luya-extension",
+            "extra": {
+                "luya": {
+                    "blocks": [
+                        "src/blocks"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                },
+                "asset-pattern-skip-version": "(-build|-patch)",
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "luya\\bootstrap4\\": "src/",
+                    "luya\\bootstrap4\\tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Basil",
+                    "email": "git@nadar.io",
+                    "homepage": "https://github.com/nadar"
+                }
+            ],
+            "description": "Bootstrap4 Assets and Helper classes like ActiveForm for LUYA and Yii2.",
+            "homepage": "http://luya.io",
+            "keywords": [
+                "assets",
+                "bootstrap",
+                "bootstrap4",
+                "cms",
+                "luya",
+                "luya-module",
+                "module",
+                "php",
+                "twbs4",
+                "yii2"
+            ],
+            "time": "2018-03-16T12:55:55+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -3817,7 +3882,8 @@
     "stability-flags": {
         "yiisoft/yii2-bootstrap": 20,
         "kop/yii2-scroll-pager": 20,
-        "nirvana-msu/yii2-infinite-scroll": 20
+        "nirvana-msu/yii2-infinite-scroll": 20,
+        "luyadev/luya-bootstrap4": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
