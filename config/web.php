@@ -95,12 +95,12 @@ $config = [
             'bundles' => [
                 'luya\bootstrap4\Bootstrap4Asset' => [
                     'css' => [
-                        'bootstrap.css' => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css',
+                        'bootstrap.css' => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0' . (isset($_GET['bootstrap']) ? '' : '-alpha.6') . '/css/bootstrap.min.css',
                     ],
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
                     'css' => [
-                        'bootstrap.css' => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css',
+                        'bootstrap.css' => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0' . (isset($_GET['bootstrap']) ? '' : '-alpha.6') . '/css/bootstrap.min.css',
                     ],
                 ],
             ],
