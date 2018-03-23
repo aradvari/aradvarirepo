@@ -1132,10 +1132,10 @@ a.highslide-credits:hover i {
 }
 
 .product-thumb {
-    width: 196px;
-    float: left;
-    position: relative;
-    margin: 0 0 20px 0;
+    /*width: 196px;*/
+    /*float: left;*/
+    /*position: relative;*/
+    /*margin: 0 0 20px 0;*/
 }
 
 /*.product-thumb img{} */
@@ -1169,46 +1169,46 @@ a.highslide-credits:hover i {
 
 @media screen and (max-width: 400px) {
     .product-thumb {
-        width: -webkit-calc(50% - 20px);
-        width: -moz-calc(50% - 20px);
-        width: calc(50% - 20px);
-        margin: 0 10px 10px 10px;
+        /*width: -webkit-calc(50% - 20px);*/
+        /*width: -moz-calc(50% - 20px);*/
+        /*width: calc(50% - 20px);*/
+        /*margin: 0 10px 10px 10px;*/
     }
 }
 
 @media screen and (min-width: 401px) {
     .product-thumb {
-        width: -webkit-calc((100% / 3) - 20px);
-        width: -moz-calc((100% / 3) - 20px);
-        width: calc((100% / 3) - 20px);
-        margin: 0 10px 10px 10px;
+        /*width: -webkit-calc((100% / 3) - 20px);*/
+        /*width: -moz-calc((100% / 3) - 20px);*/
+        /*width: calc((100% / 3) - 20px);*/
+        /*margin: 0 10px 10px 10px;*/
     }
 }
 
 @media screen and (min-width: 601px) {
     .product-thumb {
-        width: -webkit-calc(25% - 20px);
-        width: -moz-calc(25% - 20px);
-        width: calc(25% - 20px);
-        margin: 0 10px 10px 10px;
+        /*width: -webkit-calc(25% - 20px);*/
+        /*width: -moz-calc(25% - 20px);*/
+        /*width: calc(25% - 20px);*/
+        /*margin: 0 10px 10px 10px;*/
     }
 }
 
 @media screen and (min-width: 801px) {
     .product-thumb {
-        width: -webkit-calc(20% - 20px);
-        width: -moz-calc(20% - 20px);
-        width: calc(20% - 20px);
-        margin: 0 10px 10px 10px;
+        /*width: -webkit-calc(20% - 20px);*/
+        /*width: -moz-calc(20% - 20px);*/
+        /*width: calc(20% - 20px);*/
+        /*margin: 0 10px 10px 10px;*/
     }
 }
 
 @media screen and (min-width: 1001px) {
     .product-thumb {
-        width: -webkit-calc((100% / 5) - 20px);
-        width: -moz-calc((100% / 5) - 20px);
-        width: calc((100% / 5) - 20px);
-        margin: 0 10px 20px 10px;
+        /*width: -webkit-calc((100% / 5) - 20px);*/
+        /*width: -moz-calc((100% / 5) - 20px);*/
+        /*width: calc((100% / 5) - 20px);*/
+        /*margin: 0 10px 20px 10px;*/
     }
 }
 

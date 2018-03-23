@@ -52,14 +52,13 @@ foreach ($params as $key => $param) {
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
+        'options' => ['class' => 'list-view row'],
+        'itemOptions' => ['class' => 'item col-2-xl col-lg-3 col-md-4 col-sm-4 col-4 text-center'],
         'itemView' => '_item',
-        'viewParams' => [
-            'params' => $params,
-        ],
+        'viewParams' => ['params' => $params],
         'pager' => [
             'class' => ScrollPager::className(),
-            'triggerOffset' => 1,
+            'triggerOffset' => 10,
             'noneLeftText' => '',
         ],
         'summary' => '',
