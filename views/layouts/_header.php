@@ -54,7 +54,7 @@ use yii\helpers\Url;
         </form>
     </div>
 
-    <nav class="navbar navbar-toggleable-md bg-light navbar-light btco-hover-menu">
+    <nav class="navbar navbar-expand-md bg-light navbar-light btco-hover-menu">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -63,13 +63,11 @@ use yii\helpers\Url;
         <a class="navbar-brand" href="/"><img src="/images/coreshop_logo_w_icon.svg" alt="Coreshop.hu" class="logo"></a>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-            </ul>
-            <ul class="navbar-nav">
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle"
+                    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                        href="<?= Url::to(['termekek/index', 'mainCategory' => 'ferfi-ruhazat']) ?>">férfi ruha</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <?php
                         $models = (new TermekekSearch())->searchSubCategory(['mainCategory' => 'ferfi-ruhazat'])->getModels();
                         foreach ($models as $item) {
