@@ -243,7 +243,7 @@ JS
                     ?>
 
                     <?php
-                    if (count($model->vonalkodok) > 1) {
+                    if (count($model->vonalkodok) >= 1) {
                         foreach ($model->vonalkodok as $vonalkod) {
                             ?>
                             <input type="radio"
@@ -253,12 +253,15 @@ JS
                                    onclick="selectSize('<?= $vonalkod->vonalkod ?>')"
                             />
                             <label for="v_<?= $vonalkod->vonalkod ?>"
-                                   class="product-size" data-toggle="tooltip" data-placement="top" title="<?= $vonalkod->keszlet_1 ?> db raktáron"><?= $vonalkod->megnevezes ?></label>
+                                   class="product-size" data-toggle="tooltip" data-placement="top"
+                                   title="<?= $vonalkod->keszlet_1 ?> db raktáron"><?= $vonalkod->megnevezes ?></label>
 
                             <?php
                         }
-                    } else {
-                        $this->registerJs('selectSize("' . $model->vonalkodok[0]->vonalkod . '")');
+                    }
+
+                    if (count($model->vonalkodok) == 1) {
+                        $this->registerJs('$("#v_' . $vonalkod->vonalkod . '").trigger("click")');
                     }
                     ?>
 

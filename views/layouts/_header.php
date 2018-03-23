@@ -167,7 +167,7 @@ use yii\helpers\Url;
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" data-hover="dropdown"
                        href="<?= Url::to(['cart/view']) ?>"><img src="/images/cart-black.png" alt="Kosár">&nbsp;<span
                                 class="cart-count"></span></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
