@@ -1,4 +1,4 @@
-<h2>Sikertelen fizetés!</h2>
+<h2>Sikeres fizetés!</h2>
 
 <ul>
     <li>Válaszkód (RC): <b><?= $model->rc ?></b></li>
