@@ -91,6 +91,15 @@ $config = [
         'cart' => [
             'class' => 'app\components\Cart',
         ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [
+                        'bootstrap.css' => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'
+                    ]
+                ]
+            ]
+        ],
     ],
     'params' => $params,
 ];
