@@ -112,40 +112,49 @@ class TermekekController extends Controller
     public function actionAjaxRate()
     {
         $error = null;
+        $model = null;
 
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        if (Yii::$app->user->isGuest)
+        if (!Yii::$app->user->isGuest) {
+
+            //Korábbi szavazás ellenőrzése
+            $lastRate = TermekErtekelesFelhasznalo::findOne(['id_termek' => Yii::$app->request->post('id'), 'id_felhasznalo' => Yii::$app->user->id]);
+
+            if (!$lastRate) {
+
+                //Átlag rögzítés
+                $model = TermekErtekeles::findOne(['id_termek' => Yii::$app->request->post('id')]);
+                if (!$model)
+                    $model = new TermekErtekeles();
+
+                $value = 'ertek' . Yii::$app->request->post('value');
+                $model->id_termek = Yii::$app->request->post('id');
+                $model->{$value} += 1;
+                $model->save();
+
+                //Személy rögzítés
+                $logModel = TermekErtekelesFelhasznalo::findOne(['id_termek' => Yii::$app->request->post('id'), 'id_felhasznalo' => Yii::$app->user->id]);
+                if (!$logModel)
+                    $logModel = new TermekErtekelesFelhasznalo();
+
+                $logModel->id_termek = Yii::$app->request->post('id');
+                $logModel->id_felhasznalo = Yii::$app->user->id;
+                $logModel->ertek = Yii::$app->request->post('value');
+                $logModel->datum = new Expression('now()');
+                $logModel->save();
+
+            }else{
+                $error = 'Sajnáljuk de korábban már értékelted a terméket!';
+            }
+
+        } else {
             $error = 'Sajnáljuk, de értékelni csak regisztrált és bejelentkezett felhasználóval tudsz!';
-
-        //Korábbi szavazás ellenőrzése
-        if (TermekErtekelesFelhasznalo::findOne(['id_termek' => Yii::$app->request->post('id'), 'id_felhasznalo' => Yii::$app->user->id]))
-            $error = 'Sajnáljuk, de egy terméket többször nem értékelhetsz!';
-
-        //Átlag rögzítés
-        $model = TermekErtekeles::findOne(['id_termek' => Yii::$app->request->post('id')]);
-        if (!$model)
-            $model = new TermekErtekeles();
-
-        $value = 'ertek' . Yii::$app->request->post('value');
-        $model->id_termek = Yii::$app->request->post('id');
-        $model->{$value} += 1;
-        $model->save();
-
-        //Személy rögzítés
-        $logModel = TermekErtekelesFelhasznalo::findOne(['id_termek' => Yii::$app->request->post('id'), 'id_felhasznalo' => Yii::$app->user->id]);
-        if (!$logModel)
-            $logModel = new TermekErtekelesFelhasznalo();
-
-        $logModel->id_termek = Yii::$app->request->post('id');
-        $logModel->id_felhasznalo = Yii::$app->user->id;
-        $logModel->ertek = Yii::$app->request->post('value');
-        $logModel->datum = new Expression('now()');
-        $logModel->save();
+        }
 
         return [
             'error' => $error,
-            'value' => $model->termek->ertekelesAVG,
+            'value' => ArrayHelper::getValue($model, 'termek.ertekelesAVG'),
         ];
 
     }
