@@ -89,27 +89,29 @@ $(function () {
     refreshCartCount();
     getCart();
 
-    $( '.dropdown-menu a.dropdown-toggle' ).on( 'click', function ( e ) {
-        var $el = $( this );
-        var $parent = $( this ).offsetParent( ".dropdown-menu" );
-        if ( !$( this ).next().hasClass( 'show' ) ) {
-            $( this ).parents( '.dropdown-menu' ).first().find( '.show' ).removeClass( "show" );
+    $('[data-toggle="tooltip"]').tooltip()
+
+    $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
+        var $el = $(this);
+        var $parent = $(this).offsetParent(".dropdown-menu");
+        if (!$(this).next().hasClass('show')) {
+            $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
         }
-        var $subMenu = $( this ).next( ".dropdown-menu" );
-        $subMenu.toggleClass( 'show' );
+        var $subMenu = $(this).next(".dropdown-menu");
+        $subMenu.toggleClass('show');
 
-        $( this ).parent( "li" ).toggleClass( 'show' );
+        $(this).parent("li").toggleClass('show');
 
-        $( this ).parents( 'li.nav-item.dropdown.show' ).on( 'hidden.bs.dropdown', function ( e ) {
-            $( '.dropdown-menu .show' ).removeClass( "show" );
-        } );
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+            $('.dropdown-menu .show').removeClass("show");
+        });
 
-        if ( !$parent.parent().hasClass( 'navbar-nav' ) ) {
-            $el.next().css( { "top": $el[0].offsetTop, "left": $parent.outerWidth() - 4 } );
+        if (!$parent.parent().hasClass('navbar-nav')) {
+            $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
         }
 
         return false;
-    } );
+    });
 });
 
 /* Customer logo */
@@ -120,11 +122,11 @@ $('#customerLogos').on('slide.bs.carousel', function (e) {
     var itemsPerSlide = 4;
     var totalItems = $('#customerLogos.carousel-item').length;
 
-    if (idx >= totalItems-(itemsPerSlide-1)) {
+    if (idx >= totalItems - (itemsPerSlide - 1)) {
         var it = itemsPerSlide - (totalItems - idx);
-        for (var i=0; i<it; i++) {
+        for (var i = 0; i < it; i++) {
             // append slides to end
-            if (e.direction=="left") {
+            if (e.direction == "left") {
                 $('#customerLogos.carousel-item').eq(i).appendTo('.carousel-inner');
             }
             else {

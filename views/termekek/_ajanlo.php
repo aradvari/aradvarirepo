@@ -16,7 +16,8 @@ $dataProvider->query->orderBy('rand()');
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
+        'options' => ['class' => 'list-view row'],
+        'itemOptions' => ['class' => 'item col-xl-2 col-lg-3 col-md-3 col-sm-3 col-6 text-center'],
         'itemView' => '_item',
         'summary' => '',
     ]); ?>

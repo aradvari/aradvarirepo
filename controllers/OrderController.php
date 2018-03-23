@@ -45,12 +45,16 @@ class OrderController extends Controller
 
             $transError = false;
 
-            if ($felhasznaloModel->load(Yii::$app->request->post()) &&
-                $megrendelesModel->load(Yii::$app->request->post()) &&
-                $felhasznaloModel->save() &&
-                $megrendelesModel->save()
-            ) {
+            if ($felhasznaloModel->load(Yii::$app->request->post()) && $megrendelesModel->load(Yii::$app->request->post())) {
 
+                //Nem regisztrált user
+                if (!$felhasznaloModel->create_user)
+                    $felhasznaloModel->auth_type = 'unregistered';
+
+                if (!$felhasznaloModel->save())
+                    $transError = true;
+
+                //FEJ
                 $megrendelesModel->id_felhasznalo = $felhasznaloModel->getPrimaryKey();
                 $megrendelesModel->fizetendo = Yii::$app->cart->totalAmount;
                 $megrendelesModel->tetel_szam = Yii::$app->cart->getCount();
@@ -115,16 +119,19 @@ class OrderController extends Controller
 
                 }
 
-                if (!$megrendelesModel->close())
+                if (!$transError && !$megrendelesModel->close())
                     $transError = true;
+
 
                 if (!$transError) {
 
+                    Yii::$app->session->setFlash('success', 'A megrendelésed sikeres volt, a részletekről e-mailt küldtönk az email címedre.');
                     $transaction->commit();
+                    return $this->goHome();
 
                 } else {
 
-                    Yii::$app->session->setFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
+                    //Yii::$app->session->setFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
                     $transaction->rollBack();
 
                 }

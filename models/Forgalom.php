@@ -35,7 +35,7 @@ class Forgalom extends \app\components\db\ActiveRecord
             [['id_raktar', 'id_vonalkod'], 'required'],
             [['id_raktar', 'id_vonalkod', 'id_keszlet', 'lista_ar', 'fogy_ar'], 'integer'],
             [['datum'], 'safe'],
-            [['statusz'], 'string', 'max' => 1],
+//            [['statusz'], 'string', 'max' => 1],
         ];
     }
 

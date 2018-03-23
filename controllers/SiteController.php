@@ -74,7 +74,7 @@ class SiteController extends Controller
     {
         // get user data from client
         $userAttributes = $client->getUserAttributes();
-        $user = Felhasznalok::getUser($userAttributes['email']);
+        $user = Felhasznalok::getUser($userAttributes['email'], $client->getId());
 
         if (!$user) {
 
@@ -155,7 +155,7 @@ class SiteController extends Controller
 
             $password = Coreshop::randomPassword();
             $felhasznaloModel->jelszo = $password;
-            $felhasznaloModel->create_user = true;
+//            $felhasznaloModel->create_user = true;
 
             if ($felhasznaloModel->save()) {
 

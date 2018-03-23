@@ -28,6 +28,7 @@ class AppAsset extends AssetBundle
         'forceCopy' => YII_ENV_DEV,
     ];
     public $js = [
+        'https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js',
         'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js',
         'js/site.js',
     ];
