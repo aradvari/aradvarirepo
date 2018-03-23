@@ -53,7 +53,7 @@ foreach ($params as $key => $param) {
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'options' => ['class' => 'list-view row'],
-        'itemOptions' => ['class' => 'item col-xl-2 col-lg-3 col-md-3 col-sm-3 col-4 text-center'],
+        'itemOptions' => ['class' => 'item col-xl-2 col-lg-3 col-md-3 col-sm-3 col-6 text-center'],
         'itemView' => '_item',
         'viewParams' => ['params' => $params],
         'pager' => [
