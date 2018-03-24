@@ -1,9 +1,24 @@
-<h2>Sikeres fizetés!</h2>
-
-<ul>
-    <li>Válaszkód (RC): <b><?= $model->rc ?></b></li>
-    <li>Válaszüzenet (RT): <b><?= $model->rt ?></b></li>
-    <li>Tranzakció azonosító (TRID): <b><?= $model->trid ?></b></li>
-    <li>Engedélyszám (ANUM): <b><?= $model->anum ?></b></li>
-    <li>Tranzakció összege: <b><?= Yii::$app->formatter->asDecimal($model->amo) ?></b></li>
-</ul>
+<table class="table table-striped">
+    <tbody>
+    <tr>
+        <td>Válaszkód (RC):</td>
+        <td class="font-weight-bold"><?= $model->rc ?></td>
+    </tr>
+    <tr>
+        <td>Válaszüzenet (RT):</td>
+        <td class="font-weight-bold"><?= $model->rt ?></td>
+    </tr>
+    <tr>
+        <td>Tranzakció azonosító (TRID):</td>
+        <td class="font-weight-bold"><?= $model->trid ?></td>
+    </tr>
+    <tr>
+        <td>Engedélyszám (ANUM):</td>
+        <td class="font-weight-bold"><?= $model->anum ?></td>
+    </tr>
+    <tr>
+        <td>Tranzakció összege:</td>
+        <td class="font-weight-bold"><?= Yii::$app->formatter->asDecimal($model->amo) ?></td>
+    </tr>
+    </tbody>
+</table>

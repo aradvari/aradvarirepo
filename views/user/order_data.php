@@ -2,7 +2,9 @@
 /* @var $felhasznaloModel app\models\Felhasznalok */
 
 use app\assets\OrderAsset;
+use app\models\FizetesiMod;
 use app\models\Kozterulet;
+use app\models\SzallitasiMod;
 use app\widgets\gls\GlsWidget;
 use yii\helpers\ArrayHelper;
 use luya\bootstrap4\ActiveForm;
@@ -107,7 +109,7 @@ OrderAsset::register($this);
             <h4>Kosarad tartalma</h4>
             <div class="cart-container no-cash"></div>
 
-            <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList([1 => 'Csomagküldő szolgálattal', 3=>'GLS csomagpontba', 2 => 'Személyes átvétel irodánkban']) ?>
+            <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList(SzallitasiMod::getData()) ?>
 
             <div class="gls-container" style="display: none">
                 <?php
@@ -115,7 +117,7 @@ OrderAsset::register($this);
                 ?>
             </div>
 
-            <?= $form->field($megrendelesModel, 'id_fizetesi_mod')->radioList([1 => 'Utánvét/készpénz', 2 => 'Bankártya (CIB)']) ?>
+            <?= $form->field($megrendelesModel, 'id_fizetesi_mod')->radioList(FizetesiMod::getData()) ?>
 
             <?= $form->field($megrendelesModel, 'megjegyzes')->textarea(['placeholder' => '']) ?>
 

@@ -23,12 +23,9 @@ class Cart extends Component
     public function init()
     {
         parent::init();
+
         $this->items = $this->getItems();
         $this->couponCode = $this->getCouponCode();
-
-        //Free shipping check
-        if ($this->totalAmount > GlobalisAdatok::getParam('ingyenes_szallitas'))
-            $this->shippingAmount = 0;
 
     }
 
@@ -104,6 +101,10 @@ class Cart extends Component
 
             }
         }
+
+        //Free shipping check
+        if ($this->totalAmount > GlobalisAdatok::getParam('ingyenes_szallitas'))
+            $this->shippingAmount = 0;
 
         $this->totalAmountWithShipping = $this->totalAmount + $this->shippingAmount;
 

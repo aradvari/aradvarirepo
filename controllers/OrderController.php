@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\extensions\cib\CIB;
 use app\models\BankTranzakciok;
 use app\models\Felhasznalok;
+use app\models\FizetesiMod;
 use app\models\Helyseg;
 use app\models\LoginForm;
 use app\models\MegrendelesFej;
@@ -15,6 +16,7 @@ use Yii;
 use app\components\web\Controller;
 use yii\db\Expression;
 use yii\helpers\Url;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 class OrderController extends Controller
@@ -93,7 +95,7 @@ class OrderController extends Controller
                 }
 
                 //BANKI FIZETÉS
-                if ($megrendelesModel->id_fizetesi_mod == MegrendelesFej::FIZETESI_MOD_BANKI) {
+                if ($megrendelesModel->id_fizetesi_mod == FizetesiMod::TYPE_BANK) {
 
                     //cib
                     $cib = new CIB(Yii::$app->language, 'HUF');
@@ -127,7 +129,8 @@ class OrderController extends Controller
 
                     Yii::$app->session->setFlash('success', 'A megrendelésed sikeres volt, a részletekről e-mailt küldtönk az email címedre.');
                     $transaction->commit();
-                    return $this->goHome();
+
+                    return $this->redirect(['/order/success', 'id' => $megrendelesModel->getToken()]);
 
                 } else {
 
@@ -174,7 +177,9 @@ class OrderController extends Controller
         $parse = $cib->getData(Yii::$app->request->queryString);
 
         $transModel = BankTranzakciok::findOne(['id_felhasznalo' => $userId, 'trid' => $parse["TRID"], 'lezarva' => null]);
-        $transModel = BankTranzakciok::findOne(['id_felhasznalo' => $userId, 'trid' => $parse["TRID"]]);
+
+        if (!$transModel)
+            throw new NotFoundHttpException('A megadott tranzakció már lezárt, vagy nem feldolgozható!');
 
         if ($parse["MSGT"] == "21" && $transModel) {
 
@@ -194,7 +199,7 @@ class OrderController extends Controller
                     $transModel->lezarva = new Expression('NOW()');
                     $transModel->save();
 
-                    $megrendelesModel = $transModel->getMegrendelesFej();
+                    $megrendelesModel = $transModel->megrendelesFej;
                     $megrendelesModel->id_statusz = 1;
                     $megrendelesModel->save();
 
@@ -227,6 +232,7 @@ class OrderController extends Controller
 
             } catch (\Exception $e) {
                 $transaction->rollBack();
+                throw $e;
             }
 
         } else {
@@ -246,7 +252,7 @@ class OrderController extends Controller
         }
 
         if ($transModel->rc == "00") {
-            return $this->render('cib_success', ['model' => $transModel]);
+            return $this->redirect(['/order/success', 'id' => $transModel->megrendelesFej->getToken()]);
         } elseif ($transModel->rc != "00") {
             return $this->render('cib_error', ['model' => $transModel]);
         } else {
@@ -288,6 +294,14 @@ class OrderController extends Controller
 
         }
 
+    }
+
+    public function actionSuccess($id)
+    {
+        $model = MegrendelesFej::findByToken($id);
+        return $this->render('order_success', [
+            'model' => $model,
+        ]);
     }
 
 
