@@ -120,7 +120,15 @@ use yii\helpers\Url;
 <?php endif; ?>
 
 <?php if (!Yii::$app->cart->items): ?>
-    <div id="kosar" style="clear:both;">
-        ÜRES A KOSARAD
-    </div>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th>Kosár</th>
+        </tr>
+        <tr>
+            <td class="text-nowrap">A kosarad jelenleg üres.</td>
+        </tr>
+        </tbody>
+    </table>
+
 <?php endif; ?>

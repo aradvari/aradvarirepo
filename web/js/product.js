@@ -158,7 +158,11 @@ $('.cart-form').submit(function () {
         url: "/cart/ajax-add-item",
         data: $('.cart-form').serialize()
     }).done(function (result) {
-        addNotice('<a href="/kosar">A termék a kosárba került. <br /><b>' + result.termek.ar + ' Ft</b></a>', '/kosar');
+
+        if (result.mennyiseg > 0)
+            addNotice('A termék a kosárba került. <br /><b>' + result.termek.ar + ' Ft</b>', '/kosar');
+        else
+            addNotice('A termékből nincs elegendő mennyiség, hogy a kosaradba helyezd!', '/kosar');
 
         if ($('input[name="meret_radio"]').length > 1) {
 
