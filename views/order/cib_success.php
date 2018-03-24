@@ -18,7 +18,7 @@
     </tr>
     <tr>
         <td>Tranzakció összege:</td>
-        <td class="font-weight-bold"><?= Yii::$app->formatter->asDecimal($model->amo) ?></td>
+        <td class="font-weight-bold"><?= Yii::$app->formatter->asDecimal($model->amo) ?> Ft</td>
     </tr>
     </tbody>
 </table>

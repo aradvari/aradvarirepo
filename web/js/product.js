@@ -170,6 +170,7 @@ $('.cart-form').submit(function () {
         }
 
         refreshCartCount();
+        getCart();
     });
 
 });
