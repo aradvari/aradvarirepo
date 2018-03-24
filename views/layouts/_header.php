@@ -62,7 +62,7 @@ use yii\helpers\Url;
         </button>
         <a class="navbar-brand" href="/"><img src="/images/coreshop_logo_w_icon.svg" alt="Coreshop.hu" class="logo"></a>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
