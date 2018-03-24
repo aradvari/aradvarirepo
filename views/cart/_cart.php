@@ -38,7 +38,7 @@ use yii\helpers\Url;
                     <a href="/hu/termek/ultrarange-rapidweld/7347"><?= $model->termek->szin ?></a>
                 </td>
                 <td class="align-middle"><a href="/hu/termek/ultrarange-rapidweld/7347"
-                       class="arrow_box"><?= $model->megnevezes ?></a>
+                                            class="arrow_box"><?= $model->megnevezes ?></a>
                 </td>
                 <td class="text-right align-middle">
                     <?php
@@ -65,7 +65,7 @@ use yii\helpers\Url;
             <td class="text-right align-middle" colspan="3">
                 <?php
                 $code = Yii::$app->cart->getCouponCode();
-                echo Html::textInput('kupon', $code['code'], ['class' => 'form-control kupon ' . ($code && $code['success'] ? 'form-control-success' : 'form-control-danger'), 'placeholder' => 'kuponkód']);
+                echo Html::textInput('kupon', $code['code'], ['class' => 'form-control kupon ' . ($code && $code['success'] ? 'is-valid' : 'is-invalid'), 'placeholder' => 'kuponkód']);
                 ?>
             </td>
         </tr>
@@ -73,47 +73,50 @@ use yii\helpers\Url;
         <tr>
             <td colspan="5" class="text-right align-middle">Összesen:</td>
             <td class="text-right align-middle"
-                colspan="2"><?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalAmount) ?>
-                Ft
+                colspan="2"><?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalAmount) ?> Ft<br>
+                <span class="small">ÁFA (27%): <?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalVATAmount, 0) ?>
+                    Ft</span>
             </td>
             <td>&nbsp;</td>
         </tr>
-        <tr>
-            <td colspan="5" class="text-right align-middle">Kedvezmények:</td>
-            <td class="text-right align-middle" colspan="2">-
-                <?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalDiscountAmount, 0) ?>
-                Ft
-            </td>
-            <td>&nbsp;</td>
-        </tr>
+
+        <?php if (Yii::$app->cart->totalDiscountAmount): ?>
+            <tr>
+                <td colspan="5" class="text-right align-middle">Kedvezmények:</td>
+                <td class="text-right align-middle" colspan="2">-
+                    <?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalDiscountAmount, 0) ?> Ft
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        <?php endif; ?>
 
         <tr>
             <td colspan="5" class="text-right align-middle">+ Szállítási díj:</td>
-            <td class="text-right align-middle"
-                colspan="2"><?= Yii::$app->formatter->asDecimal(Yii::$app->cart->shippingAmount) ?> Ft
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-
-        <tr style="border-bottom:3px solid #2a87e4;">
-            <td colspan="5" class="text-right align-middle">ÁFA összege (27%):</td>
-            <td class="text-right align-middle"
-                colspan="2"><?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalVATAmount, 0) ?> Ft
+            <td class="text-right align-middle" colspan="2">
+                <?php if (Yii::$app->cart->shippingAmount): ?>
+                    <?= Yii::$app->formatter->asDecimal(Yii::$app->cart->shippingAmount) . ' Ft' ?>
+                <?php else: ?>
+                    INGYENES
+                <?php endif; ?>
             </td>
             <td>&nbsp;</td>
         </tr>
 
         <tr class="font-weight-bold">
-            <td colspan="5" class="text-right align-middle">Összesen:</td>
-            <td class="text-right align-middle" colspan="2"><?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalAmountWithShipping, 0) ?>
-                    Ft</td>
+            <td colspan="2"><a href="<?= Url::to(['order/create']) ?>" class="btn btn-success btn-sm cash-btn">Tovább a
+                    pénztárhoz</a></td>
+            <td colspan="3" class="text-right align-middle">Fizetendő:</td>
+            <td class="text-right align-middle"
+                colspan="2"><?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalAmountWithShipping, 0) ?>
+                Ft
+            </td>
             <td>&nbsp;</td>
         </tr>
 
         </tbody>
     </table>
 
-    <a href="<?= Url::to(['order/create']) ?>" class="btn btn-success btn-sm cash-btn">Tovább a pénztárhoz</a>
+
 <?php endif; ?>
 
 <?php if (!Yii::$app->cart->items): ?>
