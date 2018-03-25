@@ -27,10 +27,6 @@ div.required label.control-label:after {
     display: block;
 }
 
-.dropdown > .dropdown-toggle:active {
-    pointer-events: none;
-}
-
 .cart-container.no-cash .cash-btn {
     display: none;
 }
