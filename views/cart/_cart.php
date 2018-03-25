@@ -46,8 +46,7 @@ use yii\helpers\Url;
                 <td class="align-middle">
                     <a href="<?=$termekUrl?>"><?= $model->termek->szin ?></a>
                 </td>
-                <td class="align-middle"><a href="<?=$termekUrl?>"
-                                            class="arrow_box"><?= $model->megnevezes ?></a>
+                <td class="align-middle"><a href="<?=$termekUrl?>"><?= $model->megnevezes ?></a>
                 </td>
                 <td class="text-right align-middle">
                     <?php
