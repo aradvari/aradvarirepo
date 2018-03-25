@@ -64,10 +64,10 @@ AppAsset::register($this);
         foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
             if (is_array($message)) {
                 foreach ($message as $m) {
-                    echo '<div class="alert-box alert-' . $key . '">' . $m . '</div>';
+                    echo '<div class="alert alert-' . $key . '" role="alert">' . $m . '</div>';
                 }
             } else {
-                echo '<div class="alert-box alert-' . $key . '">' . $message . '</div>';
+                echo '<div class="alert alert-' . $key . '" role="alert">' . $message . '</div>';
             }
         }
         ?>

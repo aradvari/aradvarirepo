@@ -7,6 +7,8 @@
 
 namespace app\components\db;
 
+use yii\helpers\ArrayHelper;
+
 class ActiveRecord extends \yii\db\ActiveRecord
 {
 
@@ -31,5 +33,16 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return parent::beforeValidate();
 
     }
+
+    public static function getData($idKey = null, $valueKey = 'nev')
+    {
+
+        if (!$idKey)
+            $idKey = static::getTableSchema()->primaryKey;
+
+        return ArrayHelper::map(static::find()->all(), $idKey, $valueKey);
+
+    }
+
 
 }

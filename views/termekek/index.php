@@ -60,6 +60,7 @@ foreach ($params as $key => $param) {
             'class' => ScrollPager::className(),
             'triggerOffset' => 10,
             'noneLeftText' => '',
+            'spinnerTemplate' => '<div class="col-12 text-center p-3"><img src="{src}"/> További termékek betöltése...</div>',
         ],
         'summary' => '',
     ]); ?>

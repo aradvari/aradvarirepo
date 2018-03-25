@@ -78,37 +78,55 @@ class MigrationController extends Controller
 //            echo Html::tag('div', $e->getMessage());
 //        }
 //
-//        $users = Felhasznalok::find(['aktivacios_kod'=>'login_once'])->all();
-//        foreach ($users as $user){
-//            $user->aktivacios_kod = null;
-//            if (!$user->save())
-//                var_dump($user->getErrors());
-//        }
-
 
 //
 //
+        /*
 
-//        CREATE TABLE `termek_ertekeles` (
-//    `id_termek_ertekeles` int(11) unsigned NOT NULL AUTO_INCREMENT,
-//  `id_termek` int(11) DEFAULT NULL,
-//  `ertek1` int(11) DEFAULT NULL,
-//  `ertek2` int(11) DEFAULT NULL,
-//  `ertek3` int(11) DEFAULT NULL,
-//  `ertek4` int(11) DEFAULT NULL,
-//  `ertek5` int(11) DEFAULT NULL,
-//  PRIMARY KEY (`id_termek_ertekeles`)
-//) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        CREATE TABLE `termek_ertekeles` (
+    `id_termek_ertekeles` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id_termek` int(11) DEFAULT NULL,
+  `ertek1` int(11) DEFAULT NULL,
+  `ertek2` int(11) DEFAULT NULL,
+  `ertek3` int(11) DEFAULT NULL,
+  `ertek4` int(11) DEFAULT NULL,
+  `ertek5` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_termek_ertekeles`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-//        CREATE TABLE `termek_ertekeles_felhasznalo` (
-//    `id_termek_ertekeles_felhasznalo` int(11) unsigned NOT NULL AUTO_INCREMENT,
-//  `id_termek` int(11) DEFAULT NULL,
-//  `id_felhasznalo` int(11) DEFAULT NULL,
-//  `datum` datetime DEFAULT NULL,
-//  `ertek` int(11) DEFAULT NULL,
-//  PRIMARY KEY (`id_termek_ertekeles_felhasznalo`)
-//) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        CREATE TABLE `termek_ertekeles_felhasznalo` (
+    `id_termek_ertekeles_felhasznalo` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id_termek` int(11) DEFAULT NULL,
+  `id_felhasznalo` int(11) DEFAULT NULL,
+  `datum` datetime DEFAULT NULL,
+  `ertek` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_termek_ertekeles_felhasznalo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+        CREATE TABLE `fizetesi_mod` (
+`id_fizetesi_mod` int(11) unsigned NOT NULL AUTO_INCREMENT,​
+`nev` varchar(50) DEFAULT NULL,​
+PRIMARY KEY (`id_fizetesi_mod`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        INSERT INTO `fizetesi_mod` (`id_fizetesi_mod`,​ `nev`)
+VALUES
+    (1,​'Átvételkor készpénzben'),​
+    (2,​'Bankártya (CIB)');
+
+
+        CREATE TABLE `szallitasi_mod` (
+`id_szallitasi_mod` int(11) unsigned NOT NULL AUTO_INCREMENT,​
+`nev` varchar(50) DEFAULT NULL,​
+PRIMARY KEY (`id_szallitasi_mod`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `szallitasi_mod` (`id_szallitasi_mod`,​ `nev`)
+VALUES
+    (1,​'Csomagküldő szolgálattal'),​
+    (2,​'Személyes átvétel irodánkban'),​
+    (3,​'GLS csomagpontba');
+
+
+        */
 
     }
 

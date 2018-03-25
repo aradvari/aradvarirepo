@@ -4,9 +4,11 @@ namespace app\controllers;
 
 use app\models\Cart;
 use app\models\Termekek;
+use app\models\Vonalkodok;
 use Yii;
 use app\components\web\Controller;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\web\Response;
 
 class CartController extends Controller
@@ -43,7 +45,12 @@ class CartController extends Controller
         $mennyiseg = Yii::$app->request->post('mennyiseg');
         $modify = Yii::$app->request->post('modify');
 
-        $termekModel = Termekek::find()->joinWith(['vonalkodok'])->andOnCondition(['vonalkod' => $meret])->one();
+        $vonalkodModel = Vonalkodok::findOne(['vonalkod' => $meret]);
+        $termekModel = $vonalkodModel->termek;
+
+        if (Yii::$app->cart->getItemQuantity($meret) + $mennyiseg > $vonalkodModel->keszlet_1) {
+            $mennyiseg = $vonalkodModel->keszlet_1 - Yii::$app->cart->getItemQuantity($meret);
+        }
 
         Yii::$app->cart->addItem($meret, $mennyiseg, $modify);
 

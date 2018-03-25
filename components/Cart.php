@@ -6,6 +6,7 @@ use app\models\GlobalisAdatok;
 use app\models\Vonalkodok;
 use yii\base\Component;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\web\Cookie;
 
@@ -23,12 +24,10 @@ class Cart extends Component
     public function init()
     {
         parent::init();
+
         $this->items = $this->getItems();
         $this->couponCode = $this->getCouponCode();
-
-        //Free shipping check
-        if ($this->totalAmount > GlobalisAdatok::getParam('ingyenes_szallitas'))
-            $this->shippingAmount = 0;
+        $this->refreshItems();
 
     }
 
@@ -72,6 +71,13 @@ class Cart extends Component
 
     }
 
+    public function getItemQuantity($vonalkod)
+    {
+
+        return (int)ArrayHelper::getValue($this->items, $vonalkod . '.quantity');
+
+    }
+
     public function getItems()
     {
 
@@ -86,6 +92,16 @@ class Cart extends Component
 
                 $model = Vonalkodok::find()->joinWith(['termek', 'termek.marka'])->andWhere(['vonalkod' => $item['item']])->one();
 
+                if ($model->keszlet_1 < 1) {
+                    unset($items[$key]);
+                    Yii::$app->session->setFlash('danger', 'Sajnáljuk, de a kosaradban található <span class="font-weight-bold">' . $model->termek->termeknev . '</span> termék időközben elfogyott!');
+                    break;
+                }
+
+                if ($model->keszlet_1 < $item['quantity']) {
+                    $item['quantity'] = $model->keszlet_1;
+                }
+
                 $this->totalAmount += $model->termek->vegleges_ar * $item['quantity'];
                 $this->totalVATAmount += ($model->termek->vegleges_ar * $item['quantity']) * (Yii::$app->params['vat'] / 100);
                 $this->totalDiscountAmount += ($model->termek->kisker_ar * $item['quantity']) - ($model->termek->vegleges_ar * $item['quantity']);
@@ -98,12 +114,17 @@ class Cart extends Component
                 $data = [
                     'item' => $model,
                     'quantity' => $item['quantity'],
+                    'different' => $model->keszlet_1,
                     'quantityItems' => $maxItem,
                 ];
                 $item = $data;
 
             }
         }
+
+        //Free shipping check
+        if ($this->totalAmount > GlobalisAdatok::getParam('ingyenes_szallitas'))
+            $this->shippingAmount = 0;
 
         $this->totalAmountWithShipping = $this->totalAmount + $this->shippingAmount;
 
@@ -138,10 +159,28 @@ class Cart extends Component
 
     }
 
-    public function deleteItem($vonalkod)
+    public function deleteItem($vonalkod, $quantity = null)
     {
+        if ($quantity) {
+            $this->items[$vonalkod]['quantity'] -= $quantity;
+            if ($this->items[$vonalkod]['quantity'] < 1)
+                unset($this->items[$vonalkod]);
+        } else {
+            unset($this->items[$vonalkod]);
+        }
 
-        unset($this->items[$vonalkod]);
+        $cookies = Yii::$app->response->cookies;
+        $cookies->add(new Cookie([
+            'name' => 'cart',
+            'value' => Json::encode($this->items),
+        ]));
+
+        return true;
+
+    }
+
+    public function refreshItems()
+    {
 
         $cookies = Yii::$app->response->cookies;
         $cookies->add(new Cookie([

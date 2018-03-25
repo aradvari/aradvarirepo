@@ -55,6 +55,7 @@ $config = [
             'rules' => [
                 'regisztracio' => 'user/create',
                 'tranzakcio/<userId:\d+>' => 'order/cib',
+                ['pattern' => 'kosar', 'route' => 'cart/view',],
                 ['pattern' => 'uzletunk', 'route' => 'site/content', 'defaults' => ['page' => 'shop'],],
                 ['pattern' => 'szallitas', 'route' => 'site/content', 'defaults' => ['page' => 'shipping'],],
                 ['pattern' => 'altalanos-szerzodesi-feltetelek', 'route' => 'site/content', 'defaults' => ['page' => 'contract'],],
