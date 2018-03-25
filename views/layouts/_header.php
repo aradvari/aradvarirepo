@@ -62,7 +62,7 @@ use yii\helpers\Url;
         </button>
         <a class="navbar-brand" href="/"><img src="/images/coreshop_logo_w_icon.svg" alt="Coreshop.hu" class="logo"></a>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-hover="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -164,11 +164,11 @@ use yii\helpers\Url;
                        style="color:red;">SALE %</a>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown cart-img">
                     <a class="nav-link dropdown-toggle" data-hover="dropdown"
                        href="<?= Url::to(['cart/view']) ?>"><img src="/images/cart-black.png" alt="Kosár">&nbsp;<span
                                 class="cart-count"></span></a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-right cart-dropdown" aria-labelledby="navbarDropdownMenuLink">
                         <div class="cart-container-top"></div>
                     </div>
                 </li>
