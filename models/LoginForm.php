@@ -86,7 +86,7 @@ class LoginForm extends Model
     {
         if ($this->_user === false) {
 //            $this->_user = Felhasznalok::find()->andWhere(['email' => $this->username, 'torolve' => null])->andWhere(['not', ['aktivacios_kod' => null]])->one();
-            $this->_user = Felhasznalok::getUser($this->username);
+            $this->_user = Felhasznalok::getUser($this->username, 'normal');
         }
 
         return $this->_user;

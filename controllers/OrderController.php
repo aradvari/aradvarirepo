@@ -130,6 +130,13 @@ class OrderController extends Controller
                     Yii::$app->session->setFlash('success', 'A megrendelésed sikeres volt, a részletekről e-mailt küldtönk az email címedre.');
                     $transaction->commit();
 
+                    //MAIL
+                    $megrendelesModel->refresh();
+                    Yii::$app->mailer->compose('/mail/order.php', ['model' => $megrendelesModel])
+                        ->setTo($megrendelesModel->felhasznalo->email)
+                        ->setSubject('Sikeres rendelés - ' . $megrendelesModel->megrendeles_szama)
+                        ->send();
+
                     return $this->redirect(['/order/success', 'id' => $megrendelesModel->getToken()]);
 
                 } else {
@@ -209,9 +216,15 @@ class OrderController extends Controller
                     //KOSÁR TÖRLÉSE
                     Yii::$app->cart->delete();
 
-                    //MAIL
-
                     $transaction->commit();
+
+                    //MAIL
+                    $megrendelesModel->refresh();
+                    Yii::$app->mailer->compose('/mail/order.php', ['model' => $megrendelesModel])
+                        ->setTo($megrendelesModel->felhasznalo->email)
+                        ->setSubject('Sikeres rendelés - ' . $megrendelesModel->megrendeles_szama)
+                        ->send();
+
 
                 } else { //SIKERTELEN TRANZAKCIÓ
 
@@ -254,9 +267,8 @@ class OrderController extends Controller
         if ($transModel->rc == "00") {
             return $this->redirect(['/order/success', 'id' => $transModel->megrendelesFej->getToken()]);
         } elseif ($transModel->rc != "00") {
-            return $this->render('cib_error', ['model' => $transModel]);
-        } else {
-            return $this->render('cib_timeout', ['model' => $transModel]);
+            Yii::$app->session->addFlash('danger', $this->renderPartial('cib_error', ['model' => $transModel]));
+            return $this->redirect(['/order/create']);
         }
 
     }

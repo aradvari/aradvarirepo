@@ -210,6 +210,7 @@ class MegrendelesFej extends ActiveRecord
         if (!$this->megrendeles_szama) {
             $this->megrendeles_szama = date("Y") . "/" . str_pad($this->id_megrendeles_fej, 8, "0", STR_PAD_LEFT);
             $this->save(true, ['megrendeles_szama']);
+            $this->save(true, ['megrendeles_szama']);
         }
 
         return parent::afterSave($insert, $changedAttributes);
