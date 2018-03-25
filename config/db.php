@@ -4,7 +4,7 @@ return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=coreshop',
     'username' => 'root',
-    'password' => 'mysql',
+    'password' => '',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)

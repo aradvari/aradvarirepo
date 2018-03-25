@@ -31,3 +31,6 @@ tests/_support/_generated
 
 web/termek
 web/markak
+web/vendor
+
+/config
