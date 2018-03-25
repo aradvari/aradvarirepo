@@ -168,7 +168,7 @@ class Termekek extends ActiveRecord
 
     public function getDefaultMainCategory()
     {
-        return $this->hasMany(Kategoriak::className(), ['id_kategoriak' => 'szulo'])
+        return $this->hasOne(Kategoriak::className(), ['id_kategoriak' => 'szulo'])
             ->viaTable('kategoriak k2', ['id_kategoriak' => 'kategoria']);
     }
 

@@ -130,6 +130,9 @@ class OrderController extends Controller
                     Yii::$app->session->setFlash('success', 'A megrendelésed sikeres volt, a részletekről e-mailt küldtönk az email címedre.');
                     $transaction->commit();
 
+                    //KOSÁR TÖRLÉSE
+                    Yii::$app->cart->delete();
+
                     //MAIL
                     $megrendelesModel->refresh();
                     Yii::$app->mailer->compose('/mail/order.php', ['model' => $megrendelesModel])
@@ -213,18 +216,7 @@ class OrderController extends Controller
                     //KÉSZLET KEZELÉS
                     $megrendelesModel->close();
 
-                    //KOSÁR TÖRLÉSE
-                    Yii::$app->cart->delete();
-
                     $transaction->commit();
-
-                    //MAIL
-                    $megrendelesModel->refresh();
-                    Yii::$app->mailer->compose('/mail/order.php', ['model' => $megrendelesModel])
-                        ->setTo($megrendelesModel->felhasznalo->email)
-                        ->setSubject('Sikeres rendelés - ' . $megrendelesModel->megrendeles_szama)
-                        ->send();
-
 
                 } else { //SIKERTELEN TRANZAKCIÓ
 
@@ -248,19 +240,19 @@ class OrderController extends Controller
                 throw $e;
             }
 
-        } else {
+            //KOSÁR TÖRLÉSE
+            Yii::$app->cart->delete();
 
-            if ($parse["TRID"] == "") {
-                return $this->goHome();
-            } else {
+            //MAIL
+            $megrendelesModel->refresh();
+            Yii::$app->mailer->compose('/mail/order.php', ['model' => $megrendelesModel])
+                ->setTo($megrendelesModel->felhasznalo->email)
+                ->setSubject('Sikeres rendelés - ' . $megrendelesModel->megrendeles_szama)
+                ->send();
 
-                $transModel->history = $cib->getHistory($parse["TRID"], $transModel->amo);
+        } elseif ($parse["TRID"] == "") {
 
-                //Lezárás
-                $cib->msg32($parse["TRID"], $transModel->amo);
-                $response = $cib->msg33($parse["TRID"], $transModel->amo);
-
-            }
+            return $this->goHome();
 
         }
 

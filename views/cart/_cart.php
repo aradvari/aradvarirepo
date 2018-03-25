@@ -6,6 +6,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $model app\models\Termekek */
+
 ?>
 
 <?php if (Yii::$app->cart->items): ?>
@@ -22,22 +23,30 @@ use yii\helpers\Url;
             <th>Összesen</th>
             <th>Törlés</th>
         </tr>
-        <?php foreach (Yii::$app->cart->items as $item) {
-            $model = $item['item']; ?>
+        <?php
+        foreach (Yii::$app->cart->items as $item) {
+            $model = $item['item'];
+            $termekUrl = Url::to(['termekek/view',
+                'mainCategory' => $model->termek->defaultMainCategory->url_segment,
+                'subCategory' => $model->termek->defaultSubCategory->url_segment,
+                'brand' => $model->termek->marka->url_segment,
+                'termek' => $model->termek->url_segment,
+            ]);
+            ?>
             <tr>
                 <td class="text-center align-middle">
-                    <a href="/hu/termek/ultrarange-rapidweld/7347">
+                    <a href="<?=$termekUrl?>">
                         <img src="<?= $model->termek->getDefaultImage()['webUrl'] ?>"
                              style="padding:1px; border:1px solid #2a87e4; width:50px;height:50px;vertical-align:text-middle;"
                              alt="<?= $model->termek->termeknev ?>"></a></td>
                 <td class="align-middle">
-                    <a href="/hu/termek/ultrarange-rapidweld/7347"><?= $model->termek->marka->markanev ?></a>
-                    <a href="/hu/termek/ultrarange-rapidweld/7347"><?= $model->termek->termeknev ?></a>
+                    <a href="<?=$termekUrl?>"><?= $model->termek->marka->markanev ?></a>
+                    <a href="<?=$termekUrl?>"><?= $model->termek->termeknev ?></a>
                 </td>
                 <td class="align-middle">
-                    <a href="/hu/termek/ultrarange-rapidweld/7347"><?= $model->termek->szin ?></a>
+                    <a href="<?=$termekUrl?>"><?= $model->termek->szin ?></a>
                 </td>
-                <td class="align-middle"><a href="/hu/termek/ultrarange-rapidweld/7347"
+                <td class="align-middle"><a href="<?=$termekUrl?>"
                                             class="arrow_box"><?= $model->megnevezes ?></a>
                 </td>
                 <td class="text-right align-middle">

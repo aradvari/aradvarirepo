@@ -94,7 +94,10 @@ class Cart extends Component
 
                 if ($model->keszlet_1 < 1) {
                     unset($items[$key]);
-                    Yii::$app->session->setFlash('danger', 'Sajnáljuk, de a kosaradban található <span class="font-weight-bold">' . $model->termek->termeknev . '</span> termék időközben elfogyott!');
+
+                    if (!Yii::$app->request->isAjax)
+                        Yii::$app->session->setFlash('danger', 'Sajnáljuk, de a kosaradban található <span class="font-weight-bold">' . $model->termek->termeknev . '</span> termék időközben elfogyott!');
+
                     break;
                 }
 
@@ -197,6 +200,12 @@ class Cart extends Component
 
         $cookies = Yii::$app->response->cookies;
         $cookies->remove('cart');
+
+        $this->items = [];
+        $this->totalAmount = 0;
+        $this->totalAmountWithShipping = 0;
+        $this->totalVATAmount = 0;
+        $this->totalDiscountAmount = 0;
 
         return true;
 

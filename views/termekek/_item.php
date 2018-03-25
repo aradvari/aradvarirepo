@@ -30,10 +30,10 @@ $termekUrl = Url::to(['termekek/view',
              alt="<?= Html::encode($model['markanev']) ?> - <?= Html::encode($model['termeknev']) ?>">
     </a>
     <div class="product-info">
-        <a href="javascript:alert('Fejlesztés alatt!')">
+        <a href="<?=$termekUrl?>">
             <h2><?= Html::encode($model['markanev']) ?> <?= Html::encode($model['termeknev']) ?></h2>
         </a>
-        <a href="javascript:alert('Fejlesztés alatt!')"><?= Html::encode($model['szin']) ?></a>
+        <a href="<?=$termekUrl?>"><?= Html::encode($model['szin']) ?></a>
         <div class="products-prise-container">
             <?php
             if ((int)$model['akcios_kisker_ar'] > 0):
