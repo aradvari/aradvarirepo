@@ -164,11 +164,11 @@ use yii\helpers\Url;
                        style="color:red;">SALE %</a>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown cart-img">
                     <a class="nav-link dropdown-toggle" data-hover="dropdown"
                        href="<?= Url::to(['cart/view']) ?>"><img src="/images/cart-black.png" alt="Kosár">&nbsp;<span
                                 class="cart-count"></span></a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-right cart-dropdown" aria-labelledby="navbarDropdownMenuLink">
                         <div class="cart-container-top"></div>
                     </div>
                 </li>
