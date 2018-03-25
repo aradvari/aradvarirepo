@@ -40,7 +40,7 @@ use yii\helpers\Url;
                              style="padding:1px; border:1px solid #2a87e4; width:50px;height:50px;vertical-align:text-middle;"
                              alt="<?= $model->termek->termeknev ?>"></a></td>
                 <td class="align-middle">
-                    <a href="<?=$termekUrl?>"><?= $model->termek->marka->markanev ?></a>
+                    <a href="<?=$termekUrl?>"><?= $model->termek->marka->markanev ?></a><br>
                     <a href="<?=$termekUrl?>"><?= $model->termek->termeknev ?></a>
                 </td>
                 <td class="align-middle">
