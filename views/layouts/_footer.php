@@ -57,6 +57,12 @@ use yii\helpers\Url;
                     </p>
                 </div>
         </div> <!-- //footer-pad -->
+         <div class="social-icon-container">
+          <a href="https://www.facebook.com/coreshop"><div class="facebook-icon"></div></a>
+          <a href="https://plus.google.com/103506333733297319481"><div class="google-icon"></div></a>
+          <a href="https://www.instagram.com/coreshop.hu/"><div class="instagram-icon"></div></a>
+
+        </div>
       </div> <!-- //col-md-3 col-sm-6 -->
       <!-- //column 1 -->
 

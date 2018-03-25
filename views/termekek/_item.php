@@ -21,40 +21,44 @@ $termekUrl = Url::to(['termekek/view',
 ]);
 
 ?>
-<div class="post product-thumb">
-    <div class="product-opcio-container">
-        <span class="uj"><?= Html::encode($model['opcio']) ?></span>
-    </div>
-    <a href="<?=$termekUrl?>">
-        <img src="https://coreshop.hu/pictures/termekek/<?= implode('/', str_split($model['id'])) ?>/1_small.jpg"
-             alt="<?= Html::encode($model['markanev']) ?> - <?= Html::encode($model['termeknev']) ?>">
-    </a>
-    <div class="product-info">
-        <a href="<?=$termekUrl?>">
-            <h2><?= Html::encode($model['markanev']) ?> <?= Html::encode($model['termeknev']) ?></h2>
-        </a>
-        <a href="<?=$termekUrl?>"><?= Html::encode($model['szin']) ?></a>
-        <div class="products-prise-container">
-            <?php
-            if ((int)$model['akcios_kisker_ar'] > 0):
-                ?>
-                <span class="products-thumb-originalprice">
-                    <del><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?></del>
-                    Ft</span>
-                <br>
-                <span class="products-thumb-saleprise"><?= \Yii::$app->formatter->asDecimal($model['akcios_kisker_ar']) ?>
-                    Ft</span>
-            <?php
-            endif;
-            ?>
 
-            <?php
-            if (!$model['akcios_kisker_ar']):
-                ?>
-                <span><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?> Ft</span>
-            <?php
-            endif;
-            ?>
+<div class="post product-thumb">
+    <div class="product-thumb-bg">
+        <div class="product-opcio-container">
+            <span class="uj"><?= Html::encode($model['opcio']) ?></span>
         </div>
+        <img src="https://coreshop.hu/pictures/termekek/<?= implode('/', str_split($model['id'])) ?>/1_small.jpg"
+                 alt="<?= Html::encode($model['markanev']) ?> - <?= Html::encode($model['termeknev']) ?>">
+        
+        <div class="product-info">
+
+            <h2><?= Html::encode($model['markanev']) ?> <?= Html::encode($model['termeknev']) ?></h2>
+            <div class="product-color"><?= Html::encode($model['szin']) ?></div>
+            <div class="products-price-container">
+                <?php
+                if ((int)$model['akcios_kisker_ar'] > 0):
+                    ?>
+                    <span class="products-thumb-originalprice">
+                        <del><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?></del>
+                        Ft</span>
+                    <br>
+                    <span class="products-thumb-saleprise"><?= \Yii::$app->formatter->asDecimal($model['akcios_kisker_ar']) ?>
+                        Ft</span>
+                <?php
+                endif;
+                ?>
+
+                <?php
+                if (!$model['akcios_kisker_ar']):
+                    ?>
+                    <span><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?> Ft</span>
+                <?php
+                endif;
+                ?>
+            </div>
+        </div> <!-- //product-thumb-bg -->
     </div>
+    <div class="product-hover-container">
+            <a href="<?=$termekUrl?>" class="btn btn-primary">Megnézem</a>
+        </div>
 </div>

@@ -54,7 +54,7 @@ use yii\helpers\Url;
         </form>
     </div>
 
-    <nav class="navbar navbar-expand-md bg-light navbar-light btco-hover-menu">
+    <nav class="navbar navbar-expand-md navbar-light btco-hover-menu">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                 aria-label="Toggle navigation">

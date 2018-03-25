@@ -77,7 +77,7 @@ use yii\helpers\ArrayHelper;
         if (count($models) >= 0):
             ?>
             <div class="desktop-filter">
-                <a href="#" class="filter-name">Méret</a>
+                <h4 class="filter-name">Méret</h4>
                 <div class="imageButtonContainer">
                     <?php
                     foreach ($models as $item) {
@@ -101,7 +101,7 @@ use yii\helpers\ArrayHelper;
         if (count($models) >= 0):
             ?>
             <div class="desktop-filter">
-                <a href="#" class="filter-name">Szín</a>
+                <h4 class="filter-name">Szín</h4>
                 <div class="imageButtonContainer">
                     <?php
                     foreach ($models as $item) {
@@ -124,7 +124,7 @@ use yii\helpers\ArrayHelper;
         if ($params['q']):
             ?>
             <div class="desktop-filter">
-                <a href="#" class="filter-name">Egyedi keresés</a>
+                <h4 class="filter-name">Egyedi keresés</h4>
                 <div class="imageButtonContainer">
                     <?php
                     echo Html::a(
