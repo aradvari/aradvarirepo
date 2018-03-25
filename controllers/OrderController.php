@@ -308,5 +308,18 @@ class OrderController extends Controller
         ]);
     }
 
+    public function actionMyOrders()
+    {
+        return $this->render('my_orders');
+    }
+
+    public function actionAjaxGetOrder()
+    {
+        $model = MegrendelesFej::findByToken(Yii::$app->request->getBodyParam('id'));
+        return $this->renderAjax('_order_data', [
+            'model' => $model,
+        ]);
+    }
+
 
 }

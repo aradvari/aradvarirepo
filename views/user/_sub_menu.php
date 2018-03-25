@@ -14,7 +14,7 @@ use yii\helpers\Url;
     <li><a href="<?= Url::to('/user/password') ?>">Jelszó módosítása</a></li>
     <?php endif; ?>
 
-    <li><a href="javascript:alert('Fejlesztés alatt...')">Korábbi rendeléseim</a></li>
+    <li><a href="<?= Url::to('/order/my-orders') ?>">Korábbi rendeléseim</a></li>
 
     <li><a href="<?= Url::to('/user/delete') ?>">Felhasználói fiókom törlése</a></li>
 

@@ -221,6 +221,11 @@ class MegrendelesFej extends ActiveRecord
         return $this->hasOne(Felhasznalok::className(), ['id' => 'id_felhasznalo']);
     }
 
+    public function getStatusz()
+    {
+        return $this->hasOne(MegrendelesStatuszok::className(), ['id_megrendeles_statusz' => 'id_statusz']);
+    }
+
     public function getTetelek()
     {
         return $this->hasMany(MegrendelesTetel::className(), ['id_megrendeles_fej' => 'id_megrendeles_fej']);

@@ -39,7 +39,7 @@ class MegrendelesStatuszok extends ActiveRecord
     {
         return [
             'id_megrendeles_statusz' => 'Id Megrendeles Statusz',
-            'statusz_nev' => 'Statusz Nev',
+            'statusz_nev' => 'Állapot',
         ];
     }
 }

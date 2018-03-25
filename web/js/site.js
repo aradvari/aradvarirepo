@@ -91,15 +91,15 @@ $(function () {
 
     $('[data-toggle="tooltip"]').tooltip()
 
-    $('.navbar .dropdown').hover(function() {
+    $('.navbar .dropdown').hover(function () {
         $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
 
-    }, function() {
+    }, function () {
         $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp();
 
     });
 
-    $('.navbar .dropdown > a').click(function(){
+    $('.navbar .dropdown > a').click(function () {
         location.href = this.href;
     });
 });
@@ -124,4 +124,21 @@ $('#customerLogos').on('slide.bs.carousel', function (e) {
             }
         }
     }
+});
+
+$('#my-orders td').click(function (e) {
+    var id = $(this).closest('tr').data('token');
+    if (!$('#my-orders tr[data-parent-token="' + id + '"]').length)
+        $(this).closest('tr').after('<tr data-parent-token="' + id + '" style="display:none"><td colspan="4">SOR</td></tr>');
+
+    $.ajax({
+        method: "POST",
+        url: "/order/ajax-get-order",
+        data: {'id': id}
+    }).done(function (result) {
+
+        $('#my-orders tr[data-parent-token="' + id + '"] td').html(result);
+        $('#my-orders tr[data-parent-token="' + id + '"]').toggle('slow');
+
+    });
 });
