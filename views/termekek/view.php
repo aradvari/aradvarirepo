@@ -4,6 +4,7 @@ use app\assets\TermekAsset;
 use app\components\helpers\Coreshop;
 use app\models\GlobalisAdatok;
 use kartik\rating\StarRating;
+use yii\bootstrap\Carousel;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -33,33 +34,6 @@ $this->params['breadcrumbs'] = [
     <!-- THUMB, MAINIMAGE, INFOBOX container -->
     <div class="product-container">
 
-        <!-- KEP ELEJE -->
-        <select id="optionlist" onChange="javascript:changeImage()" style="display:none">
-            <?
-            $pictures = $model->getImages('large');
-            if (is_array($pictures)) {
-
-                foreach ($pictures as $picture) {
-                    echo Html::tag('option', $picture->id . '. Image', ['value' => $picture->webUrl]);
-                }
-
-            }
-            ?>
-        </select>
-
-        <?
-
-        // MOBILE PRODUCT DETAILS
-        if (Yii::$app->mobileDetect->isMobile()) {
-            echo '<div class="product-details-mobile">';
-
-            echo '<h1>' . $model->marka->markanev . ' ' . $model->termeknev . '</h1> <h2>' . $model->szin . '</h2>';
-
-            echo '</div>';
-        }
-
-        ?>
-
         <div class="product-thumbs">
 
             <?php
@@ -70,11 +44,10 @@ $this->params['breadcrumbs'] = [
 
                 foreach ($pictures as $key => $picture) {
                     echo Html::img($picture->webUrl, [
-                        'id' => 'thumb' . $key,
-                        'name' => 'thumb' . $key,
-                        'onclick' => 'javascript:nextImage("' . $key . '")',
                         'alt' => $model->seo_name,
                         'title' => $model->seo_name,
+                        'data-target'=>'#carousel-thumb',
+                        'data-slide-to'=>$key,
                     ]);
                 }
 
@@ -85,20 +58,48 @@ $this->params['breadcrumbs'] = [
         </div>
         <div class="product-image-container">
 
-            <div class="product-image-nav-info">További nézetekhez klikkelj a képre</div>
-
             <div class="product-image">
 
-                <!-- PRODUCT IMAGE, DESC -->
-                <img name="mainimage"
-                     id="mainimage"
-                     src="/images/loading.gif"
-                     onClick="javascript:nextImage()"
-                     alt="<?= $model->seo_name ?>"
-                     title="<?= $model->seo_name ?>"
-                     class="<?= $model->getDefaultImage('large')->sizes[0] >= $model->getDefaultImage('large')->sizes[1] ? 'vertical-image' : 'horizontal-image' ?>"/>
+                <!--Carousel Wrapper-->
+                <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+                        <?php
 
-                <div id="zoom-icon" class="zoom-div-icon"><img src="/images/search.svg" alt="zoom"/></div>
+                        $pictures = $model->getImages('large');
+                        if (is_array($pictures)) {
+
+                            foreach ($pictures as $key => $picture) {
+
+                                echo Html::beginTag('div', ['class' => 'carousel-item ' . ($key == 0 ? 'active' : '')]);
+                                echo Html::img($picture->webUrl, ['class' => 'd-block w-100', 'alt' => $model->seo_name, 'title' => $model->seo_name]);
+                                echo Html::endTag('div');
+
+                            }
+
+                        }
+
+                        ?>
+                    </div>
+                    <!--/.Slides-->
+                    <!--Controls-->
+                    <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+
+                    <!--/.Controls-->
+                    <!--        <ol class="carousel-indicators">-->
+                    <!--            <li data-target="#carousel-thumb" data-slide-to="0" class="active"> <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(88).jpg" class="img-fluid"></li>-->
+                    <!--            <li data-target="#carousel-thumb" data-slide-to="1"><img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(121).jpg" class="img-fluid"></li>-->
+                    <!--            <li data-target="#carousel-thumb" data-slide-to="2"><img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(31).jpg" class="img-fluid"></li>-->
+                    <!--        </ol>-->
+                </div>
+                <!--/.Carousel Wrapper-->
 
             </div>
 
@@ -108,35 +109,6 @@ $this->params['breadcrumbs'] = [
         </div>
         <!-- ENDOF PRODUCT IMAGE, DESC -->
 
-
-        <!-- zoom div 100% -->
-        <div id="zoom-div" class="zoom-div">
-
-            <div id="zoom-close" class="zoom-close">X</div>
-
-            <div class="product-thumbs-zoom">
-                <?
-
-                $pictures = $model->getImages();
-                if (is_array($pictures)) {
-
-                    foreach ($pictures as $key => $picture) {
-                        echo Html::img($picture->webUrl, [
-                            'id' => 'thumbzoom' . $key,
-                            'name' => 'thumbzoom' . $key,
-                            'onclick' => 'javascript:nextImage("' . $key . '")',
-                            'alt' => $model->seo_name,
-                            'title' => $model->seo_name,
-                        ]);
-                    }
-
-                }
-                ?>
-            </div>
-            <img name="mainzoomimage" id="mainzoomimage" src="" onClick="javascript:nextImage()"/>
-
-        </div>
-        <!-- endof zoom div -->
 
 
         <!-- product-order-desktop -->
@@ -345,5 +317,5 @@ JS
 //} else {
 //    echo $this->render('_ajanlo', ['subCategory' => ArrayHelper::getValue($model, 'defaultSubCategory.url_segment')]);
 //}
-    echo $this->render('_ajanlo', ['q' => $model->termeknev]);
+echo $this->render('_ajanlo', ['q' => $model->termeknev]);
 ?>

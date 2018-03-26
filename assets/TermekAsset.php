@@ -27,6 +27,8 @@ class TermekAsset extends AssetBundle
     ];
     public $js = [
         'js/product.js',
+//        '//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js',
+        'js/jquery.mobile.custom.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
