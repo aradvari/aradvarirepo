@@ -167,7 +167,7 @@ class TermekekController extends Controller
             } else {
 
                 $error = 'Sajnáljuk de korábban már értékelted a terméket!';
-                
+
             }
 
         } else {

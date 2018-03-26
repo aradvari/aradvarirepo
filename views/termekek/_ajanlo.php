@@ -3,11 +3,14 @@
 use app\models\TermekekSearch;
 use yii\widgets\ListView;
 
-$dataProvider = (new TermekekSearch())->search(['q' => $q]);
+$dataProvider = (new TermekekSearch())->search(['q' => $model->termeknev, 'subCategory'=>$model->defaultSubCategory->url_segment]);
 $dataProvider->pagination = false;
-$dataProvider->query->limit(5);
+$dataProvider->query->andWhere(['!=', 'id_termek', $model->id]);
+$dataProvider->query->limit(10);
 $dataProvider->query->orderBy('rand()');
 
+if ($dataProvider->getCount() < 1)
+    return false;
 ?>
 
 <div class="content-right-headline" style="clear:both;">Termékajánló</div>

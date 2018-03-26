@@ -317,5 +317,7 @@ JS
 //} else {
 //    echo $this->render('_ajanlo', ['subCategory' => ArrayHelper::getValue($model, 'defaultSubCategory.url_segment')]);
 //}
-echo $this->render('_ajanlo', ['q' => $model->termeknev]);
+echo $this->render('_ajanlo', [
+        'model' => $model
+]);
 ?>
