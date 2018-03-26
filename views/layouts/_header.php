@@ -159,9 +159,25 @@ use yii\helpers\Url;
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= Url::to(['termekek/index', 'mainCategory' => 'outlet']) ?>"
-                       style="color:red;">SALE %</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-danger"
+                       href="<?= Url::to(['termekek/index', 'mainCategory' => 'outlet']) ?>">SALE %</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <?php
+                        $models = (new TermekekSearch())->searchSubCategory(['mainCategory' => 'outlet'])->getModels();
+                        foreach ($models as $item) {
+                            echo Html::beginTag('li');
+                            echo Html::a($item['megnevezes'],
+                                [
+                                    'termekek/index',
+                                    'mainCategory' => $item['pk_url_segment'],
+                                    'subCategory' => $item['url_segment'],
+                                ],
+                                ['class' => 'dropdown-item']);
+                            echo Html::endTag('li');
+                        }
+                        ?>
+                    </ul>
                 </li>
 
                 <li class="nav-item dropdown cart-img">
