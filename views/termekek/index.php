@@ -11,7 +11,7 @@ use yii\widgets\ListView;
 
 <?php
 foreach ($params as $key => $param) {
-    
+
     if ($param) {
         switch ($key) {
 
@@ -32,7 +32,7 @@ foreach ($params as $key => $param) {
                 break;
 
         }
-         
+
         $bc[$key] = $param;
         $this->params['breadcrumbs'][] = ['label' => $label, 'url' => $bc];
 
@@ -58,20 +58,24 @@ foreach ($params as $key => $param) {
             ]); ?>
         </div> <!-- //left col -->
         <div class="col-9">
-    <?= ListView::widget([
-        'dataProvider' => $dataProvider,
-        'options' => ['class' => 'list-view row'],
-        'itemOptions' => ['class' => 'item col-xl-3 col-lg-3 col-md-3 col-sm-3 col-6 text-center'],
-        'itemView' => '_item',
-        'viewParams' => ['params' => $params],
-        'pager' => [
-            'class' => ScrollPager::className(),
-            'triggerOffset' => 10,
-            'noneLeftText' => '',
-            'spinnerTemplate' => '<div class="more-products-text col-12 text-center p-3"><img src="{src}"/> További termékek betöltése...</div>',
-        ],
-        'summary' => '',
-    ]); ?>
+            <?= ListView::widget([
+                'id' => 'product-list',
+                'dataProvider' => $dataProvider,
+                'options' => ['class' => 'list-view row'],
+                'itemOptions' => ['class' => 'item col-xl-3 col-lg-3 col-md-3 col-sm-3 col-6 text-center'],
+                'itemView' => '_item',
+                'viewParams' => ['params' => $params],
+                'pager' => [
+                    'class' => ScrollPager::className(),
+                    'triggerOffset' => 10,
+                    'noneLeftText' => '',
+                    'spinnerTemplate' => '<div class="more-products-text col-12 text-center p-3"><img src="{src}"/> További termékek betöltése...</div>',
+                ],
+                'on arad' => function () {
+
+                },
+                'summary' => '',
+            ]); ?>
         </div> <!-- //right col -->
     </div> <!-- //row-->
 </div> <!-- //container -->

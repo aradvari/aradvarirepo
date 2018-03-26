@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Kategoriak;
+use app\models\KeresendoLog;
 use app\models\Markak;
 use app\models\TermekErtekeles;
 use app\models\TermekErtekelesFelhasznalo;
@@ -11,6 +12,7 @@ use Yii;
 use app\models\Termekek;
 use app\models\TermekekSearch;
 use app\components\web\Controller;
+use yii\base\Event;
 use yii\db\Expression;
 use yii\db\Query;
 use yii\helpers\ArrayHelper;
@@ -19,6 +21,7 @@ use yii\web\Cookie;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use yii\widgets\ListView;
 
 /**
  * TermekekController implements the CRUD actions for Termekek model.
@@ -79,6 +82,18 @@ class TermekekController extends Controller
             'sizeModel' => Vonalkodok::findOne(['url_segment' => $params['meret']]),
             'colorModel' => Termekek::findOne(['szinszuro' => $params['szin']]),
         ];
+
+        if (!Yii::$app->request->isAjax && Yii::$app->request->get('q'))
+            Event::on(ListView::className(), ListView::EVENT_AFTER_RUN, function ($event) {
+                if ($event->sender->id == 'product-list') {
+                    $logModel = new KeresendoLog();
+                    $logModel->keresoszo = Yii::$app->request->get('q');
+                    $logModel->talalat = (int)ArrayHelper::getValue($event, 'sender.dataProvider.totalCount');
+                    $logModel->ip = Yii::$app->request->getUserIP();
+                    $logModel->browser = Yii::$app->request->getUserAgent();
+                    $logModel->save(false);
+                }
+            });
 
         if ($params['brand'] && !$params['mainCategory'] && !$params['subCategory']) {
             return $this->render('brand', $fParams);
@@ -145,7 +160,7 @@ class TermekekController extends Controller
                 $logModel->datum = new Expression('now()');
                 $logModel->save();
 
-            }else{
+            } else {
                 $error = 'Sajnáljuk de korábban már értékelted a terméket!';
             }
 
