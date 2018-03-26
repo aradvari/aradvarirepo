@@ -71,9 +71,6 @@ foreach ($params as $key => $param) {
                     'noneLeftText' => '',
                     'spinnerTemplate' => '<div class="more-products-text col-12 text-center p-3"><img src="{src}"/> További termékek betöltése...</div>',
                 ],
-                'on arad' => function () {
-
-                },
                 'summary' => '',
             ]); ?>
         </div> <!-- //right col -->

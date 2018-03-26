@@ -66,8 +66,8 @@ class TermekekSearch extends Termekek
     {
         $sortOrder = [
             'leguljabb-elol' => 'v.id_vonalkod desc',
-            'ar-szerint-csokkeno' => 't.kisker_ar desc',
-            'ar-szerint-novekvo' => 't.kisker_ar asc',
+            'ar-szerint-csokkeno' => '(case when t.akcios_kisker_ar > 0 THEN t.akcios_kisker_ar ELSE t.kisker_ar END) desc',
+            'ar-szerint-novekvo' => '(case when t.akcios_kisker_ar > 0 THEN t.akcios_kisker_ar ELSE t.kisker_ar END) asc',
         ];
 
         $query = static::getSearchQuery()
