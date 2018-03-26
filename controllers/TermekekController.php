@@ -165,11 +165,23 @@ class TermekekController extends Controller
                 $logModel->save();
 
             } else {
+
                 $error = 'Sajnáljuk de korábban már értékelted a terméket!';
+                
             }
 
         } else {
-            $error = 'Sajnáljuk, de értékelni csak regisztrált és bejelentkezett felhasználóval tudsz!';
+
+            //Átlag rögzítés
+            $model = TermekErtekeles::findOne(['id_termek' => Yii::$app->request->post('id')]);
+            if (!$model)
+                $model = new TermekErtekeles();
+
+            $value = 'ertek' . Yii::$app->request->post('value');
+            $model->id_termek = Yii::$app->request->post('id');
+            $model->{$value} += 1;
+            $model->save();
+
         }
 
         return [
