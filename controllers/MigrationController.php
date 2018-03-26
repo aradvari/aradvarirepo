@@ -71,17 +71,18 @@ class MigrationController extends Controller
 //                var_dump($item->getErrors());
 //        }
 //
-//        try {
-//            Yii::$app->db->createCommand('ALTER TABLE megrendeles_fej ADD gls_kod varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci')->execute();
-//            Yii::$app->db->createCommand("ALTER TABLE felhasznalok ADD auth_type varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'normal'")->execute();
-//        } catch (Exception $e) {
-//            echo Html::tag('div', $e->getMessage());
-//        }
 //
 
 //
 //
         /*
+         *
+         *
+
+        ALTER TABLE megrendeles_fej ADD gls_kod varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci
+        ALTER TABLE felhasznalok ADD auth_type varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'normal'
+        ALTER TABLE termekek ADD tipus varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci
+
 
         CREATE TABLE `termek_ertekeles` (
     `id_termek_ertekeles` int(11) unsigned NOT NULL AUTO_INCREMENT,

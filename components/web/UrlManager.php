@@ -13,7 +13,7 @@ use yii\web\NotFoundHttpException;
 class UrlManager extends \yii\web\UrlManager
 {
 
-    public $paramRegural = '((meret|szin)_([\w_\-\"]+))';
+    public $paramRegural = '((meret|szin|tipus)_([\w_\-\"]+))';
 
     public function init()
     {
@@ -46,12 +46,13 @@ class UrlManager extends \yii\web\UrlManager
         $paramNames = [
             'szin' => 'param1',
             'meret' => 'param2',
+            'tipus' => 'param3',
 //            'keresendo'=>'param3',
 //            'sorrend'=>'param4',
         ];
         foreach ($params as $key => $param) {
 
-            if (in_array((string)$key, ['meret', 'szin', /*'keresendo', 'sorrend'*/])) {
+            if (in_array((string)$key, ['meret', 'szin', 'tipus', /*'keresendo', 'sorrend'*/])) {
                 if ($params[$key]) {
                     $params[$paramNames[$key]] = $key . '_' . $params[$key];
                     unset($params[$key]);

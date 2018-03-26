@@ -30,6 +30,9 @@ foreach ($params as $key => $param) {
             case "szin":
                 $label = $colorModel->szinszuro;
                 break;
+            case "tipus":
+                $label = $tipusModel->tipus;
+                break;
 
         }
 
@@ -54,6 +57,7 @@ foreach ($params as $key => $param) {
                 'brandDataProvider' => $brandDataProvider,
                 'sizeDataProvider' => $sizeDataProvider,
                 'colorDataProvider' => $colorDataProvider,
+                'typeDataProvider' => $typeDataProvider,
                 'params' => $params,
             ]); ?>
         </div> <!-- //left col -->

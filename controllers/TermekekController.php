@@ -54,6 +54,7 @@ class TermekekController extends Controller
         $brandDataProvider = $searchModel->searchBrand(Yii::$app->request->queryParams);
         $sizeDataProvider = $searchModel->searchSize(Yii::$app->request->queryParams);
         $colorDataProvider = $searchModel->searchColor(Yii::$app->request->queryParams);
+        $typeDataProvider = $searchModel->searchType(Yii::$app->request->queryParams);
         $mainCategoryDataProvider = $searchModel->searchMainCategory(Yii::$app->request->queryParams);
         $subCategoryDataProvider = $searchModel->searchSubCategory(Yii::$app->request->queryParams);
 
@@ -63,6 +64,7 @@ class TermekekController extends Controller
             'brand' => Yii::$app->request->get('brand'),
             'meret' => Yii::$app->request->get('meret'),
             'szin' => Yii::$app->request->get('szin'),
+            'tipus' => Yii::$app->request->get('tipus'),
             'q' => Yii::$app->request->get('q'),
             's' => Yii::$app->request->get('s'),
         ];
@@ -73,6 +75,7 @@ class TermekekController extends Controller
             'brandDataProvider' => $brandDataProvider,
             'sizeDataProvider' => $sizeDataProvider,
             'colorDataProvider' => $colorDataProvider,
+            'typeDataProvider' => $typeDataProvider,
             'mainCategoryDataProvider' => $mainCategoryDataProvider,
             'subCategoryDataProvider' => $subCategoryDataProvider,
             'params' => $params,
@@ -81,6 +84,7 @@ class TermekekController extends Controller
             'brandModel' => Markak::findOne(['url_segment' => $params['brand']]),
             'sizeModel' => Vonalkodok::findOne(['url_segment' => $params['meret']]),
             'colorModel' => Termekek::findOne(['szinszuro' => $params['szin']]),
+            'typeModel' => Termekek::findOne(['tipus' => $params['tipus']]),
         ];
 
         if (!Yii::$app->request->isAjax && Yii::$app->request->get('q'))

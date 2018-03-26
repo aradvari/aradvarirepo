@@ -20,6 +20,7 @@ class TermekekSearch extends Termekek
 
     public $meret;
     public $szin;
+    public $tipus;
     public $q;
 
     public $s = 'leguljabb-elol';
@@ -30,7 +31,7 @@ class TermekekSearch extends Termekek
     public function rules()
     {
         return [
-            [['mainCategory', 'subCategory', 'brand', 'meret', 'szin', 'q', 's'], 'safe'],
+            [['mainCategory', 'subCategory', 'brand', 'meret', 'szin', 'tipus', 'q', 's'], 'safe'],
         ];
     }
 
@@ -97,11 +98,12 @@ class TermekekSearch extends Termekek
             'm.url_segment' => $this->brand,
             'v.url_segment' => $this->meret,
             't.szinszuro' => $this->szin,
+            't.tipus' => $this->tipus,
         ]);
 
         $q = (array)explode(" ", $this->q);
         foreach ($q as $text)
-            $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $text]);
+            $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', t.tipus, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $text]);
 
         $query->orderBy($sortOrder[$this->s]);
 
@@ -127,9 +129,10 @@ class TermekekSearch extends Termekek
             'k.url_segment' => $this->subCategory,
             'v.url_segment' => $this->meret,
             't.szinszuro' => $this->szin,
+            't.tipus' => $this->tipus,
         ]);
 
-        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
+        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', t.tipus, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
 
         return $dataProvider;
     }
@@ -153,10 +156,11 @@ class TermekekSearch extends Termekek
             'k.url_segment' => $this->subCategory,
             'm.url_segment' => $this->brand,
             't.szinszuro' => $this->szin,
+            't.tipus' => $this->tipus,
         ]);
 
         $query->andFilterWhere(['!=', 'v.megnevezes', '-']);
-        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
+        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', t.tipus, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
 
         return $dataProvider;
     }
@@ -180,10 +184,39 @@ class TermekekSearch extends Termekek
             'k.url_segment' => $this->subCategory,
             'm.url_segment' => $this->brand,
             'v.url_segment' => $this->meret,
+            't.tipus' => $this->tipus,
         ]);
 
-        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
+        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', t.tipus, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
         $query->andWhere(['!=', 't.szinszuro', '']);
+
+        return $dataProvider;
+    }
+
+    public function searchType($params)
+    {
+        $query = $this->getSearchQuery()
+            ->select(['t.tipus'])
+            ->orderBy('t.tipus')
+            ->groupBy(['t.tipus']);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $this->setAttributes($params);
+
+        $query->andFilterWhere([
+            'pk.url_segment' => $this->mainCategory,
+            'k.url_segment' => $this->subCategory,
+            'm.url_segment' => $this->brand,
+            'v.url_segment' => $this->meret,
+            't.szinszuro' => $this->szin,
+        ]);
+
+        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', t.tipus, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
+        $query->andWhere(['!=', 't.tipus', '']);
 
         return $dataProvider;
     }
@@ -230,6 +263,7 @@ class TermekekSearch extends Termekek
             'm.url_segment' => $this->brand,
             'v.url_segment' => $this->meret,
             't.szinszuro' => $this->szin,
+            't.tipus' => $this->tipus,
         ]);
 
 //        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
@@ -274,9 +308,10 @@ class TermekekSearch extends Termekek
             'm.url_segment' => $this->brand,
             'v.url_segment' => $this->meret,
             't.szinszuro' => $this->szin,
+            't.tipus' => $this->tipus,
         ]);
 
-        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
+        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', t.tipus, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
 
         return $dataProvider;
     }
