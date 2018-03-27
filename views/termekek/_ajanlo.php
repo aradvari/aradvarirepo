@@ -1,3 +1,5 @@
+<div class="clearfix"></div>
+
 <?php
 
 use app\models\TermekekSearch;
