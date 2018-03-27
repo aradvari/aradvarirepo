@@ -168,7 +168,7 @@ use yii\helpers\ArrayHelper;
         if (count($models) > 0):
             ?>
             <div class="desktop-filter">
-                <h4 class="filter-name">Típus</h4>
+                <h4 class="filter-name">Modell</h4>
                 <div class="indent">
                     <?php
                     foreach ($models as $item) {
