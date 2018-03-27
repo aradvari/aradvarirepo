@@ -68,7 +68,6 @@ class TermekekController extends Controller
             'q' => Yii::$app->request->get('q'),
             's' => Yii::$app->request->get('s'),
         ];
-
         $fParams = [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
