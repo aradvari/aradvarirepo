@@ -2,21 +2,12 @@ function selectSize(vonalkod) {
     $('#meret option[value="' + vonalkod + '"]').prop('selected', true).trigger('change');
 }
 
-jQuery(function () {
-    $("#carousel-thumb").swiperight(function() {
-        $(this).carousel('prev');
-    });
-    $("#carousel-thumb").swipeleft(function() {
-        $(this).carousel('next');
-    });
-});
+var showSelect = function (on) {
 
-var showSelect = function(on){
-
-    if (on){
+    if (on) {
         $('#keszlet').show();
         $('.cart-form button').prop('disabled', false).html('Hozzáadás a kosárhoz');
-    }else{
+    } else {
         $('#keszlet').hide();
         $('.cart-form button').prop('disabled', true).html('Válassz méretet...');
         $('input[name="meret_radio"]').prop('checked', false);
@@ -81,4 +72,21 @@ $('.cart-form').submit(function () {
         getCart();
     });
 
+});
+
+$(function () {
+    $('.carousel').each(function () {
+        var $carousel = $(this);
+        var hammertime = new Hammer(this, {
+            recognizers: [
+                [Hammer.Swipe, {direction: Hammer.DIRECTION_HORIZONTAL}]
+            ]
+        });
+        hammertime.on('swipeleft', function () {
+            $carousel.carousel('next');
+        });
+        hammertime.on('swiperight', function () {
+            $carousel.carousel('prev');
+        });
+    });
 });
