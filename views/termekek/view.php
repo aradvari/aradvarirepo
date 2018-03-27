@@ -46,8 +46,8 @@ $this->params['breadcrumbs'] = [
                     echo Html::img($picture->webUrl, [
                         'alt' => $model->seo_name,
                         'title' => $model->seo_name,
-                        'data-target'=>'#carousel-thumb',
-                        'data-slide-to'=>$key,
+                        'data-target' => '#carousel-thumb',
+                        'data-slide-to' => $key,
                     ]);
                 }
 
@@ -108,7 +108,6 @@ $this->params['breadcrumbs'] = [
 
         </div>
         <!-- ENDOF PRODUCT IMAGE, DESC -->
-
 
 
         <!-- product-order-desktop -->
@@ -244,10 +243,9 @@ JS
                     <form method="post" class="cart-form">
                         <?= Html::dropDownList('meret', null, ArrayHelper::map($model->vonalkodok, 'vonalkod', 'megnevezes'), ['style' => Yii::$app->mobileDetect->isDescktop() ? 'display:none' : '', 'prompt' => count($model->vonalkodok > 1) ? 'Válassz...' : '', 'id' => 'meret']) ?>
                         <span id="keszlet" style="display: none">
-                    <select name="mennyiseg" style="margin-top:20px;">
-                    </select>
-                    <button type="submit" class="arrow_box">Hozzáadás a kosárhoz</button>
-                </span>
+                            <select name="mennyiseg" class="margin-top:20px;"></select>
+                        </span>
+                        <button type="submit" class="arrow_box" disabled>Válassz méretet...</button>
                     </form>
 
                     <div class="product-shipping-info">
@@ -318,6 +316,6 @@ JS
 //    echo $this->render('_ajanlo', ['subCategory' => ArrayHelper::getValue($model, 'defaultSubCategory.url_segment')]);
 //}
 echo $this->render('_ajanlo', [
-        'model' => $model
+    'model' => $model,
 ]);
 ?>

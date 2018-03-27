@@ -1,5 +1,5 @@
 function selectSize(vonalkod) {
-    $('#meret option[value="' + vonalkod + '"]').prop('selected', true).change();
+    $('#meret option[value="' + vonalkod + '"]').prop('selected', true).trigger('change');
 }
 
 jQuery(function () {
@@ -10,6 +10,19 @@ jQuery(function () {
         $(this).carousel('next');
     });
 });
+
+var showSelect = function(on){
+
+    if (on){
+        $('#keszlet').show();
+        $('.cart-form button').prop('disabled', false).html('Hozzáadás a kosárhoz');
+    }else{
+        $('#keszlet').hide();
+        $('.cart-form button').prop('disabled', true).html('Válassz méretet...');
+        $('input[name="meret_radio"]').prop('checked', false);
+    }
+
+}
 
 $('#meret').change(function () {
 
@@ -32,10 +45,10 @@ $('#meret').change(function () {
 
             }
         } else {
-            $('#keszlet').hide();
+            showSelect(false);
         }
 
-        $('#keszlet').show();
+        showSelect(true);
     });
 
 });
@@ -60,7 +73,7 @@ $('.cart-form').submit(function () {
             $("input:radio").attr("checked", false);
             $("input:radio").removeAttr("checked");
             $('.cart-form')[0].reset();
-            $('#keszlet').hide();
+            showSelect(false);
 
         }
 
