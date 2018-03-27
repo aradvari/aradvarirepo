@@ -57,6 +57,7 @@ foreach ($params as $key => $param) {
                 'brandDataProvider' => $brandDataProvider,
                 'sizeDataProvider' => $sizeDataProvider,
                 'colorDataProvider' => $colorDataProvider,
+                'typeDataProvider' => $typeDataProvider,
                 'params' => $params,
             ]); ?>
         </div> <!-- //left col -->
