@@ -2851,19 +2851,16 @@ input[type="radio"]:checked + label {
 }
 
 .product-size {
+    font-size:15px;
     color: #444;
     margin: 0 5px 10px 5px;
     float: left;
-    border: 1px solid #ccc;
+    background-color: #FFF;
+    border: 2px solid #CCC;
     display: block;
     text-align: center;
-    p_adding: 0 6px;
-    font-weight: bold;
-    height: 40px;
-    line-height: 40px;
-    width: -webkit-calc((100% / 6) - 12px);
-    width: -moz-calc((100% / 6) - 12px);
-    width: calc((100% / 6) - 12px);
+    padding: 11px 17px;
+    font-weight: normal;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     -webkit-backface-visibility: hidden;
@@ -2877,7 +2874,9 @@ input[type="radio"]:checked + label {
 
 .product-size:hover {
     background-color: #2a87e4;
+    border: 2px solid #2a87e4;
     color: #fff;
+    cursor: pointer;
 }
 
 .product-nav {
@@ -2887,11 +2886,6 @@ input[type="radio"]:checked + label {
 
 .product-nav a {
     margin: 0 2%;
-}
-
-.product-container {
-    display: inline-block;
-    width: 100%;
 }
 
 .product-thumbs {
@@ -3003,15 +2997,15 @@ input[type="radio"]:checked + label {
 }
 
 .eredeti_ar {
-    color: #999;
-    font-weight: bold;
-    font-size: 18px;
+    color: #444;
+    font-size: 17px;
+    font-family: proxima_nova_regular;
     display: block;
     text-decoration: line-through;
 }
 
 .ar {
-    color: #2a87e4;
+    color: #444;
     font-weight: bold;
     font-size: 30px;
     display: block;
@@ -3062,22 +3056,6 @@ select{
     margin-bottom: 10px;
 }
 
-.product-details-desktop h1 {
-    color: #444;
-    padding: 20px 0 0 0;
-    margin: 10px 0 0 0;
-    border-top: 1px solid #ccc;
-    font-size: 30px;
-}
-
-.product-details-desktop h2 {
-    padding: 4px 0;
-    margin: 0;
-    text-transform: uppercase;
-    color: #444;
-    font-size: 18px;
-}
-
 .product-prise {
 }
 
@@ -3101,7 +3079,6 @@ select{
     border: none;
     display: inline-block;
     vertical-align: middle;
-    width: 40px;
     margin-right: 10px;
 }
 
@@ -3109,7 +3086,6 @@ select{
     border: none;
     display: inline-block;
     line-height: 30px;
-    text-align: right;
 }
 
 .product-details-mobile {
@@ -4738,6 +4714,10 @@ h4 {
     margin-top:20px;
 }
 
+.padding-20 {
+    padding:20px;
+}
+
 /* Colors (font) */
 .white {
     color:#FFF;
@@ -4969,8 +4949,6 @@ h4 {
     color: #FFF;
 }
 
-
-
 /* Filter */
 
 .filter-name {
@@ -5081,7 +5059,72 @@ h4 {
     padding: 8px 17px;
 }
 
+/* Product details */
 
+.product-details-desktop h1 {
+   font-family: proxima_nova_black;
+    font-size: 35px;
+    text-transform: uppercase;
+    color: #1D1D1B;
+    letter-spacing: 2px;
+    padding-bottom: 20px;
+    background: url(../images/icons/h2-underline.png) no-repeat left bottom;
+    margin-bottom: 40px;
+    text-align: left;
+    padding-top: 30px;
+}
+
+.product-details-desktop h2 {
+    padding: 4px 0;
+    margin: 0;
+    text-transform: uppercase;
+    color: #444;
+    font-size: 18px;
+}
+
+.product-details-desktop .product-color {
+     font-family: proxima_nova_bold;
+     font-style: normal;
+    text-transform: none;
+    font-size : 16px;
+    letter-spacing : 1.09px;
+    color : #444444;
+    color : rgb(68, 68, 68);
+    background: none;
+    padding-bottom:0;
+    margin-bottom: 0;
+}
+
+.product-details-desktop .product-number {
+    font-family: proxima_nova_light;
+    text-transform: none;
+    font-size : 16px;
+    letter-spacing : 1.09px;
+    color : #444444;
+    color : rgb(68, 68, 68);
+    background: none;
+    padding-bottom:0;
+    display: block;
+    margin-bottom: 0;
+}
+
+.product-shipping-info a {
+    color:#444444;
+    font-family: proxima_nova_bold;
+}
+
+/*Stars */
+.rating-container .filled-stars {
+    color: #FF9900;
+}
+
+.theme-krajee-svg .filled-stars .krajee-icon-star {
+    background-image:url('data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23FF9900%22%20stroke%3D%22%23777777%22%20d%3D%22M20.6%2011l-4.6-10.5-4.6%2010.5h-10.8l7.8%207.9-3%2012.1%2010.6-6%2010.6%206-3-12.1%207.8-7.9z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E');
+}
+
+.set-product-details-container {
+    padding:15px;
+}
 
 /**
 BOOTSTRAP NAVBAR

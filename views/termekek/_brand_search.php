@@ -15,10 +15,10 @@ use yii\helpers\ArrayHelper;
 
 ?>
 
-<div class="termekek-search">
+<div class="termekek-search desktop-filter-container">
 
     <div class="brand-site-logo">
-        <img src="https://coreshop.hu/pictures/markak/<?= ArrayHelper::getValue($brandModel, 'id') ?>.png">
+        <img src="https://coreshop.hu/pictures/markak/<?= ArrayHelper::getValue($brandModel, 'id') ?>.png" class="img-responsive">
     </div>
 
     <div class="desktop-filter-container">
@@ -38,7 +38,7 @@ use yii\helpers\ArrayHelper;
                     echo Html::a(
                         $subItem['pk_megnevezes'],
                         ['termekek/index', 'mainCategory' => $subItem['pk_url_segment'], 'brand' => $params['brand'], 'meret' => $params['meret'], 'szin' => $params['szin'], 'q' => $params['q'], 's' => $params['s']],
-                        ['class' => 'brand-main-category ']
+                        ['class' => 'filter-name filter-name-first ']
                     );
                     $pkOldName = $subItem['pk_megnevezes'];
                 }
@@ -55,7 +55,7 @@ use yii\helpers\ArrayHelper;
                     echo Html::a(
                         $subItem['pk_megnevezes'],
                         ['termekek/index', 'mainCategory' => $subItem['pk_url_segment'], 'brand' => $params['brand'], 's' => $params['s']],
-                        ['class' => 'brand-main-category ']
+                        ['class' => '']
                     );
                     $pkOldName = $subItem['pk_megnevezes'];
                 }
