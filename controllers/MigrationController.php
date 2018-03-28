@@ -111,7 +111,7 @@ PRIMARY KEY (`id_fizetesi_mod`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
         INSERT INTO `fizetesi_mod` (`id_fizetesi_mod`,​ `nev`)
 VALUES
-    (1,​'Átvételkor készpénzben'),​
+    (1,​'Átvételkor készpénzben vagy bankkártyával'),​
     (2,​'Bankártya (CIB)');
 
 
@@ -121,7 +121,7 @@ VALUES
 `sorrend` int(11) DEFAULT NULL,​
 PRIMARY KEY (`id_szallitasi_mod`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO `szallitasi_mod` (`id_szallitasi_mod`,​ `nev`)
+INSERT INTO `szallitasi_mod` (`id_szallitasi_mod`,​ `nev`,​ `sorrend`)
 VALUES
     (1,​'Csomagküldő szolgálattal',1),​
     (2,​'Személyes átvétel irodánkban',3),​

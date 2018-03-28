@@ -16,6 +16,11 @@ OrderAsset::register($this);
 
 $form = ActiveForm::begin([
     'id' => 'modify-form',
+    'enableAjaxValidation' => false,
+    'enableClientValidation' => true,
+    'validateOnBlur' => true,
+    'validateOnChange' => true,
+    'validateOnSubmit' => false,
 ]);
 
 ?>

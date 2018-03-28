@@ -57,7 +57,7 @@ class OrderController extends Controller
                 if ($v1 && $v2) {
 
                     //Nem regisztrált user
-                    if (!$felhasznaloModel->create_user)
+                    if (!$felhasznaloModel->create_user && Yii::$app->user->isGuest)
                         $felhasznaloModel->auth_type = 'unregistered';
 
                     if (!$felhasznaloModel->save())

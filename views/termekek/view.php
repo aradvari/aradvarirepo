@@ -3,6 +3,7 @@
 use app\assets\TermekAsset;
 use app\components\helpers\Coreshop;
 use app\models\GlobalisAdatok;
+use app\models\TermekekSearch;
 use kartik\rating\StarRating;
 use yii\bootstrap\Carousel;
 use yii\helpers\ArrayHelper;
@@ -309,13 +310,17 @@ JS
 
     </div>
 
+    <div class="content-right-headline" style="clear:both;">Termékajánló</div>
+
 <?php
-//if ($history) {
-//    echo $this->render('_history', ['history' => $history]);
-//} else {
-//    echo $this->render('_ajanlo', ['subCategory' => ArrayHelper::getValue($model, 'defaultSubCategory.url_segment')]);
-//}
-echo $this->render('_ajanlo', [
-    'model' => $model,
-]);
+$dataProvider = (new TermekekSearch())->search(['q' => $model->termeknev, 'subCategory' => $model->defaultSubCategory->url_segment]);
+$dataProvider->pagination = false;
+$dataProvider->query->andWhere(['!=', 'id_termek', $model->id]);
+$dataProvider->query->limit(10);
+$dataProvider->query->orderBy('rand()');
+
+if ($dataProvider->getCount() > 0)
+    echo $this->render('_index_ajanlo', [
+        'dataProvider' => $dataProvider,
+    ]);
 ?>

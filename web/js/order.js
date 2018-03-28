@@ -92,6 +92,7 @@ $('input[name="MegrendelesFej[id_szallitasi_mod]"]').change(function () {
     $('#megrendelesfej-szallitasi_varos').attr('readonly', checked);
     $('#megrendelesfej-szallitasi_utcanev').attr('readonly', checked);
     $('#megrendelesfej-szallitasi_hazszam').attr('readonly', checked);
+    $('#megrendelesfej-szallitasi_emelet').attr('readonly', checked);
     $('#megrendelesfej-gls_kod').attr('readonly', checked);
 
 });

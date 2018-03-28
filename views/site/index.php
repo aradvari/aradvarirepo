@@ -1,33 +1,37 @@
 <?php
 /* @var $this yii\web\View */
-$this->title = 'gördeszkás webshop: Vans,éS Footwear,Etnies,Emerica';?>
+
+use app\models\TermekekSearch;
+
+$this->title = 'gördeszkás webshop: Vans,éS Footwear,Etnies,Emerica'; ?>
+
 <!-- Slider -->
 <div class="row">
     <div id="coreshopCarousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#coreshopCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#coreshopCarousel" data-slide-to="1"></li>
-        <li data-target="#coreshopCarousel" data-slide-to="2"></li>
-      </ol> <!-- //carousel-indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#coreshopCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#coreshopCarousel" data-slide-to="1"></li>
+            <li data-target="#coreshopCarousel" data-slide-to="2"></li>
+        </ol> <!-- //carousel-indicators -->
 
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="images/slider/slide-01_1920_680.png" alt="First slide">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Ultra <span class="blue">range</span></h5>
-            <p>Kényelem és lazaság</p>
-          </div>
-        </div>
-      </div> <!-- //carousel-inner -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="images/slider/slide-01_1920_680.png" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Ultra <span class="blue">range</span></h5>
+                    <p>Kényelem és lazaság</p>
+                </div>
+            </div>
+        </div> <!-- //carousel-inner -->
 
-      <a class="carousel-control-prev" href="#coreshopCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Előző</span>
-      </a>
-      <a class="carousel-control-next" href="#coreshopCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Következő</span>
-      </a>
+        <a class="carousel-control-prev" href="#coreshopCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Előző</span>
+        </a>
+        <a class="carousel-control-next" href="#coreshopCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Következő</span>
+        </a>
 
     </div> <!-- //coreshopCarousel carousel-->
 </div> <!-- //row -->
@@ -75,44 +79,56 @@ $this->title = 'gördeszkás webshop: Vans,éS Footwear,Etnies,Emerica';?>
 <!-- //brands -->
 
 <section class="white-bg">
-  <div class="row">
-    <div class="col image-vans-x-peanuts">
+    <div class="row">
+        <div class="col image-vans-x-peanuts">
+        </div>
+        <div class="col align-self-center">
+            <h2 class="text-center">Vans x <span class="blue">peanuts</span></h2>
+            <p class="text-center">Charlie Brown és barátai ismét megszállták a legnépszerűbb Vans cipőket.</p>
+            <p class="text-center margin-top-50">
+                <a href="" class="btn btn-primary">Megnézem</a>
+            </p>
+        </div>
     </div>
-    <div class="col align-self-center">
-      <h2 class="text-center">Vans x <span class="blue">peanuts</span></h2>
-      <p class="text-center">Charlie Brown és barátai ismét megszállták a legnépszerűbb Vans cipőket.</p>
-      <p class="text-center margin-top-50">
-        <a href="" class="btn btn-primary">Megnézem</a>
-      </p>
-    </div>
-  </div>
 </section>
 
 <section>
-  <div class="row blue-bg">
-    <div class="col align-self-center">
-      <h2 class="text-center inverse">Vans girls</h2>
-      <p class="text-center white">Vans ruházat azoknak a lányoknak, akik a dél-kaliforniai stílusból merítenének inspirációt. </p>
-      <p class="text-center margin-top-50">
-        <a href="" class="btn btn-transparent">Megnézem</a>
-      </p>
+    <div class="row blue-bg">
+        <div class="col align-self-center">
+            <h2 class="text-center inverse">Vans girls</h2>
+            <p class="text-center white">Vans ruházat azoknak a lányoknak, akik a dél-kaliforniai stílusból merítenének
+                inspirációt. </p>
+            <p class="text-center margin-top-50">
+                <a href="" class="btn btn-transparent">Megnézem</a>
+            </p>
+        </div>
+        <div class="col-7 image-vans-girls">
+        </div>
     </div>
-    <div class="col-7 image-vans-girls">
-    </div>
-  </div>
 </section>
 
 <section class="white-bg">
-  <div class="row">
-    <div class="col image-vans-old-skool">
+    <div class="row">
+        <div class="col image-vans-old-skool">
+        </div>
+        <div class="col align-self-center">
+            <h2 class="text-center">Vans old <span class="blue">skool</span></h2>
+            <p class="text-center">A Vans kultikus Old Skool modelljéből több mint harminc verziót találsz
+                kínálatunkban.</p>
+            <p class="text-center margin-top-50">
+                <a href="" class="btn btn-primary">Megnézem</a>
+            </p>
+        </div>
     </div>
-    <div class="col align-self-center">
-      <h2 class="text-center">Vans old <span class="blue">skool</span></h2>
-      <p class="text-center">A Vans kultikus Old Skool modelljéből több mint harminc verziót találsz kínálatunkban.</p>
-      <p class="text-center margin-top-50">
-        <a href="" class="btn btn-primary">Megnézem</a>
-      </p>
-    </div>
-  </div>
 </section>
 
+<?php
+$dataProvider = (new TermekekSearch())->search(['subCategory' => ['ferfi-cipo', 'noi-cipo']]);
+$dataProvider->pagination = false;
+$dataProvider->query->andWhere(['opcio' => 'UJ']);
+$dataProvider->query->limit(15);
+$dataProvider->query->orderBy('rand()');
+
+if ($dataProvider->getCount() > 0)
+    echo $this->render('/termekek/_index_ajanlo', ['dataProvider' => $dataProvider]);
+?>
