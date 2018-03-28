@@ -115,7 +115,7 @@ class SiteController extends Controller
         if (Yii::$app->cart->items)
             return $this->redirect('/order/create');
         else
-            return $this->goHome();
+            return $this->redirect('/user/index');
     }
 
     /**
@@ -166,7 +166,7 @@ class SiteController extends Controller
                     ->send();
 
                 Yii::$app->user->login($felhasznaloModel);
-                $this->goHome();
+                return $this->redirect('/user/index');
 
             }
 
