@@ -4398,7 +4398,7 @@ img.horizontal-image {
 
 /* =================== Redesign ==================== */
 
-/* Navigation */ 
+/* Navigation */
 .navbar {
     background:#FFFFFF;
     background-color:#FFFFFF;
@@ -4471,7 +4471,7 @@ img.horizontal-image {
     top: 110px;
     right: initial;
     text-align:left;
-} 
+}
 
 .carousel-caption h5 {
     font-family: proxima_nova_black;
@@ -4496,13 +4496,13 @@ img.horizontal-image {
     background-image: url(../images/icons/slider-left.png);
     width:42px;
     height:85px;
-} 
+}
 
 .carousel-control-next-icon {
     background-image: url(../images/icons/slider-right.png);
     width:42px;
     height:85px;
-} 
+}
 
 .carousel-indicators {
     flex-direction: row;
@@ -4532,7 +4532,7 @@ img.horizontal-image {
 
 .customer-logo-container {
     padding:0;
-} 
+}
 @media (min-width: 768px) {
 
 
@@ -4543,20 +4543,20 @@ img.horizontal-image {
     #customerLogos .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
         display: block;
     }
-    
+
     #customerLogos .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
     #customerLogos .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
     #customerLogos .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
     #customerLogos .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
         transition: none;
     }
-    
+
     #customerLogos .carousel-inner .carousel-item-next,
     #customerLogos .carousel-inner .carousel-item-prev {
       position: relative;
       transform: translate3d(0, 0, 0);
     }
-    
+
     #customerLogos .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
         position: absolute;
         top: 0;
@@ -4565,7 +4565,7 @@ img.horizontal-image {
         display: block;
         visibility: visible;
     }
-    
+
     /* left or forward direction */
     #customerLogos .active.carousel-item-left + .carousel-item-next.carousel-item-left,
     #customerLogos .carousel-item-next.carousel-item-left + .carousel-item,
@@ -4576,7 +4576,7 @@ img.horizontal-image {
         transform: translate3d(-100%, 0, 0);
         visibility: visible;
     }
-    
+
     /* farthest right hidden item must be abso position for animations */
     #customerLogos .carousel-inner .carousel-item-prev.carousel-item-right {
         position: absolute;
@@ -4586,7 +4586,7 @@ img.horizontal-image {
         display: block;
         visibility: visible;
     }
-    
+
     /* right or prev direction */
     #customerLogos .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
     #customerLogos .carousel-item-prev.carousel-item-right + .carousel-item,
@@ -4641,7 +4641,7 @@ h4 {
 .link, footer a {
     letter-spacing: 1.5px;
     font-family: proxima_nova_light;
-} 
+}
 
     .link:hover, footer a:hover {
         color:#FFF;
@@ -4823,7 +4823,7 @@ h4 {
     font-size: 20px;
     letter-spacing: 1.5px;
     margin-top:20px;
-    margin-bottom:20px; 
+    margin-bottom:20px;
 }
 
 .white-highlighted {

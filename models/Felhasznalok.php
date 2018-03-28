@@ -106,18 +106,6 @@ class Felhasznalok extends ActiveRecord implements \yii\web\IdentityInterface
             [['id_orszag', 'id_megye', 'id_varos', 'id_kozterulet', 'szuletesi_ev', 'szuletesi_honap', 'szuletesi_nap', 'hirlevel', 'klubtag_kod', 'kartya_kod', 'modositva', 'modositva2', 'modositva3'], 'integer'],
             [['regisztralva', 'utolso_belepes', 'torolve', 'teljes_nev', 'cegnev', 'hirlevel', 'create_user'], 'safe'],
             [['vezeteknev', 'keresztnev', 'emelet', 'telefonszam1', 'telefonszam2', 'session_id'], 'string', 'max' => 50],
-            [['cegnev'], 'string', 'max' => 255],
-            [['orszag_nev', 'kozterulet_nev'], 'string', 'max' => 100],
-            [['irszam'], 'string', 'max' => 12],
-            [['megye_nev', 'varos_nev', 'utcanev', 'email'], 'string', 'max' => 200],
-            [['hazszam'], 'string', 'max' => 20],
-            [['jelszo', 'aktivacios_kod'], 'string', 'max' => 32],
-            [['email'], 'email'],
-            ['contract', 'required', 'requiredValue' => 1, 'message' => 'A szerződési feltételek elfogadása kötelező!'],
-            ['teljes_nev', 'match', 'pattern' => "/\s+/", 'message' => 'A teljes név legalább két részből kell hogy álljon!'],
-            ['email', 'unique', 'targetAttribute' => 'email', 'when' => function ($model) {
-                return $model->create_user;
-            }],
             ['id_varos', 'required', 'when' => function ($model) {
                 return !$model->varos_nev;
             }, 'whenClient' => "function (attribute, value) {
@@ -126,13 +114,25 @@ class Felhasznalok extends ActiveRecord implements \yii\web\IdentityInterface
             ['varos_nev', 'required', 'when' => function ($model) {
                 return !$model->id_varos;
             }, 'whenClient' => "function (attribute, value) {
-                    return $('#felhasznalok-id_varos').val() == '';
+                    return $('#felhasznalok-id_varos').val() == null;
             }"],
+            [['cegnev'], 'string', 'max' => 255],
+            [['orszag_nev', 'kozterulet_nev'], 'string', 'max' => 100],
+            [['irszam'], 'string', 'max' => 4],
+            [['megye_nev', 'varos_nev', 'utcanev', 'email'], 'string', 'max' => 200],
+            [['hazszam'], 'string', 'max' => 20],
+            [['jelszo', 'aktivacios_kod'], 'string', 'max' => 32],
+            [['email'], 'email'],
+            ['teljes_nev', 'match', 'pattern' => "/\s+/", 'message' => 'A teljes név legalább két részből kell hogy álljon!'],
+            ['email', 'unique', 'targetAttribute' => 'email', 'when' => function ($model) {
+                return $model->create_user;
+            }],
             ['jelszo_ismetles', 'compare', 'compareAttribute' => 'jelszo', 'message' => 'A jelszó ismétlés nem egyezik!'],
             [['jelszo', 'jelszo_ismetles'], 'required', 'on' => self::SCENARIO_REGISTER],
             [['jelszo', 'jelszo_ismetles', 'regi_jelszo'], 'required', 'on' => self::SCENARIO_PW],
             [['regi_jelszo'], 'oldPasswordCheck', 'on' => self::SCENARIO_PW],
             [['email'], 'unique', 'filter' => ['auth_type' => 'normal'], 'on' => self::SCENARIO_FACEBOOK_REGISTER],
+            ['contract', 'required', 'requiredValue' => 1, 'message' => 'A szerződési feltételek elfogadása kötelező!'],
         ];
     }
 

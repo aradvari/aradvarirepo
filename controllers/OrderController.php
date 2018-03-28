@@ -7,10 +7,12 @@ use app\models\BankTranzakciok;
 use app\models\Felhasznalok;
 use app\models\FizetesiMod;
 use app\models\Helyseg;
+use app\models\Kozterulet;
 use app\models\LoginForm;
 use app\models\MegrendelesFej;
 use app\models\MegrendelesTetel;
 use app\models\Megyek;
+use app\models\SzallitasiMod;
 use app\models\User;
 use Yii;
 use app\components\web\Controller;
@@ -49,103 +51,110 @@ class OrderController extends Controller
 
             if ($felhasznaloModel->load(Yii::$app->request->post()) && $megrendelesModel->load(Yii::$app->request->post())) {
 
-                //Nem regisztrált user
-                if (!$felhasznaloModel->create_user)
-                    $felhasznaloModel->auth_type = 'unregistered';
+                $v1 = $felhasznaloModel->validate();
+                $v2 = $megrendelesModel->validate();
 
-                if (!$felhasznaloModel->save())
-                    $transError = true;
+                if ($v1 && $v2) {
 
-                //FEJ
-                $megrendelesModel->id_felhasznalo = $felhasznaloModel->getPrimaryKey();
-                $megrendelesModel->fizetendo = Yii::$app->cart->totalAmount;
-                $megrendelesModel->tetel_szam = Yii::$app->cart->getCount();
-                $megrendelesModel->szallitasi_dij = Yii::$app->cart->shippingAmount;
-                $megrendelesModel->kedvezmeny_erteke = Yii::$app->cart->totalDiscountAmount;
-                $megrendelesModel->id_penznem = 1;
-                $megrendelesModel->id_orszag = 1;
-                if (!$megrendelesModel->save())
-                    $transError = true;
+                    //Nem regisztrált user
+                    if (!$felhasznaloModel->create_user)
+                        $felhasznaloModel->auth_type = 'unregistered';
 
-                //Tételek
-                foreach (Yii::$app->cart->items as $item) {
-                    $tetelModel = new MegrendelesTetel();
-                    $tetelModel->id_megrendeles_fej = $megrendelesModel->getPrimaryKey();
-                    $tetelModel->id_termek = $item['item']->termek->id;
-                    $tetelModel->id_marka = $item['item']->termek->markaid;
-                    $tetelModel->id_vonalkod = $item['item']->id_vonalkod;
-                    $tetelModel->termek_nev = $item['item']->termek->termeknev;
-                    $tetelModel->termek_ar = $item['item']->termek->vegleges_ar;
-                    $tetelModel->afa_kulcs = Yii::$app->params['vat'];
-                    $tetelModel->afa_ertek = round(($item['item']->termek->vegleges_ar * $item['quantity']) * (Yii::$app->params['vat'] / 100));
-                    $tetelModel->vonalkod = $item['item']->vonalkod;
-                    $tetelModel->tulajdonsag = $item['item']->megnevezes;
-                    $tetelModel->szin = $item['item']->termek->szin;
-                    $tetelModel->termek_opcio = $item['item']->termek->opcio;
-                    if (!$tetelModel->save())
+                    if (!$felhasznaloModel->save())
                         $transError = true;
-                }
 
-                //Készlet ellenőrzés
-                foreach (Yii::$app->cart->items as $item) {
-                    if ($item['item']->keszlet_1 < $item['quantity']) {
-                        Yii::$app->session->addFlash('danger', 'A(z) "' . $item['item']->termek->termeknev . ' (' . $item['item']->megnevezes . ')" termékből az általad vásárolni kívánt ' . $item['quantity'] . ' db-ból már csak ' . $item['item']->keszlet_1 . ' db elérhető.');
-                        $transError = true;
-                    }
-                }
-
-                //BANKI FIZETÉS
-                if ($megrendelesModel->id_fizetesi_mod == FizetesiMod::TYPE_BANK) {
-
-                    //cib
-                    $cib = new CIB(Yii::$app->language, 'HUF');
-                    $cib->userId = $felhasznaloModel->getPrimaryKey();
-
-                    $trid = mt_rand(1000, 9999) . date("is", mktime()) . mt_rand(1000, 9999) . date("is", mktime());
-                    $ts = date('YmdHis');
-                    $bankLink = $cib->msg10((int)$megrendelesModel->id_megrendeles_fej, $trid, 'CSH' . str_pad($cib->userId, 8, "0", STR_PAD_LEFT), Yii::$app->cart->totalAmountWithShipping, $ts);
-
-                    if ($bankLink == "") {
-                        Yii::$app->session->setFlash('danger', 'A Bankkártyás fizetés kódolásánál hiba lépett fel. A fizetést próbáld meg újra!');
-                        $transError = true;
-                    }
-
-                    $megrendelesModel->id_statusz = 50;
+                    //FEJ
+                    $megrendelesModel->id_felhasznalo = $felhasznaloModel->getPrimaryKey();
+                    $megrendelesModel->fizetendo = Yii::$app->cart->totalAmount;
+                    $megrendelesModel->tetel_szam = Yii::$app->cart->getCount();
+                    $megrendelesModel->szallitasi_dij = Yii::$app->cart->shippingAmount;
+                    $megrendelesModel->kedvezmeny_erteke = Yii::$app->cart->totalDiscountAmount;
+                    $megrendelesModel->id_penznem = 1;
+                    $megrendelesModel->id_orszag = 1;
                     if (!$megrendelesModel->save())
                         $transError = true;
 
-                    if (!$transError)
+                    //Tételek
+                    foreach (Yii::$app->cart->items as $item) {
+                        $tetelModel = new MegrendelesTetel();
+                        $tetelModel->id_megrendeles_fej = $megrendelesModel->getPrimaryKey();
+                        $tetelModel->id_termek = $item['item']->termek->id;
+                        $tetelModel->id_marka = $item['item']->termek->markaid;
+                        $tetelModel->id_vonalkod = $item['item']->id_vonalkod;
+                        $tetelModel->termek_nev = $item['item']->termek->termeknev;
+                        $tetelModel->termek_ar = $item['item']->termek->vegleges_ar;
+                        $tetelModel->afa_kulcs = Yii::$app->params['vat'];
+                        $tetelModel->afa_ertek = round(($item['item']->termek->vegleges_ar * $item['quantity']) * (Yii::$app->params['vat'] / 100));
+                        $tetelModel->vonalkod = $item['item']->vonalkod;
+                        $tetelModel->tulajdonsag = $item['item']->megnevezes;
+                        $tetelModel->szin = $item['item']->termek->szin;
+                        $tetelModel->termek_opcio = $item['item']->termek->opcio;
+                        if (!$tetelModel->save())
+                            $transError = true;
+                    }
+
+                    //Készlet ellenőrzés
+                    foreach (Yii::$app->cart->items as $item) {
+                        if ($item['item']->keszlet_1 < $item['quantity']) {
+                            Yii::$app->session->addFlash('danger', 'A(z) "' . $item['item']->termek->termeknev . ' (' . $item['item']->megnevezes . ')" termékből az általad vásárolni kívánt ' . $item['quantity'] . ' db-ból már csak ' . $item['item']->keszlet_1 . ' db elérhető.');
+                            $transError = true;
+                        }
+                    }
+
+                    //BANKI FIZETÉS
+                    if ($megrendelesModel->id_fizetesi_mod == FizetesiMod::TYPE_BANK) {
+
+                        //cib
+                        $cib = new CIB(Yii::$app->language, 'HUF');
+                        $cib->userId = $felhasznaloModel->getPrimaryKey();
+
+                        $trid = mt_rand(1000, 9999) . date("is", mktime()) . mt_rand(1000, 9999) . date("is", mktime());
+                        $ts = date('YmdHis');
+                        $bankLink = $cib->msg10((int)$megrendelesModel->id_megrendeles_fej, $trid, 'CSH' . str_pad($cib->userId, 8, "0", STR_PAD_LEFT), Yii::$app->cart->totalAmountWithShipping, $ts);
+
+                        if ($bankLink == "") {
+                            Yii::$app->session->setFlash('danger', 'A Bankkártyás fizetés kódolásánál hiba lépett fel. A fizetést próbáld meg újra!');
+                            $transError = true;
+                        }
+
+                        $megrendelesModel->id_statusz = 50;
+                        if (!$megrendelesModel->save())
+                            $transError = true;
+
+                        if (!$transError)
+                            $transaction->commit();
+
+                        return $this->redirect($bankLink);
+
+                    }
+
+                    if (!$transError && !$megrendelesModel->close())
+                        $transError = true;
+
+
+                    if (!$transError) {
+
+                        Yii::$app->session->setFlash('success', 'A megrendelésed sikeres volt, a részletekről e-mailt küldtönk az email címedre.');
                         $transaction->commit();
 
-                    return $this->redirect($bankLink);
+                        //KOSÁR TÖRLÉSE
+                        Yii::$app->cart->delete();
 
-                }
+                        //MAIL
+                        $megrendelesModel->refresh();
+                        Yii::$app->mailer->compose('/mail/order.php', ['model' => $megrendelesModel])
+                            ->setTo($megrendelesModel->felhasznalo->email)
+                            ->setSubject('Sikeres rendelés - ' . $megrendelesModel->megrendeles_szama)
+                            ->send();
 
-                if (!$transError && !$megrendelesModel->close())
-                    $transError = true;
+                        return $this->redirect(['/order/success', 'id' => $megrendelesModel->getToken()]);
 
+                    } else {
 
-                if (!$transError) {
+                        //Yii::$app->session->setFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
+                        $transaction->rollBack();
 
-                    Yii::$app->session->setFlash('success', 'A megrendelésed sikeres volt, a részletekről e-mailt küldtönk az email címedre.');
-                    $transaction->commit();
-
-                    //KOSÁR TÖRLÉSE
-                    Yii::$app->cart->delete();
-
-                    //MAIL
-                    $megrendelesModel->refresh();
-                    Yii::$app->mailer->compose('/mail/order.php', ['model' => $megrendelesModel])
-                        ->setTo($megrendelesModel->felhasznalo->email)
-                        ->setSubject('Sikeres rendelés - ' . $megrendelesModel->megrendeles_szama)
-                        ->send();
-
-                    return $this->redirect(['/order/success', 'id' => $megrendelesModel->getToken()]);
-
-                } else {
-
-                    //Yii::$app->session->setFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
-                    $transaction->rollBack();
+                    }
 
                 }
 
@@ -166,6 +175,11 @@ class OrderController extends Controller
             $megrendelesModel->szallitasi_id_megye = $felhasznaloModel->id_megye;
             $megrendelesModel->szallitasi_id_varos = $felhasznaloModel->id_varos;
             $megrendelesModel->szallitasi_varos = $felhasznaloModel->varos_nev;
+            $megrendelesModel->id_szallitasi_mod = SzallitasiMod::TYPE_CSOMAGKULDO;
+            $megrendelesModel->id_fizetesi_mod = FizetesiMod::TYPE_KESZPENZ;
+
+            if (!$felhasznaloModel->id_kozterulet)
+                $felhasznaloModel->id_kozterulet = Kozterulet::NAME_UTCA;
 
             $felhasznaloModel->create_user = false;
 

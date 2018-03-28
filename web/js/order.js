@@ -1,4 +1,13 @@
+$('#felhasznalok-irszam, #megrendelesfej-szallitasi_irszam').keyup(function (e) {
+    if ($(this).val().length == 4) {
+        $(this).trigger('change');
+    }
+});
+
 $('#felhasznalok-irszam, #megrendelesfej-szallitasi_irszam').change(function () {
+
+    if ($(this).val().length != 4)
+        return false;
 
     if ($(this).attr('id') == 'felhasznalok-irszam') {
         var selectors = {
@@ -87,25 +96,45 @@ $('input[name="MegrendelesFej[id_szallitasi_mod]"]').change(function () {
 
 });
 
-$('#megrendelesfej-eltero_szallitasi_adatok').change(function () {
+$(document).on('change click', 'input[name="MegrendelesFej[eltero_szallitasi_adatok]"]', function () {
 
-    var checked = $(this).is(':checked');
+    // var checked = $(this).is(':checked');
 
-    if (checked) {
+    if ($(this).val() == 1) {
         $('.szallitas-container').show();
     } else {
         $('.szallitas-container').hide();
     }
 
-});
+})
 
 window.glsPSMap_OnSelected_Handler = function (data) {
-    // $('#megrendelesfej-szallitasi_nev').val(data.name);
+    console.log(data);
+
     $('#megrendelesfej-szallitasi_irszam').val(data.zipcode);
     $('#megrendelesfej-szallitasi_varos').val(data.city);
     $('#megrendelesfej-szallitasi_utcanev').val(data.address);
     $('#megrendelesfej-gls_kod').val(data.pclshopid);
-    $('#megrendelesfej-eltero_szallitasi_adatok').prop('checked', true).trigger('change');
+    $('input[name="MegrendelesFej[eltero_szallitasi_adatok]"][value="1"]').prop('checked', true).trigger('change');
+
+    var days = {
+        'monday': 'Hétfő',
+        'tuesday': 'Kedd',
+        'wednesday': 'Szerda',
+        'thursday': 'Csütörtök',
+        'friday': 'Péntek',
+        'saturday': 'Szombat',
+        'sunday': 'Vasárnap',
+    }
+
+    var openingStr = '';
+    $.each(data.openings, function (key, value) {
+        openingStr += days[value.day] + ": " + (value.open ? value.open : 'Zárva') + '<br>';
+    });
+
+    $('.modal').modal('show')
+        .find('.modal-body')
+        .html('<div class="row"><div class="col font-weight-bold">Bolt adatai</div><div class="col font-weight-bold">Nyitvatartás</div></div> <div class="row"><div class="col">' + data.name + '<br>' + data.zipcode + ' ' + data.address + '<br>' + data.phone + '<br></div><div class="col">' + openingStr + '</div>');
 }
 
 $(function () {
@@ -118,6 +147,6 @@ $(function () {
 
     $('input[name="MegrendelesFej[id_szallitasi_mod]"]:checked').trigger('change');
 
-    $('#megrendelesfej-eltero_szallitasi_adatok:checked').trigger('change');
+    $('input[name="MegrendelesFej[eltero_szallitasi_adatok]"]:checked').trigger('click');
 
 });

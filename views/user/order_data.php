@@ -6,6 +6,7 @@ use app\models\FizetesiMod;
 use app\models\Kozterulet;
 use app\models\SzallitasiMod;
 use app\widgets\gls\GlsWidget;
+use yii\bootstrap\Modal;
 use yii\helpers\ArrayHelper;
 use luya\bootstrap4\ActiveForm;
 use yii\helpers\Html;
@@ -27,6 +28,11 @@ OrderAsset::register($this);
 
     $form = ActiveForm::begin([
         'id' => 'reg-form',
+        'enableAjaxValidation' => false,
+        'enableClientValidation' => true,
+        'validateOnBlur' => true,
+        'validateOnChange' => true,
+        'validateOnSubmit' => false,
     ]);
 
     ?>
@@ -76,7 +82,12 @@ OrderAsset::register($this);
 
             <h2>Szállítási adatok</h2>
 
-            <?= $form->field($megrendelesModel, 'eltero_szallitasi_adatok')->checkbox() ?>
+            <?= $form->field($megrendelesModel, 'eltero_szallitasi_adatok')->radioList([
+                '' => 'A szállítási cím megegyezik a számlázási címmel',
+                '1' => 'Másik címre kérem a szállítást',
+            ], ['class' => 'form-control']) ?>
+
+            <!--            --><? //= $form->field($megrendelesModel, 'eltero_szallitasi_adatok')->checkbox() ?>
 
             <div class="szallitas-container" style="display:none">
 
@@ -109,7 +120,7 @@ OrderAsset::register($this);
             <h4>Kosarad tartalma</h4>
             <div class="cart-container no-cash"></div>
 
-            <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList(SzallitasiMod::getData()) ?>
+            <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList(SzallitasiMod::getData(), ['class' => 'form-control']) ?>
 
             <div class="gls-container" style="display: none">
                 <?php
@@ -117,13 +128,13 @@ OrderAsset::register($this);
                 ?>
             </div>
 
-            <?= $form->field($megrendelesModel, 'id_fizetesi_mod')->radioList(FizetesiMod::getData()) ?>
+            <?= $form->field($megrendelesModel, 'id_fizetesi_mod')->radioList(FizetesiMod::getData(), ['class' => 'form-control']) ?>
 
             <?= $form->field($megrendelesModel, 'megjegyzes')->textarea(['placeholder' => '']) ?>
 
             <?= $form->field($felhasznaloModel, 'hirlevel')->checkbox() ?>
 
-            <?= $form->field($felhasznaloModel, 'contract')->checkbox() ?>
+            <?= $form->field($felhasznaloModel, 'contract')->checkbox(['class' => '']) ?>
 
         </div>
     </div>
@@ -132,4 +143,22 @@ OrderAsset::register($this);
 
     <?php ActiveForm::end(); ?>
 
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Kiválasztott csomagpont</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Rendben</button>
+            </div>
+        </div>
+    </div>
 </div>

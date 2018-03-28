@@ -118,13 +118,14 @@ VALUES
         CREATE TABLE `szallitasi_mod` (
 `id_szallitasi_mod` int(11) unsigned NOT NULL AUTO_INCREMENT,​
 `nev` varchar(50) DEFAULT NULL,​
+`sorrend` int(11) DEFAULT NULL,​
 PRIMARY KEY (`id_szallitasi_mod`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO `szallitasi_mod` (`id_szallitasi_mod`,​ `nev`)
 VALUES
-    (1,​'Csomagküldő szolgálattal'),​
-    (2,​'Személyes átvétel irodánkban'),​
-    (3,​'GLS csomagpontba');
+    (1,​'Csomagküldő szolgálattal',1),​
+    (2,​'Személyes átvétel irodánkban',3),​
+    (3,​'GLS csomagpontba',2);
 
 
         */

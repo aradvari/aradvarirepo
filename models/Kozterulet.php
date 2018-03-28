@@ -13,6 +13,10 @@ use Yii;
  */
 class Kozterulet extends ActiveRecord
 {
+
+    const NAME_UTCA = 6;
+    const NAME_UT = 7;
+
     /**
      * @inheritdoc
      */

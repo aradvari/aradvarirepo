@@ -97,6 +97,16 @@ class MegrendelesFej extends ActiveRecord
             }, 'whenClient' => "function (attribute, value) {
                     return $('#megrendelesfej-eltero_szallitasi_adatok').is(':checked');
             }"],
+
+            [['id_szallitasi_mod'], function ($attribute_name, $params) {
+                if ($this->gls_kod || $this->id_szallitasi_mod != SzallitasiMod::TYPE_GLS)
+                    return true;
+
+                $this->addError($attribute_name, 'GLS csomagpont címének kiválasztása kötelező');
+                return false;
+            }],
+
+
         ];
     }
 
@@ -209,7 +219,6 @@ class MegrendelesFej extends ActiveRecord
     {
         if (!$this->megrendeles_szama) {
             $this->megrendeles_szama = date("Y") . "/" . str_pad($this->id_megrendeles_fej, 8, "0", STR_PAD_LEFT);
-            $this->save(true, ['megrendeles_szama']);
             $this->save(true, ['megrendeles_szama']);
         }
 

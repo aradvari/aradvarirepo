@@ -61,15 +61,27 @@ AppAsset::register($this);
     <div class="container-fluid">
         <div class="arrow_box_light notice" style="display:none"></div>
         <?php
+        $messages = [];
         foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
             if (is_array($message)) {
                 foreach ($message as $m) {
-                    echo '<div class="alert alert-' . $key . '" role="alert">' . $m . '</div>';
+                    $messages[$key][] = $m;
                 }
             } else {
-                echo '<div class="alert alert-' . $key . '" role="alert">' . $message . '</div>';
+                $messages[$key][] = $m;
             }
         }
+
+        foreach ($messages as $key => $message) {
+            echo Html::beginTag('div', ['class' => 'alert alert-' . $key, 'role' => 'alert']);
+            foreach ($message as $item) {
+                echo Html::tag('small', $item, ['class' => 'clearfix']);
+            }
+            echo Html::endTag('div');
+        }
+
+        //        echo '<div class="alert alert-' . $key . '" role="alert">' . $m . '</div>';
+
         ?>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

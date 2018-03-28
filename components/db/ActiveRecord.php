@@ -40,7 +40,13 @@ class ActiveRecord extends \yii\db\ActiveRecord
         if (!$idKey)
             $idKey = static::getTableSchema()->primaryKey;
 
-        return ArrayHelper::map(static::find()->all(), $idKey, $valueKey);
+        $query = static::find();
+        $sorrend = static::getTableSchema()->getColumn('sorrend');
+
+        if ($sorrend)
+            $query->orderBy('sorrend');
+
+        return ArrayHelper::map($query->all(), $idKey, $valueKey);
 
     }
 
