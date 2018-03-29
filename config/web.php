@@ -101,8 +101,11 @@ $config = [
                     'css' => [
                         'bootstrap.css' => '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
                     ],
-                    'css' => [
+                    'js' => [
                         'bootstrap.js' => '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
+                    ],
+                    'depends' => [
+                        'luya\bootstrap4\Bootstrap4Asset',
                     ],
                 ],
             ],
