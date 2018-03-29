@@ -72,6 +72,7 @@ class TermekKep extends ActiveRecord
                 $image->fileName = basename($filename);
                 $image->webUrl = Yii::getAlias('@web') . '/' . static::$imageDir . '/' . implode('/', str_split($id)) . '/' . basename($filename);
                 $image->serverRoot = $filename;
+                $image->sizes = @getimagesize($image->serverRoot);
 
                 $pictures[] = $image;
             }
