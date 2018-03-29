@@ -17,7 +17,7 @@ Yii::$app->seo->registerMetaTag(['itemprop' => 'description', 'content' => $desc
 Yii::$app->seo->registerMetaTag(['itemprop' => 'image', 'content' => $image]);
 //SEO OPEN GRAPH
 Yii::$app->seo->registerMetaTag(['name' => 'og:title', 'content' => $this->title]);
-Yii::$app->seo->registerMetaTag(['name' => 'og:type', 'content' => 'article']);
+Yii::$app->seo->registerMetaTag(['name' => 'og:type', 'content' => 'website']);
 Yii::$app->seo->registerMetaTag(['name' => 'og:url', 'content' => Url::current([], true)]);
 Yii::$app->seo->registerMetaTag(['name' => 'og:image', 'content' => $image]);
 Yii::$app->seo->registerMetaTag(['name' => 'og:description', 'content' => $description]);

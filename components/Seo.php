@@ -67,4 +67,8 @@ class Seo extends Component
         }
     }
 
+    public function generate(){
+
+    }
+
 }

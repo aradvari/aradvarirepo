@@ -4675,6 +4675,84 @@ img.horizontal-image {
 
 }
 
+/* Product List */
+#productList {
+    align-items: center;
+    justify-content: center;
+}
+
+.product-list-container {
+    padding:0;
+}
+@media (min-width: 768px) {
+
+
+    /* show 3 items */
+    #productList .carousel-inner .active,
+    #productList .carousel-inner .active + .carousel-item,
+    #productList .carousel-inner .active + .carousel-item + .carousel-item,
+    #productList .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
+        display: block;
+    }
+
+    #productList .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    #productList .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    #productList .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+    #productList .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
+        transition: none;
+    }
+
+    #productList .carousel-inner .carousel-item-next,
+    #productList .carousel-inner .carousel-item-prev {
+        position: relative;
+        transform: translate3d(0, 0, 0);
+    }
+
+    #productList .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -25%;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+
+    /* left or forward direction */
+    #productList .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    #productList .carousel-item-next.carousel-item-left + .carousel-item,
+    #productList .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    #productList .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+    #productList .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+
+    /* farthest right hidden item must be abso position for animations */
+    #productList .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+
+    /* right or prev direction */
+    #productList .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    #productList .carousel-item-prev.carousel-item-right + .carousel-item,
+    #productList .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    #productList .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+    #productList .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+
+}
+
 /* Fonts */
 
 body {
