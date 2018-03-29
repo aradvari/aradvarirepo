@@ -22,13 +22,11 @@ Yii::$app->seo->registerMetaTag(['itemprop' => 'description', 'content' => $desc
 Yii::$app->seo->registerMetaTag(['itemprop' => 'image', 'content' => $image]);
 //SEO OPEN GRAPH
 Yii::$app->seo->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
-Yii::$app->seo->registerMetaTag(['property' => 'og:type', 'content' => 'article']);
+Yii::$app->seo->registerMetaTag(['property' => 'og:type', 'content' => 'product']);
 Yii::$app->seo->registerMetaTag(['property' => 'og:url', 'content' => Url::current([], true)]);
 Yii::$app->seo->registerMetaTag(['property' => 'og:image', 'content' => $image]);
 Yii::$app->seo->registerMetaTag(['property' => 'og:description', 'content' => $description]);
 Yii::$app->seo->registerMetaTag(['property' => 'og:site_name', 'content' => 'Coreshop']);
-Yii::$app->seo->registerMetaTag(['property' => 'article:section', 'content' => 'fashion']);
-Yii::$app->seo->registerMetaTag(['property' => 'article:tag', 'content' => $keywords]);
 Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827275293006']);
 
 ?>

@@ -44,14 +44,26 @@ Yii::$app->seo->registerMetaTag(['itemprop' => 'image', 'content' => $image]);
 Yii::$app->seo->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
 Yii::$app->seo->registerMetaTag(['property' => 'og:type', 'content' => 'product']);
 Yii::$app->seo->registerMetaTag(['property' => 'og:url', 'content' => Url::current([], true)]);
+
 Yii::$app->seo->registerMetaTag(['property' => 'og:image', 'content' => $image]);
 Yii::$app->seo->registerMetaTag(['property' => 'og:image:alt', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:image:width', 'content' => $model->defaultImage->sizes[0]]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:image:height', 'content' => $model->defaultImage->sizes[0]]);
+
 Yii::$app->seo->registerMetaTag(['property' => 'og:description', 'content' => $description]);
 Yii::$app->seo->registerMetaTag(['property' => 'og:site_name', 'content' => 'Coreshop']);
-Yii::$app->seo->registerMetaTag(['property' => 'og:price:amount', 'content' => $model->vegleges_ar]);
-Yii::$app->seo->registerMetaTag(['property' => 'og:price:currency', 'content' => 'HUF']);
+
+Yii::$app->seo->registerMetaTag(['property' => 'product:price:amount', 'content' => $model->vegleges_ar]);
+Yii::$app->seo->registerMetaTag(['property' => 'product:price:currency', 'content' => 'HUF']);
 if ($model->keszlet)
-    Yii::$app->seo->registerMetaTag(['property' => 'og:availability', 'content' => 'instock']);
+    Yii::$app->seo->registerMetaTag(['property' => 'product:availability', 'content' => 'instock']);
+else
+    Yii::$app->seo->registerMetaTag(['property' => 'product:availability', 'content' => 'out of stock']);
+Yii::$app->seo->registerMetaTag(['property' => 'product:condition', 'content' => 'new']);
+Yii::$app->seo->registerMetaTag(['property' => 'product:retailer_item_id', $model->id]);
+if ($model->szinszuro)
+    Yii::$app->seo->registerMetaTag(['property' => 'product:color', $model->szinszuro]);
+
 Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827275293006']);
 
 
