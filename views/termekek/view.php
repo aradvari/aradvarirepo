@@ -41,17 +41,18 @@ Yii::$app->seo->registerMetaTag(['itemprop' => 'name', 'content' => $this->title
 Yii::$app->seo->registerMetaTag(['itemprop' => 'description', 'content' => $description]);
 Yii::$app->seo->registerMetaTag(['itemprop' => 'image', 'content' => $image]);
 //SEO OPEN GRAPH
-Yii::$app->seo->registerMetaTag(['name' => 'og:title', 'content' => $this->title]);
-Yii::$app->seo->registerMetaTag(['name' => 'og:type', 'content' => 'product']);
-Yii::$app->seo->registerMetaTag(['name' => 'og:url', 'content' => Url::current([], true)]);
-Yii::$app->seo->registerMetaTag(['name' => 'og:image', 'content' => $image]);
-Yii::$app->seo->registerMetaTag(['name' => 'og:description', 'content' => $description]);
-Yii::$app->seo->registerMetaTag(['name' => 'og:site_name', 'content' => 'Coreshop']);
-Yii::$app->seo->registerMetaTag(['name' => 'og:price:amount', 'content' => $model->vegleges_ar]);
-Yii::$app->seo->registerMetaTag(['name' => 'og:price:currency', 'content' => 'HUF']);
+Yii::$app->seo->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:type', 'content' => 'product']);
+Yii::$app->seo->registerMetaTag(['property' => 'og:url', 'content' => Url::current([], true)]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:image', 'content' => $image]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:image:alt', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:site_name', 'content' => 'Coreshop']);
+Yii::$app->seo->registerMetaTag(['property' => 'og:price:amount', 'content' => $model->vegleges_ar]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:price:currency', 'content' => 'HUF']);
 if ($model->keszlet)
-    Yii::$app->seo->registerMetaTag(['name' => 'og:availability', 'content' => 'instock']);
-Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '550827275293006']);
+    Yii::$app->seo->registerMetaTag(['property' => 'og:availability', 'content' => 'instock']);
+Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827275293006']);
 
 
 ?>

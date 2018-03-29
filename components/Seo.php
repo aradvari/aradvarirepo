@@ -23,18 +23,18 @@ class Seo extends Component
 //        ['name' => 'twitter:creator'],
 //        ['name' => 'twitter:image:src'],
 
-        ['name' => 'og:title'],
-        ['name' => 'og:type'],
-        ['name' => 'og:url'],
-        ['name' => 'og:image'],
-        ['name' => 'og:description'],
-        ['name' => 'og:site_name'],
-//        ['name' => 'article:published_time'],
-//        ['name' => 'article:modified_time'],
-//        ['name' => 'article:section'],
-//        ['name' => 'article:tag'],
+        ['property' => 'og:title'],
+        ['property' => 'og:type'],
+        ['property' => 'og:url'],
+        ['property' => 'og:image'],
+        ['property' => 'og:description'],
+        ['property' => 'og:site_name'],
+//        ['property' => 'article:published_time'],
+//        ['property' => 'article:modified_time'],
+//        ['property' => 'article:section'],
+//        ['property' => 'article:tag'],
 
-        ['name' => 'fb:app_id'],
+        ['property' => 'fb:app_id'],
     ];
 
     public $metaTags = [];
