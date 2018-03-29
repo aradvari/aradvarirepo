@@ -21,6 +21,7 @@ class TermekAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/imageviewer.css',
     ];
     public $publishOptions = [
         'forceCopy' => YII_ENV_DEV,
@@ -29,6 +30,7 @@ class TermekAsset extends AssetBundle
         'js/product.js',
 //        '//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js',
         'js/hammer.min.js',
+        'js/imageviewer.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

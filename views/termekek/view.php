@@ -109,15 +109,25 @@ Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827
 
                             foreach ($pictures as $key => $picture) {
 
-                                echo Html::beginTag('div', ['class' => 'carousel-item ' . ($key == 0 ? 'active' : '')]);
-                                echo Html::img($picture->webUrl, ['class' => 'd-block w-100', 'alt' => $model->seo_name, 'title' => $model->seo_name]);
+                                echo Html::beginTag('div', ['id' => 'img-container-' . $key, 'data-high-res-src' => $picture->webUrl, 'data-src' => $picture->webUrl, 'class' => 'carousel-item ' . ($key == 0 ? 'active' : '')]);
+                                echo Html::img($picture->webUrl, ['class' => 'c-img d-block w-100', 'alt' => $model->seo_name, 'title' => $model->seo_name]);
                                 echo Html::endTag('div');
+
+                                if ($key == 0)
+                                    $this->registerJs("ImageViewer('#img-container-{$key}');");
 
                             }
 
                         }
 
+                        $this->registerJS(<<<JS
+                                    $('#carousel-thumb').on('slid.bs.carousel', function () {
+                                      ImageViewer('.carousel-item.active');
+                                    })
+JS
+                        );
                         ?>
+
                     </div>
                     <!--/.Slides-->
                     <!--Controls-->
