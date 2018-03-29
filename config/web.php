@@ -92,6 +92,9 @@ $config = [
         'cart' => [
             'class' => 'app\components\Cart',
         ],
+        'seo' => [
+            'class' => 'app\components\Seo',
+        ],
         'assetManager' => [
             'bundles' => [
                 'yii\bootstrap\BootstrapAsset' => [

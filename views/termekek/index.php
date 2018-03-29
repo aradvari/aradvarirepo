@@ -2,11 +2,35 @@
 
 use kop\y2sp\ScrollPager;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TermekekSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = $mainCategoryModel->megnevezes . ' ' . $subCategoryModel->megnevezes . ' ' . $brandModel->markanev . ' ' . $sizeModel->megnevezes . ' ' . $colorModel->szinszuro . ' ' . $tipusModel->tipus;
+$description = $this->title;
+$keywords = $this->title;
+$image = Url::to('/images/coreshop-logo-social.png', true);
+
+//SEO DEFAULT
+Yii::$app->seo->registerMetaTag(['name' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'name', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'image', 'content' => $image]);
+//SEO OPEN GRAPH
+Yii::$app->seo->registerMetaTag(['name' => 'og:title', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:type', 'content' => 'article']);
+Yii::$app->seo->registerMetaTag(['name' => 'og:url', 'content' => Url::current([], true)]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:image', 'content' => $image]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:site_name', 'content' => 'Coreshop']);
+Yii::$app->seo->registerMetaTag(['name' => 'article:section', 'content' => 'fashion']);
+Yii::$app->seo->registerMetaTag(['name' => 'article:tag', 'content' => $keywords]);
+Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '550827275293006']);
+
 ?>
 
 <?php

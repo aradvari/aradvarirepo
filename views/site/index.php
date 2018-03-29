@@ -2,8 +2,31 @@
 /* @var $this yii\web\View */
 
 use app\models\TermekekSearch;
+use yii\helpers\Url;
 
-$this->title = 'gördeszkás webshop: Vans,éS Footwear,Etnies,Emerica'; ?>
+$this->title = 'gördeszkás webshop: Vans,éS Footwear,Etnies,Emerica';
+$description = 'Coreshop online webshop, a Vans, DC Shoes, Supra, Osiris, DVS Shoes magyarországi forgalmazója, gördeszka hardware-ek.';
+$keywords = 'Coreshop, Vans, Vans off The Wall, DC Shoes, Osiris, DVS Shoes, baseball sapka, kiegészítők, gördeszka hardware, skateboard';
+$image = Url::to('/images/coreshop-logo-social.png', true);
+
+//SEO DEFAULT
+Yii::$app->seo->registerMetaTag(['name' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'name', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'image', 'content' => $image]);
+//SEO OPEN GRAPH
+Yii::$app->seo->registerMetaTag(['name' => 'og:title', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:type', 'content' => 'article']);
+Yii::$app->seo->registerMetaTag(['name' => 'og:url', 'content' => Url::current([], true)]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:image', 'content' => $image]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:site_name', 'content' => 'Coreshop']);
+Yii::$app->seo->registerMetaTag(['name' => 'article:section', 'content' => 'fashion']);
+Yii::$app->seo->registerMetaTag(['name' => 'article:tag', 'content' => $keywords]);
+Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '550827275293006']);
+
+?>
 
 <!-- Slider -->
 <div class="row">

@@ -4,11 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Felhasznalok;
-use app\models\FelhasznalokSearch;
 use app\components\web\Controller;
 use yii\db\Expression;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * FehasznalokController implements the CRUD actions for Felhasznalok model.

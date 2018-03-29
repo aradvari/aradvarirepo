@@ -29,6 +29,30 @@ $this->params['breadcrumbs'] = [
         'brand' => ArrayHelper::getValue($model, 'marka.url_segment'),
     ]],
 ];
+$this->title = $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szinszuro;
+$description = $model->leiras ? $model->leiras : $this->title;
+$keywords = $model->defaultMainCategory->megnevezes . ' ' . $model->defaultSubCategory->megnevezes . ' ' . $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szinszuro;
+$image = Url::to($model->defaultImage->webUrl, true);
+
+//SEO DEFAULT
+Yii::$app->seo->registerMetaTag(['name' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'name', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'image', 'content' => $image]);
+//SEO OPEN GRAPH
+Yii::$app->seo->registerMetaTag(['name' => 'og:title', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:type', 'content' => 'product']);
+Yii::$app->seo->registerMetaTag(['name' => 'og:url', 'content' => Url::current([], true)]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:image', 'content' => $image]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:site_name', 'content' => 'Coreshop']);
+Yii::$app->seo->registerMetaTag(['name' => 'og:price:amount', 'content' => $model->vegleges_ar]);
+Yii::$app->seo->registerMetaTag(['name' => 'og:price:currency', 'content' => 'HUF']);
+if ($model->keszlet)
+    Yii::$app->seo->registerMetaTag(['name' => 'og:availability', 'content' => 'instock']);
+Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '550827275293006']);
+
 
 ?>
 

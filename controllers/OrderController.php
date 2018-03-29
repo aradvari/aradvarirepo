@@ -11,13 +11,10 @@ use app\models\Kozterulet;
 use app\models\LoginForm;
 use app\models\MegrendelesFej;
 use app\models\MegrendelesTetel;
-use app\models\Megyek;
 use app\models\SzallitasiMod;
-use app\models\User;
 use Yii;
 use app\components\web\Controller;
 use yii\db\Expression;
-use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 

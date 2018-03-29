@@ -2,13 +2,10 @@
 
 namespace app\controllers;
 
-use app\models\Cart;
-use app\models\Termekek;
 use app\models\Vonalkodok;
 use Yii;
 use app\components\web\Controller;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 use yii\web\Response;
 
 class CartController extends Controller

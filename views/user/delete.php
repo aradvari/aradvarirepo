@@ -13,6 +13,11 @@ use luya\bootstrap4\ActiveForm;
 
 $form = ActiveForm::begin([
     'id' => 'modify-form',
+    'enableAjaxValidation' => false,
+    'enableClientValidation' => true,
+    'validateOnBlur' => true,
+    'validateOnChange' => true,
+    'validateOnSubmit' => false,
 ]);
 
 ?>

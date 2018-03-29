@@ -2,26 +2,10 @@
 
 namespace app\controllers;
 
-use app\models\Kategoriak;
-use app\models\Markak;
-use app\models\Termekek;
-use app\models\Vonalkodok;
-use Yii;
-use yii\db\Exception;
-use yii\db\Query;
-use yii\filters\AccessControl;
-use yii\helpers\Html;
-use yii\helpers\Inflector;
-use yii\helpers\StringHelper;
-use yii\web\Controller;
-use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use app\components\web\Controller;
 
 class MigrationController extends Controller
 {
-
 
     public function actionIndex()
     {
