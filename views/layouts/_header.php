@@ -106,15 +106,36 @@ use yii\helpers\Url;
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="<?= Url::to(['termekek/index', 'mainCategory' => 'cipo', 'subCategory' => 'ferfi-cipo']) ?>">férfi
-                        cipő</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="<?= Url::to(['termekek/index', 'mainCategory' => 'cipo', 'subCategory' => 'noi-cipo']) ?>">női
-                        cipő</a>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link"-->
+<!--                       href="--><?//= Url::to(['termekek/index', 'mainCategory' => 'cipo', 'subCategory' => 'ferfi-cipo']) ?><!--">férfi-->
+<!--                        cipő</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link"-->
+<!--                       href="--><?//= Url::to(['termekek/index', 'mainCategory' => 'cipo', 'subCategory' => 'noi-cipo']) ?><!--">női-->
+<!--                        cipő</a>-->
+<!--                </li>-->
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       href="<?= Url::to(['termekek/index', 'mainCategory' => 'kiegeszito']) ?>">cipő</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <?php
+                        $models = (new TermekekSearch())->searchSubCategory(['mainCategory' => 'cipo'])->getModels();
+                        foreach ($models as $item) {
+                            echo Html::beginTag('li');
+                            echo Html::a($item['megnevezes'],
+                                [
+                                    'termekek/index',
+                                    'mainCategory' => $item['pk_url_segment'],
+                                    'subCategory' => $item['url_segment'],
+                                ],
+                                ['class' => 'dropdown-item']);
+                            echo Html::endTag('li');
+                        }
+                        ?>
+                    </ul>
                 </li>
 
                 <li class="nav-item dropdown">
