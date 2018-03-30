@@ -48,6 +48,9 @@ class OrderController extends Controller
 
             if ($felhasznaloModel->load(Yii::$app->request->post()) && $megrendelesModel->load(Yii::$app->request->post())) {
 
+                if (!$megrendelesModel->szallitasi_nev)
+                    $megrendelesModel->szallitasi_nev = $felhasznaloModel->vezeteknev.' '.$felhasznaloModel->keresztnev;
+
                 $v1 = $felhasznaloModel->validate();
                 $v2 = $megrendelesModel->validate();
 
@@ -179,6 +182,7 @@ class OrderController extends Controller
                 $felhasznaloModel->id_kozterulet = Kozterulet::NAME_UTCA;
 
             $felhasznaloModel->create_user = false;
+            $felhasznaloModel->contract = true;
 
         }
 

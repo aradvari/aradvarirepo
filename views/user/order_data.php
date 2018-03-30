@@ -85,7 +85,7 @@ OrderAsset::register($this);
             <?= $form->field($megrendelesModel, 'eltero_szallitasi_adatok')->radioList([
                 '' => 'A szállítási cím megegyezik a számlázási címmel',
                 '1' => 'Másik címre kérem a szállítást',
-            ], ['class' => 'form-control']) ?>
+            ], ['class' => 'form-control'])->label(false) ?>
 
             <!--            --><? //= $form->field($megrendelesModel, 'eltero_szallitasi_adatok')->checkbox() ?>
 
