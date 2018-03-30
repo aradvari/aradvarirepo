@@ -64,7 +64,7 @@ $config = [
             ],
         ],
         'formatter' => [
-            'dateFormat' => 'yyyy.mm.dd',
+            'dateFormat' => 'long',
             'decimalSeparator' => ',',
             'thousandSeparator' => ' ',
             'currencyCode' => 'Ft',
