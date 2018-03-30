@@ -134,7 +134,7 @@ class OrderController extends Controller
 
                     if (!$transError) {
 
-                        Yii::$app->session->setFlash('success', 'A megrendelésed sikeres volt, a részletekről e-mailt küldtönk az email címedre.');
+//                        Yii::$app->session->setFlash('success', 'A megrendelésed sikeres volt, a részletekről e-mailt küldtönk az email címedre.');
                         $transaction->commit();
 
                         //KOSÁR TÖRLÉSE
