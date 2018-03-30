@@ -81,6 +81,7 @@ class TermekekController extends Controller
             'sizeModel' => Vonalkodok::findOne(['url_segment' => $params['meret']]),
             'colorModel' => Termekek::findOne(['szinszuro' => $params['szin']]),
             'typeModel' => Termekek::findOne(['tipus' => $params['tipus']]),
+            'brandLayout' => $params['brand'] && !$params['mainCategory'] && !$params['subCategory'],
         ];
 
         if (!Yii::$app->request->isAjax && Yii::$app->request->get('q'))
@@ -95,11 +96,7 @@ class TermekekController extends Controller
                 }
             });
 
-        if ($params['brand'] && !$params['mainCategory'] && !$params['subCategory']) {
-            return $this->render('brand', $fParams);
-        } else {
-            return $this->render('index', $fParams);
-        }
+        return $this->render('index', $fParams);
     }
 
     public function actionView($termek)

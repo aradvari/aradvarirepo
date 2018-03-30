@@ -65,9 +65,11 @@ foreach ($params as $key => $param) {
 }
 ?>
 
-<!--<div class="container">
-    <h1><?= $subCategoryModel->megnevezes ?></h1>
-</div>-->
+<?php
+if ($brandLayout)
+    echo $this->render('_brand', ['brandModel' => $brandModel]);
+?>
+
 <div class="container-fluid termekek-index">
     <div class="row">
         <div class="col">
