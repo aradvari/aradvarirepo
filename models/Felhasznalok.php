@@ -194,7 +194,9 @@ class Felhasznalok extends ActiveRecord implements \yii\web\IdentityInterface
     public function afterFind()
     {
         parent::afterFind();
-        $this->teljes_nev = $this->vezeteknev . ' ' . $this->keresztnev;
+
+        if ($this->vezeteknev || $this->keresztnev)
+            $this->teljes_nev = $this->vezeteknev . ' ' . $this->keresztnev;
     }
 
     public function beforeValidate()

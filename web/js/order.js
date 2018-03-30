@@ -116,6 +116,10 @@ window.glsPSMap_OnSelected_Handler = function (data) {
     $('#megrendelesfej-szallitasi_varos').val(data.city);
     $('#megrendelesfej-szallitasi_utcanev').val(data.address);
     $('#megrendelesfej-gls_kod').val(data.pclshopid);
+
+    if ($('#megrendelesfej-szallitasi_nev').val() == '' && $('#felhasznalok-vezeteknev').val() != '' && $('#felhasznalok-keresztnev').val() != '')
+        $('#megrendelesfej-szallitasi_nev').val($('#felhasznalok-vezeteknev').val() + ' ' + $('#felhasznalok-keresztnev').val());
+
     $('input[name="MegrendelesFej[eltero_szallitasi_adatok]"][value="1"]').prop('checked', true).trigger('change');
 
     var days = {

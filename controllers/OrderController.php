@@ -167,7 +167,7 @@ class OrderController extends Controller
 
         } else {
 
-            $megrendelesModel->szallitasi_nev = $felhasznaloModel->vezeteknev . ' ' . $felhasznaloModel->keresztnev;
+            $megrendelesModel->szallitasi_nev = trim($felhasznaloModel->vezeteknev . ' ' . $felhasznaloModel->keresztnev);
             $megrendelesModel->szallitasi_irszam = $felhasznaloModel->irszam;
             $megrendelesModel->szallitasi_utcanev = $felhasznaloModel->utcanev;
             $megrendelesModel->szallitasi_id_kozterulet = $felhasznaloModel->id_kozterulet;
