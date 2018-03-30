@@ -90,7 +90,7 @@ use yii\helpers\Html;
     <tr>
         <td class="font-weight-bold text-uppercase">Összesen fizetendő:</td>
         <td>
-            <?= Yii::$app->formatter->asDecimal($model->fizetendo) ?> Ft<br>
+            <?= Yii::$app->formatter->asDecimal($model->fizetendo + $model->szallitasi_dij) ?> Ft<br>
             <small>(<?= Yii::$app->formatter->asDecimal($item->afa_ertek) ?> Ft adó)</small>
         </td>
     </tr>
