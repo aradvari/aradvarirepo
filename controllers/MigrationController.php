@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\components\web\Controller;
+use app\models\Termekek;
+use yii\helpers\Inflector;
 
 class MigrationController extends Controller
 {
@@ -41,12 +43,14 @@ class MigrationController extends Controller
 //                var_dump($item->getErrors());
 //        }
 //
-//        $items = Termekek::find()->all();
-//        foreach ($items as $item) {
-//            $item->url_segment = Inflector::slug($item->termeknev . '-' . $item->szin);
-//            if (!$item->save())
-//                var_dump($item->getErrors());
-//        }
+        $items = Termekek::find()->all();
+        foreach ($items as $item) {
+            $segment = Inflector::slug($item->termeknev . '-' . $item->szin);
+            $find = Termekek::findAll(['url_segment' => $segment]);
+            $item->url_segment = $find ? $segment . (string)(count($find) + 1) : $segment;
+            if (!$item->save())
+                var_dump($item->getErrors());
+        }
 //
 //        $items = Vonalkodok::find()->all();
 //        foreach ($items as $item){
