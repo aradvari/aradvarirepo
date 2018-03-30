@@ -88,9 +88,8 @@ class CartController extends Controller
 
         $code = Yii::$app->request->post('kupon');
 
-        Yii::$app->cart->setCouponCode($code);
+        return Yii::$app->cart->setCouponCode($code);
 
-        return true;
     }
 
     public function actionGetCart()

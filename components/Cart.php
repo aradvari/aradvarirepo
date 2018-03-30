@@ -34,9 +34,11 @@ class Cart extends Component
     public function setCouponCode($code)
     {
 
+        $success = array_key_exists($code, Yii::$app->params['couponItems']);
+
         $this->couponCode = [
             'code' => $code,
-            'success' => array_key_exists($code, Yii::$app->params['couponItems']),
+            'success' => $success,
         ];
 
         $cookies = Yii::$app->response->cookies;
@@ -44,6 +46,8 @@ class Cart extends Component
             'name' => 'cart-coupon',
             'value' => Json::encode($this->couponCode),
         ]));
+
+        return $this->couponCode;
 
     }
 

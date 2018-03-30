@@ -121,8 +121,8 @@ Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827
                         }
 
                         $this->registerJS(<<<JS
-                                    $('#carousel-thumb').on('slid.bs.carousel', function () {
-                                      ImageViewer('.carousel-item.active');
+                                    $('.product-image #carousel-thumb').on('slid.bs.carousel', function () {
+                                      ImageViewer('.product-image .carousel-item.active');
                                     })
 JS
                         );

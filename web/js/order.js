@@ -133,9 +133,7 @@ window.glsPSMap_OnSelected_Handler = function (data) {
         openingStr += days[value.day] + ": " + (value.open ? value.open : 'Zárva') + '<br>';
     });
 
-    $('.modal').modal('show')
-        .find('.modal-body')
-        .html('<div class="row"><div class="col font-weight-bold">Bolt adatai</div><div class="col font-weight-bold">Nyitvatartás</div></div> <div class="row"><div class="col">' + data.name + '<br>' + data.zipcode + ' ' + data.address + '<br>' + data.phone + '<br></div><div class="col">' + openingStr + '</div>');
+    alertModal('Kiválasztott csomagpont', '<div class="row"><div class="col font-weight-bold">Bolt adatai</div><div class="col font-weight-bold">Nyitvatartás</div></div> <div class="row"><div class="col">' + data.name + '<br>' + data.zipcode + ' ' + data.address + '<br>' + data.phone + '<br></div><div class="col">' + openingStr + '</div>');
 }
 
 $(function () {

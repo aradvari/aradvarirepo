@@ -2,6 +2,14 @@ $('#order-form select[name="s"]').change(function () {
     $('#order-form').submit();
 });
 
+alertModal = function (title, body) {
+
+    $('#alertModal').modal('show');
+    $('#alertModal #alertModalLabel').html(title);
+    $('#alertModal .modal-body').html(body);
+
+}
+
 var addNotice = function (message, url) {
     $("html, body").animate({scrollTop: 0}, 200, function () {
         if (url)
@@ -69,17 +77,23 @@ $(document).on("change", 'select[name="quantity"]', function () {
 
 });
 
-$(document).on("change", 'input[name="kupon"]', function () {
+$(document).on("click", '.kupon-btn', function () {
 
     $.ajax({
         method: "POST",
         url: "/cart/ajax-set-code",
         data: {
-            'kupon': $(this).val(),
+            'kupon': $(this).closest('.input-group').find('input.kupon').val(),
         }
     }).done(function (result) {
 
+        console.log(result);
         getCart();
+
+        if (result.success === true)
+            alertModal('Gratulálunk!', 'Az általad megadott kód érvényes!');
+        else
+            alertModal('Hiba!', 'Az általad megadott kód nem érvényes!');
 
     });
 
