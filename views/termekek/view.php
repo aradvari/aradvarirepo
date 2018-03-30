@@ -29,9 +29,9 @@ $this->params['breadcrumbs'] = [
         'brand' => ArrayHelper::getValue($model, 'marka.url_segment'),
     ]],
 ];
-$this->title = $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szinszuro;
+$this->title = $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szin;
 $description = $model->leiras ? $model->leiras : $this->title;
-$keywords = $model->defaultMainCategory->megnevezes . ' ' . $model->defaultSubCategory->megnevezes . ' ' . $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szinszuro;
+$keywords = $model->defaultMainCategory->megnevezes . ' ' . $model->defaultSubCategory->megnevezes . ' ' . $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szin;
 $image = Url::to($model->defaultImage->webUrl, true);
 
 //SEO DEFAULT
