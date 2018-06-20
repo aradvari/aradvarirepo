@@ -97,16 +97,23 @@ Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827
                                         echo Html::endTag('div');
 
                                         if ($key == 0)
-                                            $this->registerJs("ImageViewer('#img-container-{$key}');");
+                                            $this->registerJs(<<<JS
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    ImageViewer('#img-container-{$key}');
+}
+JS
+);
 
                                     }
 
                                 }
 
                                 $this->registerJS(<<<JS
-                                            $('.product-image #carousel-thumb').on('slid.bs.carousel', function () {
-                                              ImageViewer('.product-image .carousel-item.active');
-                                            })
+                                            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                                                $('.product-image #carousel-thumb').on('slid.bs.carousel', function () {
+                                                  ImageViewer('.product-image .carousel-item.active');
+                                                })
+                                            }
 JS
                         );
                         ?>
