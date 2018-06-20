@@ -14,7 +14,8 @@ use yii\helpers\Html;
 OrderAsset::register($this);
 
 ?>
-<div class="pre-login-container">
+<div class="container">
+
     <?php
     if (Yii::$app->user->isGuest)
         echo $this->render('/user/_login', ['model' => $model])
@@ -22,7 +23,7 @@ OrderAsset::register($this);
 </div>
 
 
-<div class="order-container">
+<div class="order-container container p-4">
 
     <?php
 
@@ -37,40 +38,71 @@ OrderAsset::register($this);
 
     ?>
 
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row mt-5">
+        <div class="col-md-6 font-weight-bold">
 
-            <h2>Számlázási adatok</h2>
+            <h2 class="text-left">Számlázási adatok</h2>
 
-            <?= $form->field($felhasznaloModel, 'vezeteknev')->textInput(['placeholder' => '']) ?>
-
-            <?= $form->field($felhasznaloModel, 'keresztnev')->textInput(['placeholder' => '']) ?>
+            <div class="row">
+                <div class="col">
+                    <?= $form->field($felhasznaloModel, 'vezeteknev')->textInput(['placeholder' => '']) ?>
+                </div>
+                <div class="col">
+                    <?= $form->field($felhasznaloModel, 'keresztnev')->textInput(['placeholder' => '']) ?>
+                </div>
+            </div>
 
             <?= $form->field($felhasznaloModel, 'cegnev')->textInput(['placeholder' => '']) ?>
 
-            <?= $form->field($felhasznaloModel, 'irszam')->textInput(['placeholder' => '']) ?>
-
-            <div id="<?= Html::getInputId($felhasznaloModel, 'varos_nev') ?>-container">
-                <?= $form->field($felhasznaloModel, 'varos_nev')->textInput(); ?>
+            <div class="row">
+                <div class="col">
+                    <?= $form->field($felhasznaloModel, 'irszam')->textInput(['placeholder' => '']) ?>
+                </div>
+                <div class="col">
+                    <div id="<?= Html::getInputId($felhasznaloModel, 'varos_nev') ?>-container">
+                        <?= $form->field($felhasznaloModel, 'varos_nev')->textInput(); ?>
+                    </div>
+                    <div id="<?= Html::getInputId($felhasznaloModel, 'id_varos') ?>-container" style="display: none">
+                            <?= $form->field($felhasznaloModel, 'id_varos')->dropDownList([]) ?>
+                    </div>
+                </div>
+                
             </div>
 
-            <div id="<?= Html::getInputId($felhasznaloModel, 'id_varos') ?>-container" style="display: none">
-                <?= $form->field($felhasznaloModel, 'id_varos')->dropDownList([]) ?>
+
+
+            <div class="row">
+                <div class="col-12 col-md">
+                    <?= $form->field($felhasznaloModel, 'utcanev')->textInput(['placeholder' => '']) ?>       
+                </div>
+                <div class="col">
+                     <?= $form->field($felhasznaloModel, 'id_kozterulet')->dropDownList(ArrayHelper::map(Kozterulet::find()->all(), 'id_kozterulet', 'megnevezes'), ['prompt' => 'Válassz...']) ?>
+                </div>
+                <div class="col">
+                    <?= $form->field($felhasznaloModel, 'hazszam')->textInput(['placeholder' => '']) ?>
+                </div>
             </div>
 
-            <?= $form->field($felhasznaloModel, 'utcanev')->textInput(['placeholder' => '']) ?>
+            <div class="row">
+                <div class="col">
+                    <?= $form->field($felhasznaloModel, 'emelet')->textInput(['placeholder' => '']) ?>
+                </div>
+            </div>
 
-            <?= $form->field($felhasznaloModel, 'id_kozterulet')->dropDownList(ArrayHelper::map(Kozterulet::find()->all(), 'id_kozterulet', 'megnevezes'), ['prompt' => 'Válassz...']) ?>
 
-            <?= $form->field($felhasznaloModel, 'hazszam')->textInput(['placeholder' => '']) ?>
-
-            <?= $form->field($felhasznaloModel, 'emelet')->textInput(['placeholder' => '']) ?>
+         
+           
 
             <?= $form->field($felhasznaloModel, 'email')->textInput(['placeholder' => '', 'readonly' => !Yii::$app->user->isGuest]) ?>
 
-            <?= $form->field($felhasznaloModel, 'telefonszam1')->textInput() ?>
-
-            <?= $form->field($felhasznaloModel, 'telefonszam2')->textInput() ?>
+            <div class="row">
+                <div class="col">
+                    <?= $form->field($felhasznaloModel, 'telefonszam1')->textInput() ?>
+                </div>
+                <div class="col">
+                    <?= $form->field($felhasznaloModel, 'telefonszam2')->textInput() ?>
+                </div>
+            </div>
 
             <?php
             if (Yii::$app->user->isGuest)
@@ -80,33 +112,47 @@ OrderAsset::register($this);
         </div>
         <div class="col-md-6">
 
-            <h2>Szállítási adatok</h2>
+            <h2 class="text-left" style="margin-bottom: 1.89em">Szállítási adatok</h2>
 
             <?= $form->field($megrendelesModel, 'eltero_szallitasi_adatok')->radioList([
                 '' => 'A szállítási cím megegyezik a számlázási címmel',
                 '1' => 'Másik címre kérem a szállítást',
-            ], ['class' => 'form-control'])->label(false) ?>
+            ])->label(false) ?>
 
             <!--            --><? //= $form->field($megrendelesModel, 'eltero_szallitasi_adatok')->checkbox() ?>
 
-            <div class="szallitas-container" style="display:none">
-
+            <div class="szallitas-container font-weight-bold" style="display:none">
+                <label>Szállítási cím </label>
                 <?= $form->field($megrendelesModel, 'szallitasi_nev')->textInput(['placeholder' => '']) ?>
+                <div class="row">
+                    <div class="col">
+                        <?= $form->field($megrendelesModel, 'szallitasi_irszam')->textInput(['placeholder' => '']) ?>
+                    </div>
+                    <div class="col">
+                           <div id="<?= Html::getInputId($megrendelesModel, 'szallitasi_varos') ?>-container">
+                                <?= $form->field($megrendelesModel, 'szallitasi_varos')->textInput(); ?>
+                            </div>
 
-                <?= $form->field($megrendelesModel, 'szallitasi_irszam')->textInput(['placeholder' => '']) ?>
-
-                <div id="<?= Html::getInputId($megrendelesModel, 'szallitasi_varos') ?>-container">
-                    <?= $form->field($megrendelesModel, 'szallitasi_varos')->textInput(); ?>
+                            <div id="<?= Html::getInputId($megrendelesModel, 'szallitasi_id_varos') ?>-container"
+                                 style="display: none">
+                                <?= $form->field($megrendelesModel, 'szallitasi_id_varos')->dropDownList([]) ?>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md">
+                         <?= $form->field($megrendelesModel, 'szallitasi_utcanev')->textInput(['placeholder' => '']) ?>
+                    </div>
+                    <div class="col-12 col-md">
+                         <?= $form->field($megrendelesModel, 'szallitasi_emelet')->textInput(['placeholder' => ''])->label('Emelet, ajtó, egyéb...') ?>
+                    </div>
                 </div>
 
-                <div id="<?= Html::getInputId($megrendelesModel, 'szallitasi_id_varos') ?>-container"
-                     style="display: none">
-                    <?= $form->field($megrendelesModel, 'szallitasi_id_varos')->dropDownList([]) ?>
-                </div>
 
-                <?= $form->field($megrendelesModel, 'szallitasi_utcanev')->textInput(['placeholder' => '']) ?>
+             
+               
 
-                <?= $form->field($megrendelesModel, 'szallitasi_emelet')->textInput(['placeholder' => ''])->label('Emelet, ajtó, egyéb...') ?>
+               
 
                 <?= $form->field($megrendelesModel, 'gls_kod')->hiddenInput()->label('') ?>
 
@@ -114,33 +160,48 @@ OrderAsset::register($this);
 
         </div>
     </div>
-    <div class="row">
-        <div class="col">
 
-            <h4>Kosarad tartalma</h4>
-            <div class="cart-container no-cash"></div>
-
-            <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList(SzallitasiMod::getData(), ['class' => 'form-control']) ?>
-
-            <div class="gls-container" style="display: none">
-                <?php
-                echo GlsWidget::widget();
-                ?>
+    <div id="transfer-type-container">
+        <div class="row">
+            <div class="col-md-6" id="transfer-type">
+                <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList(SzallitasiMod::getData()) ?>
             </div>
-
-            <?= $form->field($megrendelesModel, 'id_fizetesi_mod')->radioList(FizetesiMod::getData(), ['class' => 'form-control']) ?>
-
-            <?= $form->field($megrendelesModel, 'megjegyzes')->textarea(['placeholder' => '']) ?>
-
-            <?= $form->field($felhasznaloModel, 'hirlevel')->checkbox() ?>
-
-            <?= $form->field($felhasznaloModel, 'contract')->checkbox(['class' => '']) ?>
-
+            
+           <div class="col-md-6">
+                <?= $form->field($megrendelesModel, 'id_fizetesi_mod')->radioList(FizetesiMod::getData()) ?>           
+            </div>
+    
+      
         </div>
-    </div>
+   <div class="gls-container" style="display: none;">
+                    <?php
+                    echo GlsWidget::widget();
+                    ?>
+                </div>
 
-    <?= Html::submitButton('Megrendelés', ['class' => 'arrow_box', 'name' => 'order-button']) ?>
+        <div class="row align-items-end">
+            <div class="col-12 col-md">
+                  <?= $form->field($megrendelesModel, 'megjegyzes')->textarea(['placeholder' => '']) ?>
+            </div>
+            <div class="col-12 col-md"> 
+                <?= $form->field($felhasznaloModel, 'hirlevel')->checkbox() ?>
 
+                <?= $form->field($felhasznaloModel, 'contract')->checkbox(['class' => '']) ?>
+
+                <?= Html::submitButton('Megrendelés elküldése', ['class' => 'arrow_box', 'name' => 'order-button', 'id' => 'send-order-button']) ?>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <h1>Kosarad tartalma</h1>
+                <div class="cart-container no-cash"></div>
+            </div>
+        </div>
+
+     
+    </div>     
+
+ 
     <?php ActiveForm::end(); ?>
 
 </div>

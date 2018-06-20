@@ -50,7 +50,7 @@ use yii\widgets\ListView;
                         <span><?= $dataProvider->getTotalCount() ?> termék</span>
                         <select name="s">
                             <option value="leguljabb-elol" <?= $params['s'] == 'leguljabb-elol' ? 'selected' : '' ?>>
-                                Legújabb elöl
+                                Újdonságok
                             </option>
                             <option value="ar-szerint-csokkeno" <?= $params['s'] == 'ar-szerint-csokkeno' ? 'selected' : '' ?>>
                                 Ár szerint csökkenő

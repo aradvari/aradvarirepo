@@ -22,16 +22,18 @@ $termekUrl = Url::to(['termekek/view',
 
 ?>
 
-<div class="post product-thumb">
+<div class="post product-thumb" onclick="window.location='<?=$termekUrl?>';">
     <div class="product-thumb-bg">
-        <div class="product-opcio-container">
-            <span class="uj"><?= Html::encode($model['opcio']) ?></span>
-        </div>
-        <img src="https://coreshop.hu/pictures/termekek/<?= implode('/', str_split($model['id'])) ?>/1_small.jpg"
+       <div class="product-thumb-img-container position-relative">
+            <img src="https://coreshop.hu/pictures/termekek/<?= implode('/', str_split($model['id'])) ?>/1_small.jpg"
                  alt="<?= Html::encode($model['markanev']) ?> - <?= Html::encode($model['termeknev']) ?>">
+            <div class="overlay">
+                
+             </div>
+        </div>
         
         <div class="product-info">
-
+            <p class="uj text-center product-tag <?= $model['opcio'] == 'SALE %' ? Html::encode('red-color') : '' ?>" ><?//= Html::encode($model['opcio']) ?></p>
             <h2><?= Html::encode($model['markanev']) ?> <?= Html::encode($model['termeknev']) ?></h2>
             <div class="product-color"><?= Html::encode($model['szin']) ?></div>
             <div class="products-price-container">
@@ -59,6 +61,6 @@ $termekUrl = Url::to(['termekek/view',
         </div> <!-- //product-thumb-bg -->
     </div>
     <div class="product-hover-container">
-            <a href="<?=$termekUrl?>" class="btn btn-primary">Megnézem</a>
-        </div>
+          &nbsp; <!-- <a href="<?=$termekUrl?>" class="btn btn-primary">Megnézem</a>-->
+    </div>
 </div>

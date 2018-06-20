@@ -28,130 +28,229 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
 
 ?>
 
-<!-- Slider -->
-<div class="row">
-    <div id="coreshopCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#coreshopCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#coreshopCarousel" data-slide-to="1"></li>
-            <li data-target="#coreshopCarousel" data-slide-to="2"></li>
-        </ol> <!-- //carousel-indicators -->
+<div class="mobile-container">
+    <!-- Slider -->
+    <div class="row hidden-md-down">
+        <div id="coreshopCarousel" class="alice-blue-bg carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#coreshopCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#coreshopCarousel" data-slide-to="1"></li>
+                <li data-target="#coreshopCarousel" data-slide-to="2"></li>
+            </ol> 
+            <!-- //carousel-indicators -->
 
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="images/slider/slide-01_1920_680.png" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Ultra <span class="blue">range</span></h5>
-                    <p>Kényelem és lazaság</p>
+            <!--Desktop slider -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <!-- <img class="d-block w-100" src="images/slider/slider-002.jpg" alt="First slide"> -->
+                    <img class="d-block w-100" src="images/banner-carousel/vans-x-marvel-herobanner.jpg" alt="Vans x Marvel">
+                    <!-- <div class="carousel-caption d-none d-md-block">
+                        <h5>Ultra <span class="blue">range</span></h5>
+                        <p>Kényelem és lazaság</p>
+                    </div> -->
                 </div>
-            </div>
-        </div> <!-- //carousel-inner -->
 
-        <a class="carousel-control-prev" href="#coreshopCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Előző</span>
-        </a>
-        <a class="carousel-control-next" href="#coreshopCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Következő</span>
-        </a>
+            </div> <!-- //carousel-inner -->
+			
 
-    </div> <!-- //coreshopCarousel carousel-->
-</div> <!-- //row -->
-<!-- //slider -->
+            <!-- <a class="carousel-control-prev" href="#coreshopCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Előző</span>
+            </a>
+            <a class="carousel-control-next" href="#coreshopCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Következő</span>
+            </a> -->
 
-<!-- Brands -->
-<section class="container-fluid customer-logo-container">
-    <div id="customerLogos" class="carousel slide row alice-blue-bg" data-ride="carousel" data-interval="9000">
-        <div class="carousel-inner row w-100 mx-auto" role="listbox">
-            <div class="carousel-item col-md-3 active">
-                <img class="img-fluid mx-auto d-block" src="images/logos/vans_logo.png" alt="Vans">
+        </div> <!-- //coreshopCarousel carousel-->
+    </div> <!-- //row -->
+    <!-- //slider -->
+
+
+
+   <!--Mobile slider -->
+    <div class="row hidden-md-up">
+        <div id="coreshopCarouselMobile" class="alice-blue-bg  carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="images/banner-box/2018/vans-x-marvel-mobilebanner.jpg" alt="Vans x Marvel">
+                    <div class="carousel-caption d-md-block">
+                        <h5>Vans x Marvel</h5>
+                        <p>A Vans egyesíti erőit a Marvel Univerzum ikonikus hőseivel!</p>
+                        <a href="" class="btn btn-primary">Megnézem</a>
+                    </div>
+                </div>
+
+				<!-- 2nd item carousel mobile
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="images/slider/vans-ave_main-desk-chino-640x500.jpg" alt="First slide">
+                    <div class="carousel-caption d-md-block">
+                        <h5>Vans AV Rapidwelt PRO</h5>
+                        <p>Mobilnézetben ez a slider ujjal is mozgatható, ugye? </p>
+                        <a href="" class="btn btn-primary">Megnézem </a>
+                    </div>
+                </div>
+				-->
+
+                
+            </div> <!-- //carousel-inner -->
+            
+			<div class="justify-content-center mt-3 d-flex">
+                <ol class="carousel-indicators carousel-indicators-mobile">
+                        <!-- <li data-target="#coreshopCarouselMobile" data-slide-to="0" class="active"></li> -->
+                        <!-- <li data-target="#coreshopCarouselMobile" data-slide-to="1"></li> -->
+                </ol> 
+                <!-- //carousel-indicators -->
             </div>
-            <div class="carousel-item col-md-3">
-                <img class="img-fluid mx-auto d-block" src="images/logos/etnies_logo.png" alt="Etnies">
+			
+            <!-- <a class="carousel-control-prev" href="#coreshopCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Előző</span>
+            </a>
+            <a class="carousel-control-next" href="#coreshopCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Következő</span>
+            </a> -->
+
+        </div> <!-- //coreshopCarousel carousel-->
+    </div> <!-- //row -->
+
+    <!-- //slider -->
+
+    <!-- Brands -->
+    <section class="container-fluid customer-logo-container">
+        <div id="customerLogos" class="row alice-blue-bg">
+
+                <a class="col-md col-3 align-self-center" href="vans">
+                    <img class="img-fluid mx-auto brand-picker vans" src="images/markak/vans_logo.png" alt="Vans">
+                </a>
+                <a class="col-md col-3" href="etnies">
+                    <img class="img-fluid mx-auto brand-picker" src="images/markak/etnies_logo.png" alt="Etnies">
+                </a>
+               
+                <a class="col-md col-3" href="emerica">
+                    <img class="img-fluid mx-auto brand-picker" src="images/markak/emerica_logo.png" alt="Emerica">
+                </a>
+                <a class="col-md col-3" href="es">
+                    <img class="img-fluid mx-auto brand-picker" src="images/markak/es_logo.png" alt="és">
+                </a>
+              
+                <a class="col-md col-3" href="neff">
+                    <img class="img-fluid mx-auto brand-picker" src="images/markak/neff_logo.png" alt="Neff">
+                </a>
+                <a class="col-md col-3" href="altamont">
+                    <img class="img-fluid mx-auto brand-picker" src="images/markak/altamont_logo.png" alt="Altamont">
+                </a>
+                <a class="col-md col-3" href="volcom">
+                    <img class="img-fluid mx-auto brand-picker" src="images/markak/volcom_logo.png" alt="Volcom">
+                </a>
+               <a class="col-md col-3" href="etnies">
+                    <img class="img-fluid mx-auto brand-picker" src="images/markak/etnies_logo.png" alt="Etnies">
+                </a>
+               
+
+        </div>
+    </section>
+    <!-- //brands -->
+
+    <!-- <section class="white-bg">
+        <div class="row">
+            <div class="col-md col-12 image-vans-x-peanuts" style="background-image: url(../images/photos/vans_x_peanuts.png);height: 432px;">
             </div>
-            <div class="carousel-item col-md-3">
-                <img class="img-fluid mx-auto d-block" src="images/logos/es_logo.png" alt="és">
-            </div>
-            <div class="carousel-item col-md-3">
-                <img class="img-fluid mx-auto d-block" src="images/logos/emerica_logo.png" alt="Emerica">
-            </div>
-            <div class="carousel-item col-md-3">
-                <img class="img-fluid mx-auto d-block" src="images/logos/neff_logo.png" alt="Neff">
-            </div>
-            <div class="carousel-item col-md-3">
-                <img class="img-fluid mx-auto d-block" src="images/logos/bones_logo.png" alt="Bones">
-            </div>
-            <div class="carousel-item col-md-3">
-                <img class="img-fluid mx-auto d-block" src="images/logos/powell_peralta_logo.png" alt="Powell Peralta">
-            </div>
-            <div class="carousel-item col-md-3">
-                <img class="img-fluid mx-auto d-block" src="images/logos/volcom_logo.png" alt="Volcom">
+            <div class="col-md col-12 align-self-center">
+                <h2 class="text-center">Vans x <span class="blue">peanuts</span></h2>
+                <p class="text-center">Charlie Brown és barátai ismét megszállták a legnépszerűbb Vans cipőket.</p>
+                <p class="text-center margin-top-50">
+                    <a href="" class="btn btn-primary">Megnézem</a>
+                </p>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#customerLogos" role="button" data-slide="prev">
-            <i class="fa fa-chevron-left fa-lg text-muted"></i>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next text-faded" href="#customerLogos" role="button" data-slide="next">
-            <i class="fa fa-chevron-right fa-lg text-muted"></i>
-            <span class="sr-only">Next</span>
-        </a>
+    </section> -->
+	
+	<section class="white-bg">
+        <div class="row">
+            <div class="col-md col-12" style="background-image: url(../images/banner-box/2018/FA17_Surf_UltraRange_PatShoe.gif); background-position:center center; height: 410px;">
+            </div>
+            <div class="col-md col-12 align-self-center">
+                <h2 class="text-center">Vans <span class="blue">Ultrarange</span></h2>
+                <p class="text-center">Kényelem és lazaság! Az UltraRange RapidWeld a pillekönnyű Vans cipők legújabb tagja. Jellemzői a Mesh (rácsos) textil légáteresztő felsőrész, továbbá a forradalmian új RapidWeld (hegesztett) technológiával készült illesztések. A kényelemért az UltraCush Lite talpbetét és a Pro Vulc Lite habszivacs talpszerkezet a felelős. Ugorj bele és nem fogsz hinni a lábadnak!</p>
+                <p class="text-center margin-top-50">
+                    <a href="" class="btn btn-primary">Megnézem</a>
+                </p>
+            </div>
+        </div>
+    </section>
+	
+	
+	<!-- <section class="white-bg">
+        <div class="row">
+           <div class="col-md col-12 image-vans-x-peanuts" style="background-image: url(../images/banner-box/2018/vans-marvel-va3rclblk.jpg);width:800px;height:474px !important;"></div>
+           <? /*<div class="col-md col-12 image-vans-x-peanuts" style="background-image: url(https://coreshop.hu/banner_box/2018/20180608-vans-x-marvel.gif);width:450px;height:440px !important;">
+            </div> */ ;?>
+            <div class="col-md col-12 align-self-center">
+                <h2 class="text-center">Vans x <span class="blue">Marvel</span></h2>
+                <p class="text-center">A Vans egyesíti erőit a Marvel Univerzum ikonikus hőseivel!</p>
+                <p class="text-center margin-top-50">
+                    <a href="" class="btn btn-primary">Megnézem</a>
+                </p>
+            </div>
+        </div>
+    </section> -->
+	
+	
+	
+
+    <section>
+        <div class="row blue-bg">
+            <div class="col-md col-12 align-self-center order-1">
+                <h2 class="text-center inverse">Vans Authentic</h2>
+                <p class="text-center white">1966-ban látott napvilágot az első Vans cipő az Authentic, mely generációk óta töretlen népszerűségnek örvend a core skaterek és a stílussal szimpatizálók körében egyaránt, köszönhetően az egyszerű de stílusos megjelenésének.
+                <p class="text-center margin-top-50">
+                    <a href="" class="btn btn-transparent">Megnézem</a>
+                </p>
+            </div>
+            <div class="col-md-7 order-md-2  col-12 image-vans-girls" style="margin:0;padding:0;">
+				<video controls autoplay muted loop width="100%" height="100%">
+				<source src="https://coreshop.hu/temp/repost-temp.MP4" type="video/mp4">
+				Böngésződ nem támogatja a videó lejátszását.
+				</video>
+            </div>
+        </div>
+    </section>
+
+    <section class="white-bg">
+        <div class="row">
+            <div class="col-md col-12 image-vans-old-skool" style="background-image: url(../images/banner-box/2018/vans-old-skool-black-white.jpg);height:641px !important; background-position:center center;">
+            </div>
+            <div class="col-md col-12 align-self-center">
+                <h2 class="text-center">Vans <span class="blue">old skool</span></h2>
+                <p class="text-center">A Vans kultikus Old Skool modelljéből több mint harminc verziót találsz
+                    kínálatunkban.</p>
+                <p class="text-center margin-top-50">
+                    <a href="" class="btn btn-primary">Megnézem</a>
+                </p>
+            </div>
+        </div>
+    </section>
+<div class="alice-blue-bg m--15">
+    <div class="container">
+            <div class="row justify-content-center">
+                <h2 class="mt-5 my-5 text-center"> Legújabb <span class="blue">termékek</span> </h2>
+            </div>
     </div>
-</section>
-<!-- //brands -->
-
-<section class="white-bg">
-    <div class="row">
-        <div class="col image-vans-x-peanuts">
-        </div>
-        <div class="col align-self-center">
-            <h2 class="text-center">Vans x <span class="blue">peanuts</span></h2>
-            <p class="text-center">Charlie Brown és barátai ismét megszállták a legnépszerűbb Vans cipőket.</p>
-            <p class="text-center margin-top-50">
-                <a href="" class="btn btn-primary">Megnézem</a>
-            </p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <div class="row blue-bg">
-        <div class="col align-self-center">
-            <h2 class="text-center inverse">Vans girls</h2>
-            <p class="text-center white">Vans ruházat azoknak a lányoknak, akik a dél-kaliforniai stílusból merítenének
-                inspirációt. </p>
-            <p class="text-center margin-top-50">
-                <a href="" class="btn btn-transparent">Megnézem</a>
-            </p>
-        </div>
-        <div class="col-7 image-vans-girls">
-        </div>
-    </div>
-</section>
-
-<section class="white-bg">
-    <div class="row">
-        <div class="col image-vans-old-skool">
-        </div>
-        <div class="col align-self-center">
-            <h2 class="text-center">Vans old <span class="blue">skool</span></h2>
-            <p class="text-center">A Vans kultikus Old Skool modelljéből több mint harminc verziót találsz
-                kínálatunkban.</p>
-            <p class="text-center margin-top-50">
-                <a href="" class="btn btn-primary">Megnézem</a>
-            </p>
-        </div>
-    </div>
-</section>
 
 <?php
+// echo '<h2 class="mt-5 my-5 text-center"> Legújabb <span class="blue">termékek</span> </h2>';
 $dataProvider = (new TermekekSearch())->search(['subCategory' => ['ferfi-cipo', 'noi-cipo']]);
 $dataProvider->pagination = false;
 $dataProvider->query->andWhere(['opcio' => 'UJ']);
-$dataProvider->query->limit(15);
+$dataProvider->query->limit(12);
 $dataProvider->query->orderBy('rand()');
 
 if ($dataProvider->getCount() > 0)
     echo $this->render('/termekek/_index_ajanlo', ['dataProvider' => $dataProvider]);
 ?>
+</div>
+
+</div>

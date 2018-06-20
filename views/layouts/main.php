@@ -35,6 +35,29 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+    window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#252e39"
+        },
+        "button": {
+          "background": "#0062cc"
+        }
+      },
+      "position": "bottom-right",
+      "content": {
+        "message": "Az oldal Cookie-kat (sütiket) használ a felhasználói élmény fokozása érdekében.",
+        "dismiss": "Elfogadom",
+        "link": "Részletek"
+      }
+    })});
+    </script>
+    <!-- End Cookie Consent plugin -->
 </head>
 
 <body>
@@ -70,11 +93,33 @@ AppAsset::register($this);
         //        echo '<div class="alert alert-' . $key . '" role="alert">' . $m . '</div>';
 
         ?>
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+
+        <div class="container" id="temp-header">
+        
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                ])
+                ?>
+
+            </div>
+        </div>
+
+        
+
         <?= $content ?>
     </div>
+
+    <div id="backtotop">
+        <a href="#top">
+            <img src="/images/backtotop.png" alt="Coreshop - Back to top">
+        </a>
+    </div>
+
 </main>
 
 <footer class="footer">
@@ -100,6 +145,7 @@ AppAsset::register($this);
 </div>
 
 <?php $this->endBody() ?>
+
 </body>
 </html>
 <?php $this->endPage() ?>

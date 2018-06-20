@@ -13,10 +13,10 @@ use yii\helpers\Url;
     <div class="row">
 
       <!--Column 1-->
-      <div class="col-md-3 col-sm-6 blue-bg">
+      <div class="col-12 col-sm-12 col-lg-3 blue-bg">
       
         <div class="footer-pad">
-          <img src="/images/coreshop-logo-white.png" alt="Coreshop logo" title="Coreshop logo" class="img-responsive">
+          <img src="/images/coreshop-logo-white.png" alt="Coreshop logo" title="Coreshop logo" class="img-fluid">
 
             <div class="media margin-top-50">
                   <img class="mr-3" src="/images/icons/location.png" alt="Cím">
@@ -57,17 +57,47 @@ use yii\helpers\Url;
                     </p>
                 </div>
         </div> <!-- //footer-pad -->
-         <div class="social-icon-container">
+
+        <div class="container social-icons">
+          <div class="row justify-content-center">
+            <div class="col-xl-3 col-4">
+              <a href="https://www.facebook.com/coreshop">
+                <img src="/images/icons/facebook_white.png" alt="Facebook">
+              </a>
+            </div>
+            <div class="col-xl-3 col-4">
+              <a href="https://plus.google.com/103506333733297319481">
+                <img src="/images/icons/google_white.png" alt="Google">
+              </a>
+            </div>
+            <div class="col-xl-3 col-4">
+              <a href="https://www.instagram.com/coreshop.hu/">
+                <img src="/images/icons/instagram_white.png" alt="Instagram">
+              </a>
+            </div>
+          </div>
+        </div>
+        
+         <!-- <div class="social-icon-container">
           <a href="https://www.facebook.com/coreshop"><div class="facebook-icon"></div></a>
           <a href="https://plus.google.com/103506333733297319481"><div class="google-icon"></div></a>
-          <a href="https://www.instagram.com/coreshop.hu/"><div class="instagram-icon"></div></a>
+          <a href="https://www.instagram.com/coreshop.hu/"><div class="instagram-icon"></div></a>          
 
-        </div>
+        </div> -->
+
+        <!-- <div class="container">
+          <div class="row justify-content-center">
+            <img class="img-fluid px-1" src="images/icons/facebook_white.png" alt="facebook" style="width:20%">
+            <img class="img-fluid px-1" src="images/icons/google_white.png" alt="google" style="width:20%">
+            <img class="img-fluid px-1" src="images/icons/instagram_white.png" alt="instagram" style="width:20%">
+          </div>
+        </div> -->
+
       </div> <!-- //col-md-3 col-sm-6 -->
       <!-- //column 1 -->
 
       <!-- Column 2 -->
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-3 col-sm-6 hidden-md-down">
         <div class="footer-pad">
             <!--<img src="/images/cxs.svg" alt="Coreshop Express Shipping logo">
             <img src="/images/express.svg" alt="CXS logo"> -->
@@ -97,15 +127,25 @@ use yii\helpers\Url;
             <img src="/images/free.svg" alt="Ingyenes kiszállítás">-->
              <h4>Coreshop <span class="alice-blue">free shipping</span> </h4>
 
-            <p>
+             <div class="row">
+               <div class="col-xl-12">
+                Az ingyenes szállításhoz 
+               </div>
+               <div class="col-xl-12">
+                <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?> Ft szükséges.
+               </div>
+             </div>
+
+            <!-- <p>
               Az ingyenes szállításhoz <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?> Ft szükséges.
-            </p>  <!-- //footer-pad -->
+            </p>   -->
+            <!-- //footer-pad -->
           </div>
       </div>  <!-- //col-md-3 col-sm-6 -->
       <!-- //column 2 -->
 
       <!--Column 3 -->
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-3 col-sm-6 col-12 hidden-md-down">
 
         <div class="footer-pad">
           <h4>Fizetési <span class="alice-blue">tudnivalók</span> </h4>
@@ -116,10 +156,30 @@ use yii\helpers\Url;
 
             <br>
 
-            <p class="margin-top-20" >Elfogadott bankkártya típusok</p>
+            <!-- <p class="margin-top-20" >Elfogadott bankkártya típusok</p> -->
+            <h4 class="margin-top-20">Elfogadott <span class="alice-blue">bankkártya típusok</span></h4>
 
-            <a href="/hu/kartyas-fizetes"><img src="/images/cib-kartyalogok.png" alt="Elfogadott bankkártya típusok"
-                                               style="margin:10px 0;"></a>
+            <a href="/hu/kartyas-fizetes">
+              <!-- <img src="/images/cib-kartyalogok.png" alt="Elfogadott bankkártya típusok" style="margin:10px 0;"> -->
+
+              <div class="row">
+                <div class="col-xl-4 col-4">
+                  <img src="/images/mastercard.png" alt="Elfogadott bankkártya típusok">
+                </div>
+                <div class="col-xl-8 col-8">
+                  <img src="/images/maestro.png" alt="Elfogadott bankkártya típusok">
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-xl-4 col-4">
+                  <img src="/images/visa.png" alt="Elfogadott bankkártya típusok"> 
+                </div>
+                <div class="col-xl-8 col-8">
+                  <img src="/images/visa_e.png" alt="Elfogadott bankkártya típusok">
+                </div>
+              </div>
+              
+            </a>
 
             <br>
             <br>
@@ -129,7 +189,9 @@ use yii\helpers\Url;
             <p><a href="/hu/kerdesek-valaszok" class="white link">Gyakran feltett kérdések</a></p>
         </div>
       </div>
-      <div class="col-md-3 col-sm-6">
+
+       <!--Column 4 -->
+      <div class="col-md-3 col-sm-6 hidden-md-down">
         <!--Column1-->
         <div class="footer-pad">
           <h4>Oldaltérkép</h4>
@@ -148,7 +210,7 @@ use yii\helpers\Url;
   </div>
   </div>
   <div class="footer-bottom">
-    <div class="container-fluid">
+    <div class="container-fluid hidden-md-down">
           <!--Footer Bottom-->
           <p>&copy; Copyright 2018 - Coreshop.hu</p>
     </div>

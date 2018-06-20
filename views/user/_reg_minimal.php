@@ -5,9 +5,9 @@ use yii\helpers\Html;
 
 ?>
 
-<div class="registration">
+<div class="registration py-3">
 
-    <h2>Regisztráció</h2>
+    <h1>Regisztráció</h1>
 
     <?php
 
@@ -17,12 +17,19 @@ use yii\helpers\Html;
 
     ?>
 
-    <?= $form->field($model, 'vezeteknev')->textInput()?>
-    <?= $form->field($model, 'keresztnev')->textInput()?>
+    <div class="row justify-content-between">
+        <?= $form->field($model, 'vezeteknev', ['options' => ['class' => 'form-group register-input']])->textInput()?> 
+        <?= $form->field($model, 'keresztnev', ['options' => ['class' => 'form-group register-input mr-3']])->textInput()?>
+    </div>
+    
+    <div class="row">
+        <?= $form->field($model, 'email', ['options' => ['class' => 'form-group register-email-input mr-3']])->textInput() ?>
+    </div>
 
-    <?= $form->field($model, 'email')->textInput() ?>
-
-    <?= Html::submitButton('Regisztráció', ['class' => 'arrow_box', 'name' => 'reg-button']) ?>
+    <div class="row">
+        <?= Html::submitButton('Regisztráció', ['class' => 'arrow_box btn btn-primary', 'name' => 'reg-button']) ?>
+    </div>
+    
 
     <?php ActiveForm::end(); ?>
 

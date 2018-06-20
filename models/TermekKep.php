@@ -55,7 +55,7 @@ class TermekKep extends ActiveRecord
 
     }
 
-    public static function findAll($id, $type = 'small')
+    public static function findAll($id, $type = 'large')
     {
 
         $directory = Yii::getAlias('@webroot') . '/' . static::$imageDir . '/' . implode('/', str_split($id));
