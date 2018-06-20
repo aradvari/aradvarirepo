@@ -1,0 +1,1 @@
+<p>A Vans amerikai székhelyű lábbeli- és ruházatgyártó cég, melynek székhelye a kaliforniai Cypressben található. A márka az extrém sport-iparban is aktív, ahol gördeszka-, szörf-, BMX- és motokrossz-csapatokat is szponzorál.[1] 1996 óta a Vans az éves rendszerességű Warped Tour rockfesztivál első számú szponzora.</p>
