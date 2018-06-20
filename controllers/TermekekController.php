@@ -47,7 +47,10 @@ class TermekekController extends Controller
     public function actionIndex()
     {
         $searchModel = new TermekekSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination->pageSize = 18;
+
         $brandDataProvider = $searchModel->searchBrand(Yii::$app->request->queryParams);
         $sizeDataProvider = $searchModel->searchSize(Yii::$app->request->queryParams);
         $colorDataProvider = $searchModel->searchColor(Yii::$app->request->queryParams);
