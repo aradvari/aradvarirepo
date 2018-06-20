@@ -6,10 +6,12 @@ use app\components\helpers\Coreshop;
 use app\models\FelhasznaloElfJelszo;
 use app\models\Felhasznalok;
 use app\models\LostPwForm;
+use app\models\TermekekSearch;
 use Yii;
 use yii\db\Expression;
 use yii\filters\AccessControl;
 use app\components\web\Controller;
+use yii\helpers\Url;
 use yii\web\Response;
 use app\models\LoginForm;
 use app\models\ContactForm;
@@ -279,9 +281,168 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionSitemap()
     {
-        return $this->render('about');
+        Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
+//        Yii::$app->response->headers->set('Content-Type', 'text/xml');
+
+//        $xml = new \SimpleXMLElement('<xml version="1.0" encoding="UTF-8"/>');
+//
+//        $track = $xml->addChild('urlset');
+//
+//        $track->addAttribute('xmlns', "http://www.sitemaps.org/schemas/sitemap/0.9");
+
+//        $searchModel = new TermekekSearch();
+
+        TermekekSearch::generateMap();
+
+        return TermekekSearch::$urls;
+
+        return $this->render('contact', [
+        ]);
+
+        //TERMÉKEK
+        $dataProvider = $searchModel->search([]);
+        $dataProvider->pagination = false;
+        $models = $dataProvider->getModels();
+        foreach ($models as $model) {
+
+            $termekUrl = Url::to(['termekek/view',
+                'mainCategory' => $model['main_category_url_segment'],
+                'subCategory' => $model['sub_category_url_segment'],
+                'brand' => $model['marka_url_segment'],
+                'termek' => $model['url_segment'],
+            ], true);
+
+            $url = $track->addChild('url');
+            $url->addChild('loc', $termekUrl);
+            $url->addChild('lastmod', 'xxx');
+            $url->addChild('changefreq', 'daily');
+            $url->addChild('priority', 1);
+        }
+
+        //MÁRKÁK
+        $brandDataProvider = $searchModel->searchBrand([]);
+        $models = $brandDataProvider->getModels();
+        foreach ($models as $bmodel) {
+
+            $termekUrl = Url::to(['termekek/index',
+                'brand' => $bmodel['url_segment'],
+            ], true);
+
+            $url = $track->addChild('url');
+            $url->addChild('loc', $termekUrl);
+            $url->addChild('lastmod', 'xxx');
+            $url->addChild('changefreq', 'daily');
+            $url->addChild('priority', 1);
+        }
+
+        //MÉRETEK
+        $sizeDataProvider = $searchModel->searchSize([]);
+        $models = $sizeDataProvider->getModels();
+        foreach ($models as $bmodel) {
+
+            $termekUrl = Url::to(['termekek/index',
+                'meret' => $bmodel['url_segment'],
+            ], true);
+
+            $url = $track->addChild('url');
+            $url->addChild('loc', $termekUrl);
+            $url->addChild('lastmod', 'xxx');
+            $url->addChild('changefreq', 'daily');
+            $url->addChild('priority', 1);
+        }
+
+        //SZÍNEK
+        $colorDataProvider = $searchModel->searchColor([]);
+        $models = $colorDataProvider->getModels();
+        foreach ($models as $bmodel) {
+
+            $termekUrl = Url::to(['termekek/index',
+                'szin' => $bmodel['szinszuro'],
+            ], true);
+
+            $url = $track->addChild('url');
+            $url->addChild('loc', $termekUrl);
+            $url->addChild('lastmod', 'xxx');
+            $url->addChild('changefreq', 'daily');
+            $url->addChild('priority', 1);
+        }
+
+        //TÍPUSOK
+        $typeDataProvider = $searchModel->searchType([]);
+        $models = $typeDataProvider->getModels();
+        foreach ($models as $bmodel) {
+
+            $termekUrl = Url::to(['termekek/index',
+                'tipus' => $bmodel['tipus'],
+            ], true);
+
+            var_dump($termekUrl);
+
+            $url = $track->addChild('url');
+            $url->addChild('loc', $termekUrl);
+            $url->addChild('lastmod', 'xxx');
+            $url->addChild('changefreq', 'daily');
+            $url->addChild('priority', 1);
+        }
+
+
+        //FŐKATEGÓRIÁK
+        $mainCategoryDataProvider = $searchModel->searchMainCategory([]);
+        $categoryModels = $mainCategoryDataProvider->getModels();
+        foreach ($categoryModels as $categoryModel) {
+
+            $termekUrl = Url::to(['termekek/index',
+                'mainCategory' => $categoryModel['url_segment'],
+            ], true);
+
+            $url = $track->addChild('url');
+            $url->addChild('loc', $termekUrl);
+            $url->addChild('lastmod', 'xxx');
+            $url->addChild('changefreq', 'daily');
+            $url->addChild('priority', 1);
+
+            //+ALKATEGORIA
+            $subCategoryDataProvider = $searchModel->searchSubCategory(['mainCategory' => $categoryModel['url_segment']]);
+            $subCategoryModels = $subCategoryDataProvider->getModels();
+            foreach ($subCategoryModels as $subCategoryModel) {
+
+                $termekUrl = Url::to(['termekek/index',
+                    'mainCategory' => $categoryModel['url_segment'],
+                    'subCategory' => $subCategoryModel['url_segment'],
+                ], true);
+
+//                var_dump($termekUrl);
+
+                $url = $track->addChild('url');
+                $url->addChild('loc', $termekUrl);
+                $url->addChild('lastmod', 'xxx');
+                $url->addChild('changefreq', 'daily');
+                $url->addChild('priority', 1);
+            }
+
+            //+MÁRKA
+            $brandDataProvider = $searchModel->searchBrand(['mainCategory' => $categoryModel['url_segment']]);
+            $models = $brandDataProvider->getModels();
+            foreach ($models as $bmodel) {
+
+                $termekUrl = Url::to(['termekek/index',
+                    'mainCategory' => $categoryModel['url_segment'],
+                    'brand' => $bmodel['url_segment'],
+                ], true);
+
+                $url = $track->addChild('url');
+                $url->addChild('loc', $termekUrl);
+                $url->addChild('lastmod', 'xxx');
+                $url->addChild('changefreq', 'daily');
+                $url->addChild('priority', 1);
+            }
+
+        }
+
+//        return $xml->asXML();
+
     }
 
 }

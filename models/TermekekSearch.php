@@ -7,6 +7,8 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Termekek;
 use yii\db\Query;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * TermekekSearch represents the model behind the search form of `app\models\Termekek`.
@@ -24,6 +26,8 @@ class TermekekSearch extends Termekek
     public $q;
 
     public $s = 'leguljabb-elol';
+
+    public static $urls;
 
     private $likeFilter = "lower(CONCAT(IFNULL(t.termeknev, ''), ' ', IFNULL(t.szin, ''), ' ', IFNULL(t.tipus, ''), ' ', IFNULL(m.markanev, ''), ' ', IFNULL(k.megnevezes, ''), ' ', IFNULL(pk.megnevezes, ''), ' ', IFNULL(v.megnevezes, '')))";
 
@@ -316,6 +320,40 @@ class TermekekSearch extends Termekek
         $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($this->q)]);
 
         return $dataProvider;
+    }
+
+    public static $models = [
+        ['searchMainCategory', 'mainCategory', 'url_segment'],
+        ['searchSubCategory', 'subCategory', 'url_segment'],
+        ['searchBrand', 'brand', 'url_segment'],
+        ['searchSize', 'meret', 'url_segment'],
+        ['searchColor', 'szin', 'szinszuro'],
+        ['searchType', 'tipus', 'tipus'],
+    ];
+
+    public static function generateMap($params = [])
+    {
+
+        $searchModel = new TermekekSearch();
+
+        foreach (static::$models as $model) {
+
+            $dataProvider = $searchModel->{$model[0]}($params);
+            $items = $dataProvider->getModels();
+            foreach ($items as $item) {
+
+                $termekUrl = Url::to(['termekek/index',
+                    $model[1] => $item[$model[2]],
+                ], true);
+
+                static::$urls[] = $termekUrl;
+
+                if (count($params) < 1)
+                    static::generateMap(ArrayHelper::merge($params, [$model[1] => '']));
+            }
+
+        }
+
     }
 
 }
