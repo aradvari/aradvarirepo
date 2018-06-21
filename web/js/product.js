@@ -15,16 +15,27 @@ var showSelect = function (on) {
 
 }
 
-$('#meret').change(function () {
+$('#meret').change(function (event) {
+
+    var code = $(this).val();
 
     $.ajax({
         method: "POST",
         url: "/termekek/ajax-get-quantity",
-        data: {vonalkod: $(this).val()}
+        data: {vonalkod: code}
     }).done(function (result) {
 
         var selector = '#keszlet > select[name="mennyiseg"]';
         $(selector).find('option').remove().end();
+
+        $("a[data-slug]").each(function (obj, o) {
+            if (result.products[$(this).data('slug')] == undefined) {
+                $(this).css('opacity', '0.2');
+            } else {
+                $(this).css('opacity', '1');
+                this.href = $(this).data('url') + "?size=" + result.selectedSize;
+            }
+        });
 
         if (result.quantity > 0) {
             for (var i = 1; i <= result.quantity; i++) {

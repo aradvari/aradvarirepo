@@ -73,7 +73,7 @@ Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827
     <!-- THUMB, MAINIMAGE, INFOBOX container -->
     <div class="product-container container">
 
-        
+
 
         <div class="row">
             <div class="col-xl-7">
@@ -167,18 +167,18 @@ JS
                                     if (is_array($pictures)) {
 
                                     for ($i = 1; $i < count($pictures); $i++) { ?>
-                                        
+
                                         <li data-target="#coreshopCarousel" data-slide-to=<?php echo $i ?> ></li>
 
                                     <?php
                                     }}
                                     ?>
-                            </ol> 
+                            </ol>
                              </div>
                             <!-- //carousel-indicators -->
-           
-           
-                         <!-- //carousel-inner -->
+
+
+                            <!-- //carousel-inner -->
                         <!-- SLIDER -->
                         <div class="product-thumbs my-3">
 
@@ -189,7 +189,7 @@ JS
                                     $pictures = $model->getImages('large');
                                     if (is_array($pictures)) {
 
-                                        
+
                                         foreach ($pictures as $key => $picture) {
                                             // echo Html::img($picture->webUrl, [
                                             //     'alt' => $model->seo_name,
@@ -225,7 +225,7 @@ JS
 
 
                 <!-- END OF FIRST COLUMN -->
-   
+
             <div class="col-xl-5">
                         <!-- SECOND COLUMN -->
                             <!-- product-order-desktop -->
@@ -233,9 +233,9 @@ JS
 
 <div class="product-details-desktop">
     <div class="product-indent">
-    
-    
-    <img src="/markak/<?= $model->markaid ?>.png" alt="<?= $model->seo_name ?>"
+
+
+        <img src="/markak/<?= $model->markaid ?>.png" alt="<?= $model->seo_name ?>"
      title="<?= $model->seo_name ?>">
     <h1><?= $model->marka->markanev ?> <span class="blue"><?= $model->termeknev ?></span></h1>
     <p class="product-color"><?= $model->szin ?></p>
@@ -330,7 +330,7 @@ if ($model->vonalkodok) {
             <span>
             Válassz méretet:
             </span>
-            
+
             <?php
                 if ($model->kategoria == 94 || $model->kategoria == 95) {
             ?>
@@ -350,8 +350,8 @@ if ($model->vonalkodok) {
 
             <?php
                 }
-            ?>                
-            
+            ?>
+
             </p>
             <?php
         }
@@ -376,6 +376,7 @@ if ($model->vonalkodok) {
                        name="meret_radio"
                        style="display:none"
                        id="v_<?= $vonalkod->vonalkod ?>"
+                       data-size="<?= $vonalkod->url_segment ?>"
                        onclick="selectSize('<?= $vonalkod->vonalkod ?>')"
                 />
                 <label for="v_<?= $vonalkod->vonalkod ?>"
@@ -388,6 +389,8 @@ if ($model->vonalkodok) {
 
         if (count($model->vonalkodok) == 1) {
             $this->registerJs('$("#v_' . $vonalkod->vonalkod . '").trigger("click")');
+        } elseif (Yii::$app->request->getQueryParam('size')) {
+            $this->registerJs('$(\'input[data-size="' . Yii::$app->request->getQueryParam('size') . '"]\').trigger("click")');
         }
         ?>
 
@@ -399,7 +402,6 @@ if ($model->vonalkodok) {
         <form method="post" class="cart-form">
             <?= Html::dropDownList('meret', null, ArrayHelper::map($model->vonalkodok, 'vonalkod', 'megnevezes'), ['style' => Yii::$app->mobileDetect->isDescktop() ? 'display:none' : '', 'prompt' => count($model->vonalkodok > 1) ? 'Válassz...' : '', 'id' => 'meret']) ?>
 
-               
                 <span id="keszlet" style="display: none">
                      <p class="filter-name clearfix pt-3">
                         <span>
@@ -412,7 +414,11 @@ if ($model->vonalkodok) {
             <button type="submit" class="btn btn-primary mt-4" disabled>Válassz méretet</button>
         </form>
 
-
+        <?php
+        echo $this->render('_colors', [
+            'model' => $model,
+        ]);
+        ?>
 
     </div> <!-- //termek-meretek-2 -->
 
@@ -459,10 +465,7 @@ if ($model->vonalkodok) {
 </div>
 
 
-
-
-        
-    <!-- END OF ROW -->
+<!-- END OF ROW -->
 
 
     <div class="container">
@@ -484,8 +487,7 @@ if ($model->vonalkodok) {
                         </p>
                     </div>
                 </div>
-                    
-                   
+
 
             </div>
             <div class="col-12 col-md">
@@ -510,7 +512,7 @@ if ($model->vonalkodok) {
             </div>
 
         </div> <!-- //product-shipping-info -->
-    </div> <!-- //container --> 
+    </div> <!-- //container -->
 
 <?php
 echo $this->render('_history', [

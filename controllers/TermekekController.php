@@ -193,11 +193,28 @@ class TermekekController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $vonalkod = Yii::$app->request->post('vonalkod');
+//        $vonalkod = 191163353949;
 
         $quantity = Vonalkodok::find()->andWhere(['vonalkod' => $vonalkod])->sum('keszlet_1');
 
+        //kapcsolódó szinek mennyiségei
+        $vonalkodModel = Vonalkodok::find()->andWhere(['vonalkod' => $vonalkod])->one();
+        $productModel = Termekek::find()->joinWith(['vonalkodok'])->andWhere(['vk.vonalkod' => $vonalkod])->one();
+        $connectedProducts = Termekek::find()->joinWith(['vonalkodok'])->andWhere(['termeknev' => $productModel->termeknev, 'markaid' => $productModel->markaid])->andWhere(['>', 'vk.keszlet_1', 0])->all();
+//        var_dump($vonalkodModel);
+        $quantitys = [];
+        foreach ($connectedProducts as $product) {
+            foreach ($product->vonalkodok as $vonalkod) {
+                if ($vonalkod->url_segment == $vonalkodModel->url_segment)
+                    $quantitys[$product->url_segment] = $vonalkod->keszlet_1;
+
+            }
+        }
+
         return [
             'quantity' => (int)$quantity,
+            'selectedSize' => $vonalkodModel->url_segment,
+            'products' => $quantitys,
         ];
     }
 

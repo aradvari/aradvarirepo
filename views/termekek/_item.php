@@ -18,6 +18,7 @@ $termekUrl = Url::to(['termekek/view',
     'subCategory' => $model['sub_category_url_segment'],
     'brand' => $model['marka_url_segment'],
     'termek' => $model['url_segment'],
+    'size' => $params['meret'],
 ]);
 
 ?>

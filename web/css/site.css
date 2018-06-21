@@ -1196,7 +1196,7 @@ a.highslide-credits:hover i {
     position:absolute;
     width:100%; height:100%;
     top:0; left:0;
-    background-color: rgba(68, 68, 68, 0.3); 
+    background-color: rgba(68, 68, 68, 0.3);
     opacity:0;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -1215,7 +1215,7 @@ a.highslide-credits:hover i {
   width: 100%;
   opacity: 0;
   transition: .5s ease;
-  background-color: rgba(68, 68, 68, 0.2); 
+  background-color: rgba(68, 68, 68, 0.2);
   display: inline-block;
 }
 
@@ -2967,7 +2967,7 @@ input[type="radio"]:checked + label {
     float: left;
     /* width: 50%; */
     /* refactored */
-    width: 90%; 
+    width: 90%;
     /* */
     padding: 0;
     margin: 0 2%;
@@ -3140,7 +3140,7 @@ input[type="radio"]:checked + label {
 }
 
 .size-table-image{
-    width:1.5em; 
+    width:1.5em;
     vertical-align:middle
 }
 
@@ -3193,6 +3193,11 @@ input[type="radio"]:checked + label {
         max-width: 40%;
         height: auto;
         max-height: 50px;
+    }
+
+    .product-order-desktop img.color-img{
+        max-width: 100%;
+        max-height: 100%;
     }
 
     .product-shipping-info img {
@@ -4442,7 +4447,7 @@ img.horizontal-image {
     }
 }
 
-/* Navigation */ 
+/* Navigation */
 .navbar {
     background:#FFFFFF;
     background-color:#FFFFFF;
@@ -4556,7 +4561,7 @@ img.horizontal-image {
     }
 
 .cart-img {
-     padding:1px; 
+     padding:1px;
      width:50px;
      height:50px;
      vertical-align:text-middle;
@@ -4601,7 +4606,7 @@ img.horizontal-image {
 
 .form-inline .input-group {
     width:100%;
-} 
+}
 
 .form-control {
     border-radius: 0;
@@ -4609,7 +4614,7 @@ img.horizontal-image {
     outline: 0;
     border: 1.2px solid #999999;
 }
-    
+
     .form-control:active, .form-control:focus {
         outline-color: #EFF2F3;
     }
@@ -4638,7 +4643,7 @@ img.horizontal-image {
     top: 110px;
     right: initial;
     text-align:left;
-} 
+}
 
 .carousel-caption h5 {
     font-family: proxima_nova_black;
@@ -4667,7 +4672,7 @@ img.horizontal-image {
     background-image: url(../images/icons/slider-left.png);
     width:42px;
     height:85px;
-} 
+}
 
 .carousel-control-prev{
     left:-10%;
@@ -4681,7 +4686,7 @@ img.horizontal-image {
     background-image: url(../images/icons/slider-right.png);
     width:42px;
     height:85px;
-} 
+}
 
 @media (max-width:768px){
     .carousel-control-prev, .carousel-control-next, .slick-arrow {
@@ -4736,13 +4741,13 @@ img.horizontal-image {
 
 #customerLogos img {
     height:;
-    -webkit-filter: grayscale(100%); 
+    -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
 }
 
 .customer-logo-container {
     padding:0;
-} 
+}
 
 
 /* Product List */
@@ -4863,7 +4868,7 @@ h4 {
 .link, footer a {
     letter-spacing: 1.5px;
     font-family: proxima_nova_light;
-} 
+}
 
     .link:hover, footer a:hover {
         color:#FFF;
@@ -5084,7 +5089,7 @@ h4 {
     font-size: 20px;
     letter-spacing: 1.5px;
     margin-top:20px;
-    margin-bottom:20px; 
+    margin-bottom:20px;
 }
 
 .white-highlighted {
@@ -5399,7 +5404,7 @@ h4 {
     width: 30px;
     height: 30px;
     border: 1px solid transparent;
-    margin-right: 2px; 
+    margin-right: 2px;
     margin-bottom: 6px;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
@@ -5525,7 +5530,7 @@ h4 {
     margin-bottom: 15px;
     letter-spacing: 1.2px;
     color:#2a87e4;
-} 
+}
 
 .product-details-desktop h1 {
    font-family: proxima_nova_black;
@@ -5877,7 +5882,7 @@ BOOTSTRAP NAVBAR
         display: none;
     }
 
-    .navbar-expand-lg{ 
+    .navbar-expand-lg{
         padding-top: 4px;
         padding-bottom: 4px;
     }
@@ -5920,7 +5925,7 @@ BOOTSTRAP NAVBAR
 
     /* modified navbar icon */
 
-    .navbar-toggler:focus, 
+    .navbar-toggler:focus,
     .navbar-toggler:active {
         outline: 0;
     }
@@ -6200,7 +6205,7 @@ BOOTSTRAP NAVBAR
 
     .mobile-list-navigation .col-6:first-child {
         border-right:1px solid #444444;
-    } 
+    }
 
     .filter-topnav {
         margin-left:0;
@@ -6419,12 +6424,12 @@ BOOTSTRAP NAVBAR
 }
 
 /* Extra small device */
-@media (max-width: 575.98px) { 
+@media (max-width: 575.98px) {
     .product-info h2 {
        font-family: proxima_nova_bold;
        font-size:15px;
     }
-    
+
     .products-price-container {
         font-family: proxima_nova_regular;
         font-size:16px;
@@ -6540,18 +6545,18 @@ BOOTSTRAP NAVBAR
     position:absolute;
     width:100%; height:100%;
     top:0; left:0;
-    background-color: rgba(68, 68, 68, 0.3); 
+    background-color: rgba(68, 68, 68, 0.3);
     opacity:0;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
 }
 
 #productList #w0 .product-thumb:hover:after {
-    
+
 }
 
 #productList #w0 .carousel-item .product-thumb .product-thumb-bg .product-info h2{
-    
+
 }
 
 #productList #w0 .product-thumb:hover{
@@ -6559,7 +6564,7 @@ BOOTSTRAP NAVBAR
 }
 
 #productList #w0 .product-thumb h2, #productList #w0 .product-thumb .product-color, #productList #w0 .product-thumb span{
-    color: black; 
+    color: black;
     -webkit-transition: color .30s linear;
     -moz-transition: color .30s linear;
     -ms-transition: color .30s linear;
@@ -6567,15 +6572,15 @@ BOOTSTRAP NAVBAR
     transition: color .30s linear;
 }
 
-#productList #w0 .product-thumb:hover h2 { 
-    color: #0275d8; 
-}
-
-#productList #w0 .product-thumb:hover .product-color { 
+#productList #w0 .product-thumb:hover h2 {
     color: #0275d8;
 }
 
-#productList #w0 .product-thumb:hover span { 
+#productList #w0 .product-thumb:hover .product-color {
+    color: #0275d8;
+}
+
+#productList #w0 .product-thumb:hover span {
     color: #0275d8;
 }
 
@@ -6621,7 +6626,7 @@ BOOTSTRAP NAVBAR
     position:absolute;
     width:100%; height:100%;
     top:0; left:0;
-    background-color: rgba(68, 68, 68, 0.3); 
+    background-color: rgba(68, 68, 68, 0.3);
     opacity:0;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -6632,7 +6637,7 @@ BOOTSTRAP NAVBAR
 }
 
 #product-list .product-thumb h2, #product-list .product-thumb .product-color, #product-list .product-thumb span{
-    color: black; 
+    color: black;
     -webkit-transition: color .30s linear;
     -moz-transition: color .30s linear;
     -ms-transition: color .30s linear;
@@ -6640,15 +6645,15 @@ BOOTSTRAP NAVBAR
     transition: color .30s linear;
 }
 
-#product-list .product-thumb:hover h2 { 
-    color: #0275d8; 
-}
-
-#product-list .product-thumb:hover .product-color { 
+#product-list .product-thumb:hover h2 {
     color: #0275d8;
 }
 
-#product-list .product-thumb:hover span { 
+#product-list .product-thumb:hover .product-color {
+    color: #0275d8;
+}
+
+#product-list .product-thumb:hover span {
     color: #0275d8;
 }
 
@@ -6731,12 +6736,12 @@ BOOTSTRAP NAVBAR
         background-image: url(../images/icons/search_hover.png);
     }
 
-    
+
     #productList .slick-list {
         width:100%;
     }
 
-    
+
 }
 
 
@@ -6817,7 +6822,7 @@ BOOTSTRAP NAVBAR
 }
 
 
-/* SHIPPING 
+/* SHIPPING
 /szallitas */
 
 
@@ -6899,12 +6904,12 @@ BOOTSTRAP NAVBAR
     .nav-pills .nav-link:hover .pill-icon {
         display:none;
     }
-	
+
 	.product-size { min-width:31%; }	/* gabor */
 }
 
 
-/* CONTACT 
+/* CONTACT
 /kapcsolat */
 
 
@@ -6914,7 +6919,7 @@ BOOTSTRAP NAVBAR
 }
 
 
-/* CONTRACT 
+/* CONTRACT
 /altalanos-szerzodesi-feltetelek */
 
 
@@ -6946,7 +6951,7 @@ BOOTSTRAP NAVBAR
 }
 
 
-/* REGISTRATION 
+/* REGISTRATION
 /site/login */
 
 
@@ -7070,9 +7075,9 @@ BOOTSTRAP NAVBAR
     width: auto;
 }
 
-.slick-prev:before, 
+.slick-prev:before,
 .slick-next:before {
-    color: black;    
+    color: black;
 }
 
 .slick-dots {
@@ -7092,4 +7097,8 @@ BOOTSTRAP NAVBAR
     #nav3.navbar .navbar-nav {
         float:none !important;
     }
+}
+
+.color-img.active{
+    border: 3px solid #2A87E4;
 }
