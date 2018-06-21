@@ -29,7 +29,7 @@ class AppAsset extends AssetBundle
     public $js = [
         '//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js',
 //        'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
-        'js/site.js',
+        'js/site.js?v=2',
     ];
     public $depends = [
         'yii\web\YiiAsset',

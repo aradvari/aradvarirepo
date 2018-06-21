@@ -137,7 +137,7 @@ Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827
 };
 
     if(!isMobile.any()) {
-        ImageViewer('#img-container-{$key}');
+        ImageViewer('#img-container-{$key}', {snapView:false});
     }
 JS
 );
@@ -149,7 +149,7 @@ JS
                                 $this->registerJS(<<<JS
                                             if(!isMobile.any()) {
                                                 $('.product-image #carousel-thumb').on('slid.bs.carousel', function () {
-                                                  ImageViewer('.product-image .carousel-item.active');
+                                                  ImageViewer('.product-image .carousel-item.active', {snapView:false});
                                                 })
                                             }
 JS
