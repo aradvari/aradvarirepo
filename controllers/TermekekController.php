@@ -15,6 +15,7 @@ use app\components\web\Controller;
 use yii\base\Event;
 use yii\db\Expression;
 use yii\helpers\ArrayHelper;
+use yii\web\Cookie;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -106,22 +107,22 @@ class TermekekController extends Controller
     {
         $model = $this->findModel($termek);
 
-//        $cookies = \Yii::$app->request->cookies;
-//
-//        $history = json_decode($cookies->getValue('product-history'), true);
-//        if (!$history || !in_array($model->id, array_values($history))) {
-//            $history[] = $model->id;
-//
-//            $cookies = \Yii::$app->response->cookies;
-//            $cookies->add(new Cookie([
-//                'name' => 'product-history',
-//                'value' => json_encode($history),
-//            ]));
-//        }
+        $cookies = \Yii::$app->request->cookies;
+
+        $history = json_decode($cookies->getValue('product-history'), true);
+        if (!$history || !in_array($model->id, array_values($history))) {
+            $history[] = $model->id;
+
+            $cookies = \Yii::$app->response->cookies;
+            $cookies->add(new Cookie([
+                'name' => 'product-history',
+                'value' => json_encode($history),
+            ]));
+        }
 
         return $this->render('view', [
             'model' => $model,
-//            'history' => $history,
+            'history' => $history,
         ]);
     }
 

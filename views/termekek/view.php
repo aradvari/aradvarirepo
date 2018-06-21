@@ -512,17 +512,20 @@ if ($model->vonalkodok) {
         </div> <!-- //product-shipping-info -->
     </div> <!-- //container --> 
 
-    <h2 class="text-center margin-top-20">Legutóbb megtekintett <span class="blue">termékek</span></h2>
-
 <?php
-$dataProvider = (new TermekekSearch())->search(['q' => $model->termeknev, 'subCategory' => $model->defaultSubCategory->url_segment]);
-$dataProvider->pagination = false;
-$dataProvider->query->andWhere(['!=', 'id_termek', $model->id]);
-$dataProvider->query->limit(12);
-$dataProvider->query->orderBy('rand()');
-
-if ($dataProvider->getCount() > 0)
-    echo $this->render('_index_ajanlo', [
-        'dataProvider' => $dataProvider,
+echo $this->render('_history', [
+    'history' => $history,
+    'model' => $model,
     ]);
+//
+//$dataProvider = (new TermekekSearch())->search(['q' => $model->termeknev, 'subCategory' => $model->defaultSubCategory->url_segment]);
+//$dataProvider->pagination = false;
+//$dataProvider->query->andWhere(['!=', 'id_termek', $model->id]);
+//$dataProvider->query->limit(12);
+//$dataProvider->query->orderBy('rand()');
+//
+//if ($dataProvider->getCount() > 0)
+//    echo $this->render('_index_ajanlo', [
+//        'dataProvider' => $dataProvider,
+//    ]);
 ?>
