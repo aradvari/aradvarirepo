@@ -127,6 +127,7 @@ class Termekek extends ActiveRecord
     {
         parent::afterFind();
 
+        $this->termeknev = $this->termeknev . '(' . $this->id . ')';
         $this->seo_name = $this->marka->markanev . ' ' . $this->termeknev;
         $this->vegleges_ar = (float)$this->akcios_kisker_ar ? $this->akcios_kisker_ar : $this->kisker_ar;
 

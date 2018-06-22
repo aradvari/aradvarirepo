@@ -48,8 +48,18 @@ class OrderController extends Controller
 
             if ($felhasznaloModel->load(Yii::$app->request->post()) && $megrendelesModel->load(Yii::$app->request->post())) {
 
-                if (!$megrendelesModel->szallitasi_nev)
-                    $megrendelesModel->szallitasi_nev = $felhasznaloModel->vezeteknev.' '.$felhasznaloModel->keresztnev;
+                if (!$megrendelesModel->eltero_szallitasi_adatok){
+                    $megrendelesModel->szallitasi_nev = trim($felhasznaloModel->vezeteknev . ' ' . $felhasznaloModel->keresztnev);
+                    $megrendelesModel->szallitasi_irszam = $felhasznaloModel->irszam;
+                    $megrendelesModel->szallitasi_utcanev = $felhasznaloModel->utcanev;
+                    $megrendelesModel->szallitasi_id_kozterulet = $felhasznaloModel->id_kozterulet;
+                    $megrendelesModel->szallitasi_hazszam = $felhasznaloModel->hazszam;
+                    $megrendelesModel->szallitasi_id_megye = $felhasznaloModel->id_megye;
+                    $megrendelesModel->szallitasi_id_varos = $felhasznaloModel->id_varos;
+                    $megrendelesModel->szallitasi_varos = $felhasznaloModel->varos_nev;
+                }elseif (!$megrendelesModel->szallitasi_nev) {
+                    $megrendelesModel->szallitasi_nev = trim($felhasznaloModel->vezeteknev . ' ' . $felhasznaloModel->keresztnev);
+                }
 
                 $v1 = $felhasznaloModel->validate();
                 $v2 = $megrendelesModel->validate();
@@ -69,28 +79,31 @@ class OrderController extends Controller
                     $megrendelesModel->tetel_szam = Yii::$app->cart->getCount();
                     $megrendelesModel->szallitasi_dij = Yii::$app->cart->shippingAmount;
                     $megrendelesModel->kedvezmeny_erteke = Yii::$app->cart->totalDiscountAmount;
-                    $megrendelesModel->id_penznem = 1;
+                    $megrendelesModel->id_penznem = 0;
                     $megrendelesModel->id_orszag = 1;
                     if (!$megrendelesModel->save())
                         $transError = true;
 
                     //Tételek
                     foreach (Yii::$app->cart->items as $item) {
-                        $tetelModel = new MegrendelesTetel();
-                        $tetelModel->id_megrendeles_fej = $megrendelesModel->getPrimaryKey();
-                        $tetelModel->id_termek = $item['item']->termek->id;
-                        $tetelModel->id_marka = $item['item']->termek->markaid;
-                        $tetelModel->id_vonalkod = $item['item']->id_vonalkod;
-                        $tetelModel->termek_nev = $item['item']->termek->termeknev;
-                        $tetelModel->termek_ar = $item['item']->termek->vegleges_ar;
-                        $tetelModel->afa_kulcs = Yii::$app->params['vat'];
-                        $tetelModel->afa_ertek = round(($item['item']->termek->vegleges_ar * $item['quantity']) * (Yii::$app->params['vat'] / 100));
-                        $tetelModel->vonalkod = $item['item']->vonalkod;
-                        $tetelModel->tulajdonsag = $item['item']->megnevezes;
-                        $tetelModel->szin = $item['item']->termek->szin;
-                        $tetelModel->termek_opcio = $item['item']->termek->opcio;
-                        if (!$tetelModel->save())
-                            $transError = true;
+                        for ($i = 1; $i <= $item['quantity']; $i++) {
+                            $tetelModel = new MegrendelesTetel();
+                            $tetelModel->id_megrendeles_fej = $megrendelesModel->getPrimaryKey();
+                            $tetelModel->id_termek = $item['item']->termek->id;
+                            $tetelModel->id_marka = $item['item']->termek->markaid;
+                            $tetelModel->id_vonalkod = $item['item']->id_vonalkod;
+                            $tetelModel->termek_nev = $item['item']->termek->termeknev;
+                            $tetelModel->termek_ar = $item['item']->termek->vegleges_ar;
+                            $tetelModel->afa_kulcs = Yii::$app->params['vat'];
+//                            $tetelModel->afa_ertek = round(($item['item']->termek->vegleges_ar * $item['quantity']) * (Yii::$app->params['vat'] / 100));
+                            $tetelModel->afa_ertek = round(($item['item']->termek->vegleges_ar) * (Yii::$app->params['vat'] / 100));
+                            $tetelModel->vonalkod = $item['item']->vonalkod;
+                            $tetelModel->tulajdonsag = $item['item']->megnevezes;
+                            $tetelModel->szin = $item['item']->termek->szin;
+                            $tetelModel->termek_opcio = $item['item']->termek->opcio;
+                            if (!$tetelModel->save())
+                                $transError = true;
+                        }
                     }
 
                     //Készlet ellenőrzés

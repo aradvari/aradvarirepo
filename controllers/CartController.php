@@ -46,7 +46,7 @@ class CartController extends Controller
         $termekModel = $vonalkodModel->termek;
 
         if (Yii::$app->cart->getItemQuantity($meret) + $mennyiseg > $vonalkodModel->keszlet_1) {
-            $mennyiseg = $vonalkodModel->keszlet_1 - Yii::$app->cart->getItemQuantity($meret);
+            $mennyiseg = $mennyiseg > $vonalkodModel->keszlet_1 ? $vonalkodModel->keszlet_1 : $mennyiseg;
         }
 
         Yii::$app->cart->addItem($meret, $mennyiseg, $modify);
@@ -54,6 +54,9 @@ class CartController extends Controller
         return [
             'meret' => $meret,
             'mennyiseg' => (int)$mennyiseg,
+            'a' => Yii::$app->cart->getItemQuantity($meret),
+            'b' => $mennyiseg,
+            'c' => $vonalkodModel->keszlet_1,
             'termek' => [
                 'megnevezes' => $termekModel->termeknev,
                 'ar' => \Yii::$app->formatter->asDecimal($termekModel->vegleges_ar * (int)$mennyiseg),

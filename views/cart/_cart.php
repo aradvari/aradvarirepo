@@ -121,7 +121,7 @@ use yii\helpers\Url;
                 </td>
             </tr>
 
-            <?php if (Yii::$app->cart->totalDiscountAmount): ?>
+            <?php if (Yii::$app->cart->totalDiscountAmount && 1 == 2): ?>
                 <tr>
                     <td colspan="2" class="text-right align-middle">Kedvezmények</td>
                     <td colspan="3" class="text-right align-middle">-
@@ -276,7 +276,7 @@ use yii\helpers\Url;
             </div>
 
             <!-- Discounts -->
-            <?php if (Yii::$app->cart->totalDiscountAmount): ?>
+                    <?php if (Yii::$app->cart->totalDiscountAmount && 1 == 2): ?>
                 
                 <div class="row">
                     <div class="col-8">

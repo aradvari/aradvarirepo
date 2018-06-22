@@ -1,4 +1,7 @@
 function selectSize(vonalkod) {
+    console.log('selectSize:' + $('label[for="v_' + vonalkod + '"]').data('trigger'));
+    // $('label[for="v_' + vonalkod + '"]').tooltip('show');
+
     $('#meret option[value="' + vonalkod + '"]').prop('selected', true).trigger('change');
 }
 
@@ -15,7 +18,7 @@ var showSelect = function (on) {
 
 }
 
-$('#meret').change(function (event) {
+$('#meret, input[name="sizes"]').change(function (event) {
 
     var code = $(this).val();
 
@@ -78,6 +81,12 @@ $('.cart-form').submit(function () {
             showSelect(false);
 
         }
+
+        //Szinszűrés deafult
+        $("a[data-slug]").each(function (obj, o) {
+            $(this).css('opacity', '1');
+            this.href = $(this).data('url');
+        });
 
         refreshCartCount();
         getCart();

@@ -1,0 +1,148 @@
+form{
+    padding:0px;
+    margin:0px;
+}
+a{
+    color: #F0F0F0;
+}
+.menu_big {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: 79859c;
+	font-weight: bold;
+}
+.menu_small {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: 939495;
+	padding-left: 5px;
+	text-decoration: none;
+}
+.borderfontmain {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	background-color: #494879;
+	text-decoration: none;
+}
+.borderfonttulaj {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	background-color: #B7B6D3;
+	text-decoration: none;
+	border: 1px solid #666666;
+}
+.white12x {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.bigborder {
+	border: 3px solid #FF0000;
+}
+
+.borderfontmain:hover {
+	color: #FF5500;
+	text-decoration:underline;
+}
+.borderfont {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #333333;
+	border-bottom: 4px solid #333;
+}
+
+.megrendelt_termek {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #333333;
+	border:1px dotted #999;
+}
+
+.borderfontcolor {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #990000;
+	font-weight: bold;
+}
+
+.menu_small:hover {
+	color: #FF5500;
+	text-decoration:underline;
+}
+.formRightAlign {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333333;
+	background-color: #FFFFFF;
+	border: 1px solid #333333;
+	text-align: right;
+}
+.formRightAlignColor {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333333;
+	background-color: #FFE1E2;
+	border: 1px solid #333333;
+	text-align: right;
+}
+.formColor {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333333;
+	background-color: #D1DDF3;
+	border: 1px solid #333333;
+}
+.menu_smalldisabled {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #CCCCCC;
+	padding-left: 5px;
+	text-decoration: none;
+}
+
+
+.darkCell{  
+    background-color: #537ba5;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:white;
+}
+.lightCell{  
+    background-color: #97BADE;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:#585858;
+}
+.mediumCell{  
+    background-color: #638ab2;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:white;
+}
+.submitSt{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #333333;
+    border: 1px solid #CCCCCC;
+}
+.form{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #333333;
+    border: 1px solid #CCCCCC;
+}
+#error{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:red;
+    padding:15px;
+}
+
+.item1{
+    display:none;
+}

@@ -110,7 +110,6 @@ $(document).on('change click', 'input[name="MegrendelesFej[eltero_szallitasi_ada
 })
 
 window.glsPSMap_OnSelected_Handler = function (data) {
-    console.log(data);
 
     $('#megrendelesfej-szallitasi_irszam').val(data.zipcode);
     $('#megrendelesfej-szallitasi_varos').val(data.city);
