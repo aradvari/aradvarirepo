@@ -293,6 +293,53 @@ class OrderController extends Controller
 
     }
 
+    public function actionCibcron()
+    {
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $response = [];
+
+        $cib = new CIB(Yii::$app->language, 'HUF');
+
+        $transModel = BankTranzakciok::find()->andWhere(['lezarva' => null])->andWhere('DATE_ADD(datum, INTERVAL 15 MINUTE) < NOW()')->all();
+
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+
+            foreach ($transModel as $model) {
+
+                $cib->userId = $model->id_felhasznalo;
+                $msg = $cib->msg32($model->trid, $model->amo);
+
+                $model->rc = $msg["RC"];
+                $model->rt = iconv("ISO-8859-2", "UTF-8", $msg["RT"]);
+                $model->anum = $msg["ANUM"];
+                $model->lezarva = new Expression('NOW()');
+                $model->save(false);
+
+                $res = $cib->msg33($model->trid, $model->amo);
+
+                $megrendelesModel = MegrendelesFej::findOne($model->id_megrendeles_fej);
+                $megrendelesModel->close();
+
+                $response[] = [
+                    'transModel' => $transModel->attributes,
+                    'megrendelesModel' => $megrendelesModel->attributes,
+                    'response' => iconv('UTF-8', 'UTF-8', $res),
+                ];
+
+            }
+
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
+
+        return $response;
+
+    }
+
     public function actionAjaxGetCity()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;

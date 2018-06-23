@@ -15,6 +15,7 @@ use app\components\web\Controller;
 use yii\base\Event;
 use yii\db\Expression;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\Cookie;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -216,6 +217,44 @@ class TermekekController extends Controller
             'selectedSize' => $vonalkodModel->url_segment,
             'products' => $quantitys,
         ];
+    }
+
+    public function actionRedirect($categoryId = null, $brandId = null, $meretek = null, $keresendo = null, $productId = null)
+    {
+
+        if ($productId) {
+
+            $productModel = Termekek::findOne($productId);
+
+            $url = Url::to(['termekek/view',
+                'mainCategory' => $productModel->defaultMainCategory->url_segment,
+                'subCategory' => $productModel->defaultSubCategory->url_segment,
+                'brand' => $productModel->marka->url_segment,
+                'termek' => $productModel->url_segment,
+            ]);
+
+        } elseif ($categoryId || $brandId || $meretek || $keresendo) {
+
+            $categoryModelMain = null;
+            $categoryModel = Kategoriak::findOne($categoryId);
+            if ($categoryModel->szulo)
+                $categoryModelMain = Kategoriak::findOne($categoryModel->szulo);
+            $brandModel = Markak::findOne($brandId);
+            $meretModel = Vonalkodok::find()->andWhere(['megnevezes' => $meretek])->andWhere(['!=', 'megnevezes', 'null'])->one();
+
+            $url = Url::to([
+                'termekek/index',
+                'mainCategory' => $categoryModelMain ? $categoryModelMain->url_segment : $categoryModel->url_segment,
+                'subCategory' => $categoryModel->url_segment,
+                'brand' => $brandModel->url_segment,
+                'meret' => $meretModel->url_segment,
+                'q' => $keresendo,
+            ]);
+
+        }
+
+        return $this->redirect($url, 301);
+
     }
 
     /**

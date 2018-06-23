@@ -276,6 +276,13 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionRedirect($page = null)
+    {
+
+        return $this->redirect('/' . $page, 301);
+
+    }
+
     /**
      * Displays about page.
      *

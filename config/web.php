@@ -61,6 +61,13 @@ $config = [
                 ['pattern' => 'altalanos-szerzodesi-feltetelek', 'route' => 'site/content', 'defaults' => ['page' => 'contract'],],
                 ['pattern' => 'kapcsolat', 'route' => 'site/content', 'defaults' => ['page' => 'contact'],],
                 ['pattern' => 'garancia', 'route' => 'site/content', 'defaults' => ['page' => 'warrianty'],],
+                ['pattern' => 'termekcsere', 'route' => 'site/content', 'defaults' => ['page' => 'replace'],],
+                ['pattern' => 'belepes', 'route' => 'site/login'],
+                ['pattern' => 'elfelejtett-jelszo', 'route' => 'site/lost-password'],
+                ['pattern' => 'kartyas-fizetes', 'route' => 'site/content', 'defaults' => ['page' => 'payment'],],
+                ['pattern' => 'kerdesek-valaszok', 'route' => 'site/content', 'defaults' => ['page' => 'faq'],],
+                ['pattern' => 'facebook-belepes', 'route' => 'site/auth', 'defaults' => ['authclient' => 'facebook'],],
+                ['pattern' => 'google-belepes', 'route' => 'site/auth', 'defaults' => ['authclient' => 'google'],],
             ],
         ],
         'formatter' => [

@@ -78,12 +78,15 @@ foreach ($params as $key => $param) {
             case "tipus":
                 $label = $tipusModel->tipus;
                 break;
+            default:
+                $label = null;
 
         }
        
         $bc[$key] = $param;
 
-        $this->params['breadcrumbs'][] = ['label' => $label, 'url' => $bc];
+        if ($label)
+            $this->params['breadcrumbs'][] = ['label' => $label, 'url' => $bc];
 
     }
 }

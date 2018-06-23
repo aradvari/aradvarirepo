@@ -10,7 +10,6 @@ $dataProvider->query->andWhere(['t.termeknev' => $model->termeknev]);
 $dataProvider->query->andWhere(['t.markaid' => $model->markaid]);
 //$dataProvider->query->andWhere(['!=', 'id_termek', $model->id]);
 $dataProvider->pagination = false;
-
 if ($dataProvider->getCount() > 1):
     ?>
 

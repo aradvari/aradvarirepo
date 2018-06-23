@@ -148,6 +148,29 @@ class UrlManager extends \yii\web\UrlManager
                 'pattern' => '<mainCategory:(' . $mainCategorysString . ')>/<subCategory:(' . $subCategorysString . ')>/<brand:(' . $brandsString . ')>/<termek>',
                 'route' => 'termekek/view',
             ],
+            /*
+             * URL REDIRECT
+             */
+            [
+                'pattern' => 'hu/termekek/<categoryName>/<categoryId>/<brandName>/<brandId>',
+                'route' => 'termekek/redirect',
+            ],
+            [
+                'pattern' => 'hu/termekek/<categoryName>/<categoryId>',
+                'route' => 'termekek/redirect',
+            ],
+            [
+                'pattern' => 'hu/termekek',
+                'route' => 'termekek/redirect',
+            ],
+            [
+                'pattern' => 'hu/termek/<productName>/<productId>',
+                'route' => 'termekek/redirect',
+            ],
+            [
+                'pattern' => 'hu/<page>',
+                'route' => 'site/redirect',
+            ],
         ]);
 
     }

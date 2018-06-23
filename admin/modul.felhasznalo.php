@@ -15,19 +15,6 @@
     if (ISSET($_POST['modositas'])){
         
             
-			$tel1 = $_POST['telefonszam1_0']." ".$_POST['telefonszam1_1']." ".$_POST['telefonszam1_2'];
-			$tel2 = $_POST['telefonszam2_0']." ".$_POST['telefonszam2_1']." ".$_POST['telefonszam2_2'];
-			/*$tel1 = "+36".$_POST['telefonszam1_1'].$_POST['telefonszam1_2'];
-            $tel2 = "+36".$_POST['telefonszam2_1'].$_POST['telefonszam2_2'];
-            if (!eregi("^([+][3][6])([0-9]{1,2})([0-9]{7,8})$", $tel1)) {$error='Az elsődleges telefonszám nem megfelelő!';}
-            if ($_POST['telefonszam2_2']!="" OR $_POST['telefonszam2_1']!="") {
-                
-                if (!eregi("^([+][3][6])([0-9]{1,2})([0-9]{7,8})$", $tel2)) {$error='Az másodlagos telefonszám nem megfelelő!';}
-                
-            }
-            $tel1 = "+36 ".$_POST['telefonszam1_1']." ".$_POST['telefonszam1_2'];
-            $tel2 = "+36 ".$_POST['telefonszam2_1']." ".$_POST['telefonszam2_2'];*/
-            
             //Születési dátum ellenőrzése, ha valami ki van töltve
             if ($_POST['szuletesi_ev']!="" OR $_POST['szuletesi_honap']!="" OR $_POST['szuletesi_nap']!="" ) {
                 
@@ -35,16 +22,6 @@
                 if(!strtotime($date)) $error = "A megadott születési dátum nem megfelelő!";
                 
             }
-
-            /* if ($_POST['kozterulet']==''){$error='A közterület megnevezésének kiválasztása kötelező!';}
-            if ($_POST['utcanev']==''){$error='Az utcanév kitöltése kötelező!';}
-
-            if ($_POST['megye']==''){$error='A megye kiválasztása kötelező!';}
-            if ($_POST['varos']==''){$error='A város kiválasztása kötelező!';}
-            if (!eregi("^[0-9]{4}$", $_POST['iranyitoszam'])) {$error='Az irányítószám nem megfelelő!';}
-
-            if ($_POST['keresztnev']==''){$error='A keresztnév kitöltése kötelező!';}
-            if ($_POST['vezeteknev']==''){$error='A vezetéknév kitöltése kötelező!';} */
 
             //RÖGZÍTÉS
             if ($error==''){
@@ -80,9 +57,8 @@
                      id_kozterulet = ".(int)$_POST['kozterulet'].",
                      kozterulet_nev = '$kozterulet_nev',
                      emelet = '".trim($_POST['emelet'])."',
-                     telefonszam1 = '$tel1',
-                     telefonszam2 = '$tel2',
-                     /*telefonszam2 = '".(strlen($tel2)>10?$tel2:'')."',*/
+                     telefonszam1 = '".trim($_POST['telefonszam1'])."',
+                     telefonszam2 = '".trim($_POST['telefonszam2'])."',
                      szuletesi_ev = ".($_POST['szuletesi_ev']<1?'NULL':$_POST['szuletesi_ev']).",
                      szuletesi_honap = ".($_POST['szuletesi_honap']<1?'NULL':$_POST['szuletesi_honap']).",
                      szuletesi_nap = ".($_POST['szuletesi_nap']<1?'NULL':$_POST['szuletesi_nap']).",
@@ -137,14 +113,8 @@
         $_POST['hazszam'] = $adatok['hazszam'];
         $_POST['emelet'] = $adatok['emelet'];
         $_POST['email'] = $adatok['email'];
-        $telefon1 = explode(" ", $adatok['telefonszam1']);
-        $telefon2 = explode(" ", $adatok['telefonszam2']);
-        $_POST['telefonszam1_0'] = $telefon1[0];
-        $_POST['telefonszam1_1'] = $telefon1[1];
-        $_POST['telefonszam1_2'] = $telefon1[2];
-        $_POST['telefonszam2_0'] = $telefon2[0];
-        $_POST['telefonszam2_1'] = $telefon2[1];
-        $_POST['telefonszam2_2'] = $telefon2[2];
+        $_POST['telefonszam1'] = $adatok['telefonszam1'];
+        $_POST['telefonszam2'] = $adatok['telefonszam2'];
         $_POST['szuletesi_ev'] = $adatok['szuletesi_ev'];
         $_POST['szuletesi_honap'] = $adatok['szuletesi_honap'];
         $_POST['szuletesi_nap'] = $adatok['szuletesi_nap'];
@@ -154,7 +124,8 @@
         $_POST['aktivacios_kod'] = $adatok['aktivacios_kod'];
         $_POST['regisztralva'] = $adatok['regisztralva'];
         $_POST['utolso_belepes'] = $adatok['utolso_belepes'];
-        
+        $_POST['auth_type'] = $adatok['auth_type'];
+
     }
         
 
@@ -271,17 +242,13 @@
           <tr>
             <td class="darkCell">1. telefonszám:</td>
             <td colspan="3" class="lightCell">
-                <input type="text" name="telefonszam1_0" id="telefonszam1_0" value="<?=$_POST['telefonszam1_0']?>" size="2" maxlength="3" onkeyup="if (this.value.length==3) $('telefonszam1_1').focus()">
-                <input type="text" name="telefonszam1_1" id="telefonszam1_1" value="<?=$_POST['telefonszam1_1']?>" size="2" maxlength="2" onkeyup="if (this.value.length==2) $('telefonszam1_2').focus()">
-                <input type="text" name="telefonszam1_2" id="telefonszam1_2" value="<?=$_POST['telefonszam1_2']?>" maxlength="7">
+                <input type="text" name="telefonszam1" id="telefonszam1" value="<?=$_POST['telefonszam1']?>" size="20" maxlength="20">
             </td>
           </tr>
           <tr>
             <td class="darkCell">2. telefonszám:</td>
             <td colspan="3" class="lightCell">
-                <input type="text" name="telefonszam2_0" id="telefonszam2_0" value="<?=$_POST['telefonszam2_0']?>" size="2" maxlength="3" onkeyup="if (this.value.length==3) $('telefonszam2_1').focus()">
-                <input type="text" name="telefonszam2_1" id="telefonszam2_1" value="<?=$_POST['telefonszam2_1']?>" size="2" maxlength="2" onkeyup="if (this.value.length==2) $('telefonszam2_2').focus()">
-                <input type="text" name="telefonszam2_2" id="telefonszam2_2" value="<?=$_POST['telefonszam2_2']?>" maxlength="7">
+                <input type="text" name="telefonszam2" id="telefonszam2" value="<?=$_POST['telefonszam2']?>" size="20" maxlength="20">
             </td>
           </tr>
           <tr>
@@ -304,13 +271,15 @@
             </select></td>
           </tr>
           <tr>
-            <td valign="top" class="darkCell">felhasználó státusza:</td>
-            <td colspan="3" class="lightCell">
-                <select name="aktivacios_kod" id="aktivacios_kod" class="form">
-                    <option value="" <?php echo ((ISSET($_POST['aktivacios_kod'])?($_POST['aktivacios_kod']==""?'SELECTED':''):''));?>>Aktiválva</option>
-                    <option value="<?=md5(sha1(date("U")))?>" <?php echo ((ISSET($_POST['aktivacios_kod'])?($_POST['aktivacios_kod']==""?'':'SELECTED'):''));?>>Nincs aktiválva</option>
-                </select>
-            </td>
+              <td valign="top" class="darkCell">felhasználó státusza:</td>
+              <td class="lightCell">
+                  <select name="aktivacios_kod" id="aktivacios_kod" class="form">
+                      <option value="" <?php echo ((ISSET($_POST['aktivacios_kod'])?($_POST['aktivacios_kod']==""?'SELECTED':''):''));?>>Aktiválva</option>
+                      <option value="<?=md5(sha1(date("U")))?>" <?php echo ((ISSET($_POST['aktivacios_kod'])?($_POST['aktivacios_kod']==""?'':'SELECTED'):''));?>>Nincs aktiválva</option>
+                  </select>
+              </td>
+              <td valign="top" class="darkCell">regisztráció típusa:</td>
+              <td class="lightCell"><?=$_POST['auth_type']?><input type="hidden" name="auth_type" value="<?=$_POST['auth_type']?>" /></td>
           </tr>
           <tr>
             <td colspan="4" class="lightCell">
