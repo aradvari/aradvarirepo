@@ -1,0 +1,76 @@
+radio{list-style:none;clear:both;}
+input[type="radio"]:checked+label{background-color:#2a87e4;color:#fff;font-weight:normal;}
+.product-size{color:#444;margin:0 5px 10px 5px;float:left;border:1px solid #ccc;display:block;text-align:center;p_adding:0 6px;font-weight:bold;
+height:40px;line-height:40px;
+width:-webkit-calc((100%/6) - 12px);width:-moz-calc((100%/6) - 12px);width:calc((100%/6) - 12px);
+-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden;-moz-osx-font-smoothing:grayscale;-webkit-transition-duration:0.2s;transition-duration:0.2s;-webkit-transition-property:color, background-color;transition-property:color, background-color;
+}
+.product-size:hover{background-color:#2a87e4;color:#fff;}
+.product-nav{font-size:16px;padding:20px 0px;}
+.product-nav a{margin:0 2%;}
+.product-container {display:inline-block;width:100%;}
+.product-thumbs { float:left;width:10%;margin:0;padding:0;}
+.product-thumbs img{width:90%;border:1px solid #ccc; margin:0 10% 5% 0;}
+.product-thumbs-zoom { position:fixed; top:121px; left:10px; float:left;width:10%;margin:0;padding:0;} 
+.product-thumbs-zoom img{width:90%;border:1px solid #ccc; margin:0 10% 5% 0;}
+.product-image-container{float:left;width:50%;padding:0;margin:0 2%;position:relative;}
+.product-image-nav-info{padding:10px;text-align:left;color:#fff;position:absolute;top:0;left:0;}
+.product-image { position:relative; }	/* a zoom icon igy pozicionalhato a kep jobb also sarkaba */
+.zoom-div {display:none;position:absolute;top:120px;left:0;padding-bottom:120px;width:100%;height:auto;background:#fff;text-align:center;z-index:10;
+-webkit-box-shadow: 0 0 100px 0 #999;
+-moz-box-shadow: 0 0 100px 0 #999;
+box-shadow: 0 0 100px 0 #999;
+}
+.zoom-div img {width:60%;}
+.zoom-div-icon {position:absolute;bottom:2%;right:3%;float:left;padding:1%;}	/* zoom icon a kep jobb also sarkaban */
+.zoom-div-icon img {width:140%; opacity:0.6;}
+.zoom-div-icon img:hover {opacity:1;}
+.zoom-close { position:fixed; top:120px; right:0; float:right; padding:30px; background-color:#2a87e4; font-family:proxima_novablack; color:#FFF; font-size:30px;}
+.product-description{clear:both;padding:20px 0;text-align:justify;font-size:18px;}
+.eredeti_ar	{ color:#999; font-weight:bold; font-size:18px; display:block; text-decoration:line-through;}
+.ar	{ color:#2a87e4; font-weight:bold; font-size:30px; display:block; margin-bottom:30px;} /* vegleges eladasi ar */
+
+.product-order-desktop{text-align:left;padding:0 0 0 2%;float:left;width:32%;font-size:0.9em;}
+.product-order-desktop input, select{width:100%;margin-bottom:10px;padding:14px;font-size:16px;-webkit-appearance: none; -moz-appearance:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+#termek-meretek{color:#444;}
+#termek-meretek p{color:#444;padding:10px 0; margin:20px 0;border-bottom:1px solid #ccc;}
+.product-details-desktop{margin-bottom:20px;}
+.product-details-desktop img{height:50px;margin-bottom:10px;}
+.product-details-desktop h1{color:#444;padding:20px 0 0 0;margin:10px 0 0 0;border-top:1px solid #ccc;font-size:30px;}
+.product-details-desktop h2{padding:4px 0;margin:0;text-transform:uppercase;color:#444;font-size:18px;}
+.product-prise{}
+.product-rightbanner img{max-width:100%;}
+.product-rightbanner p{margin-top:10px;padding:1% 0;margin-bottom:2%;border-bottom:0px solid #ccc;}
+.product-shipping-info{clear:both;padding:4% 0;}
+.product-shipping-info img {border:none;display:inline-block;vertical-align:middle;width:40px;margin-right:10px;}
+.product-shipping-info p {border:none;display:inline-block;line-height:30px; text-align:right;}
+.product-details-mobile{display:none;}
+.product-backbutton{display:none;}
+
+@media screen and (max-width:810px){
+input[type="radio"]:checked+label{background-color:#2a87e4;color:#fff;font-weight:normal;}
+.product-nav{ font-size:12px; text-transform:uppercase;}
+.product-nav a{margin:0 1%;}
+.product-container { position:relative; }
+.product-image-container{ width:96%; }
+.product-thumbs { width:94%; padding:0 2%; display:none;}
+.product-thumbs img { width:10%; margin:0 4px 4px 0; padding:0; }
+.product-description{padding:4% 0;font-size:0.8em;}
+.product-image-nav-info{font-size:0.8em; width:100%;padding:10px 20px;color:#2a87e4;}
+.product-order-desktop{clear:both;width:92%;padding:0 4%;font-size:0.8em;}
+.product-order-desktop img{ max-width:40%; height:auto; max-height:50px;}
+.product-shipping-info img { width:30px; margin-right:5px;}
+.product-prise{text-align:left;}
+.product-details-mobile{display:none;margin-left:4%;padding:1% 0;}
+.product-details-mobile h1{padding:0;margin:0 4% 0 0;font-size:1.4em;text-align:center;display:inline-block;}
+.product-details-mobile h2{color:#2a87e4;padding:0;margin:0;font-size:1em;text-align:center;display:inline-block;}
+.product-backbutton{display:block;text-align:left;position:fixed;bottom:0;left:0;width:100%;background-image:url(../images/transparent60.png);padding:0%;z-index:2;}
+.product-backbutton a{margin:4%;display:block;}
+.zoom-div-icon {display:none;}
+}
+
+@media screen and (min-width:811px){.product-description{ font-size:1em;}
+.product-order-desktop{font-size:1em;}
+}
+.merettabla{font-weight:normal;}
+.merettabla td{border:1px solid #DDD; padding:10px; text-align:center;}

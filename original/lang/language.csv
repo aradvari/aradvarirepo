@@ -1,0 +1,292 @@
+_termek;termek;product;produkt
+_termekek;termekek;products;produkte
+_termekek_uj;termekek_uj;products_new;produkt_neu
+_termekek_web;termekek_web;termekek_web;produkt_web
+_termekek_coreclub;termekek_coreclub;termekek_coreclub;produkt_coreclub
+_megrendeles;megrendeles;order;bestellen
+_regisztracio;regisztracio;registration;anmeldung
+_sikeres_regisztracio;sikeres_regisztracio;success_registration;werden_sie_mitglied
+_sikeres_vasarlas;sikeres_vasarlas;thank_you_for_your_order;
+_adataim;adataim;my_profile;konto
+_kartyas_fizetes;kartyas-fizetes;card_payment;kartenzahlung
+_kerdesek_valaszok;kerdesek-valaszok;faq;faq
+_nem_talalhato;nem_talalhato;not_found;nicht_gefunden
+_tranzakcio;tranzakcio;tranzakcio;tranzakcio
+_szallitas;szallitas;delivery;
+_aszf;altalanos-szerzodesi-feltetelek;terms_and_conditions;
+_elfelejtett_jelszo;elfelejtett_jelszo;forgot_pwd;
+_uzletunk;uzletunk;uzletunk;
+magyar;magyar;English;Deutsch
+penznem;Pénznem;Currency;Währung
+termek_kereses;Termék keresés;Product search;Produktssuche
+termek;termék;Products;
+valassz_nyelvet;Válassz nyelvet;Select Language;Sprache wählen
+ferfi_ruhazat;Férfi ruha;Mens;Mann
+noi_ruhazat;Női ruha;Womens;Frau
+ferfi_cipo;Férfi cipő;Mens shoes;Schuhe Jungs
+noi_cipo;Női cipő;Womens shoes;Schuhe Mädels
+cipo;Cipő;Shoes;Schuhe
+kiegeszito;Kiegészítő;Accessories;Zubehör
+gordeszka;Gördeszka;Skateboards;Skateboards
+akcios_ferfi_cipo;Akciós férfi cipő;;;
+akcios_noi_cipo;Akciós női cipő;;;
+akcios_ferfi_ruha;Akciós férfi ruha;;;
+akcios_noi_ruha;Akciós női ruha;;;
+akcios_kiegeszito;Akciós kiegészítő;;;
+bmx;bmx;bmx;bmx
+belga;Bëlga;Bëlga
+outlet;sale %;sale %;
+second_hand;Second Hand (relikviák);SEcond Hand (Relics);
+zaszlok;Zászlók;Flags;
+polok;Pólók;Tees;
+kiadvanyok;Kiadványok;Records, Issues;
+vasarfia;Vásárfia;Fairing;
+vasarlas;Vásárlás;Shopping;Kaufen
+szallitas;Szállítás;Delivery;Versand
+szavatossag;Jótállás, garancia;Warranty;Garantie
+termekcsere;Termékcsere;Returns and Refunds;Rücksendungen / Umtausch
+kapcsolat;Kapcsolat;Contact;Kontakt
+kosar;Kosár;Cart;Warenkorb
+Ingyenes_szallitas;Ingyenes szállítás;Free Shipping;Frei Lieferung 
+szallitasi_dij;szállítási díj;Shipping Rate;Versandkosten
+megrendeles;Megrendelés;Checkout;Zur Kasse
+ures_a_kosarad;Üres a kosarad;Your cart is empty;Ihr Warenkorb ist leer
+austria;Ausztria;Ausztria;Ausztria
+belgium;Belgium;Belgium;Belgium
+bulgaria;Bulgaria;Bulgaria;Bulgaria
+cyprus;Cyprus;Cyprus;Cyprus
+czech_republic;Czech Republic;Czech Republic;Czech Republic
+denmark;Denmark;Denmark;Denmark
+estonia;Estonia;Estonia;Estonia
+finland;Finland;Finland;Finland
+france;France;France;France
+germany;Germany;Germany;Germany
+greece;Greece;Greece;Greece
+ireland;Ireland;Ireland;Ireland
+italy;Italy;Italy;Italy
+latvia;Latvia;Latvia;Latvia
+lithuania;Lithuania;Lithuania;Lithuania
+luxembourg;Luxembourg;Luxembourg;Luxembourg
+malta;Malta;Malta;Malta
+netherlands;Netherlands;Netherlands;Netherlands
+poland;Poland;Poland;Poland
+portugal;Portugal;Portugal;Portugal
+romania;Romania;Romania;Romania
+slovakia;Slovakia;Slovakia;Slovakia
+slovenia;Slovenia;Slovenia;Slovenia
+spain;Spain;Spain;Spain
+sweden;Sweden;Sweden;Sweden
+united_kingdom;United Kingdom;United Kingdom;United Kingdom
+magyarorszag;Magyarország;Hungary;Ungarn
+regisztracios_ertesites;Regisztrációs értesítés;Registration notice;Registrationsnotiz
+cslogo_title;Coreshop webshop;Coreshop webshop;Coreshop webshop
+cipo_merettablazat;cipő mérettáblázat;Size chart (Size guide);Größentabelle
+dijmentes_rendeles_figyelmeztetes;Díjmentes rendelés esetén, bankártyás fizetés nem választható!;Payment via credit card is not possible in case of free orders.;Freibestellungen können mit Kreditkarte nicht bezahlt werden.
+Ar;;;
+kovetkezo_oldal;következő oldal;next page;Nächste Seite
+elozo_oldal;előző oldal;previous page;Vorherige Seite
+;;;
+leiras;Termékleírás;Description;Beschreibung
+Kaphato_meret;Rendelhető méret;Sizes on stock;Größen auf Lager
+Merettablazat;Mérettáblázat;Size chart (Size guide);Größentabelle
+Termekar;Termékár;Price (incl. 27% VAT);Preis (inkl. MWST.)
+Megrendeles;Megrendelés;Confirm order;Bestellung bestätigen
+valassz_meretet;Méret;Size;Größe wählen
+add_meg_a_mennyiseget;Mennyiség;Quantity;Menge wählen
+hozzaadas_a_kosarhoz;Hozzáadás a kosárhoz;Add to basket;In den Warenkorb
+Eredeti_ar;Eredeti ár;Original Price;Originalpreis
+Akcios_ar;Akciós ár;Sale Price;Angebot
+Klub_ar;CoreClub ár;CoreClub Price;CoreClub Preis
+Club_ar;CoreClub ár;CoreClub Price;CoreClub Preis
+ferfi;Férfi;Men;Mann
+noi;Női;Women;Frau
+Termekajanlo;Termékajánló;Recommended products;Empfohlene Produkte
+;;;
+Megrendeleshez_jelentkezz_be_oldalunkra;Megrendelés regisztrációval;Member login;Anmeldung ist notwendig, um die Bestellung durchzuführen
+maradjak_bejelentkezve;Bejelentkezés megjegyzése;Remember Me;Angemeldet bleiben
+Elfelejtetted_jelszavad;Elfelejtetted jelszavad?;Forgot your Password?;Passwort vergessen?
+Nincs_meg_felhasznaloi_azonositod;Nincs még felhasználói azonosítód?;Don't have a user account?;Neu hier?
+Regisztralj_most_a_coreshop_hu_ra;Regisztráció;Create an account;Registrieren
+regisztracio;Regisztráció;Registration;
+Kosarad_tartalma;Kosarad tartalma;Your basket contains;Ihr Warenkorb enthält
+Marka_termeknev;Márka, terméknév;Brand, Description;Hersteller, Beschreibung
+Szin;Szín;Colour;Farbe
+Meret;Méret;Size;Größe
+Egysegar;Egységár;Price;Einzelpreis
+db;db;items;pc
+menny;Menny;QTY;Menge
+Osszesen;Összesen;Total;Summe
+Torles;Törlés;Remove;Entfernen
+Szallitasi_dij;Szállítási díj;Shipping Cost;Versandkosten
+Ebbol_AFA;ÁFA összege (27%);VAT (27%);MWST (27%)
+Osszesen_fizetendo;Összesen;Total (Incl. VAT);Summe (inkl. MWST)
+;;;
+Kezdolap;Főoldal;Home;
+Férfi ruházat;Férfi ruházat;Mens;Jungs
+Női ruházat;Női ruházat;Womens;Mädels
+Cipő;Cipő;Shoes;Schuhe
+Kiegészítő;Kiegészítő;Accessories;Zubehör
+Gördeszka;Gördeszka;Skateboards;Skateboards
+BMX;BMX;BMX;BMX
+Póló;Póló;Tees;T-shirts
+Hosszúujjú póló;Hosszúujjú póló;Longsleeves;Langarm
+Pulóver;Pulóver;Sweatshirts;Pullover
+Ing;Ing;Shirts;Hemden
+Széldzseki;Széldzseki;Windbreaker;Windjacken
+Kabát;Kabát;Jackets;Jacken
+Nadrág;Nadrág;Pants, Denim;Hosen
+Rövidnadrág;Rövidnadrág;Shorts;Shorts
+Baseball sapka;Baseball sapka;Caps;Kappen
+Kötött sapka;Kötött sapka;Beanies;Mützen
+Zokni;Zokni;Socks;Socken
+Ora;Óra;Watches;
+Férfi cipő;Férfi cipő;Mens Shoes;Schuhe Jungs
+Női cipő;Női cipő;Womens Shoes;Schuhe Mädels
+Férfi papucs;Férfi papucs;Mens Flip-Flop;Sandalen Jungs
+Női papucs;Női papucs;Womens Flip-Flop;Sandalen Mädels
+Táska;Táska;Bags;Taschen
+Tolltartó;Tolltartó;Pencil Cases;Federmappen
+Pénztárca;Pénztárca;Wallets;Geldbörsen
+Öv;Övek;Belts;Gürtel
+Női öv;Női öv;Womens Belts;Gürtel Mädels
+Napszemüveg;Napszemüveg;Sunglasses;Sonnenbrillen
+Fejhallgató;Fejhallgató;Headphones;Kopfhörer
+Fülhallgató;Fülhallgató;Earphones;Hörkapseln
+Egyéb;Egyéb;Others;Andere
+Gördeszka lapok;Gördeszka lapok;Decks;Decks
+Komplett gördeszka;Komplett gördeszka;Completes;Komplettboards
+Mini Cruiser;Mini Cruiser;Mini Cruiser;Mini Cruiser
+Felfüggesztés;Felfüggesztés;Trucks;Achsen
+Kerék;Kerék;Wheels;Rollen
+Csapágy;Csapágy;Bearings;Kugellager
+Fingerboard;Fingerboard;Fingerboard;Fingerboards
+Komplett BMX;Komplett BMX;Bikes;Kompletträder
+;;;
+megrendeles_veglegesitese;Megrendelés véglegesítése;Confirm order;
+Szallitasi_adatok;Szállítási cím;Shipping Address;
+szerkesztes;Szerkesztés;Edit Address;
+Email_cim;E-Mail cím;E-mail;
+Szallitasi_nev;Szállítási név;Shipping Name;
+Szallitasi_cim;Szállítási cím;Shipping Address;
+Telefonszam;Telefonszám;Phone;
+;;;
+Szamlazasi_adatok;Számlázási cím;Billing Address;
+Szamlazasi_nev;Számlázási név;Billing Name;
+cegnev;Cégnév;Company Name;
+Szamlazasi_cim;Számlázási cím;Billing Address;
+Megjegyzes;Megjegyzés;Comment;
+Ajandekkartya;Ajándékkártya;Gift Card;
+Ajandek_kartya_kod;Kuponkód;Gift Card Code;
+Szallitas;Szállítás;Shipping;
+Szallitas_modja;Szállítás módja;Shipping method;
+Csomagkuldo_szolgalattal;Csomagküldő szolgálattal;via GLS Parcel Service;
+Szemelyes_atvetel;Személyes átvétel irodánkban;;
+Utanvetel;Utánvét (készpénz);;
+Fizetes_modja;Fizetés módja;Payment method;
+Bankkartyas_fizetes;Bankkártyás fizetés;Pay with Credit Card;
+Elfogadott_bankartyatipusok;Elfogadott bankkártya típusok;Credit Cards;
+Tajekoztato_a_kartyas_fizetesrol;Tájékoztató a kártyás fizetésről;Information about credit card payment;
+Valassz;Válassz…;Select…;
+Megrendeles_elkuldese;Megrendelés elküldése;Send your order;
+Valoban_torli_a_kosarbol_a_termeket;Biztosan törlöd kosaradból a terméket?;Are you sure you want to remove this item?;
+;;;
+kosarba_kerult;A termék a kosárba került;The product added to cart;
+vasarlas_folytatasa;Vásárlás folytatása;Continue shopping;
+valaszthato_opciok;Választható opciók;Options;
+minden_termek;Minden termék;All products;
+uj_termekek;Új termékek;New products;
+coreclub_termekek;CoreClub termékek;CoreClub only;
+akcios_termekek;Akciós termékek;Sale only;
+rendezes;Rendezés;Sort results by;
+legujabb_elol;Legújabb elöl;Newest first;
+legdragabb_elol;Ár szerint csökkenő;Price ( in descending order );
+legolcsobb_elol;Ár szerint növekvő;Price ( in ascending order );
+osszes_marka;Minden márka;All brands;
+;;;
+Szemelyes_adatok;Személyes adatok;Name;
+Vezeteknev;Vezetéknév;First name;
+Keresztnev;Keresztnév;Last name;
+Cegnev;Cégnév;Company name;
+nem_kotelezo;Nem kötelező;Optional;
+Orszag;Ország;Country;
+Iranyitoszam;Irányítószám;ZIP Code;
+Varos;Város;City;
+Utcanev;Utcanév;Street;
+Hazszam;Házszám;No.;
+Emelet_ajto_egyeb;Emelet, ajtó, egyéb;Other;
+Kapcsolat;Kapcsolat;Contact;
+eltero_szamlazas_szoveg;Eltérő számlázási címét a megrendelés oldalon töltheti ki;Other than the billing address on the order page can be filled;
+Jelszo;Jelszó;Password;
+jelszo_ismetlese;Jelszó mégegyszer;Confirm password;
+Hirlevel;Hírlevél;Newsletter;
+Feliratkozom_a_hirlevelre;Feliratkozom a Coreshop hirlevelére;Subscribe newsletter;
+Regisztracios_adatok_elkuldese;Regisztráció;Submit;
+A_csillaggal_jelolt_mezok_kitoltese_kotelezo;* Kötelezően kitöltendő mezők!;* Required fields!;
+;;;
+A_fizetesi_mod_kivalasztasa_kotelezo;Válassz fizetési módot!;Please select a payment method!;
+Valaszd_ki_a_meretet;Válassz méretet!;Choose a size!;
+megrendeles_visszaigazolasa;Megrendelés visszaigazolása;Order Confirmation;
+Bejelentkezes;Bejelentkezés;Sign in;
+;;;
+aszf;ÁSZF;Terms & Conds;
+Osszesen_tetel;Összesen tétel;Total items;
+;;;
+cib_sikeres;A fenti megrendelés kifizetése <b>sikeres</b> volt.;These payment orders was <b> successfull </ b>.;
+cib_sikeres_vissza;A CIB Bank a vásárlást a következő adatokat igazolja vissza:;CIB Bank to purchase the following data confirm:;
+cib_sikertelen;A fenti megrendelés kifizetése <b>sikertelen</b> volt.;These payment orders was <b> failed </ b>.;
+cib_sikertelen_vissza;A CIB Bank a következő adatokat jelezte vissza:;CIB Bank reported back the following details:;
+Valaszkod;Válaszkód;Response Code;
+Valaszuzenet;Válaszüzenet;Reply message;
+Tranzakcio_azonosito;Tranzakció azonosító;Transaction ID;
+Engedelyszam;Engedélyszám;Permit No.;
+Tranzakcio_osszege;Tranzakció összege;Transaction amount;
+cib_tomeout;"<p>A megrendelésed véglegesítése <b>sikertelen</b> volt, valószínűleg túllépted a 10 perces fizetési időkorlátot.</p><p>A CIB Bank a megkezdett tranzakciót törölte.</p><p>A megrendelésed törléséről nemsokára visszaigazoló levelet küld a rendszer.</p><p>Amennyiben újra le szeretnéd adni megrendelésedet, azt itt megteheted: <input type=""button"" value=""Megrendelés"" onclick=""document.location.href=\'/hu/megrendeles\'"" class=""submit""></p>";"<p> Successful finalization of the order was likely to have exceeded the 10 minute time limit for payment.</ p><p>CIB Bank is a transaction initiated deleted.</ p> <p>The order is canceled soon confirmation letter is sent to the system.</ p> If you would like to order your back, you can do that here: <input type = ""button"" value=""Checkout"" onclick=""document.location.href = \'/en/order\'"" class=""submit ""></p>";
+rendeles_ujra;"<p>A megrendelésed itt újra elküldheted: <input type=""button"" value=""Megrendelés"" onclick=""document.location.href=\'/hu/megrendeles\'"" class=""submit""></p>";"<p>A re-post your order here: <input type=""button"" value=""Checkout"" onclick=""document.location.href=\'/en/order\'"" class=""submit""></p>";
+;;;
+Vonalkod;Vonalkód;EAN;
+Termeknev;Terméknév;Item;
+Mennyiseg;Mennyiség;QTY;
+egy_utra;Egy útra;One Way;
+Regisztracios_adatok_modositasa;Regisztrációs adatok szerkesztése;Edit profile;
+Adatok_mentese;Mentés;Save profile;
+Nem_modosithato;Nem módosítható;Can't be changed!;
+Modositasi_kerelmed_jelezd_az_adminnak;Módosítási e-mail az adminisztrátornak;Modify request e-mail to the administrator;
+;;;
+megrendeles_erkezett;Megrendelés érkezett;New order arrived;
+;;;
+Jelszo_modositasa;Jelszómódosítás;Change password;
+Jelszo_modositas_bevezeto;Ha elfelejtetted jelszavad, itt újat adhatsz meg.<br />Jelszavad akkor lesz aktív, ha az e-mailben kapott jelszót aktiválod.;If you have forgotten your password, you can define a new one. <br /> Your password will be active when you activate this new password via e-mail.;
+Uj_jelszo;Új jelszó;New password;
+Uj_jelszo_megerositese;Új jelszó megerősítése;Confirm password;
+Jelszo_ujrakuldes;Küldés;Send;
+Az_email_nem_megfelelo;Az e-mail cím nem megfelelő;The e-mail address format is not correct;
+email_nem_letezik;A megadott e-mail címmel nincs felhasználói azonosítónk!;Invalid e-mail address!<br /><br />The e-mail address is not exist in our database.;
+A_jelszo_mezo_kitoltese_kotelezo;A jelszó mező kitöltése kötelező;The password field is required;
+Jelszomodositasi_kerelem;Jelszómódosítási kérelem;Password change request;
+Nem_vegrehajthato_jelszo_aktivalas;Nem végrehajtható.;Error;
+A_megadott_jelszo_rovid;A megadott jelszó túl rövid (min. 5 karakter);The password is too short (min. 5 chars);
+A_jelszo_mezok_nem_egyeznek;A jelszó mezők nem egyeznek!;The password fields do not match!;
+Aktivacios_level_kikuldve;A jelszó aktiválásához lépj be e-mail fiókodba és nyisd meg a kapott linket.;To activate the password log into your email account and open the received link.;
+Aktivacios_level_nincs_kikuldve;Az aktivációs levél nincs kiküldve;Activation message not sent;
+Sikeres_jelszo_valtoztatas;Jelszóváltoztatási kérelmed rögzítettük, aktiváló levelet küldtünk e-mail címedre.<br /><br />Jelszavad akkor lesz aktív, ha megnyitod az e-mail-ben kapott aktiváló linket.;Change password request has been set up for activation letter we sent to your email address.<br /><br />Your password will be active when you open the e-mail was received activation link.;
+Sikertelen_jelszo_valtoztatas;Sikertelen jelszóváltoztatás!;Failed to change password!;
+Sikeres_jelszo_aktivalas;"Sikeres jelszó aktiválás!<br />Új jelszavaddal <a href=""/hu/megrendeles"">itt</a> jelentkezhetsz be az oldalra.";"Password activation was succesfull!<br /><br /><a href=""/en/order"">You can log in to the site here</a>.";
+;;;
+Leiratkozas;Leiratkozás;Unsubscribe;
+Leiratkozas_bevezeto;Hírlevelünkről leiratkozhatsz itt. Add meg e-mail címed és klikkelj a leiratkozásra.<br />Hírlevelünkre bármikor feliratkozhatsz, oldalunkra bejelentkezve, regisztrációs adataid módosításánál (a legalsó sorban).<br /><br />Elnézésed kérjük, ha hírlevelünkkel terheltük postafiókodat.;;
+;;;
+valassz_markat;Válassz márkát;Brands;
+tovabbi_kepek;További nézetekhez klikk a kép bal, vagy jobb oldalára;Click on the picture for more views;
+;;;
+uzletunk;Üzletünk;Our Store;
+ervenytelen_kod;A kuponkód csak teljes árú (nem akciós) termékekre érvényes.;Invalid code;
+kedvezmeny_osszeg;A kedvezmény összege;Discount;
+Ajandekkartya_egyenlege;Ajándékkártya;Giftcard;
+Ajandekkartyarol_felhasznalot_osszeg;Ajándékkártya felhasznált összeg;Giftcard credit;
+Ajandekkartya_aktualis_egyenlege;Ajándékkártya záró egyenlege;Giftcard balance;
+tovabb_a_megrendeleshez;Tovább a megrendeléshez;Go to checkout;
+Megye_Varos;Megye / Város;County / City
+marka;Márka;Brands;
+meret;Méret;Sizes;
+kategoria;kategória;category;
+legutobb_megtekintett_termekek;legutóbb megtekintett termékek;viewed items;

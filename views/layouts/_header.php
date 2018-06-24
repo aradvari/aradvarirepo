@@ -79,7 +79,7 @@ use yii\helpers\Url;
         <a class="navbar-brand" href="/">
             <img src="/images/coreshop_logo_w_icon.svg" alt="Coreshop.hu" class="logo">
         </a>
-        <a class="hidden-md-up nav-link cart-icon-container" href="<?= Url::to(['cart/view']) ?>">
+        <a class="hidden-md-up nav-link cart-icon-container cart-link" href="#" data-href="<?= Url::to(['cart/view']) ?>">
             <div class="cart-icon-mobile"></div>
             <span class="cart-count"></span>
          </a>
@@ -235,7 +235,7 @@ use yii\helpers\Url;
                 </li>
 
                  <li class="nav-item dropdown hidden-md-down">
-                    <a class=" cart-icon dropdown-toggle nav-link" data-hover="dropdown" href="<?= Url::to(['cart/view']) ?>">
+                    <a class=" cart-icon dropdown-toggle nav-link cart-link" data-hover="dropdown" href="#" data-href="<?= Url::to(['cart/view']) ?>">
                             <span class="cart-count"></span>
                     </a>
 

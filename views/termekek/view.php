@@ -470,8 +470,8 @@ JS
             <div class="media">
                 <img src="/images/icons/shop.png" alt="Coreshop.hu - bemutatóterem"/>
                 <div class="media-body">
-                    <!-- <p>Gyere el és nézd meg <a href="/hu/uzletunk">bemutatótermünkben</a>.</p> -->
-                    <p>Megvásárolhatod <a href="/hu/uzletunk">üzletünkben</a> is.</p>
+                    <!-- <p>Gyere el és nézd meg <a href="/uzletunk">bemutatótermünkben</a>.</p> -->
+                    <p>Megvásárolhatod <a href="/uzletunk">üzletünkben</a> is.</p>
                 </div>
             </div>
         </div>

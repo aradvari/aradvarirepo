@@ -1,0 +1,53 @@
+@font-face{font-family:vans;src:url(/fonts/VansSans-Regular.otf);}
+
+.main {margin:0; }
+
+.content{max-width:none !important;}
+
+html,body { height: 100%; }
+
+.vos {background-image:url('/banner_product_page/2017/0627/oldskool-black.jpg'); background-size:100%; background-repeat:no-repeat; height: 100%; background-color:#000; max-width:100% !important; width:100% !important; padding:30% 0; top:0; left:0; position:fixed; z-index:-1;}
+
+.vos_block	{ width:100%; background-color:#FFF; text-align:center; margin-bottom:0px; display:inline-block; opacity:0.9;}
+
+
+.vos_1 { text-align:center; text-transform:uppercase; color:#fff; clear:both; 
+padding:2% 0; margin:0; display:block; }
+
+.vos_1 img { max-width:200px; }
+.vos_1 span { padding:8px 30px; background-color:#dd2f2a; font-size:14px; border-radius:4px;}
+.vos_1 h1{ font-family:vans; font-size:60px; color:#fff; margin:20px 0; padding:0;}
+.vos_1 p{ font-family:vans; font-size:60px; color:#dd2f2a; margin:0; padding:0;}
+
+.vos_2 { padding:2% 4%; margin:0 auto; line-height:30px; max-width:1280px; text-align:left; font-size:20px; }
+
+.vos_block_3	{ width:100%; background-color:rgba(0,0,0,0.8); text-align:center; display:inline-block; opacity:0.9; }
+
+
+.vos_3 { b_ackground-color:#fff; b_ackground-image:url('/banner_product_page/2017/0627/customization.jpg'); background-repeat:no-repeat; padding:2% 4%; margin-bottom:20px; display:inline-block; max-width:1280px; text-align:left; margin:0 auto;}
+
+.vos_3 { padding:2% 4%; margin-bottom:20px; display:inline-block; max-width:1280px; text-align:left; margin:0 auto; color:#FFF; font-size:20px; line-height:30px; }
+
+
+.vos_block_shoes	{ width:100%; background-color:#FFF; text-align:center; margin-bottom:0px; display:inline-block; opacity:0.9; max-width:1280px; 
+-webkit-transition-duration:0.4s;transition-duration:0.4s;-webkit-transition-property:opacity; }
+.vos_block_shoes:hover	{ opacity:1; }
+
+.vos_block_shoes p { font-family:vans; font-size:40px; margin:20px 0 0 0; padding:0; color:#000;	}
+
+.vos_imgs	img { max-width:25%; opacity:1;}
+
+.vos_5 { margin-bottom:-6%;}
+.vos_5  img{ width:100%; }
+
+@media screen and (max-width:800px)	{ 
+	.main {margin:0; }
+	.vos_1 {	padding:10% 0 0 0;	}
+	.vos_1 img { max-width:120px; }
+	.vos_1 h1{ font-size:30px; margin:10px 0; }
+	.vos_1 p{ font-size:20px; }
+	.vos_2 { font-size:14px; padding:10%; }
+	.vos_3 { font-size:14px; padding:10%; }
+	.vos_imgs	img { width:50%; }	
+	.vos_block_shoes p { font-size:20px; }
+}

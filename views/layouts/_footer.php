@@ -151,7 +151,7 @@ use yii\helpers\Url;
           <h4>Fizetési <span class="alice-blue">tudnivalók</span> </h4>
           <p>A bankkártyás fizetés szolgáltatója a</p>
 
-            <a href="/hu/kartyas-fizetes"><img src="/images/cibbank-logo.png" alt="Kártyás fizetés szolgáltatója"
+            <a href="/kartyas-fizetes"><img src="/images/cibbank-logo.png" alt="Kártyás fizetés szolgáltatója"
                                                title="Tájékoztató a bankkártyás fizetésről" style="margin:10px 0;"></a>
 
             <br>
@@ -159,7 +159,7 @@ use yii\helpers\Url;
             <!-- <p class="margin-top-20" >Elfogadott bankkártya típusok</p> -->
             <h4 class="margin-top-20">Elfogadott <span class="alice-blue">bankkártya típusok</span></h4>
 
-            <a href="/hu/kartyas-fizetes">
+            <a href="/kartyas-fizetes">
               <!-- <img src="/images/cib-kartyalogok.png" alt="Elfogadott bankkártya típusok" style="margin:10px 0;"> -->
 
               <div class="row">
@@ -184,9 +184,9 @@ use yii\helpers\Url;
             <br>
             <br>
 
-            <p><a href="/hu/kartyas-fizetes" class="white link">Tájékoztató a bankkártyás fizetésről</a></p>
+            <p><a href="/kartyas-fizetes" class="white link">Tájékoztató a bankkártyás fizetésről</a></p>
 
-            <p><a href="/hu/kerdesek-valaszok" class="white link">Gyakran feltett kérdések</a></p>
+            <p><a href="/kerdesek-valaszok" class="white link">Gyakran feltett kérdések</a></p>
         </div>
       </div>
 
@@ -295,7 +295,7 @@ use yii\helpers\Url;
 
             <p>A bankkártyás fizetés szolgáltatója a</p>
 
-            <a href="/hu/kartyas-fizetes"><img src="/images/cibbank-logo.png" alt="Kártyás fizetés szolgáltatója"
+            <a href="/kartyas-fizetes"><img src="/images/cibbank-logo.png" alt="Kártyás fizetés szolgáltatója"
                                                title="Tájékoztató a bankkártyás fizetésről" style="margin:10px 0;"></a>
 
             <br>
@@ -303,15 +303,15 @@ use yii\helpers\Url;
 
             <p>Elfogadott bankkártya típusok</p>
 
-            <a href="/hu/kartyas-fizetes"><img src="/images/cib-kartyalogok.png" alt="Elfogadott bankkártya típusok"
+            <a href="/kartyas-fizetes"><img src="/images/cib-kartyalogok.png" alt="Elfogadott bankkártya típusok"
                                                style="margin:10px 0;"></a>
 
             <br>
             <br>
 
-            <p><a href="/hu/kartyas-fizetes">Tájékoztató a bankkártyás fizetésről</a></p>
+            <p><a href="/kartyas-fizetes">Tájékoztató a bankkártyás fizetésről</a></p>
 
-            <p><a href="/hu/kerdesek-valaszok">Gyakran feltett kérdések</a></p>
+            <p><a href="/kerdesek-valaszok">Gyakran feltett kérdések</a></p>
 
         </div>
 

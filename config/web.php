@@ -1,5 +1,7 @@
 <?php
 
+use yii\web\UrlNormalizer;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -52,6 +54,10 @@ $config = [
             'class' => 'app\components\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'normalizer' => [
+                'class' => 'yii\web\UrlNormalizer',
+                'action' => UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
+            ],
             'rules' => [
                 'regisztracio' => 'user/create',
                 'tranzakcio/<userId:\d+>' => 'order/cib',

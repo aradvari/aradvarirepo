@@ -1,0 +1,1 @@
+<div id="welcome_message" style="w_idth:400px; padding:-10px; display:none;"><a href='javascript:void(0);' onclick='jQuery("#facebox_overlay").click();'>	<img src="/banner_box/2015/october-sale-1031.jpg" style="width:100%; max-width:800px;" /></a>	</div>

@@ -1,0 +1,1 @@
+<table class="leftpanel-infobox">	<? 	$info = array (		'1' => 'Ingyenes szállítás 10.000 ft felett',		/*'2' => 'Ajándék "Coreshop Cinch Bag" minden megrendeléshez',*/		'3' => 'Személyes átvétel irodánkban',		'4' => 'Telefonos rendelés: 06-70-676-2673'	);		foreach($info as $url=>$text)		echo '<tr><td><a href="'.$url.'">'.$text.'</a></td></tr>';	?>	</table>

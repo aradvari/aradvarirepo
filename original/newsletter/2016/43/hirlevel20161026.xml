@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Fields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FromEmail>hirlevel@coreshop.hu</FromEmail>
+  <FromName>Coreshop</FromName>
+  <Reply>nevalaszoljra@coreshop.hu</Reply>
+  <Priority>1</Priority>
+  <Encoding>ISO-8859-1</Encoding>
+  <Format>text/html</Format>
+  <Subject>Hírlevél teszt 1</Subject>
+  <Body>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+&lt;meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"&gt;
+
+&lt;meta name="HandheldFriendly" content="true" /&gt;
+&lt;meta name="viewport" content="width=device-width, height=device-height, user-scalable=yes" /&gt;
+
+&lt;title&gt;Coreshop hírlevél 2016/43&lt;/title&gt;
+
+	
+&lt;style type="text/css"&gt;
+&lt;!--
+body	{ width: 100% !important; margin:0;padding:0;background-color:#fff;font-family:Helvetica, sans-serif;font-size: 0.8em;font-weight:normal;color:#222;text-decoration:none;margin:0;padding:0;}
+
+table { border-collapse:collapse; }
+
+.main  { width:100%; max-width:800px; padding:0px; background-color:#fff; text-align:center;	}
+
+img {  max-width: 800px; width:100%; margin:0; padding:0; border:none; }
+
+a {  color: #ff4c4b; border:none; outline:none; text-decoration:none; font-weight: normal; }
+
+a:hover { text-decoration:none; }
+
+p {	padding:10px; margin:0 0 2% 0; text-align:left; color:#222; }
+
+h1  {	color:#1a3766; font-size:1em; font-weight:bold; text-decoration:normal; margin:0; padding:0; display:block;}
+
+h3  {	color:#999;font-size:0.8em; font-weight:normal;text-decoration:normal;margin:0;padding:0 20px;} 
+
+h4 { color:#fff; background-color:#ff4c4b; padding:10px; font-size:0.8em; font-weight:normal; text-align:center; text-transform:uppercase; }
+
+.content	{ position:relative;padding:0;margin:0;text-align:left;	}
+
+.header { background-color:#1a3766; }
+
+th	{ color:#1a3766;padding:4px;border-bottom:1px solid #1a3766;text-align:left;}
+--&gt;
+
+&lt;/style&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+
+
+&lt;div align="center" style="background-color:#fff;"&gt;
+
+&lt;div style="width:100%; max-width:800px; text-align:center;"&gt;
+
+
+&lt;div class="header" style="background-color:#1a3766; text-align:left;"&gt;
+&lt;a href="http://coreshop.hu" target="_blank"&gt;&lt;img src="http://coreshop.hu/newsletter/coreshop-logo.png" alt="coreshop.hu" title="coreshop.hu" style="border:none; width:40%; max-width:160px; padding:1%; margin-bottom:0px;" border=0 /&gt;
+&lt;/a&gt;
+
+&lt;/div&gt;
+
+&lt;div class="content" style="color:#222;"&gt;
+
+&lt;a href="https://coreshop.hu/?source=newsletter20161026" target="_blank" style="text-decoration:none; color:#222;"&gt;
+&lt;img src="http://coreshop.hu/newsletter/2016/43/20161025-october-sale.jpg" border=0 style="border:none; margin:0;" alt="Coreshop.hu" /&gt;
+&lt;/a&gt;
+
+&lt;p&gt;
+Sziasztok! 
+&lt;br /&gt;
+&lt;br /&gt;
+Azok számára akik szeretnek kedvező árakon vásárolni, jó hírrel szolgálhatunk: 2016. november 6.-ig &lt;b&gt;MINDEN TERMÉKRE 20%&lt;/b&gt; kedvezményt adunk! Legyen az cipő, póló, pulóver, nadrág, sapka, táska és minden egyéb termék, amit az oldalon találsz. Ne várj sokáig, hogy minél teljesebb készletből válogathass! 
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Ma megrendeled, holnap már hordhatod!&lt;/b&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Mottónkhoz hűen, garantáljuk az 1 munkanapos kiszállítást. Ha rendelésed 16:00 óra előtt adod le munkanapon, akkor csomagod már másnap kézbesíti a GLS csomagküldő szolgálat.
+
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+
+&lt;img src="http://webserver.gls-hungary.com/download/banner.png" a_lign="left" style="width:240px;margin:0 10px 10px 0;" alt="GLS bankkártyás fizetés" /&gt;
+&lt;br /&gt;
+&lt;b&gt;Már a GLS futárnál is fizethetsz bankkártyával!&lt;/b&gt;
+&lt;br /&gt; 
+&lt;br /&gt; 
+Újabb szolgáltatással bővült webáruházunk. Ezentúl a küldeményed nemcsak készpénzben, hanem már bankkártyával is kifizetheted a GLS futárnál található kártyaterminálon.
+
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+
+Jó böngészést oldalunkon! 
+&lt;br /&gt;
+&lt;br /&gt;
+CoreTeam
+&lt;/p&gt;
+
+
+&lt;br /&gt;
+
+&lt;p&gt;&lt;center&gt;
+
+    Ezt a hírlevelet azért kaptad, mert Coreshop.hu regisztrációdnál feliratkoztál levelezőlistánkra. &lt;a href="http://coreshop.hu/hu/leiratkozas" target="_blank" style="color:#1a3766;"&gt;&lt;br /&gt;Ha nem szeretnél a későbbiekben hírlevelet kapni tőlünk, akkor leiratkozáshoz klikkelj ide&lt;/a&gt;.
+
+&lt;/p&gt;&lt;/center&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;div&gt;&amp;copy; 2016 - &lt;a href="http://coreshop.hu" target="_blank"  style="color:#1a3766;"&gt;Coreshop.hu&lt;/a&gt; &amp;middot; +36 70 676 2673
+&lt;/div&gt;
+
+
+&lt;br /&gt;
+&lt;br /&gt;
+
+&lt;div style="background-color:#ccc; padding:10px 4%; text-align:center;"&gt;
+    &lt;br /&gt;
+	Ha hírlevelünket nem jeleníti meg levelezőprogramod, 
+	&lt;a href="http://coreshop.hu/newsletter/2016/43" target="_blank"  style="color:#1a3766;"&gt;megnyithatod itt böngésződben&lt;/a&gt;
+	&lt;/br&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</Body>
+  <Addresses>
+    <Index>0</Index>
+    <Email>hblx@hotmail.com</Email>
+    <Name />
+    <Company />
+    <Status />
+    <Memo />
+    <Carrier />
+    <Checked>true</Checked>
+    <Image>0</Image>
+  </Addresses>
+  <Addresses>
+    <Index>1</Index>
+    <Email>gabor@eyecandy.hu</Email>
+    <Name />
+    <Company />
+    <Status />
+    <Memo />
+    <Carrier />
+    <Checked>true</Checked>
+    <Image>0</Image>
+  </Addresses>
+</Fields>

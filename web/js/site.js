@@ -24,7 +24,11 @@ var refreshCartCount = function () {
         method: "GET",
         url: "/cart/get-cart-count",
     }).done(function (result) {
-        $('.cart-count').html('(' + result.count + ')')
+        $('.cart-count').html('(' + result.count + ')');
+        if (parseInt(result.count) > 0)
+            $('.cart-link').attr('href', $('.cart-link').data('href'));
+        else
+            $('.cart-link').attr('href', '#');
     });
 
 }

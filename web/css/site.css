@@ -4503,14 +4503,14 @@ img.horizontal-image {
 
 @media (max-width: 1199px) {
     .navbar-dark .navbar-nav .nav-link {
-           padding: 0px 15px 0px 15px;
+           padding: 0px 10px 0px 10px;
            line-height: 77px;
     }
 }
 
 @media (max-width: 1062px) {
     .navbar-dark .navbar-nav .nav-link {
-           padding: 0px 1px 0px 15px;
+           padding: 0px 1px 0px 10px;
     }
 }
 

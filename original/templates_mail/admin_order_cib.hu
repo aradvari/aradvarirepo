@@ -1,0 +1,13 @@
+<p>Kedves Adminisztrátor!</p>
+<p>Az alábbi adatok szerint igazoljuk vissza a coreshop.hu oldalon leadott megrendelést:</p>
+<p>Megrendelõ neve: #teljes_nev#</p>
+<p>Szállítási Cím: #szallitasi_cim#</p>
+<p>Megjegyzés: <br /> #megjegyzes#</p>
+ 
+#kosar#
+
+#cib_valasz#
+
+<p>Üdvözlettel: Coreshop.hu<br />
+<p><a href="http://coreshop.hu">coreshop.hu</a> | <a href="mailto:info@coreshop.hu">info@coreshop.hu</a></p>
+<i>Ezt a levelet a rendszer automatikusan generálta, kérünk ne válaszolj rá!</i>

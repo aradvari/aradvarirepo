@@ -138,7 +138,9 @@ class TermekekSearch extends Termekek
             't.tipus' => $this->tipus,
         ]);
 
-        $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($this->q)]);
+        $q = (array)explode(" ", $this->q);
+        foreach ($q as $text)
+            $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($text)]);
 
         return $dataProvider;
     }
@@ -166,13 +168,17 @@ class TermekekSearch extends Termekek
         ]);
 
         $query->andFilterWhere(['!=', 'v.megnevezes', '-']);
-        $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($this->q)]);
+
+        $q = (array)explode(" ", $this->q);
+        foreach ($q as $text)
+            $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($text)]);
 
         return $dataProvider;
     }
 
     public function searchColor($params)
     {
+
         $query = $this->getSearchQuery()
             ->select(['t.szinszuro'])
             ->orderBy('t.szinszuro')
@@ -193,8 +199,11 @@ class TermekekSearch extends Termekek
             't.tipus' => $this->tipus,
         ]);
 
-        $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($this->q)]);
         $query->andWhere(['!=', 't.szinszuro', '']);
+
+        $q = (array)explode(" ", $this->q);
+        foreach ($q as $text)
+            $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($text)]);
 
         return $dataProvider;
     }
@@ -221,8 +230,11 @@ class TermekekSearch extends Termekek
             't.szinszuro' => $this->szin,
         ]);
 
-        $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($this->q)]);
         $query->andWhere(['!=', 't.tipus', '']);
+
+        $q = (array)explode(" ", $this->q);
+        foreach ($q as $text)
+            $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($text)]);
 
         return $dataProvider;
     }
@@ -296,6 +308,33 @@ class TermekekSearch extends Termekek
         return $dataProvider;
     }
 
+    public function searchMainCategoryWithParams($params)
+    {
+        $query = $this->getSearchQuery()
+            ->select(['pk.*'])
+            ->groupBy(['pk.id_kategoriak'])
+            ->orderBy('pk.sorrend, k.sorrend');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $this->setAttributes($params);
+
+        $query->andFilterWhere([
+            'k.url_segment' => $this->subCategory,
+            'm.url_segment' => $this->brand,
+            'v.url_segment' => $this->meret,
+            't.szinszuro' => $this->szin,
+            't.tipus' => $this->tipus,
+        ]);
+
+//        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
+
+        return $dataProvider;
+    }
+
     public function searchCustom($params)
     {
         $query = static::getSearchQuery()
@@ -317,39 +356,51 @@ class TermekekSearch extends Termekek
             't.tipus' => $this->tipus,
         ]);
 
-        $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($this->q)]);
+        $q = (array)explode(" ", $this->q);
+        foreach ($q as $text)
+            $query->andFilterWhere(['like', $this->likeFilter, mb_strtolower($text)]);
 
         return $dataProvider;
     }
 
     public static $models = [
-        ['searchMainCategory', 'mainCategory', 'url_segment'],
-        ['searchSubCategory', 'subCategory', 'url_segment'],
+        ['searchMainCategoryWithParams', 'mainCategory', 'url_segment'],
+        ['searchSubCategoryWithParams', 'subCategory', 'url_segment'],
         ['searchBrand', 'brand', 'url_segment'],
-        ['searchSize', 'meret', 'url_segment'],
+//        ['searchSize', 'meret', 'url_segment'],
         ['searchColor', 'szin', 'szinszuro'],
         ['searchType', 'tipus', 'tipus'],
     ];
 
+    public static $a = 1;
+
     public static function generateMap($params = [])
     {
 
+        static::$a++;
+        if (static::$a > 10) return;
         $searchModel = new TermekekSearch();
 
         foreach (static::$models as $model) {
 
-            $dataProvider = $searchModel->{$model[0]}($params);
-            $items = $dataProvider->getModels();
-            foreach ($items as $item) {
+            if (!in_array($model[1], array_keys($params))) {
 
-                $termekUrl = Url::to(['termekek/index',
-                    $model[1] => $item[$model[2]],
-                ], true);
+                $dataProvider = $searchModel->{$model[0]}($params);
+//                $dataProvider->query->limit(5);
+                $items = $dataProvider->getModels();
+                $route = [];
+                foreach ($items as $item) {
 
-                static::$urls[] = $termekUrl;
+                    if ($item[$model[2]]) {
+                        $route = ArrayHelper::merge($params, [$model[1] => $item[$model[2]]]);
+                        asort($route);
+//                    static::$urls[] = $route;
+                        static::$urls[serialize($route)] = Url::to(ArrayHelper::merge(['termekek/index'], $route), true);
+                    }
+                    static::generateMap($route);
 
-                if (count($params) < 1)
-                    static::generateMap(ArrayHelper::merge($params, [$model[1] => '']));
+                }
+
             }
 
         }

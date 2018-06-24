@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /appshop/
+Disallow: /cron/
+Disallow: /fb/
+Disallow: /fb_belga/
+Disallow: /newsletter/
+Allow: /js/
+Allow: /css/

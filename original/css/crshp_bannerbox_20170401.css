@@ -1,0 +1,34 @@
+.new-welcome-banner-box-container{position:relative;width:100%;text-align:center;margin:0 0 2% 0;padding:0;vertical-align:top;}
+.new-welcome-banner-box{width:30%;z-index:1;position:relative;top:0;display:inline-block;text-align:left;overflow:hidden;cursor:pointer;padding:0;margin:0;}
+.new-welcome-banner-box:hover  p{ background-color:#000; color:#fff; }
+.new-welcome-banner-box:hover  img{ transform: scale(1.1);}
+.new-welcome-banner-box-image { position:relative;}
+.new-welcome-banner-box img{width:100%; transition: all .4s ease-in-out;}
+.new-welcome-banner-box-szoveg { position:relative;padding:5%; background-color:#fff; text-align:center; height:200px;}
+.new-welcome-banner-box-szoveg h4 { font-family:proxima_novablack,sans-serif; letter-spacing:0; margin:10px 0 26px 0;}
+.new-welcome-banner-box-szoveg p { padding:4%;position:absolute;top:150px; left:16%; margin:0 auto;width:60%;text-transform:uppercase;background-color:#fff;text-align:center;color:#000;border:2px solid black;font-weight:bold;
+-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden;-moz-osx-font-smoothing:grayscale;-webkit-transition-duration:0.4s;transition-duration:0.4s;-webkit-transition-property:color, background-color;transition-property:color, background-color;}
+
+.new-welcome-infobox {width:30%;z-index:1;display:inline-block;text-align:center;padding:20px 0;margin:0;outline:0px solid red;}
+.new-welcome-infobox:hover  a { color:#2a87e4;}
+.new-welcome-infobox a {color:#222;}
+.new-welcome-infobox img{height:30px;vertical-align:middle;margin-right:10px;}
+
+/* tablet fekvo */
+@media screen and (max-width:810px){
+	.new-welcome-banner-box-container { margin-bottom:4%;display:inline-block;}
+	.new-welcome-banner-box{ float:left; /*ajfon miatt*/}
+	.new-welcome-banner-box-szoveg { position:relative;padding:2% 4%;font-size:12px;background-color:#fff;text-align:center;height:180px; }
+	.new-welcome-banner-box-szoveg h4 { font-size:18px;}
+	.new-welcome-banner-box-szoveg p { padding:2%;top:150px;}	
+	.new-welcome-infobox { display:none; }
+}
+
+/* mobil allo  -3 box 100%*/
+@media screen and (max-width:550px){
+	.new-welcome-banner-box {clear:both;margin:0 2% 10% 2% !important;width:96%;}
+	.new-welcome-banner-box-szoveg {height:140px;font-size:16px; height:200px;}
+	.new-welcome-banner-box-szoveg h4 { font-size:26px;margin:9% 2%;}
+	.new-welcome-banner-box-szoveg p { padding:2%;top:150px;}	
+	.new-welcome-infobox {display:none;}
+}

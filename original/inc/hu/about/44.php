@@ -1,0 +1,1 @@
+<div class="about"><?echo nl2br("<p><img src='/pictures/brandlogos/44.png' alt='Emerica' align='left' style='margin:0px 40px 0 0;' />Made In EmericaMagas minőségű gördeszkás cipők és ruházatStay Gold Motherf@*#ers!</p>");?></div>

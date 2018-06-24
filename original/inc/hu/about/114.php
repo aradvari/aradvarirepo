@@ -1,0 +1,1 @@
+<div class="about" style="b__ackground-image:url(/inc/hu/about/vans-header.jpg);">		<div class="about-text">		<h1>Oakley</h1>	<img src="https://coreshop.hu/pictures/markak/114.png" align="right" style="width:11%; margin:0;" />	...	</div></div>

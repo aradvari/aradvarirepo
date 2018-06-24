@@ -1,0 +1,23 @@
+.footer{clear:both;background-color:#000;color:#eee;overflow:auto;text-align:center;font-size:0.8em;padding:0 2%;}
+.footer-container{ width:100%; max-width:1280px; margin:80px 0; padding:0; display:inline-block;}
+.footer #block{float:left;text-align:left;font-size:16px;line-height:40px;color:#FFF;padding:0;margin:0;}
+.footer #block a{color:#fff;}
+.footer #block a:hover{color:#2a87e4;}
+.footer #block .soc-icon {width:30px;}
+.footer #block img {margin:0 10px 20px 0; display:inline-block;height:100%;vertical-align: middle;}
+.footer #block span { line-height:20px;display:inline-block;height:100%;vertical-align: middle;padding:0;margin:0;}
+.footer #block p	{margin:0;letter-spacing:0;text-transform:uppercase;font-weight:bold;font-size:13px;}
+}
+@media screen and (max-width:1300px){ .footer-container { width:96%;margin:80px 2%;} }
+
+@media screen and (min-width:811px){.footer-mobile{display:none;} }
+
+@media screen and (max-width:810px){
+#backtotop{display:none;}
+.footer{display:none;} /* desktop lablec kikapcsolva */
+.footer-mobile {background-color:#000;text-align:center; padding:30px 20px;color:#FFF; line-height:30px;}
+.footer-mobile #block{font-family: proxima_nova_rgregular,sans-serif; font-size:16px;}
+.footer-mobile #block .soc-icon {width:34px; margin:10px 5px 0 5px;}
+.footer-mobile #block img { margin-bottom:40px;}
+.footer-mobile a { color:#FFF;}
+}

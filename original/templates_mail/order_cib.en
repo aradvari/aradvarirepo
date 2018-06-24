@@ -1,0 +1,14 @@
+<p>Dear #teljes_nev#!</p>
+<p>Thank you for your order from Coreshop! We confirm your oder details below:</p>
+<p>Name: #teljes_nev#</p>
+<p>Ship-to address: #szallitasi_cim#</p>
+<p>Remarks: <br />#megjegyzes#</p>
+ 
+#kosar#
+
+<p>Best regards: Coreshop.hu</p>
+<p><a href="http://coreshop.hu">coreshop.hu</a> | <a href="mailto:info@coreshop.hu">info@coreshop.hu</a><br />
+<a href="http://coreskate.eu">coreskate.eu</a> | <a href="http://skateboardshoes.eu">skateboardshoes.eu</a></p>
+
+
+<i>Please do not respond to this email. If you have any questions regarding our services or on how to use our website, please send an email to info@coreshop.hu</i>

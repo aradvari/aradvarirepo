@@ -65,7 +65,7 @@ OrderAsset::register($this);
 
     <?= $form->field($felhasznaloModel, 'hirlevel', ['template' => '{error}{hint}{input} Feliratkozom a Coreshop hirlevelére'])->checkbox([], '') ?>
 
-    <?= $form->field($felhasznaloModel, 'contract', ['template' => '{error}{hint}{input} Elfogadom az <a href="/hu/altalanos-szerzodesi-feltetelek" target="_blank">Általános szerződési feltételeket</a> (<a href="/coreshop_aszf.pdf" target="_blank">⇓ PDF</a>)'])->checkbox([], false) ?>
+    <?= $form->field($felhasznaloModel, 'contract', ['template' => '{error}{hint}{input} Elfogadom az <a href="/altalanos-szerzodesi-feltetelek" target="_blank">Általános szerződési feltételeket</a> (<a href="/coreshop_aszf.pdf" target="_blank">⇓ PDF</a>)'])->checkbox([], false) ?>
 
     <?= Html::submitButton('Regisztráció', ['class' => 'arrow_box', 'name' => 'reg-button']) ?>
 

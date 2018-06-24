@@ -111,6 +111,21 @@ class UrlManager extends \yii\web\UrlManager
                     'param5' => '',
                 ],
             ],
+
+            [
+                'pattern' => 'vans-old-skool/' . $paramRule,
+                'route' => 'termekek/index',
+                'defaults' => [
+                    'brand' => 'vans',
+                    'q' => 'vans old skool',
+                    'param1' => '',
+                    'param2' => '',
+                    'param3' => '',
+                    'param4' => '',
+                    'param5' => '',
+                ],
+            ],
+
             [
                 'pattern' => '<brand:(' . $brandsString . ')>/' . $paramRule,
                 'route' => 'termekek/index',
@@ -122,6 +137,7 @@ class UrlManager extends \yii\web\UrlManager
                     'param5' => '',
                 ],
             ],
+
             [
                 'pattern' => '<mainCategory:(' . $mainCategorysString . ')>/' . $paramRule,
                 'route' => 'termekek/index',

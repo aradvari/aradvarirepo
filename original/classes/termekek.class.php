@@ -1,0 +1,976 @@
+<?
+class termekek
+{
+	public $filter='';
+	public $alkategoriak=array();
+	public $markak=array();
+	public $kURL='';
+
+	function __construct()
+	{
+		global $menu;
+		global $func;
+		global $lang;
+		global $termek;
+
+		//SORREND
+		if(empty($_SESSION['termekek_orderby']))
+			$_SESSION['termekek_orderby']=1;
+		if(ISSET($_REQUEST['orderby']))
+			$_SESSION['termekek_orderby']=$_REQUEST['orderby'];
+
+		$ordeyby_array=array("","termekek.opcio DESC", "termekek.opcio_sorrend ASC", "markak.markanev","vegleges_ar DESC","vegleges_ar ASC");
+		//*********
+
+		if($_POST['oldal'] != "")
+		{
+			parse_str($_SERVER["QUERY_STRING"],$ps);
+			$ps["oldal"]=(int)$_POST['oldal'];
+			$prefix=$ps["query"];
+			unset($ps["query"]);
+			$query=http_build_query($ps);
+			header("Location: ?$query");
+			exit();
+		}
+
+		if(!(int)$_GET["kategoria"] && (int)$_GET["marka"])
+		{
+			$mSQL="SELECT alapert_kat FROM markak WHERE id=".(int)$_GET["marka"];
+			$cQuery=mysql_query($mSQL);
+			$res=mysql_fetch_array($cQuery);
+			if((int)$res[0])
+			{
+				$_GET["kategoria"]=$res[0];
+			}
+			else
+			{
+				//Ha nincs kategória kiválasztva, kikeressük az első kategóriát ami alatt vannak termékek az adott márkából
+				$mSQL="SELECT k.*
+					FROM kategoriak k
+					INNER JOIN termekek t ON (t.kategoria=k.id_kategoriak AND aktiv=1 AND torolve IS NULL)
+					INNER JOIN vonalkodok vk ON (vk.id_termek=t.id AND vk.aktiv=1 AND (keszlet_1>0) )
+					LEFT JOIN kategoriak fk ON (fk.id_kategoriak = k.szulo)
+					WHERE t.markaid=".(int)$_GET["marka"]." AND k.sztorno IS NULL
+					GROUP BY k.id_kategoriak
+					ORDER BY fk.sorrend, k.sorrend
+					LIMIT 1";
+
+				$cQuery=mysql_query($mSQL);
+				$res=mysql_fetch_array($cQuery);
+				$_GET["kategoria"]=$res[0];
+			}
+		}
+
+		if(true/* ISSET($_GET['kategoria']) */)
+		{
+			$menu->parents=array();
+			$parents=$menu->getParents($_GET['kategoria']);
+			$menu->childrens=array();
+			$childrens=$menu->getChildrens($_GET['kategoria']);
+
+			while($t=each($childrens))
+			{
+				$sql_in .= $t[1][0].",";
+			}
+			$sql_in=substr($sql_in,0,-1);
+
+			//KATEGÓRIÁK
+			$kID=(int)$_GET['kategoria'];
+			$kSQL="SELECT szulo FROM kategoriak WHERE id_kategoriak=$kID";
+			$pID=(int)mysql_result(mysql_query($kSQL),0);
+			$parentID=($pID == 0 ? $kID : $pID);
+			$cSQL="SELECT k.*
+				FROM kategoriak k
+				INNER JOIN termekek t ON (t.kategoria=k.id_kategoriak AND aktiv=1 AND torolve IS NULL)
+				INNER JOIN vonalkodok vk ON (vk.id_termek=t.id AND vk.aktiv=1 AND (keszlet_1>0) )
+				WHERE k.szulo=$parentID AND k.sztorno IS NULL
+				GROUP BY k.id_kategoriak ORDER BY k.sorrend";
+
+			$cQuery=mysql_query($cSQL);
+			while($kat=mysql_fetch_array($cQuery))
+			{
+				if($kID == $kat["id_kategoriak"])
+				$kat["selected"]=true;
+				$this->alkategoriak[]=$kat.' +++ ';
+			}
+
+			$kName=$func->getMysqlValue("SELECT nyelvi_kulcs FROM kategoriak WHERE id_kategoriak=".$_GET['kategoria']);
+			$this->kURL=$func->convertString($lang->$kName)."/".$_GET['kategoria']."/";
+
+			//MÁRKÁK
+			$mID=(int)$_GET['marka'];
+			$mSQL="SELECT m.*
+				FROM kategoriak k
+				INNER JOIN termekek t ON (t.kategoria=k.id_kategoriak AND aktiv=1 AND torolve IS NULL)
+				INNER JOIN vonalkodok vk ON (vk.id_termek=t.id AND vk.aktiv=1 AND (keszlet_1>0) )
+				INNER JOIN markak m ON (m.id = t.markaid)
+				WHERE k.id_kategoriak IN ($sql_in) AND k.sztorno IS NULL
+				GROUP BY m.id ORDER BY m.markanev";
+
+			$mQuery=mysql_query($mSQL);
+			while($marka=mysql_fetch_array($mQuery))
+			{
+				if($mID == $kat["marka"])
+					$marka["selected"]=true;
+				
+				$this->markak[]=$marka;
+			}
+		}
+
+		// egy kategoria
+		/*
+			$limit=(ISSET($_GET['kategoria']) ? ($_GET['kategoria'] <> '' ? ' AND kategoria IN ('.$sql_in.')' : '') : '').
+			(ISSET($_GET['marka']) ? ($_GET['marka'] <> '' ? ' AND markaid='.$_GET['marka'] : '') : '');
+		*/
+		
+		// multi kategoria
+		$limit=(ISSET($_GET['kategoria'])?($_GET['kategoria']<>''?' AND tkk.id_kategoriak IN ('.$sql_in.')':''):'').
+               (ISSET($_GET['marka'])?($_GET['marka']<>''?' AND markaid='.$_GET['marka']:''):'');
+
+		if($_REQUEST['meretek'] == "Méret")
+			$_REQUEST['meretek']="";  // minden meret string torles
+
+		$meretek_limit=(ISSET($_REQUEST['meretek']) ? ($_REQUEST['meretek'] <> '' ? ' AND vk.megnevezes=\''.$_REQUEST['meretek'].'\'' : '') : '');
+
+		//SZABADSZAVAS KERESÉS
+		if(ISSET($_REQUEST['keresendo']))
+		{
+			$kulcsszavak=explode(" ",htmlspecialchars($_REQUEST['keresendo']));
+			$keresendo=' AND (';
+			while($k=each($kulcsszavak))
+			{
+				$keresendo.= "CONCAT(keresheto, ' ', meretek) LIKE '%".$k[1]."%' AND ";
+			}
+			$keresendo=substr($keresendo,0,-4);
+			$keresendo.= ")";
+		}
+		else
+		{
+			$keresendo='';
+		}
+
+		//opciók
+		if(ISSET($_GET['opcio']))
+		{
+			if($_GET['opcio'] == 'coreclub')
+			{
+				$opt=" AND klub_termek=1";
+			}
+			else
+			{
+				$opt=" AND opcio='".$_GET['opcio']."'";
+			}
+		}
+		else
+		{
+			$opt='';
+		}
+
+		//QUERY
+		$this->pages = (int)@mysql_num_rows(mysql_query("SELECT
+						CONCAT(termekek.termeknev, ' ', termekek.szin, ' ', markak.markanev, ' ', k.megnevezes) keresheto,
+						ifnull((SELECT GROUP_CONCAT(megnevezes) FROM vonalkodok WHERE id_termek=termekek.id AND aktiv=1 AND keszlet_1>0), ' ') meretek
+						FROM termekek
+						INNER JOIN vonalkodok vk ON (vk.id_termek=termekek.id AND vk.aktiv=1 AND (keszlet_1>0 /*OR keszlet_2>0*/) )
+						LEFT JOIN markak ON termekek.markaid=markak.id
+						LEFT JOIN termek_kategoria_kapcs tkk ON (tkk.id_termekek = termekek.id) 
+						LEFT JOIN kategoriak k ON tkk.id_kategoriak=k.id_kategoriak
+						WHERE termekek.torolve IS NULL AND termekek.aktiv>=1 ".($_SESSION['resz_query']) . $modul . $opt . $limit . $meretek_limit . "
+						GROUP BY termekek.id
+						HAVING 1=1 $keresendo"));
+
+		// KERESES LOG
+		if( (ISSET($_POST['keresendo'])) && ($_SERVER['REMOTE_ADDR']!='195.70.40.125') )
+		{
+			$sql_keresendo_log='INSERT INTO keresendo_log
+					(keresoszo, talalat, datum, ip, browser)
+					VALUES
+					("'.$_POST['keresendo'].'",
+					'.$this->pages.',
+					"'.date('Y-m-d H:i:s').'",
+					"'.$_SERVER['REMOTE_ADDR'].'",
+					"'.$_SERVER['HTTP_USER_AGENT'].'")';
+			
+			mysql_query($sql_keresendo_log);
+		}
+		
+		// mobilon mas oldaltores
+		if ($func->isMobile()==0)
+			$product_per_page=30;
+		else
+			$product_per_page=50;
+
+		//if ($this->pages>200) { $l=$this->pages; $this->pages=200; }
+  
+		// ha ures a kategoria, akkor kezdolapra ugras
+		if( ($this->pages < 1) || ($this->pages > 400) )
+		{
+			$this->ures_kategoria = '<div class="ures_kategoria">Jelenleg nincs termékünk ebben a kategóriában vagy a kiválasztott méretben : ( <br /><br />Nézd meg aktuális kínlatunkat, bízunk benne találsz kedvedre valót újdonságaink között.</div>';
+//			$redirectPage='error404';
+//			header("Location: /");
+//			die("REDIRECT");
+		} 
+
+		if($this->pages > $product_per_page)
+			$this->pagenum = ceil($this->pages / $product_per_page);
+		else
+			$this->pagenum = 0;
+
+		if(ISSET($_GET['list_all']))
+		{
+			$_GET['list_all']  = $this->pages;
+			$_REQUEST['oldal'] = 0;
+		}
+ 
+
+		$this->lista_query=mysql_query("SELECT termekek.id, termekek.termeknev, termekek.opcio, termekek.kisker_ar, termekek.akcios_kisker_ar, termekek.szin, termekek.markaid,
+					markak.markanev, termekek.klub_ar, termekek.klub_termek, termekek.dealoftheweek, (CASE WHEN termekek.akcios_kisker_ar>0 THEN termekek.akcios_kisker_ar ELSE termekek.kisker_ar END) vegleges_ar,
+					termekek.fokep, CONCAT(termekek.termeknev, ' ', termekek.szin, ' ', markak.markanev, ' ', k.megnevezes) keresheto,
+					ifnull((SELECT GROUP_CONCAT(megnevezes) FROM vonalkodok WHERE id_termek=termekek.id AND aktiv=1 AND keszlet_1>0), ' ') meretek
+					FROM termekek
+					INNER JOIN vonalkodok vk ON (vk.id_termek=termekek.id AND vk.aktiv=1 AND (keszlet_1>0) )
+					LEFT JOIN markak ON termekek.markaid=markak.id
+					LEFT JOIN termek_kategoria_kapcs tkk ON (tkk.id_termekek = termekek.id) 
+					LEFT JOIN kategoriak k ON tkk.id_kategoriak=k.id_kategoriak
+					WHERE termekek.torolve IS NULL AND termekek.aktiv>=1 ".($_SESSION['resz_query']) . $modul . $opt . $limit . $meretek_limit . "
+					GROUP BY termekek.id
+					HAVING 1=1 $keresendo
+					ORDER BY ".$ordeyby_array[$_SESSION['termekek_orderby']].", termekek.opcio, termekek.id DESC
+					LIMIT ".($_REQUEST['oldal'] * $product_per_page).", ".(ISSET($_GET['list_all']) ? $_GET['list_all'] : $product_per_page));
+					
+		/* $this->lista_query=mysql_query(
+					"SELECT termekek.id,
+					CONCAT(termekek.termeknev, ' ', termekek.szin, ' ', markak.markanev, ' ', k.megnevezes) keresheto,
+					ifnull((SELECT GROUP_CONCAT(megnevezes) FROM vonalkodok WHERE id_termek=termekek.id AND aktiv=1 AND keszlet_1>0), ' ') meretek
+					FROM termekek
+					INNER JOIN vonalkodok vk ON (vk.id_termek=termekek.id AND vk.aktiv=1 AND (keszlet_1>0) )
+					LEFT JOIN markak ON termekek.markaid=markak.id
+					LEFT JOIN termek_kategoria_kapcs tkk ON (tkk.id_termekek = termekek.id) 
+					LEFT JOIN kategoriak k ON tkk.id_kategoriak=k.id_kategoriak
+					WHERE termekek.torolve IS NULL AND termekek.aktiv>=1 ".($_SESSION['resz_query']) . $modul . $opt . $limit . $meretek_limit . "
+					GROUP BY termekek.id
+					HAVING 1=1 $keresendo
+					ORDER BY ".$ordeyby_array[$_SESSION['termekek_orderby']].", termekek.opcio, termekek.id DESC
+					LIMIT ".($_REQUEST['oldal'] * $product_per_page).", ".(ISSET($_GET['list_all']) ? $_GET['list_all'] : $product_per_page)); */
+
+
+		//*****************************************************************************
+		//*****************************************************************************
+		//ÚJ KERESÉSI FEJLÉC
+
+		if(ISSET($_POST['navi_type']))
+		{
+			
+			if(empty($_POST['navi_alkat'])) $_POST['navi_alkat']=$_SESSION['kategoria'];	// az outletnel nem talalta post-ban a navi_alkat valtozot
+			
+			if($_POST['navi_type'] == 'fokat' || $_POST['navi_alkat'] == "")
+			{
+				$m=$func->getMysqlValue("SELECT megnevezes FROM kategoriak WHERE id_kategoriak=".$_POST['navi_fokat']);
+				$url_kat=$func->convertString($m)."/".$_POST['navi_fokat']."/";
+			}
+
+			if($_POST['navi_type'] == 'alkat' && $_POST['navi_alkat'] != "")
+			{
+				$m=$func->getMysqlValue("SELECT megnevezes FROM kategoriak WHERE id_kategoriak=".$_POST['navi_alkat']);
+				$url_kat=$func->convertString($m)."/".$_POST['navi_alkat']."/";
+			}
+			
+			if(ISSET($_POST['navi_marka']))
+			{
+				$m=$func->getMysqlValue("SELECT markanev FROM markak WHERE id=".$_POST['navi_marka']);
+				$url_marka.= $func->convertString($m)."/".$_POST['navi_marka'];
+			}
+
+			$url=($url_kat == "//" ? '0/0/' : $url_kat).($url_marka == "/" ? '' : $url_marka);
+
+			$req='';
+			if($_REQUEST['meretek'] != "")
+				$req.= "?meretek=".urldecode($_REQUEST['meretek']);
+			if($_REQUEST['orderby'] != "")
+				$req.= ($req == "" ? "?" : "&")."orderby=".urldecode($_REQUEST['orderby']);
+
+			header("Location: /".$_SESSION["langStr"]."/".$lang->_termekek.($_POST['navi_opt'] == "" ? "" : "_".$_POST['navi_opt'])."/".$url.$req);
+			exit();
+		}
+
+
+		$this->filter.= '<form method="post" name="naviForm" id="naviForm">';
+		$this->filter.= '<input type="hidden" name="navi_type" id="navi_type" value="'.($parents[1]['id_kategoriak'] > 0 ? 'alkat' : 'fokat').'" />';
+		$this->filter.= '<input type="hidden" name="navi_opt" id="navi_opt" value="'.$_GET['opcio'].'" />';
+
+		//Opciók linkjei
+		if(ISSET($_GET['opcio']))
+		{
+			if($_GET['opcio'] == 'coreclub')
+			{
+				$os=" t.klub_termek=1 AND";
+			}
+			else
+			{
+				$os=" t.opcio='".$_GET['opcio']."' AND";
+			}
+		}
+		else
+		{
+			$os='';
+		}
+
+		//Márkák selectbox
+		$this->filter.= '<div style="float:left;display:none;">';	/* inline */
+		$this->filter.= $func->createSelectBox("SELECT m.id, m.markanev
+				FROM markak m
+				INNER JOIN termekek t ON (t.markaid = m.id)
+				LEFT JOIN termek_kategoria_kapcs tkk ON (tkk.id_termekek = t.id) 
+				INNER JOIN vonalkodok vk ON (vk.id_termek=t.id)
+				WHERE " . ($sql_in == "" ? "" : " tkk.id_kategoriak IN ($sql_in) AND") . " " . ($_REQUEST['meretek'] == "" ? "" : " vk.megnevezes = '".$_REQUEST['meretek']."' AND") . " " . $os . " t.torolve IS NULL AND
+				t.aktiv>=1 AND vk.aktiv=1 AND keszlet_1>0
+				GROUP BY m.id
+				ORDER BY m.top,m.markanev",$_GET['marka'],"name=\"navi_marka\" onchange=\"document.naviForm.submit()\"",$lang->osszes_marka);
+
+		$this->filter.= '</div>';
+
+
+		//Főkategóriák selectbox
+		$this->filter.= $func->createSelectBox("SELECT k2.id_kategoriak, k2.megnevezes
+				FROM termekek t
+				INNER JOIN kategoriak k ON (k.id_kategoriak = t.kategoria)
+				INNER JOIN vonalkodok vk ON (vk.id_termek=t.id)
+				WHERE k.sztorno IS NULL AND k.publikus=1 AND ".($_GET['marka'] == "" ? "" : " t.markaid=".$_GET['marka']." AND")." ".($_REQUEST['meretek'] == "" ? "" : " vk.megnevezes = '".$_REQUEST['meretek']."' AND")."
+				".$os." t.torolve IS NULL AND t.aktiv>=1 AND vk.aktiv=1 AND keszlet_1>0
+				GROUP BY k2.id_kategoriak
+				ORDER BY k2.sorrend",$parents[0]['id_kategoriak'],"style=\"display:none\" name=\"navi_fokat\" onchange=\"document.getElementById('navi_type').value='fokat'; document.naviForm.submit();\"",$lang->minden_kategoria);
+
+		//Alkategóriák selectbox
+		if($parents[0]['id_kategoriak'] > 0)
+		{
+			$this->filter.= $func->createSelectBox("SELECT k.id_kategoriak, k.megnevezes
+				FROM termekek t
+				INNER JOIN kategoriak k ON (k.id_kategoriak = t.kategoria)
+				INNER JOIN vonalkodok vk ON (vk.id_termek=t.id)
+				WHERE k.sztorno IS NULL AND k.publikus=1 AND ".($_GET['marka'] == "" ? "" : " t.markaid=".$_GET['marka']." AND")." ".($_REQUEST['meretek'] == "" ? "" : " vk.megnevezes = '".$_REQUEST['meretek']."' AND")."
+				".$os." t.torolve IS NULL AND t.aktiv>=1 AND vk.aktiv=1 AND vk.keszlet_1>0 AND k.szulo=".$parents[0]['id_kategoriak']."
+				GROUP BY k.id_kategoriak
+				ORDER BY k.sorrend",$parents[1]['id_kategoriak'],"style=\"display:none\" name=\"navi_alkat\" onchange=\"document.getElementById('navi_type').value='alkat'; document.naviForm.submit();\"",$lang->minden_alkategoria);
+		}
+	
+		/////////////////////////////////////////////////////
+		//// KERESÉS FILTER
+		/////////////////////////////////////////////////////
+
+		if(isset($_REQUEST["keresendo"]))
+		{
+			$a_keresendo = $_REQUEST["keresendo"];
+		}
+		elseif(isset($_POST["keresendo"]))
+		{
+			$a_keresendo = $_POST["keresendo"];
+		}
+
+		if(isset($a_keresendo))
+		{
+		
+			//MÉRETEK
+			// noi ciponel csak 42.5-ig van meretfilter
+			if($_GET['kategoria']==95)
+				$noi_cipo_meret_limit = " vk.megnevezes<='42' AND ";
+			else
+				$noi_cipo_meret_limit = "";
+				
+			$this->meretek_sql="SELECT DISTINCT vk.megnevezes
+						FROM termekek
+						INNER JOIN vonalkodok vk ON (vk.id_termek=termekek.id AND vk.aktiv=1 AND (keszlet_1>0 /*OR keszlet_2>0*/) )
+						LEFT JOIN markak ON termekek.markaid=markak.id
+						LEFT JOIN termek_kategoria_kapcs tkk ON (tkk.id_termekek = termekek.id) 
+						LEFT JOIN kategoriak k ON tkk.id_kategoriak=k.id_kategoriak
+						LEFT JOIN vonalkod_sorrendek vks ON (vk.megnevezes = vks.vonalkod_megnevezes)
+						WHERE CONCAT(termekek.termeknev, ' ', termekek.szin, ' ', markak.markanev, ' ', k.megnevezes) LIKE '%" . $a_keresendo . "%' AND vk.megnevezes<>'-' AND ".$noi_cipo_meret_limit." termekek.torolve IS NULL AND termekek.aktiv>=1 ".($_SESSION['resz_query']) . $modul . $opt . $limit . "
+						ORDER BY vks.sorrend, vk.megnevezes";
+		}
+		else
+		{
+			//MÉRETEK
+			// noi ciponel csak 42.5-ig van meretfilter
+			if($_GET['kategoria']==95)
+				$noi_cipo_meret_limit = " vk.megnevezes<='42' AND ";
+			else
+				$noi_cipo_meret_limit = "";
+			
+			$this->meretek_sql="SELECT vk.megnevezes,
+						CONCAT(termekek.termeknev, ' ', termekek.szin, ' ', markak.markanev, ' ', k.megnevezes) keresheto,
+						ifnull((SELECT GROUP_CONCAT(megnevezes) FROM vonalkodok WHERE id_termek=termekek.id AND aktiv=1 AND keszlet_1>0), ' ') meretek
+						FROM termekek
+						INNER JOIN vonalkodok vk ON (vk.id_termek=termekek.id AND vk.aktiv=1 AND (keszlet_1>0 /*OR keszlet_2>0*/) )
+						LEFT JOIN markak ON termekek.markaid=markak.id
+						LEFT JOIN termek_kategoria_kapcs tkk ON (tkk.id_termekek = termekek.id) 
+						LEFT JOIN kategoriak k ON tkk.id_kategoriak=k.id_kategoriak
+						LEFT JOIN vonalkod_sorrendek vks ON (vk.megnevezes = vks.vonalkod_megnevezes)
+						WHERE vk.megnevezes<>'-' AND ".$noi_cipo_meret_limit." termekek.torolve IS NULL AND termekek.aktiv>=1 ".($_SESSION['resz_query']) . $modul . $opt . $limit . "
+						GROUP BY vk.megnevezes
+						HAVING 1=1 $keresendo
+						ORDER BY vks.sorrend, vk.megnevezes";
+		}
+
+
+		/////////////////////////////////////////////////////
+		//// FILTER MARKAK
+		/////////////////////////////////////////////////////
+		
+		if($_GET['kategoria'] <> 0)
+		{
+			$url	= $_GET['query'];
+			$exp	= explode("/",$url);
+			$page	= $exp[1];
+			$kat	= $func->convertString($lang->$kName)."/".$_GET['kategoria'];
+
+			$MarkakSQL = "SELECT m.id, m.markanev
+				FROM markak m
+				INNER JOIN termekek t ON (t.markaid = m.id)
+				LEFT JOIN termek_kategoria_kapcs tkk ON (tkk.id_termekek = t.id) 
+				INNER JOIN vonalkodok vk ON (vk.id_termek=t.id)
+				WHERE ".($sql_in == "" ? "" : " tkk.id_kategoriak IN ($sql_in) AND")." ".($_REQUEST['meretek'] == "" ? "" : " vk.megnevezes = '".$_REQUEST['meretek']."' AND")."
+				".$os." t.torolve IS NULL AND t.aktiv>=1 AND vk.aktiv=1 AND keszlet_1>0
+				GROUP BY m.id
+				ORDER BY m.top,m.markanev";
+
+			
+			$this->filter.= '<div class="desktop-filter-container">';
+			
+			$this->filter.= '<div class="desktop-filter">';
+				
+				
+					 /*if(!$func->isMobile())	{
+						// rendezes select csak desktopon
+						$tomb			= array("1"=>$lang->legujabb_elol, "4"=>$lang->legdragabb_elol,"5"=>$lang->legolcsobb_elol);
+						$this->filter	.= '<div class="filter-topnav">';		
+
+						if($_GET['query']=='hu/termekek/0/0/vans/41')				// SEO vans shop
+						$this->filter	.= '<p>'.$this->pages.' vans shop '.$lang->termek;
+						else
+						$this->filter	.= '<p>'.$this->pages.' '.$lang->termek;
+
+						$this->filter	.= $func->createArraySelectBox($tomb,$_SESSION['termekek_orderby'],"name=\"orderby\" onchange=\"document.naviForm.submit()\"","");				
+						//endof rendezes
+						$this->filter	.= '</p></div>';
+					}*/ 
+				
+				
+
+				$this->filter .= '<a href="/'.$_SESSION["langStr"].'/'.$page.'/'.$kat.'" class="filter-name">'.$lang->marka.'</a>';
+				
+				$MarkakQuery = mysql_query($MarkakSQL);
+
+				
+				
+				$this->filter.= '<div class="imageButtonContainer">';
+				
+				while($marka=mysql_fetch_array($MarkakQuery))
+				{
+					if($_REQUEST['meretek'])
+					{
+						$szures='?meretek='.$_REQUEST['meretek'];
+					}
+		
+					if ($marka[0]==$_SESSION['marka'])
+					{
+						
+						/* // kivalasztott marka logo - asztali
+						if (!$func->isMobile())	{															
+							$this->filter.= '<a href="/'.$_SESSION["langStr"].'/'.$page.'/'.$kat.'/" class="imageButtonSelected">
+								<img src="/pictures/markak/'.$marka[0].'.png" title="'.$marka[1].'" alt="'.$marka[1].'" /></a>';
+						}
+						// kivalaszott marka szoveg - mobil
+						else */
+							$this->filter.= '<a href="/'.$_SESSION["langStr"].'/'.$page.'/'.$kat.'/" class="sizeButtonSelected">'.$marka[1].'</a>';
+						
+						
+					}
+					else
+					{
+						/* // kivalasztott marka logo - asztali
+						if (!$func->isMobile())	{			
+							$this->filter.= '<a href="/'.$_SESSION["langStr"].'/'.$page.'/'.$kat.'/'.$marka[1].'/'.$marka[0].$szures.'" class="imageButton"><img src="/pictures/markak/'.$marka[0].'.png" title="'.$marka[1].'" alt="'.$marka[1].'" /></a>';
+						}
+						// kivalaszott marka szoveg - mobil						
+						else */
+							$this->filter.= '<a href="/'.$_SESSION["langStr"].'/'.$page.'/'.$kat.'/'.strtolower($marka[1]).'/'.strtolower($marka[0]).$szures.'" class="sizeButton">'.$marka[1].'</a>';
+					}
+				}
+				// endof markak
+				$this->filter.= '</div>';
+				
+				// Nepszeru Vans ffi cipok
+				if ( ( ($_GET['kategoria'] === 94) && ($_GET['marka'] === 41) ) 
+					||
+					( ($_GET['kategoria'] === 160) && ($_GET['marka'] === 41) )
+					|| 
+				(strpos($_SERVER['REQUEST_URI'], "/0/0/vans/41" )  ) 
+				)	{
+				
+						$this->filter.= '<div class="desktop-filter">';
+					
+						$this->filter	.= '<a href="#" class="filter-name">Modell</a>';
+						
+						$legnepszerubb=array(
+												'ultrarange' => 'Ultrarange',
+												'rapidweld' => 'AV Rapidweld',
+												'kyle walker' => 'Kyle Walker',
+												'gilbert crockett' => 'Gilbert Crockett',
+												/*'mte' => 'MTE',*/
+												'tnt' => 'TNT SG',
+												'sk8-hi' => 'Sk8-Hi',
+												'iso' => 'ISO 1.5',
+												'atwood' => 'Atwood',
+												'old skool' => 'Old Skool',
+												'half cab' => 'Half Cab',
+												/*'era' => 'Era',
+												'authentic' => 'Authentic',
+												'slip-on' => 'Slip-On',*/
+												);
+						
+						foreach($legnepszerubb as $key=>$name)	{
+							if($_GET['keresendo']==$key)	
+								$class="filter-modell-selected";
+							else
+								$class="filter-modell";							
+							
+							$this->filter	.='<a href="?keresendo='.$key.'" class="'.$class.'">#'.$name.'</a>';
+						}
+						
+						$this->filter.= '</div>';			
+			
+					}
+					
+				// Nepszeru Vans noi cipok
+				if ($_GET['kategoria'] === 95)	{
+				
+						$this->filter.= '<div class="desktop-filter">';
+					
+						$this->filter	.= '<a href="#" class="filter-name">MODELL</a>';
+						
+						$legnepszerubb=array(
+												'iso' => 'ISO 1.5',
+												'atwood' => 'Atwood',
+												'old skool' => 'Old Skool',
+												'era' => 'Era',
+												'authentic' => 'Authentic',
+												'slip-on' => 'Slip-On',
+												'sk8-hi' => 'Sk8-Hi',												
+												);
+						
+						foreach($legnepszerubb as $key=>$name)	{
+							if($_GET['keresendo']==$key)	
+								$class="filter-modell-selected";
+							else
+								$class="filter-modell";
+							
+							$this->filter	.='<a href="/hu/termekek/noi_cipo/95/vans/41?keresendo='.$key.'" class='.$class.'>#'.$name.'</a>';
+						}
+						
+						$this->filter.= '</div>';			
+			
+					}					
+	
+				$this->filter.= '</div>';			
+		}
+   
+		/////////////////////////////////////////////////////
+		//// FILTER MERET
+		/////////////////////////////////////////////////////
+		
+	
+		$this->filter .= '<div class="desktop-filter">';
+		
+		$meret_query = mysql_query($this->meretek_sql);
+	
+		// ha van legalabb egy (nem -) meret
+		if(mysql_num_rows($meret_query)>0)
+		{ 
+			$url	= $_GET['query'];
+			$exp	= explode("/",$url);
+			$page	= $exp[1];
+			$kat	= $func->convertString($lang->$kName)."/".$_GET['kategoria'];
+
+			$this->filter .= '<a href="/'.$_SESSION["langStr"].'/'.$page.'/'.$kat.'" class="filter-name" style="clear:both;">'.$lang->meret.'</a> ';
+
+			while ($adatok = mysql_fetch_array($meret_query))
+			{
+				if ($adatok[0]==$_REQUEST['meretek'])
+				{
+					$class = "sizeButtonSelected";
+					
+					if(isset($a_keresendo))
+					{
+						$x = "<div class=\"sizeButtonUnSelect\" onClick=\"javascript: location.href='?keresendo=" . $a_keresendo . "'\"> </div>";
+						$this->filter.='<div class="szuroTarto">
+							<a href="?keresendo=' . $a_keresendo . '" class="'.$class.'">' . $adatok['megnevezes'] . '</a>
+							' . $x . '
+						</div>';
+					}
+					else
+					{
+						$x = "<div class=\"sizeButtonUnSelect\" onClick=\"javascript: location.href='/".$_SESSION["langStr"]."/".$page."/".$kat."/'\"> </div>";
+						$this->filter.='<div class="szuroTarto">
+							<a href="/' . $_SESSION["langStr"] . '/' . $page . '/' . $kat . '/" class="'.$class.'">' . $adatok['megnevezes'] . '</a>
+							' . $x . '
+						</div>';
+					}
+				}
+				else
+				{
+					$class = 'sizeButton';
+					
+					$this->filter.='<div class="szuroTarto">
+						<a href="?' . ((isset($a_keresendo))?"keresendo=" . $a_keresendo . "&":"") . 'meretek=' . $adatok['megnevezes'] . '" class="'.$class.'">' . $adatok['megnevezes'] . '</a>
+					</div>';
+				}
+			}
+			
+		}
+		
+		// rendezes mobilon alul
+		$tomb			= array("1"=>$lang->legujabb_elol, "4"=>$lang->legdragabb_elol,"5"=>$lang->legolcsobb_elol);
+		$this->filter	.= '<div class="filter-topnav">';		
+
+		/* if($_GET['query']=='hu/termekek/0/0/vans/41')				// SEO vans shop
+		$this->filter	.= '<p>'.$this->pages.' vans shop '.$lang->termek;
+		else */
+		$this->filter	.= '<p>'.$this->pages.' '.$lang->termek;
+
+		$this->filter	.= $func->createArraySelectBox($tomb,$_SESSION['termekek_orderby'],"name=\"orderby\" onchange=\"document.naviForm.submit()\"","");				
+		//endof rendezes
+		$this->filter	.= '</p></div>';		
+		
+		// kereses talalatok szama
+		if(!empty($_REQUEST['keresendo']))
+			$this->filter	.= '<h1>'.$this->pages.' találat erre: "'.$_REQUEST['keresendo'].'"</h1>';
+			
+		$this->filter	.= '</div>';
+				
+		
+		// endof desktop-filter-container
+		$this->filter.= '</div>';
+		
+	
+		// end of form
+		$this->filter .= '</form>';
+		
+		//ÚJ KERESÉSI FEJLÉC VÉGE
+		//*****************************************************************************
+
+		if (isset($redirectPage)){
+			global $page;
+			header("HTTP/1.0 404 Not Found");
+			$page=$redirectPage;
+		}
+
+	}
+
+ function echoRoot()
+ {
+
+  global $menu;
+  global $func;
+  global $page;
+  global $lang;
+
+  if(ISSET($_GET['kategoria']))
+  {
+
+   $menu->parents=array();
+   $parents=$menu->getParents($_GET['kategoria']);
+   $menu->childrens=array();
+   $childrens=$menu->getChildrens($_GET['kategoria']);
+
+   while($t=each($childrens))
+   {
+    $sql_in .= $t[1][0].",";
+   }
+   $sql_in=substr($sql_in,0,-1);
+  }
+
+  if(ISSET($_GET['marka']))
+  {
+
+   $mark=mysql_fetch_array(mysql_query("SELECT markanev FROM markak WHERE id=".$_GET['marka']));
+   if(!empty($mark[0]))
+    $marka_str=' &raquo '.$mark[0];
+  }
+
+  if(ISSET($_GET['opcio']))
+  {
+   switch($_GET['opcio'])
+   {
+    case 'uj' : $root .=('<a href="/'.$_SESSION["langStr"].'/'.$lang->_termekek_uj.'">Új termékek</a> &raquo ');
+     break;
+    case 'akcios' : $root .=('<a href="/'.$_SESSION["langStr"].'/'.$lang->_termekek_akcios.'">Akciós termékek</a> &raquo ');
+     break;
+    case 'web' : $root .=('<a href="/'.$_SESSION["langStr"].'/'.$lang->_termekek_web.'">Web exclusive</a> &raquo ');
+     break;
+    case 'coreclub' : $root .=('<a href="/'.$_SESSION["langStr"].'/'.$lang->_termekek_coreclub.'">Klub termékek</a> &raquo ');
+     break;
+   }
+  }
+
+  if(ISSET($_GET['kategoria']))
+  {
+
+   while($t=each($parents))
+   {
+
+    if(key($parents) == "" && (int)$_GET['marka'] < 1)
+    {
+
+     $root .= $t[1][1];
+    }
+    else
+    {
+
+     $root .= "<a href=\"/$page/".$func->convertString($t[1][1])."/".$t[1][0]."\">".$t[1][1]."</a>";
+    }
+
+    $root .= " &raquo; ";
+   }
+   $root=substr($root,0,-8);
+  }
+
+  if($_POST['keresendo'] != "")
+   echo 'keresendő: <b>'.htmlspecialchars($_POST['keresendo']).'</b>';
+  else
+   echo $root.$marka_str;
+ }
+
+ function getTitleRoot($separator=", ")
+ {
+
+  global $menu;
+  global $func;
+  global $page;
+  global $lang;
+
+  if(ISSET($_GET['kategoria']))
+  {
+
+   $menu->parents=array();
+   $parents=$menu->getParents($_GET['kategoria']);
+   $menu->childrens=array();
+   $childrens=$menu->getChildrens($_GET['kategoria']);
+
+   while($t=each($childrens))
+   {
+    $sql_in .= $lang->$t[1][0].",";
+   }
+   $sql_in=substr($sql_in,0,-1);
+  }
+
+  if(ISSET($_GET['marka']))
+  {
+
+   $mark=mysql_fetch_array(mysql_query("SELECT markanev FROM markak WHERE id=".$_GET['marka']));
+   if(!empty($mark[0]))
+    $marka_str=$lang->$mark[0].' '.$separator.' ';
+  }
+
+  /* if (ISSET($_GET['opcio'])){
+    switch ($_GET['opcio']){
+    case 'uj' : $root .= 'Új termékek '.$separator.' '; break;
+    case 'akcios' : $root .= 'Akciós termékek '.$separator.' '; break;
+    case 'web' : $root .=  'Web exclusive '.$separator.' '; break;
+    case 'klub' : $root .=  'Klub termékek '.$separator.' '; break;
+    }
+    } */
+
+  if(ISSET($_GET['kategoria']))
+  {
+
+   while($t=each($parents))
+   {
+
+    $root .= ucfirst($lang->$t[1][1]."$separator ");
+   }
+   $root=substr($root,0,-3);
+  }
+
+  //return $root.$marka_str;
+  return $marka_str.$root;
+ }
+
+ 
+ function echoProductTM($arr)
+ {
+
+  global $func;
+  global $lang;
+
+  echo '<div class="product-thumb" onclick="location.href=\'/'.$_SESSION["langStr"].'/'.$lang->_termek.'/'.$func->convertString($arr['markanev']).'-'.$func->convertString($arr['termeknev']).'/'.$arr['id'].'\'" style="cursor:pointer;">';
+
+  if($arr['dealoftheweek'] == 1)
+   echo '<div class="product-image-container-horizontal-dotw">
+				<img src="/images/coreshop_dealoftheweek_small.png" />
+			</div>';
+
+  // opcio icon
+  echo '<div class="product-opcio-container">';  
+  // DEAL OF THE WEEK
+  if($arr['opcio'] == 'ZZZ_DOTW') 	{
+		if ($func->isMobile()!=0)	
+				echo '<span class="dotw">ajándék napszemüveggel</span>';
+		else
+				{
+				echo '<span class="dotw">Deal of the Week</span>';
+				echo '<span class="dotw_bottom">ajándék<br />vans napszemüveggel</span>';
+				}
+				
+	}  
+  /* if($arr['opcio'] == 'ZZ_TOP') echo '<span class="top">TOP</span>';
+  if($arr['opcio'] == 'Z_CARRYOVER') echo '<span class="classic">Classic</span>';
+  if($arr['opcio'] == 'UJ') echo '<span class="uj">Új</span>';
+  if($arr['akcios_kisker_ar'] > 0) echo '<span class="akcio">%</span>'; */
+  
+  echo '</div>';
+
+  $directory=$func->getHDir($arr['id']);
+  
+  if(!is_file($directory.'/'.$arr['fokep'].'_small.jpg'))
+  //if(!is_file($directory.'/'.$arr['fokep'].'_large.jpg'))
+  {
+
+   echo '<a href="/'.$_SESSION["langStr"].'/'.$lang->_termek.'/'.$func->convertString($arr['markanev']).'-'.$func->convertString($arr['termeknev']).'/'.$arr['id'].'"><img src="/images/none.jpg?17" alt="'.$arr['markanev'].' - '.$arr['termeknev'].'"  /></a>';
+  }
+  else
+  {
+
+   echo '<a href="/'.$_SESSION["langStr"].'/'.$lang->_termek.'/'.$func->convertString($arr['markanev']).'-'.$func->convertString($arr['termeknev']).'/'.$arr['id'].'">';
+   echo '<img src="/'.$directory.'/'.$arr['fokep'].'_small.jpg?17" alt="'.$arr['markanev'].' - '.$arr['termeknev'].'" />';
+   //echo '<img src="/image_resize.php?w=300&img=/'.$directory.'/1_large.jpg" alt="'.$arr['markanev'].' - '.$arr['termeknev'].'" />';
+   echo '</a>';
+  }
+
+
+	// mobile nezetnel rovid nev
+	/*if ($func->isMobile()!=0)	{
+	  $arr['termeknev']=$func->trim_text($arr['termeknev'], 2);
+	  $arr['szin']=$func->trim_text($arr['szin'], 1);
+	}*/
+
+  if(empty($arr['szin'])) $arr['szin']='&nbsp;';		// ha nincs szin, akkor kell a sor a tarto div magassag miatt
+  
+  $arr['szin_full']=$arr['szin'];	// szin teljes neve tarolva
+  /*if(strlen($arr['szin'])>30) $arr['szin']=substr($arr['szin'],0,30).'..';	// szin string levagva, ha tobb mint 30 karakter
+  
+  if(strlen($arr['termeknev'])>30) $arr['termeknev']=substr($arr['termeknev'],0,30).'..';	// termeknev string levagva, ha tobb mint 30 karakter*/
+  
+  echo '<div class="product-info">
+
+	<a href="/'.$_SESSION["langStr"].'/'.$lang->_termek.'/'.$func->convertString($arr['markanev']).'-'.$func->convertString($arr['termeknev']).'/'.$arr['id'].'"><h2>'.$arr['markanev'].'
+	'.$arr['termeknev'].'</h2></a>
+	<a href="/'.$_SESSION["langStr"].'/'.$lang->_termek.'/'.$func->convertString($arr['markanev']).'-'.$func->convertString($arr['termeknev']).'/'.$arr['id'].'">'.$arr['szin'].'</a>';
+
+
+  echo '<div class="products-prise-container">';
+
+  if($lang->defaultCurrencyId == 0)
+  { //MAGYARORSZÁG ESETÉN
+   if($arr['akcios_kisker_ar'] > 0)
+   {
+	//echo '<span class="products-thumb-saleprise">'.number_format($arr['akcios_kisker_ar'],0,'','.').' Ft</span>';
+	
+	//if ($func->isMobile()==0)
+	echo '<span class="products-thumb-originalprise"><del>'.number_format($arr['kisker_ar'],0,'','.').'</del> Ft</span><br />';    
+	echo '<span class="products-thumb-saleprise">'.number_format($arr['akcios_kisker_ar'],0,'','.').' Ft</span>';
+	
+   }
+   else
+    echo $lang->Ar.' '.number_format($arr['kisker_ar'],0,'','.').' Ft';
+
+  }else
+  {
+
+   //ÁTVÁLTÁS
+
+   if($arr['akcios_kisker_ar'] > 0)
+   {
+	echo '<span class="products-thumb-originalprise">€ <del>'.$func->toEUR($arr['kisker_ar']).'</del></span><br />';
+    echo '<span class="products-thumb-saleprise">€ '.$func->toEUR($arr['akcios_kisker_ar']).'</span>';
+   }
+   else
+    echo $lang->Ar.' € '.$func->toEUR($arr['kisker_ar']);
+	
+  }
+
+/////////////////////////////////////////
+
+/*if($_GET["kategoria"]==95) {
+	echo '<br />';
+	//echo $termek->getSizes($arr['id'], 1, '<p class="sizeButton2">', '</p>', ' ');
+}*/
+
+/////////////////////////////////////////
+
+  echo '</div>
+	  </div>
+   </div>';
+ }
+ 
+ 
+
+ function echoPageStepper()
+ {
+
+  global $lang;
+
+  if($this->pagenum > 0)
+  {
+   if(!ISSET($_GET['list_all']))
+   {
+   
+	//keres
+	if(!empty($_REQUEST['keresendo']))
+		$keresendo='&keresendo='.$_REQUEST['keresendo'];
+	else
+		$keresendo='';
+	
+	//meret	
+	$meretek='';
+	if(!empty($_GET['meretek']))	{
+		$meretek='&meretek='.$_GET['meretek'];
+	}
+	
+	if(!empty($_GET['orderby']))	{
+		$orderby='&orderby='.$_GET['orderby'];
+	}
+		
+	echo '<div class="pagestepper">';	// pagestepper container div
+
+    if($_REQUEST['oldal'] > 0)
+     echo '&lsaquo; <a href="?oldal='.($_REQUEST['oldal'] - 1).$meretek.$orderby.$keresendo.'">'.$lang->elozo_oldal.'</a>&nbsp;&nbsp;&nbsp;';	 
+
+    for($go=1; $go <= $this->pagenum; $go++)
+    {	
+
+     if($go > 1)
+     {
+      echo('&nbsp;&nbsp;');
+     }
+     if(($_REQUEST['oldal'] + 1) == $go)
+     {
+
+      echo '<span class="pagenum">'.$go.'</span> ';
+     }
+     else
+     {
+	  echo '<a href="?oldal='.($go -1).$meretek.$orderby.$keresendo.'" class="pagenum_inactive">'.$go.'</a> ';
+     }
+    }
+
+    if(($_REQUEST['oldal'] + 1) < $this->pagenum)
+     echo '&nbsp;&nbsp;&nbsp; <a href="?oldal='.($_REQUEST['oldal'] + 1).$meretek.$orderby.$keresendo.'">'.$lang->kovetkezo_oldal.'</a> &rsaquo;';
+	 
+	echo '</div>';	// endof class pagestepper
+   }
+  }
+ }
+ 
+ 
+
+}
+?>

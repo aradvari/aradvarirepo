@@ -28,9 +28,6 @@ class CartController extends Controller
 
     public function actionView()
     {
-        if (!Yii::$app->cart->items)
-            return $this->render('_empty_cart');
-
         return $this->render('view');
     }
 
