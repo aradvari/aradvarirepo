@@ -9,4 +9,6 @@ use yii\helpers\Url;
 	</div>
 </div>
 
-<div class="cart-container"></div>
+<div class="cart-container">
+    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+</div>

@@ -20,7 +20,7 @@ $config = [
             'enableCookieValidation' => false,
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\DummyCache',
         ],
         'user' => [
             'identityClass' => 'app\models\Felhasznalok',

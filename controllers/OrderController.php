@@ -323,9 +323,10 @@ class OrderController extends Controller
                 $megrendelesModel->close();
 
                 $response[] = [
-                    'transModel' => $transModel->attributes,
+                    'transModel' => $model->attributes,
                     'megrendelesModel' => $megrendelesModel->attributes,
-                    'response' => iconv('UTF-8', 'UTF-8', $res),
+                    'msg32' => iconv('UTF-8', 'UTF-8', $msg),
+                    'msg33' => iconv('UTF-8', 'UTF-8', $res),
                 ];
 
             }

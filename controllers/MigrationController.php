@@ -70,6 +70,11 @@ class MigrationController extends Controller
         ALTER TABLE felhasznalok ADD auth_type varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'normal';
         ALTER TABLE termekek ADD tipus varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
+        ALTER TABLE  `termekek` CHANGE  `tag`  `tag` VARCHAR( 128 ) CHARACTER SET utf8 COLLATE utf8_hungarian_ci NOT NULL ;
+        ALTER TABLE  `termekek` CHANGE  `szinszuro`  `szinszuro` VARCHAR( 10 ) CHARACTER SET utf8 COLLATE utf8_hungarian_ci NOT NULL ;
+        ALTER TABLE  `kategoriak` CHANGE  `megnevezes`  `megnevezes` VARCHAR( 50 ) CHARACTER SET utf8 COLLATE utf8_hungarian_ci NULL DEFAULT NULL ;
+        ALTER TABLE  `termekek` CHANGE  `tipus`  `tipus` VARCHAR( 50 ) CHARACTER SET utf8 COLLATE utf8_hungarian_ci NULL DEFAULT NULL ;
+
 
         CREATE TABLE `termek_ertekeles` (
     `id_termek_ertekeles` int(11) unsigned NOT NULL AUTO_INCREMENT,
