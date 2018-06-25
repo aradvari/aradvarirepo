@@ -357,7 +357,7 @@ JS
                             if (count($model->vonalkodok) == 1) {
                                 $this->registerJs('$("#v_' . $vonalkod->vonalkod . '").trigger("click")');
                             } elseif (Yii::$app->request->getQueryParam('size')) {
-                                $this->registerJs('$(\'input[data-size="' . Yii::$app->request->getQueryParam('size') . '\']").trigger("click")');
+                                $this->registerJs('$(\'input[data-size="' . Yii::$app->request->getQueryParam('size') . '"]\').trigger("click")');
                             }
                             ?>
 

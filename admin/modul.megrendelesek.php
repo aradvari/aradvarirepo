@@ -191,7 +191,8 @@ if($res)	{
 			mf.id_penznem,
 			o.orszag_nev,
 			bt.trid,
-			f.aktivacios_kod
+			f.aktivacios_kod,
+			f.auth_type,
 		FROM megrendeles_fej mf
 		LEFT JOIN megrendeles_tetel mt ON (mt.id_megrendeles_fej = mf.id_megrendeles_fej)
 		LEFT JOIN megrendeles_statuszok ms ON (mf.id_statusz = ms.id_megrendeles_statusz)
@@ -365,7 +366,7 @@ if($res)	{
 			$megjegyzes='<div align="left" class="bubble-yellow" style="line-height:12px;font-size:10px;letter-spacing:-1px;">'.nl2br(substr($adatok['megjegyzes'], 0, 60)).'</div>';
 		
 		$once='';
-		if($adatok['aktivacios_kod']=='login_once') $once='<br /><span style="color:blue;display:inline;">(reg. nélkül)</span>';
+		if($adatok['aktivacios_kod']=='login_once' || $adatok['auth_type']=='unregistered') $once='<br /><span style="color:blue;display:inline;">(reg. nélkül)</span>';
 
 		echo '<tr style="height:25px" class="'.$sorstyle.'" onMouseOver="this.className=\'mediumCell\';this.style.cursor=\'hand\'" onMouseOut="this.className=\''.$sorstyle.'\';">';					
 		echo '<td onClick="document.location.href=\'index.php?lap=megrendeles&id='.$adatok['id_megrendeles_fej'].'\'"><div valign="middle" align="right">'.$adatok['megrendeles_szama'].'&nbsp;</div></td>

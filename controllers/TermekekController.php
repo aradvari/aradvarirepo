@@ -215,6 +215,7 @@ class TermekekController extends Controller
         return [
             'quantity' => (int)$quantity,
             'selectedSize' => $vonalkodModel->url_segment,
+            'selectedSizeLabel' => $vonalkodModel->megnevezes,
             'products' => $quantitys,
         ];
     }

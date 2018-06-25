@@ -80,6 +80,7 @@ class TermekekSearch extends Termekek
         $query = static::getSearchQuery()
             ->select([
                 't.*',
+                '(case when t.akcios_kisker_ar > 0 THEN t.akcios_kisker_ar ELSE t.kisker_ar END) vegleges_ar',
                 'pk.megnevezes main_category_name',
                 'pk.url_segment main_category_url_segment',
                 'k.megnevezes sub_category_name',

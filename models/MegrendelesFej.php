@@ -273,10 +273,10 @@ class MegrendelesFej extends ActiveRecord
 
     }
 
-    public function close()
+    public function close($transaction = false)
     {
 
-        $transaction = Yii::$app->db->transaction;
+        $newTransaction = false;
         if (!$transaction)
             $newTransaction = Yii::$app->db->beginTransaction();
 
@@ -325,18 +325,33 @@ class MegrendelesFej extends ActiveRecord
                 $termekModel->keszleten = $termekModel->keszleten - 1;
                 $termekModel->save();
 
+                //Google, Facebook követés
+                $anaconvitems[]['SKU'] = $tetel->vonalkod;
+                $anaconvitems[]['productname'] = $tetel->marka->markanev . ' ' . $tetel->termek_nev;
+                $anaconvitems[]['itemprice'] = (int)$tetel->termek_ar;
+                $anaconvitems[]['itemqty'] = 1;
+
             }
 
-            if ($newTransaction)
-                $newTransaction->commit();
-
-            return true;
+            //Google, Facebook követések
+            $anaconvgeneral = array();
+            $anaconvgeneral['invoice'] = $this->megrendeles_szama;
+            $anaconvgeneral['totalnovat'] = (int)$this->fizetendo;
+            $anaconvgeneral['shipping'] = 0;
+            $anaconvgeneral['totalvat'] = 0;
+            Yii::$app->session->set('anaconvgeneral', $anaconvgeneral);
+            Yii::$app->session->set('anaconvitems', $anaconvitems);
+            Yii::$app->session->set('google_fizetendo', (int)$this->fizetendo);
 
         } catch (\Exception $e) {
             if ($newTransaction)
                 $newTransaction->rollBack();
             return false;
         }
+
+        if ($newTransaction)
+            $newTransaction->commit();
+        return true;
 
     }
 

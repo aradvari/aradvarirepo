@@ -7102,3 +7102,6 @@ BOOTSTRAP NAVBAR
 .color-img.active{
     border: 3px solid #2A87E4;
 }
+.color-img:hover{
+    border: 3px solid #2A87E4;
+}

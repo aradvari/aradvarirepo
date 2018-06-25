@@ -141,9 +141,8 @@ class OrderController extends Controller
 
                     }
 
-                    if (!$transError && !$megrendelesModel->close())
+                    if (!$transError && !$megrendelesModel->close(true))
                         $transError = true;
-
 
                     if (!$transError) {
 
@@ -164,7 +163,7 @@ class OrderController extends Controller
 
                     } else {
 
-                        //Yii::$app->session->setFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
+                        Yii::$app->session->addFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
                         $transaction->rollBack();
 
                     }
@@ -173,7 +172,7 @@ class OrderController extends Controller
 
             } else {
 
-                Yii::$app->session->setFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
+                Yii::$app->session->addFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
                 $transaction->rollBack();
 
             }

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "globalis_adatok".
@@ -14,6 +15,9 @@ use Yii;
  */
 class GlobalisAdatok extends \app\components\db\ActiveRecord
 {
+
+    public static $records;
+
     /**
      * @inheritdoc
      */
@@ -51,7 +55,10 @@ class GlobalisAdatok extends \app\components\db\ActiveRecord
 
     public static function getParam($paramName)
     {
-        return GlobalisAdatok::findOne(['kulcs' => $paramName])->ertek;
+        if (!static::$records)
+            static::$records = ArrayHelper::map(GlobalisAdatok::find()->all(), 'kulcs', 'ertek');
+
+        return static::$records[$paramName];
     }
 
 }

@@ -91,5 +91,9 @@ class MegrendelesTetel extends ActiveRecord
         return $this->hasOne(Termekek::className(), ['id' => 'id_termek']);
     }
 
+    public function getMarka()
+    {
+        return $this->hasOne(Markak::className(), ['id' => 'id_marka']);
+    }
 
 }
