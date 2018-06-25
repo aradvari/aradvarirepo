@@ -4,10 +4,10 @@
 
 use app\models\TermekekSearch;
 use yii\widgets\ListView;
-
 $dataProvider = (new TermekekSearch())->search([]);
 $dataProvider->query->andWhere(['t.termeknev' => $model->termeknev]);
 $dataProvider->query->andWhere(['t.markaid' => $model->markaid]);
+$dataProvider->query->andWhere(['k.id_kategoriak' => $model->defaultSubCategory->id_kategoriak]);
 //$dataProvider->query->andWhere(['!=', 'id_termek', $model->id]);
 $dataProvider->pagination = false;
 if ($dataProvider->getCount() > 1):
