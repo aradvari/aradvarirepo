@@ -74,6 +74,11 @@ $config = [
                 ['pattern' => 'kerdesek-valaszok', 'route' => 'site/content', 'defaults' => ['page' => 'faq'],],
                 ['pattern' => 'facebook-belepes', 'route' => 'site/auth', 'defaults' => ['authclient' => 'facebook'],],
                 ['pattern' => 'google-belepes', 'route' => 'site/auth', 'defaults' => ['authclient' => 'google'],],
+                ['pattern' => 'fiokom', 'route' => 'user/index'],
+                ['pattern' => 'kilepes', 'route' => 'site/logout'],
+                ['pattern' => 'adataim', 'route' => 'user/modify'],
+                ['pattern' => 'rendeleseim', 'route' => 'order/my-orders'],
+                ['pattern' => 'vegleges-torles', 'route' => 'user/delete'],
             ],
         ],
         'formatter' => [
