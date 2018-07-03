@@ -3,6 +3,7 @@
 namespace app\components;
 
 use app\models\GlobalisAdatok;
+use app\models\SzallitasiMod;
 use app\models\Vonalkodok;
 use yii\base\Component;
 use Yii;
@@ -20,6 +21,7 @@ class Cart extends Component
     public $totalDiscountAmount = 0;
     public $shippingAmount = 990;
     public $couponCode;
+    public $shippingType;
 
     public function init()
     {
@@ -27,6 +29,7 @@ class Cart extends Component
 
         $this->items = $this->getItems();
         $this->couponCode = $this->getCouponCode();
+        $this->shippingType = SzallitasiMod::TYPE_GLS;
         $this->refreshItems();
 
     }
@@ -133,7 +136,10 @@ class Cart extends Component
         if ($this->totalAmount > GlobalisAdatok::getParam('ingyenes_szallitas'))
             $this->shippingAmount = 0;
 
-        $this->totalAmountWithShipping = $this->totalAmount + $this->shippingAmount;
+        if ($this->shippingType != SzallitasiMod::TYPE_SZEMELYES)
+            $this->totalAmountWithShipping = $this->totalAmount + $this->shippingAmount;
+        else
+            $this->totalAmountWithShipping = $this->totalAmount;
 
         return $items;
 

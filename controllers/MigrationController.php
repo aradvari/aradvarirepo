@@ -126,19 +126,19 @@ RETURN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
 REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
 REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
 REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
-REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
+REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
 REPLACE(REPLACE(LOWER(TRIM(s)),
 ':', ''), ')', ''), '(', ''), ',', ''), '\\', ''), '/', ''), '"', ''), '?', ''),
 "'", ''), '&', ''), '!', ''), '.', ''), ' ', '-'), '--', '-'), '--', '-'),'ù','u'),
 'ú','u'),'û','u'),'ü','u'),'ý','y'),'ë','e'),'à','a'),'á','a'),'â','a'),'ã','a'),
 'ä','a'),'å','a'),'æ','a'),'ç','c'),'è','e'),'é','e'),'ê','e'),'ë','e'),'ì','i'),
 'í','i'),'ě','e'), 'š','s'), 'č','c'),'ř','r'), 'ž','z'), 'î','i'),'ï','i'),'ð','o'),
-'ñ','n'),'ò','o'),'ó','o'),'ô','o'),'õ','o'),'ö','o'),'ø','o'),'%', '');
+'ñ','n'),'ò','o'),'ó','o'),'ô','o'),'õ','o'),'ö','o'),'ő','o'),'ű','o'),'ø','o'),'%', '');
 
-        UPDATE kategoriak set url_segment = toSlug(megnevezes)
-        UPDATE markak set url_segment = toSlug(markanev)
-        UPDATE termekek set url_segment = toSlug(concat(IFNULL(termeknev, ''), '-', IFNULL(szin, ''), '-', id))
-        UPDATE vonalkodok set url_segment = toSlug(megnevezes)
+        UPDATE kategoriak set url_segment = toSlug2(megnevezes)
+        UPDATE markak set url_segment = toSlug2(markanev)
+        UPDATE termekek set url_segment = toSlug2(concat(IFNULL(termeknev, ''), '-', IFNULL(szin, ''), '-', id))
+        UPDATE vonalkodok set url_segment = toSlug2(megnevezes)
 
 
         */

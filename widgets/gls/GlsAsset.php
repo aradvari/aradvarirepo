@@ -21,13 +21,13 @@ class GlsAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'http://online.gls-hungary.com/psmap/default.css'
+        'https://online.gls-hungary.com/psmap/default.css'
     ];
     public $forceCopy = true;
     public $js = [
 //        'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
-        'http://maps.googleapis.com/maps/api/js?v=3&sensor=false&key=AIzaSyD77lZrm6N5pB7RtInyV3iGJJbMBviYIwg',
-        'http://online.gls-hungary.com/psmap/psmap.js',
+        'https://maps.googleapis.com/maps/api/js?v=3&sensor=false&key=AIzaSyD77lZrm6N5pB7RtInyV3iGJJbMBviYIwg',
+        'https://online.gls-hungary.com/psmap/psmap.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

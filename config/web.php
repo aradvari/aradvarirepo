@@ -35,6 +35,8 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
 //            'useFileTransport' => YII_ENV_DEV,
+        'host'=>'vserver111.smtp.mcvps.hu',
+
             'messageConfig' => [
                 'charset' => 'UTF-8',
                 'from' => 'info@coreshop.hu',

@@ -66,6 +66,8 @@ class OrderController extends Controller
 
                 if ($v1 && $v2) {
 
+                    Yii::$app->cart->shippingType = $megrendelesModel->id_szallitasi_mod;
+
                     //Nem regisztrált user
                     if (!$felhasznaloModel->create_user && Yii::$app->user->isGuest)
                         $felhasznaloModel->auth_type = 'unregistered';
@@ -77,7 +79,10 @@ class OrderController extends Controller
                     $megrendelesModel->id_felhasznalo = $felhasznaloModel->getPrimaryKey();
                     $megrendelesModel->fizetendo = Yii::$app->cart->totalAmount;
                     $megrendelesModel->tetel_szam = Yii::$app->cart->getCount();
-                    $megrendelesModel->szallitasi_dij = Yii::$app->cart->shippingAmount;
+                    if ($megrendelesModel->id_szallitasi_mod != SzallitasiMod::TYPE_SZEMELYES)
+                        $megrendelesModel->szallitasi_dij = Yii::$app->cart->shippingAmount;
+                    else
+                        $megrendelesModel->szallitasi_dij = 0;
                     $megrendelesModel->kedvezmeny_erteke = Yii::$app->cart->totalDiscountAmount;
                     $megrendelesModel->id_penznem = 0;
                     $megrendelesModel->id_orszag = 1;
@@ -163,7 +168,7 @@ class OrderController extends Controller
 
                     } else {
 
-                        Yii::$app->session->addFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
+                        //Yii::$app->session->addFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
                         $transaction->rollBack();
 
                     }
@@ -172,7 +177,7 @@ class OrderController extends Controller
 
             } else {
 
-                Yii::$app->session->addFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
+                //Yii::$app->session->addFlash('danger', 'A vásárlás közben probléma lépett fel, kérünk hogy ismételd meg a megrendelésedet.');
                 $transaction->rollBack();
 
             }
@@ -245,6 +250,17 @@ class OrderController extends Controller
 
                     $transaction->commit();
 
+                    //KOSÁR TÖRLÉSE
+                    Yii::$app->cart->delete();
+
+                    //MAIL
+                    $megrendelesModel->refresh();
+                    Yii::$app->mailer->compose('/mail/order.php', ['model' => $megrendelesModel])
+                        ->setTo($megrendelesModel->felhasznalo->email)
+                        ->setSubject('Sikeres rendelés - ' . $megrendelesModel->megrendeles_szama)
+                        ->send();
+
+
                 } else { //SIKERTELEN TRANZAKCIÓ
 
                     $transModel->rc = $response["RC"];
@@ -256,26 +272,12 @@ class OrderController extends Controller
                     $megrendelesModel->id_statusz = 99;
                     $megrendelesModel->save();
 
-                    //MAIL HERE
-
-                    $transaction->rollback();
-
                 }
 
             } catch (\Exception $e) {
                 $transaction->rollBack();
                 throw $e;
             }
-
-            //KOSÁR TÖRLÉSE
-            Yii::$app->cart->delete();
-
-            //MAIL
-            $megrendelesModel->refresh();
-            Yii::$app->mailer->compose('/mail/order.php', ['model' => $megrendelesModel])
-                ->setTo($megrendelesModel->felhasznalo->email)
-                ->setSubject('Sikeres rendelés - ' . $megrendelesModel->megrendeles_szama)
-                ->send();
 
         } elseif ($parse["TRID"] == "") {
 

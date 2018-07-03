@@ -17,7 +17,7 @@ class TermekKep extends ActiveRecord
     public $webUrl;
     public $serverRoot;
     public $sizes;
-    public static $imageDir = 'termek';
+    public static $imageDir = 'pictures/termekek';
 
     /**
      * @return array the validation rules.

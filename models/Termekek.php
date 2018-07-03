@@ -8,7 +8,7 @@ use app\components\db\Model;
 use Yii;
 
 /**
- * This is the model class for table "termekek".
+ * This is the model class for table "mcrypt_module_open".
  *
  * @property int $id
  * @property int $kategoria
