@@ -72,28 +72,38 @@ $('#felhasznalok-irszam, #megrendelesfej-szallitasi_irszam').change(function () 
 
 });
 
-$('input[name="MegrendelesFej[id_szallitasi_mod]"]').change(function () {
+$('input[name="MegrendelesFej[id_szallitasi_mod]"]').change(function (e) {
 
-    console.log($(this).val());
-    var checked = ($(this).val() == 3);
+    $.ajax({
+        method: "get",
+        url: "/order/set-shipping-type",
+        data: {shippingType: e.target.value}
+    }).done(function (result) {
 
-    if (checked) {
+        var checked = (e.target.value == 3);
 
-        $('.gls-container').show();
-        initGLSPSMap();
+        if (checked) {
 
-    } else {
+            $('.gls-container').show();
+            initGLSPSMap();
 
-        $('.gls-container').hide();
+        } else {
 
-    }
+            $('.gls-container').hide();
 
-    $('#megrendelesfej-szallitasi_irszam').attr('readonly', checked);
-    $('#megrendelesfej-szallitasi_varos').attr('readonly', checked);
-    $('#megrendelesfej-szallitasi_utcanev').attr('readonly', checked);
-    $('#megrendelesfej-szallitasi_hazszam').attr('readonly', checked);
-    $('#megrendelesfej-szallitasi_emelet').attr('readonly', checked);
-    $('#megrendelesfej-gls_kod').attr('readonly', checked);
+        }
+
+        $('#megrendelesfej-szallitasi_irszam').attr('readonly', checked);
+        $('#megrendelesfej-szallitasi_varos').attr('readonly', checked);
+        $('#megrendelesfej-szallitasi_utcanev').attr('readonly', checked);
+        $('#megrendelesfej-szallitasi_hazszam').attr('readonly', checked);
+        $('#megrendelesfej-szallitasi_emelet').attr('readonly', checked);
+        $('#megrendelesfej-gls_kod').attr('readonly', checked);
+
+        refreshCartCount();
+        getCart();
+
+    });
 
 });
 

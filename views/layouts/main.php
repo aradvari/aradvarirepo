@@ -131,10 +131,12 @@ AppAsset::register($this);
         foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
             if (is_array($message)) {
                 foreach ($message as $m) {
-                    $messages[$key][] = $m;
+                    if ($m)
+                        $messages[$key][] = $m;
                 }
             } else {
-                $messages[$key][] = $m;
+                if ($m)
+                    $messages[$key][] = $m;
             }
         }
 

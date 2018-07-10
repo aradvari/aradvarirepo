@@ -45,6 +45,13 @@ class CIB
 
     }
 
+    public function setUserId($id){
+
+        $this->userId = $id;
+        $this->redir = Url::to(['order/cib/', 'userId' => (int)$this->userId], true);
+
+    }
+
     function wecho($str)
     {
 

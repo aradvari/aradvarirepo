@@ -124,7 +124,7 @@ class OrderController extends Controller
 
                         //cib
                         $cib = new CIB(Yii::$app->language, 'HUF');
-                        $cib->userId = $felhasznaloModel->getPrimaryKey();
+                        $cib->setUserId($felhasznaloModel->getPrimaryKey());
 
                         $trid = mt_rand(1000, 9999) . date("is", mktime()) . mt_rand(1000, 9999) . date("is", mktime());
                         $ts = date('YmdHis');
@@ -192,7 +192,7 @@ class OrderController extends Controller
             $megrendelesModel->szallitasi_id_megye = $felhasznaloModel->id_megye;
             $megrendelesModel->szallitasi_id_varos = $felhasznaloModel->id_varos;
             $megrendelesModel->szallitasi_varos = $felhasznaloModel->varos_nev;
-            $megrendelesModel->id_szallitasi_mod = SzallitasiMod::TYPE_CSOMAGKULDO;
+            $megrendelesModel->id_szallitasi_mod = Yii::$app->session->get('shippingType', SzallitasiMod::TYPE_CSOMAGKULDO);
             $megrendelesModel->id_fizetesi_mod = FizetesiMod::TYPE_KESZPENZ;
 
             if (!$felhasznaloModel->id_kozterulet)
@@ -310,7 +310,7 @@ class OrderController extends Controller
 
             foreach ($transModel as $model) {
 
-                $cib->userId = $model->id_felhasznalo;
+                $cib->setUserId($model->id_felhasznalo);
                 $msg = $cib->msg32($model->trid, $model->amo);
 
                 $model->rc = $msg["RC"];
@@ -374,6 +374,16 @@ class OrderController extends Controller
             ];
 
         }
+
+    }
+
+    public function actionSetShippingType($shippingType)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        Yii::$app->session->set('shippingType', $shippingType);
+
+        return true;
 
     }
 

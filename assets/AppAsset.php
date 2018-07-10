@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
 //        'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css',
-        'css/site.css?v=2',
+        'css/site.css?v=4',
     ];
     public $publishOptions = [
         'forceCopy' => YII_ENV_DEV,
@@ -29,7 +29,7 @@ class AppAsset extends AssetBundle
     public $js = [
         '//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js',
 //        'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
-        'js/site.js?v=4',
+        'js/site.js?v=11',
     ];
     public $depends = [
         'yii\web\YiiAsset',

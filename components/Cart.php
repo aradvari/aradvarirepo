@@ -29,7 +29,6 @@ class Cart extends Component
 
         $this->items = $this->getItems();
         $this->couponCode = $this->getCouponCode();
-        $this->shippingType = SzallitasiMod::TYPE_GLS;
         $this->refreshItems();
 
     }
@@ -87,6 +86,7 @@ class Cart extends Component
 
     public function getItems()
     {
+        $this->shippingType = Yii::$app->session->get('shippingType', SzallitasiMod::TYPE_CSOMAGKULDO);
 
         $cookies = Yii::$app->request->cookies;
         $items = json_decode($cookies->getValue('cart'), true);
@@ -138,8 +138,10 @@ class Cart extends Component
 
         if ($this->shippingType != SzallitasiMod::TYPE_SZEMELYES)
             $this->totalAmountWithShipping = $this->totalAmount + $this->shippingAmount;
-        else
+        else {
             $this->totalAmountWithShipping = $this->totalAmount;
+            $this->shippingAmount = 0;
+        }
 
         return $items;
 
