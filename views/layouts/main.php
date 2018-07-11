@@ -52,7 +52,7 @@ AppAsset::register($this);
       },
       "position": "bottom-right",
       "content": {
-        "message": "Az oldal Cookie-kat (sütiket) használ a felhasználói élmény fokozása érdekében.",
+        "message": "Oldalunk a tartalmak könnyebb személyessé tétele, hirdetéseink személyre szabása és mérése érdekében cookie-kat használ.",
         "dismiss": "Elfogadom",
         "link": "Részletek"
       }

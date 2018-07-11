@@ -1,0 +1,2 @@
+<p>
+A Neff egy aktív ifjúsági kiegészítő márka. 2002-es dél-kaliforniai alapításakor még fejvédőkkel foglalkozó cég (Neff Headwear), ma már a kedvelt ruházati kiegészítőiről is ismert. A Neff továbbra is a Disney, a The Simpsons, a Nickelodeon közreműködésével fejlődik tovább, híresség támogatóinak lenyűgöző listájával: Snoop Dogg, deadmau5, Wiz Khalifa, Mac Miller, Kate Upton és Scarlett Johansson. #foreverfun</p>

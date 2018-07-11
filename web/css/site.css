@@ -4405,6 +4405,11 @@ body.fb_hidden {
     max-width: 80%;
 }
 
+.brand-site-logo {
+	max-width:60%;
+	margin:auto;
+}
+
 .brand-main-category {
     color: #222;
     font-size: 18px;
@@ -6122,9 +6127,9 @@ BOOTSTRAP NAVBAR
         visibility: initial;
     }
 
-    .image-vans-x-peanuts, .image-vans-girls, .image-vans-old-skool {
+    /*.image-vans-x-peanuts, .image-vans-girls, .image-vans-old-skool {
         height:200px!important;
-    }
+    }*/
 
     h2 {
         margin-top:20px;
@@ -7104,4 +7109,13 @@ BOOTSTRAP NAVBAR
 }
 .color-img:hover{
     border: 3px solid #2A87E4;
+}
+
+
+.banner-box-desktop {
+
+}
+
+.banner-box-mobile img{
+    
 }

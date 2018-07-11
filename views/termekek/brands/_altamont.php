@@ -1,0 +1,1 @@
+<p>Az Altamont másokban inspirálja a lehetőséget, hogy felemeli és betartja a lázadó kifejezés hagyományát, amelyet olyan félelmet nem ismerő művészek és sportolók személyesítenek meg, akiknek az anyaga hitelesen ötvözi az új kollekciókat, ékes pillanatfelvételként az ötleteik és hatásaik gazdag sokszínűségéről.</p>

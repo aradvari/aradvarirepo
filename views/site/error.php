@@ -8,20 +8,21 @@
 use yii\helpers\Html;
 
 $this->title = $name;
+$this->title = "404";
+$message = "A keresett oldal nem található!";
 ?>
 <div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" style="text-align:center;margin-top:10px">
+	<img src="../images/404-sad.png" alt="A keresett oldal nem található :(" style="max-width:100px;"; />
+	<h1 style="background:none; margin:0;"><?= Html::encode($this->title) ?></h1>
         <?= nl2br(Html::encode($message)) ?>
     </div>
 
     <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
+        ‹ <a href="/">Vissza a kezdőoldalra</a>
     </p>
 
 </div>

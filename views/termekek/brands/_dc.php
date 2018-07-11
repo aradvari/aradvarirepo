@@ -1,0 +1,1 @@
+<p>Az 1994-es alapítású DC hamar tényező lett a professzionális gördeszkás cipők piacán, emellett ismert extrémsport márkává vált. Ma a DC az egész világon jelen van, termékportfóliója pedig kiterjed a férfi-, női- és gyerek deszkás és divatcipőkre, ruházatra és kiegészítőkre.</p>

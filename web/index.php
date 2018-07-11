@@ -1,12 +1,10 @@
 <?php
 
-//$visitor = $_SERVER['REMOTE_ADDR'];
-//var_dump($visitor);
-//if (preg_match("/192.168.0.1/",$visitor)) {
-//    header('Location: http://www.coreshop.hu');
-//} else {
-//    header('Location: http://www.yoursite.com/index.html');
-//};
+$visitor = $_SERVER['REMOTE_ADDR'];
+if ($visitor != "62.77.233.236" && $visitor != "195.70.40.125") {
+    header('Location: https://www.coreshop.hu/index.html?i='.$visitor);
+die;
+}
 
 // comment out the following two lines when deployed to production
 defined('YII_DEBUG') or define('YII_DEBUG', true);

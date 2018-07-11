@@ -457,11 +457,13 @@ JS
         </div>
         <div class="col-12 col-md">
             <div class="media">
-                <img src="/images/icons/transport.png" alt="Coreshop.hu - ingyenes kiszállítás"/>
+                <img src="/images/icons/moneybackguarantee.png" alt="Coreshop.hu - 15 napos pénzvisszatérítés garancia"/>
                 <div class="media-body">
-                    <p>Ingyenes
-                        kiszállítás <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?>
-                        Ft felett.</p>
+				<p>15 napos pénzvisszatérítés garancia</p>
+                    <!-- <p>Ingyenes
+                    kiszállítás <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?>
+                    Ft felett.</p> -->
+					
                 </div>
             </div>
 

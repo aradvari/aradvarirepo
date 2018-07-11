@@ -30,7 +30,7 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
 
 <div class="mobile-container">
     <!-- Slider -->
-    <div class="row hidden-md-down">
+    <div class="row d-none d-sm-block">
         <div id="coreshopCarousel" class="alice-blue-bg carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#coreshopCarousel" data-slide-to="0" class="active"></li>
@@ -43,7 +43,9 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <!-- <img class="d-block w-100" src="images/slider/slider-002.jpg" alt="First slide"> -->
+					<a href="/termekek?q=marvel">
                     <img class="d-block w-100" src="images/banner-carousel/vans-x-marvel-herobanner.jpg" alt="Vans x Marvel">
+					</a>
                     <!-- <div class="carousel-caption d-none d-md-block">
                         <h5>Ultra <span class="blue">range</span></h5>
                         <p>Kényelem és lazaság</p>
@@ -69,16 +71,16 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
 
 
    <!--Mobile slider -->
-    <div class="row hidden-md-up">
+    <div class="row d-block d-sm-none">
         <div id="coreshopCarouselMobile" class="alice-blue-bg  carousel slide" data-ride="carousel">
 
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="images/banner-box/2018/vans-x-marvel-mobilebanner.jpg" alt="Vans x Marvel">
+                    <img class="d-block w-100" src="images/banner-box/2018/20180608-vans-x-marvel.gif" alt="Vans x Marvel">
                     <div class="carousel-caption d-md-block">
                         <h5>Vans x Marvel</h5>
                         <p>A Vans egyesíti erőit a Marvel Univerzum ikonikus hőseivel!</p>
-                        <a href="" class="btn btn-primary">Megnézem</a>
+                        <a href="/termekek?q=marvel" class="btn btn-primary">Megnézem</a>
                     </div>
                 </div>
 
@@ -170,13 +172,16 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
 	
 	<section class="white-bg">
         <div class="row">
-            <div class="col-md col-12" style="background-image: url(../images/banner-box/2018/FA17_Surf_UltraRange_PatShoe.gif); background-position:center center; height: 410px;">
+            <div class="col-md col-12" style="background-image: url(../images/banner-box/2018/20180622-vans-ultrarange.jpg); 
+			background-position:center center; 
+			background-size:100%;
+			height: 400px;">
             </div>
             <div class="col-md col-12 align-self-center">
                 <h2 class="text-center">Vans <span class="blue">Ultrarange</span></h2>
-                <p class="text-center">Kényelem és lazaság! Az UltraRange RapidWeld a pillekönnyű Vans cipők legújabb tagja. Jellemzői a Mesh (rácsos) textil légáteresztő felsőrész, továbbá a forradalmian új RapidWeld (hegesztett) technológiával készült illesztések. A kényelemért az UltraCush Lite talpbetét és a Pro Vulc Lite habszivacs talpszerkezet a felelős. Ugorj bele és nem fogsz hinni a lábadnak!</p>
+                <p class="text-center">Kényelem és lazaság! Légáteresztő felsőrész, RapidWeld (hegesztett) technológiával készült illesztések. Ugorj bele és nem fogsz hinni a lábadnak!</p>
                 <p class="text-center margin-top-50">
-                    <a href="" class="btn btn-primary">Megnézem</a>
+                    <a href="/cipo?q=ultrarange" class="btn btn-primary">Megnézem</a>
                 </p>
             </div>
         </div>
@@ -204,31 +209,44 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
     <section>
         <div class="row blue-bg">
             <div class="col-md col-12 align-self-center order-1">
-                <h2 class="text-center inverse">Vans Authentic</h2>
-                <p class="text-center white">1966-ban látott napvilágot az első Vans cipő az Authentic, mely generációk óta töretlen népszerűségnek örvend a core skaterek és a stílussal szimpatizálók körében egyaránt, köszönhetően az egyszerű de stílusos megjelenésének.
+                <h2 class="text-center inverse">Vans Rowley LX</h2>
+                <p class="text-center white">Az 1999-ben megjelent Vans Rowley Classic LX limitált darabszámban csak a CORESHOP-on. Respect to Geoff Rowley!
                 <p class="text-center margin-top-50">
-                    <a href="" class="btn btn-transparent">Megnézem</a>
+                    <a href="/cipo?q=rowley" class="btn btn-transparent">Megnézem</a>
                 </p>
             </div>
-            <div class="col-md-7 order-md-2  col-12 image-vans-girls" style="margin:0;padding:0;">
-				<video controls autoplay muted loop width="100%" height="100%">
-				<source src="https://coreshop.hu/temp/repost-temp.MP4" type="video/mp4">
-				Böngésződ nem támogatja a videó lejátszását.
-				</video>
+            <div class="col-md-5 order-md-2  col-12 image-vans-girls" style="
+			margin:0;padding:0;
+			background-image: url(../images/banner-box/2018/20180622-vans-rowley.jpg); 
+			background-size: cover;
+			background-position:center center;
+			background-repeat: no-repeat;
+			width: 100%;
+			min-height:500px;">
+			
+			<?/*<video controls autoplay muted loop width="100%" height="100%">
+			<source src="https://coreshop.hu/temp/repost-temp.MP4" type="video/mp4">
+			Böngésződ nem támogatja a videó lejátszását.
+			</video> */?>
             </div>
         </div>
     </section>
 
     <section class="white-bg">
         <div class="row">
-            <div class="col-md col-12 image-vans-old-skool" style="background-image: url(../images/banner-box/2018/vans-old-skool-black-white.jpg);height:641px !important; background-position:center center;">
+            <div class="col-md col-12 image-vans-old-skool" style="
+			background-image: url(../images/banner-box/2018/20180625-vans-old-skool.jpg);
+			height:370px;
+			background-position:center center;
+			background-size:100%;
+			@media (max-width:400px) {height:200px;};">
             </div>
             <div class="col-md col-12 align-self-center">
-                <h2 class="text-center">Vans <span class="blue">old skool</span></h2>
-                <p class="text-center">A Vans kultikus Old Skool modelljéből több mint harminc verziót találsz
-                    kínálatunkban.</p>
+                <h2 class="text-center">Vans <span class="blue">Old Skool</span></h2>
+                <p class="text-center">Klasszikusoktól a legújabb színekig.
+					</p>
                 <p class="text-center margin-top-50">
-                    <a href="" class="btn btn-primary">Megnézem</a>
+                    <a href="/cipo?q=old+skool" class="btn btn-primary">Megnézem</a>
                 </p>
             </div>
         </div>

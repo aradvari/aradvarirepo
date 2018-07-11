@@ -1,0 +1,2 @@
+<p>Az éS Footwear (ejtsd "esz") a világon egyike azon kevés gördeszkás cipőgyártónak, 
+amely a mai napig aktív deszkások tulajdonában van. A cég -kisebb megszakítással- 1995 óta működik és kínál alternatívát a populáris deszkás márkák mellett.</p>

@@ -29,7 +29,7 @@ class GlsWidget extends Widget
             google.maps.event.trigger(glsMap, 'resize'); 
             
 JS
-, View::POS_BEGIN);
+, View::POS_LOAD);
 
         return Html::tag('div', '', ['id' => 'big-canvas', 'style' => 'width:100%; height:400px']);
 //        return Html::encode($this->message);
