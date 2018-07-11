@@ -72,7 +72,7 @@ class TermekekSearch extends Termekek
     public function search($params)
     {
         $sortOrder = [
-            'leguljabb-elol' => 't.opcio DESC, t.id DESC',
+            'leguljabb-elol' => 't.opcio DESC, t.opcio, t.id DESC',
             'ar-szerint-csokkeno' => '(case when t.akcios_kisker_ar > 0 THEN t.akcios_kisker_ar ELSE t.kisker_ar END) desc',
             'ar-szerint-novekvo' => '(case when t.akcios_kisker_ar > 0 THEN t.akcios_kisker_ar ELSE t.kisker_ar END) asc',
         ];
