@@ -32,19 +32,20 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
     <!-- Slider -->
     <div class="row d-none d-sm-block">
         <div id="coreshopCarousel" class="alice-blue-bg carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
+            
+			<!-- //carousel-indicators
+			<ol class="carousel-indicators">
                 <li data-target="#coreshopCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#coreshopCarousel" data-slide-to="1"></li>
                 <li data-target="#coreshopCarousel" data-slide-to="2"></li>
             </ol> 
-            <!-- //carousel-indicators -->
+			//endof carousel-indicators -->
 
             <!--Desktop slider -->
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <!-- <img class="d-block w-100" src="images/slider/slider-002.jpg" alt="First slide"> -->
-					<a href="/termekek?q=marvel">
-                    <img class="d-block w-100" src="images/banner-carousel/vans-x-marvel-herobanner.jpg" alt="Vans x Marvel">
+                <div class="carousel-item active">                    
+					<a href="/cipo">
+                    <img class="d-block w-100" src="images/banner-carousel/20180709-summer-sale.jpg" alt="Summer Sale!">
 					</a>
                     <!-- <div class="carousel-caption d-none d-md-block">
                         <h5>Ultra <span class="blue">range</span></h5>
@@ -76,12 +77,12 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
 
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="images/banner-box/2018/20180608-vans-x-marvel.gif" alt="Vans x Marvel">
-                    <div class="carousel-caption d-md-block">
+                    <a href="/cipo"><img class="d-block w-100" src="images/banner-box/2018/20180709-summer-sale-mobile.jpg" alt="Vans x Marvel"></a>
+                    <!--<div class="carousel-caption d-md-block">
                         <h5>Vans x Marvel</h5>
                         <p>A Vans egyesíti erőit a Marvel Univerzum ikonikus hőseivel!</p>
                         <a href="/termekek?q=marvel" class="btn btn-primary">Megnézem</a>
-                    </div>
+                    </div> -->
                 </div>
 
 				<!-- 2nd item carousel mobile
