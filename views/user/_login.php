@@ -51,7 +51,6 @@ use yii\helpers\Html;
 
         <h2 class="text-left">Bejelentkezés</h2>
             <?php
-
             $form = ActiveForm::begin([
                 'id' => 'login-form',
             ]); ?>
@@ -72,18 +71,9 @@ use yii\helpers\Html;
                     <a href="<?= Url::to(['/site/lost-password']) ?>">Elfelejtetted a jelszavadat?</a>
                 </div>
             </div>
-            <div class="clearfix"></div> 
+            <?php ActiveForm::end(); ?>
+            <div class="clearfix"></div>
             <div class="row justify-content-start align-items-center">
-                <div class="col-md-5 col-12">
-                 <?php ActiveForm::end(); ?>
-                    <p class="text-center font-weight-bold margin-top-20 ">Bejelentkezés Facebook vagy Google segítségével:</p>
-                </div>
-                <div class="col-md-3 col-12">
-                       <?= yii\authclient\widgets\AuthChoice::widget([
-                        'baseAuthUrl' => ['site/auth'],
-                        'popupMode' => false,
-                    ]) ?>
-                </div>
             </div>
     </div> 
 </div>

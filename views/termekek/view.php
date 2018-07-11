@@ -199,7 +199,7 @@ JS
                     <div class="product-indent">
 
 
-                        <img src="/markak/<?= $model->markaid ?>.png" alt="<?= $model->seo_name ?>"
+                        <img src="https://coreshop.hu/pictures/markak/<?= $model->markaid ?>.png" alt="<?= $model->seo_name ?>"
                              title="<?= $model->seo_name ?>">
                         <h1><?= $model->marka->markanev ?> <span class="blue"><?= $model->termeknev ?></span></h1>
                         <p class="product-color"><?= $model->szin ?></p>

@@ -76,14 +76,14 @@ class Kategoriak extends ActiveRecord
     public static function findAllMainCategory()
     {
 
-        return Kategoriak::find()->andWhere(['szulo' => 0, 'sztorno' => null]);
+        return Kategoriak::find()->andWhere(['szulo' => 0, 'sztorno' => null])->all();
 
     }
 
     public static function findAllSubCategory()
     {
 
-        return Kategoriak::find()->andWhere(['>', 'szulo', 0])->andWhere(['sztorno' => null]);
+        return Kategoriak::find()->andWhere(['>', 'szulo', 0])->andWhere(['sztorno' => null])->all();
 
     }
 

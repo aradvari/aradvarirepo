@@ -31,12 +31,15 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => YII_ENV_DEV,
-//        'host'=>'vserver111.smtp.mcvps.hu',
-
+//            'useFileTransport' => YII_ENV_DEV,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'vserver111.smtp.mcvps.hu',
+                'username' => 'coreshop',
+                'password' => 'ZW_a6Y6x',
+                'port' => '25000',
+//                'encryption' => 'tls', // It is often used, check your provider or mail server specs
+            ],
             'messageConfig' => [
                 'charset' => 'UTF-8',
                 'from' => 'info@coreshop.hu',

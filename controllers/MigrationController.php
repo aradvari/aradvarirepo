@@ -67,6 +67,7 @@ class MigrationController extends Controller
         ALTER TABLE termekek ADD url_segment varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
         ALTER TABLE megrendeles_fej ADD gls_kod varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+        ALTER TABLE megrendeles_fej ADD gls_adatok varchar(1000) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
         ALTER TABLE felhasznalok ADD auth_type varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'normal';
         ALTER TABLE termekek ADD tipus varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 

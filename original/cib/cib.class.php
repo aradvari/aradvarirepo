@@ -1,9 +1,9 @@
 <?
 class cibClass{
-    
-    var $url = 'http://eki.cib.hu:8090/market.saki?';   //ÉLES
+
+    var $url = 'http://eki.cib.hu:8090/market.saki?';   //ï¿½LES
     //var $url = 'http://ekit.cib.hu:8090/market.saki?';	//TESZT
-    var $url2 = 'https://eki.cib.hu/customer.saki?';    //ÉLES
+    var $url2 = 'https://eki.cib.hu/customer.saki?';    //ï¿½LES
     //var $url2 = 'https://ekit.cib.hu/customer.saki?';   //TESZT
     var $pid = 'CSH0001';		// Bolt azonosito
     var $crypto = '1';
@@ -12,7 +12,7 @@ class cibClass{
     var $lang = 'hu';
     var $redir = "";
     //var $csh_file = '../cib.security/cib_test/CSH.des';
-    var $csh_file = '../cib.security/cib/CSH.des';    //ÉLES
+    var $csh_file = '../cib.security/cib/CSH.des';    //ï¿½LES
     
     var $rc = '';
     
@@ -33,7 +33,7 @@ class cibClass{
     }
     
     function wecho($str){
-        
+
         $f = fopen("cib/log.txt", "a");
         fwrite ($f, $str."\n");
         fclose($f);
@@ -53,16 +53,16 @@ class cibClass{
         $params = 'PID='.$this->pid.'&CRYPTO='.$this->crypto.'&MSGT=10&TRID='.$trid.'&UID='.$uid.'&AMO='.urlencode($amo).'&CUR='.$this->cur.'&TS='.$timestamp.'&AUTH='.$this->auth.'&LANG='.$this->lang.'&URL='.$this->redir;
         
         $osszeallitott_url = $this->redir.$params;
-        if ($this->debug) $this->wecho("Összeállatott URL:<br>".$osszeallitott_url."<hr>");
+        if ($this->debug) $this->wecho("ï¿½sszeï¿½llatott URL:<br>".$osszeallitott_url."<hr>");
         
         $out = $this->ekiEncodeUrl($params, $this->csh_file);
-        if ($this->debug) $this->wecho("Kódolt URL:<br>".$this->url.$out."<hr>");
+        if ($this->debug) $this->wecho("Kï¿½dolt URL:<br>".$this->url.$out."<hr>");
 
         $lines = $this->get_web_page($this->url.$out, "");
-        if ($this->debug) $this->wecho("Válasz üzenet:<br>".$lines."<hr>");
+        if ($this->debug) $this->wecho("Vï¿½lasz ï¿½zenet:<br>".$lines."<hr>");
 
         $out = $this->ekiDecodeUrl($lines, $this->csh_file);
-        if ($this->debug) $this->wecho("Dekódolt válasz:<br>".$out."<hr>");
+        if ($this->debug) $this->wecho("Dekï¿½dolt vï¿½lasz:<br>".$out."<hr>");
 
         parse_str($out, $parse);
         $this->rc = $parse;
@@ -70,11 +70,11 @@ class cibClass{
         if ($parse['RC'] == "00") {
 
             $pp = "MSGT=20&TRID=".$trid."&PID=".$this->pid;
-            if ($this->debug) $this->wecho("Összeállított paraméterek:<br>".$pp."<hr>");
+            if ($this->debug) $this->wecho("ï¿½sszeï¿½llï¿½tott paramï¿½terek:<br>".$pp."<hr>");
 
             $outt = $this->ekiEncodeUrl($pp, $this->csh_file);
 
-            if ($this->debug) $this->wecho('Vásárló URL:<br><a href="'.$this->url2.$outt.'">'.$this->url2.$outt.'</a>');
+            if ($this->debug) $this->wecho('Vï¿½sï¿½rlï¿½ URL:<br><a href="'.$this->url2.$outt.'">'.$this->url2.$outt.'</a>');
 
             return $this->url2.$outt;
 
@@ -92,16 +92,16 @@ class cibClass{
 
         $params = 'PID='.$this->pid.'&CRYPTO='.$this->crypto.'&MSGT=32&TRID='.$trid.'&AMO='.urlencode($amo);
         
-        if ($this->debug) $this->wecho("Összeállatott paraméterek:<br>".$params."<hr>");
+        if ($this->debug) $this->wecho("ï¿½sszeï¿½llatott paramï¿½terek:<br>".$params."<hr>");
         
         $out = $this->ekiEncodeUrl($params, $this->csh_file);
-        if ($this->debug) $this->wecho("Kódolt paraméterek:<br>".$out."<hr>");
+        if ($this->debug) $this->wecho("Kï¿½dolt paramï¿½terek:<br>".$out."<hr>");
 
         $lines = $this->get_web_page($this->url.$out, "");
-        if ($this->debug) $this->wecho("Válasz üzenet:<br>".$lines."<hr>");
+        if ($this->debug) $this->wecho("Vï¿½lasz ï¿½zenet:<br>".$lines."<hr>");
 
         $out = $this->ekiDecodeUrl($lines, $this->csh_file);
-        if ($this->debug) $this->wecho("Dekódolt válasz:<br>".$out."<hr>");
+        if ($this->debug) $this->wecho("Dekï¿½dolt vï¿½lasz:<br>".$out."<hr>");
 
         parse_str($out, $parse);
         
@@ -115,16 +115,16 @@ class cibClass{
 
         $params = 'PID='.$this->pid.'&CRYPTO='.$this->crypto.'&MSGT=33&TRID='.$trid.'&AMO='.urlencode($amo);
         
-        if ($this->debug) $this->wecho("Összeállatott paraméterek:<br>".$params."<hr>");
+        if ($this->debug) $this->wecho("ï¿½sszeï¿½llatott paramï¿½terek:<br>".$params."<hr>");
         
         $out = $this->ekiEncodeUrl($params, $this->csh_file);
-        if ($this->debug) $this->wecho("Kódolt paraméterek:<br>".$out."<hr>");
+        if ($this->debug) $this->wecho("Kï¿½dolt paramï¿½terek:<br>".$out."<hr>");
 
         $lines = $this->get_web_page($this->url.$out, "");
-        if ($this->debug) $this->wecho("Válasz üzenet:<br>".$lines."<hr>");
+        if ($this->debug) $this->wecho("Vï¿½lasz ï¿½zenet:<br>".$lines."<hr>");
 
         $out = $this->ekiDecodeUrl($lines, $this->csh_file);
-        if ($this->debug) $this->wecho("Dekódolt válasz:<br>".$out."<hr>");
+        if ($this->debug) $this->wecho("Dekï¿½dolt vï¿½lasz:<br>".$out."<hr>");
 
         parse_str($out, $parse);
         
@@ -138,16 +138,16 @@ class cibClass{
 
         $params = 'PID='.$this->pid.'&CRYPTO='.$this->crypto.'&MSGT=37&TRID='.$trid.'&AMO='.urlencode($amo);
         
-        if ($this->debug) $this->wecho("Összeállatott paraméterek:<br>".$params."<hr>");
+        if ($this->debug) $this->wecho("ï¿½sszeï¿½llatott paramï¿½terek:<br>".$params."<hr>");
         
         $out = $this->ekiEncodeUrl($params, $this->csh_file);
-        if ($this->debug) $this->wecho("Kódolt paraméterek:<br>".$out."<hr>");
+        if ($this->debug) $this->wecho("Kï¿½dolt paramï¿½terek:<br>".$out."<hr>");
 
         $lines = $this->get_web_page($this->url.$out, "");
-        if ($this->debug) $this->wecho("Válasz üzenet:<br>".$lines."<hr>");
+        if ($this->debug) $this->wecho("Vï¿½lasz ï¿½zenet:<br>".$lines."<hr>");
 
         $out = $this->ekiDecodeUrl($lines, $this->csh_file);
-        if ($this->debug) $this->wecho("Dekódolt válasz:<br>".$out."<hr>");
+        if ($this->debug) $this->wecho("Dekï¿½dolt vï¿½lasz:<br>".$out."<hr>");
 
         parse_str($out, $parse);
         
@@ -160,7 +160,7 @@ class cibClass{
         if ($this->debug) $this->wecho("<div style=\"background-color:red;color:white\">GET_DATA</div>");
 
         $out = $this->ekiDecodeUrl($url, $this->csh_file);
-        if ($this->debug) $this->wecho("Dekódolt válasz:<br>".$out."<hr>");
+        if ($this->debug) $this->wecho("Dekï¿½dolt vï¿½lasz:<br>".$out."<hr>");
 
         parse_str($out, $parse);
         $this->rc = $parse;
@@ -172,7 +172,7 @@ class cibClass{
     function getMessage(){
         
         $message = array(
-            "01" => "Hiba a kódolásnál"
+            "01" => "Hiba a kï¿½dolï¿½snï¿½l"
         );      
         
         $rtn = $message[$this->rc["RC"]];
@@ -204,16 +204,16 @@ class cibClass{
     }
 
 /*
-        Titkosítás a saki protokoll alapján
+        Titkosï¿½tï¿½s a saki protokoll alapjï¿½n
 
-        Paraméterek:
+        Paramï¿½terek:
 
-        	$plaintext: a titkosítandó string
-        	$keyfile: a titkosításhoz szükséges kulcsfile neve
+        	$plaintext: a titkosï¿½tandï¿½ string
+        	$keyfile: a titkosï¿½tï¿½shoz szï¿½ksï¿½ges kulcsfile neve
 
-        Visszatérõ érték:
+        Visszatï¿½rï¿½ ï¿½rtï¿½k:
 
-            A titkosított üzenet
+            A titkosï¿½tott ï¿½zenet
 
     */
 
@@ -263,16 +263,16 @@ class cibClass{
     }
 
     /*
-        Kititkosítás a saki protokoll alapján
+        Kititkosï¿½tï¿½s a saki protokoll alapjï¿½n
 
-        Paraméterek:
+        Paramï¿½terek:
 
-        	$crypto: a kititkosítandó string
-        	$keyfile: a titkosításhoz szükséges kulcsfile neve
+        	$crypto: a kititkosï¿½tandï¿½ string
+        	$keyfile: a titkosï¿½tï¿½shoz szï¿½ksï¿½ges kulcsfile neve
 
-        Visszatérõ érték:
+        Visszatï¿½rï¿½ ï¿½rtï¿½k:
 
-            A kititkosított üzenet, vagy crc hiba esetén üres string
+            A kititkosï¿½tott ï¿½zenet, vagy crc hiba esetï¿½n ï¿½res string
 
     */
 

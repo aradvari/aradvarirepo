@@ -58,7 +58,7 @@ $('#meret, input[name="sizes"]').change(function (event) {
 
 });
 
-$('.cart-form').submit(function () {
+$('.cart-form').submit(function (event) {
 
     event.preventDefault();
 

@@ -1,5 +1,12 @@
 RewriteEngine On RewriteBase /
 
+RewriteCond %{HTTPS} !=on
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+
+RewriteCond %{SERVER_PORT} 443
+RewriteCond %{HTTP_HOST} ^www[.].+$
+RewriteRule ^(.*)$ https://coreshop.hu/$1 [L,R=301]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 

@@ -2,6 +2,7 @@
 
 namespace app\extensions\cib;
 
+use GuzzleHttp\Ring\Client\CurlFactory;
 use \Yii;
 use yii\helpers\Url;
 

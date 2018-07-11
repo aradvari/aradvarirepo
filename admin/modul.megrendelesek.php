@@ -192,7 +192,7 @@ if($res)	{
 			o.orszag_nev,
 			bt.trid,
 			f.aktivacios_kod,
-			f.auth_type,
+			f.auth_type
 		FROM megrendeles_fej mf
 		LEFT JOIN megrendeles_tetel mt ON (mt.id_megrendeles_fej = mf.id_megrendeles_fej)
 		LEFT JOIN megrendeles_statuszok ms ON (mf.id_statusz = ms.id_megrendeles_statusz)

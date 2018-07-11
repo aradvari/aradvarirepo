@@ -310,26 +310,50 @@ class OrderController extends Controller
 
             foreach ($transModel as $model) {
 
+                $megrendelesModel = MegrendelesFej::findOne($model->id_megrendeles_fej);
+
                 $cib->setUserId($model->id_felhasznalo);
                 $msg = $cib->msg32($model->trid, $model->amo);
 
-                $model->rc = $msg["RC"];
-                $model->rt = iconv("ISO-8859-2", "UTF-8", $msg["RT"]);
-                $model->anum = $msg["ANUM"];
-                $model->lezarva = new Expression('NOW()');
-                $model->save(false);
+                if ($msg["ANUM"] != "" && $msg["RT"] != "" && $msg["RC"] == "00") { //SIKERES TRANZAKCIÓ
 
-                $res = $cib->msg33($model->trid, $model->amo);
+                    $model->rc = $msg["RC"];
+                    $model->rt = iconv("ISO-8859-2", "UTF-8", $msg["RT"]);
+                    $model->anum = $msg["ANUM"];
+                    $model->lezarva = new Expression('NOW()');
+                    $model->save(false);
 
-                $megrendelesModel = MegrendelesFej::findOne($model->id_megrendeles_fej);
-                $megrendelesModel->close();
+                    $res = $cib->msg33($model->trid, $model->amo);
 
-                $response[] = [
-                    'transModel' => $model->attributes,
-                    'megrendelesModel' => $megrendelesModel->attributes,
-                    'msg32' => iconv('UTF-8', 'UTF-8', $msg),
-                    'msg33' => iconv('UTF-8', 'UTF-8', $res),
-                ];
+                    $megrendelesModel->id_statusz = 1;
+                    $megrendelesModel->save();
+
+                    $megrendelesModel->close();
+
+                    $response[] = [
+                        'transModel' => $model->attributes,
+                        'megrendelesModel' => $megrendelesModel->attributes,
+                        'msg32' => iconv('UTF-8', 'UTF-8', $msg),
+                        'msg33' => iconv('UTF-8', 'UTF-8', $res),
+                    ];
+
+                }else{//SIKERTELEN TRANZAKCIÓ
+
+                    $model->rc = $msg["RC"];
+                    $model->rt = iconv("ISO-8859-2", "UTF-8", $msg["RT"]);
+                    $model->lezarva = new Expression('NOW()');
+                    $model->save();
+
+                    $megrendelesModel->id_statusz = 99;
+                    $megrendelesModel->save();
+
+                    $response[] = [
+                        'transModel' => $model->attributes,
+                        'megrendelesModel' => $megrendelesModel->attributes,
+                        'msg32' => iconv('UTF-8', 'UTF-8', $msg),
+                    ];
+
+                }
 
             }
 
