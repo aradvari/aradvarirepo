@@ -8,17 +8,17 @@ header("Last-Modified: " . gmdate("D, d M Y H:i: s") . " GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
-header("Content-type:text/html; charset=ISO-8859-2");
+header("Content-type:text/html; charset=UTF-8");
 
 require('include/login.php');
 
-mysql_query("SET NAMES 'latin2';");
+mysql_query("SET NAMES 'utf8';");
 
 require ("classes/functions.class.php");
 $func = new functions();
 
 
-$fizetesi_modok = array(1=>"Ut·nvÈt", 2=>"Bankk·rty·s fizetÈs", 3=>"KÈszpÈnz");
+$fizetesi_modok = array(1=>"Ut√°nv√©t", 2=>"Bankk√°rty√°s fizet√©s", 3=>"K√©szp√©nz");
 
 if(!empty($_GET['id_megrendeles_fej']))	{
 	
@@ -66,9 +66,9 @@ $query = mysql_query('SELECT
 
 
 // fejlec
-$response=';;Sz·ml·z·si cÌm;;;;;;;LevelezÈsi cÌm;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;Partner megnevezÈse:;Ir·nyÌtÛsz·m;Telep¸lÈs;Utca, h·zsz·m;FizetÈsi mÛd;Kelt;TeljesÌtÈs;FizetÈsi hat·ridı;NÈv;Ir·nyÌtÛsz·m;Telep¸lÈs;Utca, h·zsz·m;MegjegyzÈs;Sz·llÌtÛ banksz·mlasz·ma;Email;Nyelv;LogÛf·jl neve;RendelÈssz·m;Partner adÛsz·ma;Vevı fıkˆnyvi sz·m;Vevı fıkˆnyvi azonosÌtÛ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;TÈtel megnevezÈs;MennyisÈg;MennyisÈgi egysÈg;NettÛ egysÈg·r;¡fakulcs;TÈtel nettÛ;TÈtel ·fa;TÈtel bruttÛ;TÈtel megjegyzÈs;¡rbevÈtel fıkˆnyvi sz·m;¡fa fıkˆnyvi sz·m;Gazdas·gi esemÈny azonosÌtÛ;¡fa gazdas·gi esemÈny azonosÌtÛ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+$response=';;Sz√°ml√°z√°si c√≠m;;;;;;;Levelez√©si c√≠m;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Partner megnevez√©se:;Ir√°ny√≠t√≥sz√°m;Telep√ºl√©s;Utca, h√°zsz√°m;Fizet√©si m√≥d;Kelt;Teljes√≠t√©s;Fizet√©si hat√°rid≈ë;N√©v;Ir√°ny√≠t√≥sz√°m;Telep√ºl√©s;Utca, h√°zsz√°m;Megjegyz√©s;Sz√°ll√≠t√≥ banksz√°mlasz√°ma;Email;Nyelv;Log√≥f√°jl neve;Rendel√©ssz√°m;Partner ad√≥sz√°ma;Vev≈ë f≈ëk√∂nyvi sz√°m;Vev≈ë f≈ëk√∂nyvi azonos√≠t√≥;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;T√©tel megnevez√©s;Mennyis√©g;Mennyis√©gi egys√©g;Nett√≥ egys√©g√°r;√Åfakulcs;T√©tel nett√≥;T√©tel √°fa;T√©tel brutt√≥;T√©tel megjegyz√©s;√Årbev√©tel f≈ëk√∂nyvi sz√°m;√Åfa f≈ëk√∂nyvi sz√°m;Gazdas√°gi esem√©ny azonos√≠t√≥;√Åfa gazdas√°gi esem√©ny azonos√≠t√≥;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ';
 
 
@@ -106,7 +106,7 @@ while ($adatok = mysql_fetch_row($query))	{
 							
 		while ($tetel = mysql_fetch_row($tetel_query))	{					
 					// tetel
-					//;Alap csomag havidÌj;1;db;3325;27;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					//;Alap csomag havid√≠j;1;db;3325;27;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					
 					$tetel_teljes_nev = $tetel[0].' - '.$tetel[1].' '.$tetel[2];
 
@@ -141,7 +141,7 @@ while ($adatok = mysql_fetch_row($query))	{
 					
 					//$response .= ';'.$tetel_teljes_nev.';1;db;'.$tetel_netto.';'.$afakulcs.';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;';
 					
-					//NettÛ egysÈg·r;¡fakulcs;TÈtel nettÛ;TÈtel ·fa;TÈtel bruttÛ;
+					//Nett√≥ egys√©g√°r;√Åfakulcs;T√©tel nett√≥;T√©tel √°fa;T√©tel brutt√≥;
 					//780;27;780;210;990;
 					
 					$response .= ';'.$tetel_teljes_nev.';1;db;'.$tetel_netto.';'.$afakulcs.';'.$tetel_netto.';'.$tetel_afa.';'.$tetel_brutto.';(EAN - '.$tetel[6].');911;467;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;';
@@ -158,14 +158,14 @@ while ($adatok = mysql_fetch_row($query))	{
 						
 						$kedvezmeny_afa = round($kedvezmeny_brutto - $kedvezmeny_netto);
 					
-					$response .= ';KuponkÛd kedvezmÈny;1;db;'.$kedvezmeny_netto.';'.$afakulcs.';'.($kedvezmeny_netto*-1).';'.($kedvezmeny_afa*-1).';'.($kedvezmeny_brutto*-1).';;911;467;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;';
+					$response .= ';Kuponk√≥d kedvezm√©ny;1;db;'.$kedvezmeny_netto.';'.$afakulcs.';'.($kedvezmeny_netto*-1).';'.($kedvezmeny_afa*-1).';'.($kedvezmeny_brutto*-1).';;911;467;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;';
 					$response .= "\n";
 					}*/
 					
 					
 					// szallitasi dij, ha van
 					if($adatok[7]>0)	{
-					$response .= ';Sz·llÌt·si dÌj;1;db;780;27;780;210;990;;911;467;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;';
+					$response .= ';Sz√°ll√≠t√°si d√≠j;1;db;780;27;780;210;990;;911;467;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;';
 					$response .= "\n";
 					}
 		
@@ -173,12 +173,15 @@ while ($adatok = mysql_fetch_row($query))	{
 
 
 // convert UTF-8 to ANSI
-$response = iconv("ISO-8859-1", "WINDOWS-1252", $response);
+//$response = iconv("UTF-8", "WINDOWS-1252", $response);
+//var_dump($response);die;
+//$response = iconv("UTF-8", "WINDOWS-1252//IGNORE", $response);
+$response = mb_convert_encoding($response, "Windows-1252", "UTF-8");
 
 $datetime=date('Ymd-Hi');
 
 /**
-* @desc HEADER-be Ìr·s
+* @desc HEADER-be √≠r√°s
 */
 ob_start();
 

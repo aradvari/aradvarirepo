@@ -38,7 +38,7 @@ while ($adatok = mysql_fetch_row($query)){
 				$adatok[2].";".
 				$adatok[3].";".
 				$adatok[4].";".
-				($adatok[5]?$adatok[5]:'-').";".
+				$adatok[5].";".
 				$adatok[7].";".
 				$adatok[8].";";
 				
@@ -59,7 +59,6 @@ while ($adatok = mysql_fetch_row($query)){
 			$i++;
 		}
 		
-		$response .= ";".($adatok[10]?'PSD('.$adatok[10].')':'FDS()').";";	// gls csomagpont kod
 		$response .= "\n";
 }
 

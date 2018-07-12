@@ -83,7 +83,7 @@ if (ISSET($_REQUEST['id_statusz'])) {
         $mail->From = $func->getMainParam('mail_from');
         $mail->FromName = $func->getMainParam('mail_fromname');;
         $mail->SetLanguage("hu", "classes/phpmailer/language/");
-        //$mail->CharSet = "UTF-8";
+        $mail->CharSet = "UTF-8";
 
         $mail->AddAddress($f['email'], "");
         // $mail->AddAddress('gabor@eyecandy.hu',"");  // masolat a rendszerlevelekrol

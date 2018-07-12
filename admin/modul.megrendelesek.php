@@ -258,6 +258,8 @@ if($res)	{
 		
 		mf.megjegyzes
 		
+		, mf.gls_kod
+		
 		
 		FROM megrendeles_fej mf
 		LEFT JOIN megrendeles_tetel mt ON (mt.id_megrendeles_fej = mf.id_megrendeles_fej)
@@ -266,7 +268,7 @@ if($res)	{
 		LEFT JOIN felhasznalok f ON (mf.id_felhasznalo = f.id)
 		
 		WHERE mf.sztorno IS NULL AND 
-		mf.id_szallitasi_mod=1 AND
+		(mf.id_szallitasi_mod=1 OR mf.id_szallitasi_mod=3)AND
 		mf.id_felhasznalo != 11039 AND /* zsuti77@gmail.com Coreshop user */
 		mt.sztorno IS NULL ".$_SESSION['megrendelesek_query'].$_SESSION['megrendelesek']['statusz']."
 		GROUP BY mf.id_megrendeles_fej
