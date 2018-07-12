@@ -204,7 +204,7 @@ use app\models\SzallitasiMod;
         <div class="content" style="color:#222;">
 
             <div class="headline-logo"><a href="https://coreshop.hu" target="_blank" border="0">
-                    <img src="http://yii.coreshop.hu/images/coreshop-logo-mail.png"></a></div>
+                    <img src="https://coreshop.hu/images/coreshop-logo-mail.png"></a></div>
 
 
             <p>
@@ -233,7 +233,7 @@ use app\models\SzallitasiMod;
                     </tr>
                     <tr>
                         <td>Szállítási cím:</td>
-                        <td><?= $model->gls_kod ?><br><?= $model->gls_cim ?></td>
+                        <td><?= $model->gls_kod ?><br><?= $model->gls_adatok ?></td>
                     </tr>
                     <tr>
                         <td>Csomagpontra érkezés dátuma:</td>
@@ -323,7 +323,7 @@ use app\models\SzallitasiMod;
                 <?php foreach ($model->tetelek as $item): ?>
                     <tr>
                         <td style="text-align:center;">
-                            <img src="<?= $item->termek->getDefaultImage()->webUrl ?>" class="productimg"/>
+                            <img src="http://coreshop.hu/<?= $item->termek->getDefaultImage()->webUrl ?>" class="productimg"/>
                             <br/>
                             <?= $item->termek_nev ?> x 1 db<br>
                             Méret: <?= $item->tulajdonsag ?>

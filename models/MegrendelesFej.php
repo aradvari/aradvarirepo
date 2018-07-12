@@ -88,6 +88,7 @@ class MegrendelesFej extends ActiveRecord
             [['szallitasi_nev', 'szallitasi_utcanev', 'szamlazasi_nev', 'szamlazasi_utcanev'], 'string', 'max' => 100],
             [['szallitasi_irszam', 'szamlazasi_irszam'], 'string', 'max' => 14],
             [['szallitasi_varos', 'szamlazasi_varos', 'gls_kod'], 'string', 'max' => 50],
+            [['gls_adatok'], 'string', 'max' => 1000],
             [['szallitasi_kozterulet', 'szamlazasi_kozterulet'], 'string', 'max' => 30],
             [['szallitasi_hazszam', 'szallitasi_emelet', 'szamlazasi_hazszam'], 'string', 'max' => 20],
             [['id_szallitasi_mod', 'id_fizetesi_mod'], 'required'],
@@ -183,6 +184,7 @@ class MegrendelesFej extends ActiveRecord
         $this->szamlazasi_irszam = $felhasznaloModel->irszam;
         $this->szamlazasi_utcanev = $felhasznaloModel->utcanev;
         $this->szamlazasi_id_kozterulet = $felhasznaloModel->id_kozterulet;
+        $this->szamlazasi_kozterulet = $felhasznaloModel->kozterulet_nev;
         $this->szamlazasi_hazszam = $felhasznaloModel->hazszam;
         $this->szamlazasi_id_megye = $felhasznaloModel->id_megye;
         $this->szamlazasi_id_varos = $felhasznaloModel->id_varos;

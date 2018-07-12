@@ -155,6 +155,7 @@ OrderAsset::register($this);
                
 
                 <?= $form->field($megrendelesModel, 'gls_kod')->hiddenInput()->label('') ?>
+                <?= $form->field($megrendelesModel, 'gls_adatok')->hiddenInput()->label('') ?>
 
             </div>
 

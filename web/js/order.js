@@ -125,6 +125,7 @@ window.glsPSMap_OnSelected_Handler = function (data) {
     $('#megrendelesfej-szallitasi_varos').val(data.city);
     $('#megrendelesfej-szallitasi_utcanev').val(data.address);
     $('#megrendelesfej-gls_kod').val(data.pclshopid);
+    $('#megrendelesfej-gls_adatok').val(data.name + '<br>' + data.zipcode + ' ' + data.address + '<br>' + data.phone);
 
     if ($('#megrendelesfej-szallitasi_nev').val() == '' && $('#felhasznalok-vezeteknev').val() != '' && $('#felhasznalok-keresztnev').val() != '')
         $('#megrendelesfej-szallitasi_nev').val($('#felhasznalok-vezeteknev').val() + ' ' + $('#felhasznalok-keresztnev').val());
