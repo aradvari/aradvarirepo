@@ -121,10 +121,35 @@ use yii\helpers\Url;
               <br>
             között kerül kiszállításra.
             </p>
+			
+			
+			<p>
+			<h4>Coreshop <span class="alice-blue">free shipping</span> </h4>
 
+             <div class="row">
+               <div class="col-xl-12">
+                Az ingyenes szállításhoz 
+               </div>
+               <div class="col-xl-12">
+                <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?> Ft szükséges.
+               </div>
+             </div>
+			 
+			</p> 
+			
+			<p>
+			<h4>Coreshop <span class="alice-blue">garancia</span> </h4>
 
-            <!--<img src="/images/box.svg" alt="box">
-            <img src="/images/free.svg" alt="Ingyenes kiszállítás">-->
+             <div class="row">
+               <div class="col-xl-12">
+                Termékeinkre 15 napos pénzvisszafizetés garanciát adunk. <a href="/altalanos-szerzodesi-feltetelek#5">Részletek</a>
+               </div>               
+             </div>
+			</p> 
+			 
+			 
+
+			<!--
              <h4>Coreshop <span class="alice-blue">free shipping</span> </h4>
 
              <div class="row">
@@ -135,10 +160,8 @@ use yii\helpers\Url;
                 <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?> Ft szükséges.
                </div>
              </div>
+			 -->
 
-            <!-- <p>
-              Az ingyenes szállításhoz <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?> Ft szükséges.
-            </p>   -->
             <!-- //footer-pad -->
           </div>
       </div>  <!-- //col-md-3 col-sm-6 -->

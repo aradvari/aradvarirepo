@@ -3,7 +3,7 @@
         <div class="row justify-content-between pt-5 pb-5">
             <div class="col-lg-9 title">Általános szerződési feltételek (ÁSZF)</div>
             <div class="col-lg-3 text-right">
-                <a class="contract-download-link" href="https://coreshop.hu/coreshop_asz.pdf">⇓ Letöltés (PDF)</a>
+                <a class="contract-download-link" href="https://coreshop.hu/coreshop_aszf.pdf">⇓ Letöltés (PDF)</a>
             </div>
         </div>
 
@@ -178,10 +178,10 @@
 
                     <h4 id="7" class="text-center pb-4">7. Visszaküldés menete</h4>
                     <div class="row">
-                        Amennyiben Vevő a terméket Eladónak visszaküldi (elállás, 8 munkanapos pénz-visszafizetés és garanciális visszaküldés esetén), az alábbiak szerint kell eljárnia: A fogyasztási cikk szállításra alkalmas csomagolásáról Vevő köteles gondoskodni, a nem megfelelő csomagolásból eredő, a szállítás során bekövetkező károkért az Eladó felelősséget nem vállal. A termék szállítási költsége elállás, 8 munkanapos pénz-visszafizetési garancia, jótállás, illetve kiterjesztett jótállás esetén a Vevőt terheli. Minden esetben mellékelni kell a számla másolatát, vagy a jótállási jegyet.
+                        Amennyiben Vevő a terméket Eladónak visszaküldi (elállás, 15 munkanapos pénz-visszafizetés és garanciális visszaküldés esetén), az alábbiak szerint kell eljárnia: A fogyasztási cikk szállításra alkalmas csomagolásáról Vevő köteles gondoskodni, a nem megfelelő csomagolásból eredő, a szállítás során bekövetkező károkért az Eladó felelősséget nem vállal. A termék szállítási költsége elállás, 8 munkanapos pénz-visszafizetési garancia, jótállás, illetve kiterjesztett jótállás esetén a Vevőt terheli. Minden esetben mellékelni kell a számla másolatát, vagy a jótállási jegyet.
                     </div>
                     <div class="row pb-4 font-weight-bold">Utánvéttel terhelt küldeményt az Eladó nem vesz át.</div>
-                    <div class="row pb-4">8 munkanapos pénz-visszafizetés és garanciális visszaküldés esetén a terméket erre a címre kell eljuttatni:</div>
+                    <div class="row pb-4">15 munkanapos pénz-visszafizetés és garanciális visszaküldés esetén a terméket erre a címre kell eljuttatni:</div>
                     <div class="row font-weight-bold pb-4">Coreshop Kft.</div>
                     <div class="row font-weight-bold pb-4">1163 Budapest, </div>
                     <div class="row font-weight-bold pb-4">Cziráki utca 26-32.</div>
@@ -202,7 +202,7 @@
                         Eladó promóciós e-maileket (Hírlevél) küld, amennyiben a Vevő regisztrációjánál elfogadta a "Feliratkozom a Coreshop hírlevelére" opciót. A regisztrált e-mail címre kizárólag Eladónak áll jogában akciós anyagokat, reklámokat küldeni. Vevő adatai megadásával hozzájárul a tájékoztatás, reklámok, ajánlatok fogadásához. Vevő a hírlevél szolgáltatást a későbbiekben lemondhatja, a Coreshop hírlevél alján található "Leiratkozás" hivatkozás megnyitásával.
                     </div>
                     <div class="row pb-5">
-                        <a class="contract-link" href="https://coreshop.hu/coreshop_asz.pdf">⇓ Az ÁSZF letölthető itt nyomtatható PDF formátumban</a>
+                        <a class="contract-link" href="https://coreshop.hu/coreshop_aszf.pdf">⇓ Az ÁSZF letölthető itt nyomtatható PDF formátumban</a>
                     </div>
 
 

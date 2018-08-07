@@ -42,7 +42,7 @@
                         <p>Csomagküldő szolgálattal történő szállítás esetén a házhozszállítás díja alapesetben <span class="font-weight-bold">990 Ft</span> az ország egész területére, amennyiben a vásárlás végösszege nem érte el az <span class="font-weight-bold">Ingyenes szállítás</span> értékhatárát.</p>
                     </div>
                     <div class="row">
-                        <p>A belföldi ingyenes szállítás értékhatára: <span class="font-weight-bold">10 000 Ft.</span></p> 
+                        <p>A belföldi ingyenes szállítás értékhatára: <span class="font-weight-bold">20 000 Ft.</span></p> 
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-sendback" role="tabpanel" aria-labelledby="v-pills-sendback-tab">

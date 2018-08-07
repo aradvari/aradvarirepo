@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/bootstrap.min.css?v=1',
-        'css/site.css?v=4',
+        'css/site.css?v=180802',
     ];
     public $publishOptions = [
         'forceCopy' => YII_ENV_DEV,

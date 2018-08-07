@@ -4,9 +4,9 @@
 use app\models\TermekekSearch;
 use yii\helpers\Url;
 
-$this->title = 'gördeszkás webshop: Vans,éS Footwear,Etnies,Emerica';
-$description = 'Coreshop online webshop, a Vans, DC Shoes, Supra, Osiris, DVS Shoes magyarországi forgalmazója, gördeszka hardware-ek.';
-$keywords = 'Coreshop, Vans, Vans off The Wall, DC Shoes, Osiris, DVS Shoes, baseball sapka, kiegészítők, gördeszka hardware, skateboard';
+$this->title = 'Coreshop - Vans, éS Footwear, Etnies, Emerica, Volcom, Bones, Powell Peralta';
+$description = 'Coreshop online gördeszkás ruházati webshop, a Vans, Etnies, éS Footwear, Emerica, Volcom, Bones, Powell Peralta, DC Shoes, magyarországi forgalmazója, gördeszka hardware-ek.';
+$keywords = 'Coreshop, Vans, Vans off The Wall, DC Shoes, Etnies, éS Footwear, Emerica, Volcom, Bones, Powell Peralta, baseball sapka, kiegészítők, gördeszka hardware, skateboard';
 $image = Url::to('/images/coreshop-logo-social.png', true);
 
 //SEO DEFAULT
@@ -45,7 +45,7 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
             <div class="carousel-inner">
                 <div class="carousel-item active">                    
 					<a href="/cipo">
-                    <img class="d-block w-100" src="images/banner-carousel/20180709-summer-sale.jpg" alt="Summer Sale!">
+                    <img class="d-block w-100" src="images/banner-carousel/2018/20180802-vans-tnt.jpg" alt="Vans TNT">
 					</a>
                     <!-- <div class="carousel-caption d-none d-md-block">
                         <h5>Ultra <span class="blue">range</span></h5>
@@ -77,12 +77,12 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
 
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="/cipo"><img class="d-block w-100" src="images/banner-box/2018/20180709-summer-sale-mobile.jpg" alt="Vans x Marvel"></a>
-                    <!--<div class="carousel-caption d-md-block">
-                        <h5>Vans x Marvel</h5>
-                        <p>A Vans egyesíti erőit a Marvel Univerzum ikonikus hőseivel!</p>
-                        <a href="/termekek?q=marvel" class="btn btn-primary">Megnézem</a>
-                    </div> -->
+                    <a href="/cipo/ferfi-cipo/vans/tnt-advanced-prototype-blackmagentawhite-7655"><img class="d-block w-100" src="images/banner-mobile/2018/20180802-vans-tnt.jpg" alt="Vans TNT"></a>
+                    <div class="carousel-caption d-md-block">
+                        <h5>Vans TNT Advanced Prototype</h5>
+                        <p>A Tony Trujillo nevével fémjelzett TNT Advanced Prototype a Vans legújabb, egyben legfejlettebb gördeszkás cipője.</p>
+                        <a href="/cipo/ferfi-cipo/vans/tnt-advanced-prototype-blackmagentawhite-7655" class="btn btn-primary">Megnézem</a>
+                    </div>
                 </div>
 
 				<!-- 2nd item carousel mobile
@@ -270,6 +270,25 @@ $dataProvider->query->orderBy('rand()');
 if ($dataProvider->getCount() > 0)
     echo $this->render('/termekek/_index_ajanlo', ['dataProvider' => $dataProvider]);
 ?>
+</div>
+
+<div class="alice-blue-bg m--15">
+    <div class="container" style="padding-bottom:50px;">
+            <div class="row justify-content-center">
+                <h2 class="mt-5 my-5 text-center">Rólunk</h2>
+            </div>
+    
+	Köszönjük, hogy benéztél, ha már itt vagy akkor szeretnénk megosztani veled egy kis Coreshop történelmet.
+	<br />
+	<br />
+	Ott kezdődött minden, ahol a nap nyugszik, a nyugati parton, Dél-Kaliforniában.  Ahol olyan termékeket készítenek, amelyeket szívesen hordunk, és bő szívvel ajánljuk mindenki másnak is. 
+	<br />
+	<br />
+	Cégünk 2007. májusában kezdte meg működését, mely az első webshop volt a kategóriájában. Akkor még Zoneshop néven kínáltuk a gördeszkás cipőket, textileket és hardvereket, majd 2009. őszétől Coreshop néven folytattuk - utalva rá, hogy Magyarországon mi voltunk ebben a kategóriában a mag, de ennek a teljes története egészen a '90-es évekig nyúlik vissza. Megalakulásunk óta kényesen ügyelünk arra, hogy termékválasztékban és szolgáltatásban is kompromisszum-mentes minőséget kínáljunk. Szezononként újra és újra, a vásárlói igények alapján válogatjuk össze a legjobb márkák (Vans, etnies, éS, Emerica) legjobb termékeit.
+	<br />
+	<br />
+	Az elmúlt közel tíz év alatt több ezer elégedett vásárló visszajelzése igazolja, hogy jó úton haladunk.
+	</div>
 </div>
 
 </div>
