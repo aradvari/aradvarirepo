@@ -136,10 +136,10 @@ REPLACE(REPLACE(LOWER(TRIM(s)),
 'í','i'),'ě','e'), 'š','s'), 'č','c'),'ř','r'), 'ž','z'), 'î','i'),'ï','i'),'ð','o'),
 'ñ','n'),'ò','o'),'ó','o'),'ô','o'),'õ','o'),'ö','o'),'ő','o'),'ű','o'),'ø','o'),'%', '');
 
-        UPDATE kategoriak set url_segment = toSlug2(megnevezes)
-        UPDATE markak set url_segment = toSlug2(markanev)
-        UPDATE termekek set url_segment = toSlug2(concat(IFNULL(termeknev, ''), '-', IFNULL(szin, ''), '-', id))
-        UPDATE vonalkodok set url_segment = toSlug2(megnevezes)
+        UPDATE kategoriak set url_segment = toSlug2(megnevezes) WHERE url_segment IS NULL
+        UPDATE markak set url_segment = toSlug2(markanev) WHERE url_segment IS NULL
+        UPDATE termekek set url_segment = toSlug2(concat(IFNULL(termeknev, ''), '-', IFNULL(szin, ''), '-', id)) WHERE url_segment IS NULL
+        UPDATE vonalkodok set url_segment = toSlug2(megnevezes) WHERE url_segment IS NULL
 
 
         */

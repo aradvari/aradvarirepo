@@ -2,10 +2,14 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $model app\models\Termekek */
+
+$code = Yii::$app->cart->getCouponCode();
+
 ?>
 
 <div class="cart-container alice-blue-bg container cart-desktop">
@@ -102,7 +106,6 @@ use yii\helpers\Url;
                 <td colspan="3" class="text-right align-middle">
                     <div class="input-group mb-3">
                         <?php
-                        $code = Yii::$app->cart->getCouponCode();
                         echo Html::textInput('kupon', $code['code'], ['class' => 'form-control kupon ' . ($code && $code['success'] ? 'is-valid' : 'is-invalid'), 'placeholder' => 'kuponkód']);
                         ?>
                         <div class="input-group-append">
@@ -121,11 +124,22 @@ use yii\helpers\Url;
                 </td>
             </tr>
 
-            <?php if (Yii::$app->cart->totalDiscountAmount && 1 == 2): ?>
+            <?php if (Yii::$app->cart->totalDiscountAmount AND 1 == 2): ?>
                 <tr>
                     <td colspan="2" class="text-right align-middle">Kedvezmények</td>
                     <td colspan="3" class="text-right align-middle">-
                         <?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalDiscountAmount, 0) ?> Ft
+                    </td>
+                </tr>
+            <?php endif; ?>
+
+            <?php if (Yii::$app->cart->totalCouponAmount): ?>
+                <tr>
+                    <td colspan="2" class="text-right align-middle">Kupon kedvezmény<br></td>
+                    <td colspan="3" class="text-right align-middle">
+                        <?=ArrayHelper::getValue($code, 'name')?>
+                        <br>
+                        <span class="small opacity-50"><?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalCouponAmount, 0) ?> Ft</span>
                     </td>
                 </tr>
             <?php endif; ?>
@@ -253,7 +267,6 @@ use yii\helpers\Url;
                 <div class="col">
                     <div class="input-group mb-3">
                         <?php
-                            $code = Yii::$app->cart->getCouponCode();
                             echo Html::textInput('kupon', $code['code'], ['class' => 'form-control kupon ' . ($code && $code['success'] ? 'is-valid' : 'is-invalid'), 'placeholder' => 'kuponkód']);
                         ?>
                         <div class="input-group-append">

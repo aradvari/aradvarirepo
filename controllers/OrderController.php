@@ -83,7 +83,7 @@ class OrderController extends Controller
                         $megrendelesModel->szallitasi_dij = Yii::$app->cart->shippingAmount;
                     else
                         $megrendelesModel->szallitasi_dij = 0;
-                    $megrendelesModel->kedvezmeny_erteke = Yii::$app->cart->totalDiscountAmount;
+                    $megrendelesModel->kedvezmeny_erteke = Yii::$app->cart->totalCouponAmount;
                     $megrendelesModel->id_penznem = 0;
                     $megrendelesModel->id_orszag = 1;
                     if (!$megrendelesModel->save())

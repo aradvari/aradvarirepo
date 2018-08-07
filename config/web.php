@@ -8,6 +8,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'language' => 'hu-HU',
+    'timezone' => 'Europe/Budapest',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [

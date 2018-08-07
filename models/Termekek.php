@@ -48,6 +48,7 @@ class Termekek extends ActiveRecord
 
     public $seo_name;
     public $vegleges_ar;
+    public $kupon_kedvezmeny;
 
     /**
      * @inheritdoc
@@ -133,8 +134,15 @@ class Termekek extends ActiveRecord
         //Kupon ellenőrzés
         $code = Cart::getStaticCouponCode();
         if ($code['success']) {
-            if (array_key_exists($this->id, Yii::$app->params['couponItems'][$code['code']])) {
-                $this->vegleges_ar *= (float)Yii::$app->params['couponItems'][$code['code']][$this->id];
+            $items = Yii::$app->db->createCommand(Yii::$app->params['couponItems'][$code['code']]['items'])->queryAll(\PDO::FETCH_COLUMN);
+            if (array_search($this->id, $items)) {
+                if (Yii::$app->params['couponItems'][$code['code']]['discountType'] == Cart::DISCOUNT_TYPE_PERCENT) {
+                    $this->kupon_kedvezmeny = $this->vegleges_ar * (float)Yii::$app->params['couponItems'][$code['code']]['discount'] / 100;
+                    $this->vegleges_ar -= $this->vegleges_ar * (float)Yii::$app->params['couponItems'][$code['code']]['discount'] / 100;
+                }elseif (Yii::$app->params['couponItems'][$code['code']]['discountType'] == Cart::DISCOUNT_TYPE_PRICE) {
+                    $this->kupon_kedvezmeny = (float)Yii::$app->params['couponItems'][$code['code']]['discount'];
+                    $this->vegleges_ar -= (float)Yii::$app->params['couponItems'][$code['code']]['discount'];
+                }
             }
         }
 

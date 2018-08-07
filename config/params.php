@@ -5,9 +5,12 @@ return [
     'vat' => 27,
     'couponItems' => [
         'kod1' => [
-            '7056' => 0.5,
-            '7332' => 0.5,
-            '6701' => 0.5,
+            'name' => 'Glamour napok 2018 nyár',
+            'date_from' => '',
+            'date_from' => '',
+            'discount' => 30,
+            'discountType' => 2,
+            'items' => "select id from termekek",
         ],
     ],
 ];

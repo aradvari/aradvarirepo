@@ -14,11 +14,15 @@ use yii\web\Cookie;
 class Cart extends Component
 {
 
+    const DISCOUNT_TYPE_PERCENT = 1;
+    const DISCOUNT_TYPE_PRICE = 2;
+
     public $items = [];
     public $totalAmount = 0;
     public $totalAmountWithShipping = 0;
     public $totalVATAmount = 0;
     public $totalDiscountAmount = 0;
+    public $totalCouponAmount = 0;
     public $shippingAmount = 990;
     public $couponCode;
     public $shippingType;
@@ -40,6 +44,7 @@ class Cart extends Component
 
         $this->couponCode = [
             'code' => $code,
+            'name' => Yii::$app->params['couponItems'][$code]['name'],
             'success' => $success,
         ];
 
@@ -57,10 +62,12 @@ class Cart extends Component
     {
         $cookies = Yii::$app->request->cookies;
         $code = json_decode($cookies->getValue('cart-coupon'), true);
+        $code = $code['code'];
 
         return [
-            'code' => $code['code'],
-            'success' => array_key_exists($code['code'], Yii::$app->params['couponItems']),
+            'code' => $code,
+            'name' => ArrayHelper::getValue(Yii::$app->params['couponItems'], "$code.name"),
+            'success' => array_key_exists($code, Yii::$app->params['couponItems']),
         ];
 
     }
@@ -69,10 +76,12 @@ class Cart extends Component
     {
         $cookies = Yii::$app->request->cookies;
         $code = json_decode($cookies->getValue('cart-coupon'), true);
+        $code = $code['code'];
 
         return [
-            'code' => $code['code'],
-            'success' => array_key_exists($code['code'], Yii::$app->params['couponItems']),
+            'code' => $code,
+            'name' => ArrayHelper::getValue(Yii::$app->params['couponItems'], "$code.name"),
+            'success' => array_key_exists($code, Yii::$app->params['couponItems']),
         ];
 
     }
@@ -115,6 +124,7 @@ class Cart extends Component
                 $this->totalAmount += $model->termek->vegleges_ar * $item['quantity'];
                 $this->totalVATAmount += ($model->termek->vegleges_ar * $item['quantity']) * (Yii::$app->params['vat'] / 100);
                 $this->totalDiscountAmount += ($model->termek->kisker_ar * $item['quantity']) - ($model->termek->vegleges_ar * $item['quantity']);
+                $this->totalCouponAmount += ($model->termek->kupon_kedvezmeny * $item['quantity']);
 
                 $maxItem = [];
                 for ($i = 1; $i <= $model->keszlet_1; $i++) {

@@ -91,7 +91,6 @@ $(document).on("click", '.kupon-btn', function () {
         }
     }).done(function (result) {
 
-        console.log(result);
         getCart();
 
         if (result.success === true)
