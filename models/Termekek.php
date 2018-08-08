@@ -134,8 +134,6 @@ class Termekek extends ActiveRecord
         //Kupon ellenőrzés
         $code = Cart::getStaticCouponCode();
         if ($code['success']) {
-            $items = Yii::$app->db->createCommand(Yii::$app->params['couponItems'][$code['code']]['items'])->queryAll(\PDO::FETCH_COLUMN);
-            if (array_search($this->id, $items)) {
 
                 $now = strtotime(date("Y-m-d H:i:s"));
                 $fromDate = strtotime(Yii::$app->params['couponItems'][$code['code']]['date_from']);
@@ -151,7 +149,6 @@ class Termekek extends ActiveRecord
                     }
                 }
 
-            }
         }
 
     }

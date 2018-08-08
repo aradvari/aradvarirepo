@@ -35,13 +35,15 @@ var refreshCartCount = function () {
 
 var getCart = function () {
 
-    $.ajax({
-        method: "GET",
-        url: "/cart/get-cart",
-    }).done(function (result) {
-        $('.cart-container').html(result);
-        $('.cart-container-top').html(result);
-    });
+    setTimeout(function(){
+        $.ajax({
+            method: "GET",
+            url: "/cart/get-cart",
+        }).done(function (result) {
+            $('.cart-container').html(result);
+            $('.cart-container-top').html(result);
+        }); }, 300);
+
 
 }
 

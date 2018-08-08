@@ -37,6 +37,17 @@ class Cart extends Component
 
     }
 
+    public static function getProductIds(){
+
+        $ids = [];
+        $items = json_decode(Yii::$app->request->cookies->getValue('cart'), true);
+        foreach ($items as $item){
+            $ids[] = ArrayHelper::getValue($item, 'item.id_termek');
+        }
+        return $ids;
+
+    }
+
     public static function checkCoupon($code)
     {
 
@@ -46,8 +57,13 @@ class Cart extends Component
             $fromDate = strtotime(Yii::$app->params['couponItems'][$code]['date_from']);
             $toDate = strtotime(Yii::$app->params['couponItems'][$code]['date_to']);
 
-            if ($now >= $fromDate && $now <= $toDate)
-                return true;
+            if ($now >= $fromDate && $now <= $toDate) {
+
+                //Termékfigyelés kosárban
+                $items = Yii::$app->db->createCommand(Yii::$app->params['couponItems'][$code]['items'])->queryAll(\PDO::FETCH_COLUMN);
+                $localItems = static::getProductIds();
+                return (boolean)array_intersect($localItems, $items);
+            }
 
         }
 
@@ -199,6 +215,8 @@ class Cart extends Component
             'name' => 'cart',
             'value' => Json::encode($this->items),
         ]));
+
+        return true;
 
     }
 
