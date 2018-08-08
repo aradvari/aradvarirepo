@@ -37,10 +37,28 @@ class Cart extends Component
 
     }
 
+    public static function checkCoupon($code)
+    {
+
+        if (array_key_exists($code, Yii::$app->params['couponItems'])) {
+
+            $now = strtotime(date("Y-m-d H:i:s"));
+            $fromDate = strtotime(Yii::$app->params['couponItems'][$code]['date_from']);
+            $toDate = strtotime(Yii::$app->params['couponItems'][$code]['date_to']);
+
+            if ($now >= $fromDate && $now <= $toDate)
+                return true;
+
+        }
+
+        return false;
+
+    }
+
     public function setCouponCode($code)
     {
 
-        $success = array_key_exists($code, Yii::$app->params['couponItems']);
+        $success = static::checkCoupon($code);
 
         $this->couponCode = [
             'code' => $code,
@@ -67,7 +85,7 @@ class Cart extends Component
         return [
             'code' => $code,
             'name' => ArrayHelper::getValue(Yii::$app->params['couponItems'], "$code.name"),
-            'success' => array_key_exists($code, Yii::$app->params['couponItems']),
+            'success' => static::checkCoupon($code),
         ];
 
     }
@@ -81,7 +99,7 @@ class Cart extends Component
         return [
             'code' => $code,
             'name' => ArrayHelper::getValue(Yii::$app->params['couponItems'], "$code.name"),
-            'success' => array_key_exists($code, Yii::$app->params['couponItems']),
+            'success' => static::checkCoupon($code),
         ];
 
     }

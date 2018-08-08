@@ -136,13 +136,21 @@ class Termekek extends ActiveRecord
         if ($code['success']) {
             $items = Yii::$app->db->createCommand(Yii::$app->params['couponItems'][$code['code']]['items'])->queryAll(\PDO::FETCH_COLUMN);
             if (array_search($this->id, $items)) {
-                if (Yii::$app->params['couponItems'][$code['code']]['discountType'] == Cart::DISCOUNT_TYPE_PERCENT) {
-                    $this->kupon_kedvezmeny = $this->vegleges_ar * (float)Yii::$app->params['couponItems'][$code['code']]['discount'] / 100;
-                    $this->vegleges_ar -= $this->vegleges_ar * (float)Yii::$app->params['couponItems'][$code['code']]['discount'] / 100;
-                }elseif (Yii::$app->params['couponItems'][$code['code']]['discountType'] == Cart::DISCOUNT_TYPE_PRICE) {
-                    $this->kupon_kedvezmeny = (float)Yii::$app->params['couponItems'][$code['code']]['discount'];
-                    $this->vegleges_ar -= (float)Yii::$app->params['couponItems'][$code['code']]['discount'];
+
+                $now = strtotime(date("Y-m-d H:i:s"));
+                $fromDate = strtotime(Yii::$app->params['couponItems'][$code['code']]['date_from']);
+                $toDate = strtotime(Yii::$app->params['couponItems'][$code['code']]['date_to']);
+
+                if ($now >= $fromDate && $now <= $toDate) {
+                    if (Yii::$app->params['couponItems'][$code['code']]['discountType'] == Cart::DISCOUNT_TYPE_PERCENT) {
+                        $this->kupon_kedvezmeny = $this->vegleges_ar * (float)Yii::$app->params['couponItems'][$code['code']]['discount'] / 100;
+                        $this->vegleges_ar -= $this->vegleges_ar * (float)Yii::$app->params['couponItems'][$code['code']]['discount'] / 100;
+                    } elseif (Yii::$app->params['couponItems'][$code['code']]['discountType'] == Cart::DISCOUNT_TYPE_PRICE) {
+                        $this->kupon_kedvezmeny = (float)Yii::$app->params['couponItems'][$code['code']]['discount'];
+                        $this->vegleges_ar -= (float)Yii::$app->params['couponItems'][$code['code']]['discount'];
+                    }
                 }
+
             }
         }
 
