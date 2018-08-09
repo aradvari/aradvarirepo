@@ -133,7 +133,7 @@ class Termekek extends ActiveRecord
 
         //Kupon ellenőrzés
         $code = Cart::getStaticCouponCode();
-        if ($code['success']) {
+        if ($code['success'] && in_array($this->id, $code['items'])) {
 
                 $now = strtotime(date("Y-m-d H:i:s"));
                 $fromDate = strtotime(Yii::$app->params['couponItems'][$code['code']]['date_from']);

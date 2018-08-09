@@ -62,7 +62,7 @@ class Cart extends Component
                 //Termékfigyelés kosárban
                 $items = Yii::$app->db->createCommand(Yii::$app->params['couponItems'][$code]['items'])->queryAll(\PDO::FETCH_COLUMN);
                 $localItems = static::getProductIds();
-                return (boolean)array_intersect($localItems, $items);
+                return array_intersect($localItems, $items);
             }
 
         }
@@ -111,11 +111,13 @@ class Cart extends Component
         $cookies = Yii::$app->request->cookies;
         $code = json_decode($cookies->getValue('cart-coupon'), true);
         $code = $code['code'];
+        $check = static::checkCoupon($code);
 
         return [
             'code' => $code,
             'name' => ArrayHelper::getValue(Yii::$app->params['couponItems'], "$code.name"),
-            'success' => static::checkCoupon($code),
+            'success' => (boolean)$check,
+            'items' => $check,
         ];
 
     }
