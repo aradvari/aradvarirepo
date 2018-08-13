@@ -137,15 +137,9 @@ if ($brandLayout)
                     </div>
                     <div class="col-3 offset-3">
                         <select name="s" class="form-control custom-select">
-                            <option value="leguljabb-elol" <?= $params['s'] == 'leguljabb-elol' ? 'selected' : '' ?>>
-                                Újdonságok
-                            </option>
-                            <option value="ar-szerint-csokkeno" <?= $params['s'] == 'ar-szerint-csokkeno' ? 'selected' : '' ?>>
-                                Ár szerint csökkenő
-                            </option>
-                            <option value="ar-szerint-novekvo" <?= $params['s'] == 'ar-szerint-novekvo' ? 'selected' : '' ?>>
-                                Ár szerint növekvő
-                            </option>
+                            <option value="leguljabb-elol" <?= $params['s'] == 'leguljabb-elol' ? 'selected' : '' ?>>Újdonságok</option>
+                            <option value="ar-szerint-csokkeno" <?= $params['s'] == 'ar-szerint-csokkeno' ? 'selected' : '' ?>>Ár szerint csökkenő</option>
+                            <option value="ar-szerint-novekvo" <?= $params['s'] == 'ar-szerint-novekvo' ? 'selected' : '' ?>>Ár szerint növekvő</option>
                         </select>
                     </div>
 

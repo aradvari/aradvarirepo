@@ -196,7 +196,8 @@ AppAsset::register($this);
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Rendben</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Mégsem</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" name="gls-ok">Rendben</button>
             </div>
         </div>
     </div>

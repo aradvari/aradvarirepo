@@ -29,7 +29,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/tether.min.js?v=1',
         'js/bootstrap.min.js?v=1',
-        'js/site.js?v=16',
+        'js/site.js?v=17',
     ];
     public $depends = [
         'yii\web\YiiAsset',

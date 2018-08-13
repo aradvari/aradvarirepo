@@ -26,7 +26,7 @@ class OrderAsset extends AssetBundle
         'forceCopy' => YII_ENV_DEV,
     ];
     public $js = [
-        'js/order.js?v=5',
+        'js/order.js?v=6',
     ];
     public $depends = [
         'yii\web\YiiAsset',

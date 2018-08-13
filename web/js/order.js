@@ -1,3 +1,5 @@
+var lastGlsData;
+
 $('#felhasznalok-irszam, #megrendelesfej-szallitasi_irszam').keyup(function (e) {
     if ($(this).val().length == 4) {
         $(this).trigger('change');
@@ -119,18 +121,26 @@ $(document).on('change click', 'input[name="MegrendelesFej[eltero_szallitasi_ada
 
 })
 
-window.glsPSMap_OnSelected_Handler = function (data) {
+$('#alertModal button[name="gls-ok"]').click(function (e) {
+
+    var data = lastGlsData;
 
     $('#megrendelesfej-szallitasi_irszam').val(data.zipcode);
     $('#megrendelesfej-szallitasi_varos').val(data.city);
     $('#megrendelesfej-szallitasi_utcanev').val(data.address);
     $('#megrendelesfej-gls_kod').val(data.pclshopid);
-    $('#megrendelesfej-gls_adatok').val(data.name + '<br>' + data.zipcode + ' ' + data.address + '<br>' + data.phone);
+    $('#megrendelesfej-gls_adatok').val(data.name + '<br>' + data.zipcode + ' ' + data.city + ' ' + data.address + '<br>' + data.phone);
 
     if ($('#megrendelesfej-szallitasi_nev').val() == '' && $('#felhasznalok-vezeteknev').val() != '' && $('#felhasznalok-keresztnev').val() != '')
         $('#megrendelesfej-szallitasi_nev').val($('#felhasznalok-vezeteknev').val() + ' ' + $('#felhasznalok-keresztnev').val());
 
     $('input[name="MegrendelesFej[eltero_szallitasi_adatok]"][value="1"]').prop('checked', true).trigger('change');
+
+})
+
+window.glsPSMap_OnSelected_Handler = function (data) {
+
+    lastGlsData = data;
 
     var days = {
         'monday': 'Hétfő',
@@ -148,7 +158,7 @@ window.glsPSMap_OnSelected_Handler = function (data) {
     });
 
     alertModal('Kiválasztott csomagpont', '<div class="alert alert-warning" role="alert">' +
-        'FIGYELEM, a kiválasztott csomagponttal a szállítási adataid módosultak!' +
+        'FIGYELEM, a kiválasztott csomagponttal a szállítási adataid módosulni fognak!' +
         '</div><div class="row"><div class="col font-weight-bold">Bolt adatai</div><div class="col font-weight-bold">Nyitvatartás</div></div> <div class="row"><div class="col">' + data.name + '<br>' + data.zipcode + ' ' + data.address + '<br>' + data.phone + '<br></div><div class="col">' + openingStr + '</div>');
 }
 

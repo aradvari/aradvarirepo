@@ -41,9 +41,10 @@ class Cart extends Component
 
         $ids = [];
         $items = json_decode(Yii::$app->request->cookies->getValue('cart'), true);
-        foreach ($items as $item){
-            $ids[] = ArrayHelper::getValue($item, 'item.id_termek');
-        }
+        if ($items)
+            foreach ($items as $item){
+                $ids[] = ArrayHelper::getValue($item, 'item.id_termek');
+            }
         return $ids;
 
     }

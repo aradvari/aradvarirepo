@@ -137,4 +137,10 @@ class Coreshop
         return str_replace($en, $hu, $str);
     }
 
+    public static function roundHUF($price){
+
+        return round($price/5, 0) * 5;
+
+    }
+
 }

@@ -5,6 +5,7 @@ namespace app\models;
 use app\components\Cart;
 use app\components\db\ActiveRecord;
 use app\components\db\Model;
+use app\components\helpers\Coreshop;
 use Yii;
 
 /**
@@ -150,6 +151,9 @@ class Termekek extends ActiveRecord
                 }
 
         }
+
+        $this->kupon_kedvezmeny = Coreshop::roundHUF($this->kupon_kedvezmeny);
+        $this->vegleges_ar = Coreshop::roundHUF($this->vegleges_ar);
 
     }
 

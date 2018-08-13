@@ -27,7 +27,7 @@ class TermekAsset extends AssetBundle
         'forceCopy' => YII_ENV_DEV,
     ];
     public $js = [
-        'js/product.js?v=8',
+        'js/product.js?v=9',
 //        '//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js',
         'js/hammer.min.js',
         'js/imageviewer.js',

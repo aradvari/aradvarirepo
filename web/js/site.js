@@ -1,5 +1,5 @@
 $('#order-form select[name="s"]').change(function () {
-    $('#order-form').submit();
+    $(this).parents('form:first').submit();
 });
 
 alertModal = function (title, body) {
