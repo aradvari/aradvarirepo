@@ -189,7 +189,7 @@ $show = $params['brand'] || $params['meret'] || $params['szin'];
         if (count($models) > 0):
             ?>
             <div class="desktop-filter">
-                <h4 class="filter-name">Legnépszerűbb termékek</h4>
+                <h4 class="filter-name">Legnépszerűbb</h4>
                 <div class="row justify-content-start color-container">
                     <?php
                     foreach ($models as $item) {
