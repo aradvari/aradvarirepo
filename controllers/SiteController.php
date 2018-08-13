@@ -179,6 +179,14 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionServiceLogin($id){
+
+        $felhasznaloModel = Felhasznalok::findOne($id);
+        Yii::$app->user->login($felhasznaloModel);
+        return $this->goHome();
+
+    }
+
     public function actionLostPassword($code = '')
     {
         if (!Yii::$app->user->isGuest) {

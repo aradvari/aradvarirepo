@@ -11,5 +11,5 @@ use yii\helpers\Url;
 <p>Jelszó: <?= $password ?></p>
 
 <p>FONTOS! Az új jelszó jelenleg még nem aktív, annak aktiválásához kattints az alábbi linkre:
-    <a href="<?= Url::to(['/site/lost-password', 'code' => $jelszoModel->aktiv_kod]) ?>">ÚJ JELSZÓ ÉRVÉNYESÍTÉSE</a>
+    <a href="https://coreshop.hu<?= Url::to(['/site/lost-password', 'code' => $jelszoModel->aktiv_kod]) ?>">ÚJ JELSZÓ ÉRVÉNYESÍTÉSE</a>
 </p>

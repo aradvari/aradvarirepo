@@ -75,7 +75,7 @@ class Cart extends Component
     public function setCouponCode($code)
     {
 
-        $success = static::checkCoupon($code);
+        $success = (boolean)static::checkCoupon($code);
 
         $this->couponCode = [
             'code' => $code,
@@ -102,7 +102,7 @@ class Cart extends Component
         return [
             'code' => $code,
             'name' => ArrayHelper::getValue(Yii::$app->params['couponItems'], "$code.name"),
-            'success' => static::checkCoupon($code),
+            'success' => (boolean)static::checkCoupon($code),
         ];
 
     }

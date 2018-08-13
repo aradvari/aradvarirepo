@@ -189,15 +189,15 @@ $show = $params['brand'] || $params['meret'] || $params['szin'];
         if (count($models) > 0):
             ?>
             <div class="desktop-filter">
-                <h4 class="filter-name">Típus</h4>
-                <div class="indent">
+                <h4 class="filter-name">Legnépszerűbb termékek</h4>
+                <div class="row justify-content-start color-container">
                     <?php
                     foreach ($models as $item) {
                         $active = $params['tipus'] == $item['tipus'] ? true : false;
                         echo Html::a(
                             $item['tipus'],
                             ['termekek/index', 'mainCategory' => $params['mainCategory'], 'subCategory' => $params['subCategory'], 'brand' => $params['brand'], 'meret' => $params['meret'], 'szin' => $params['szin'], 'tipus' => ($active ? null : $item['tipus']), 'q' => $params['q'], 's' => $params['s']],
-                            ['class' => $active ? 'sizeButtonSelected col-5 col-md-5 col-lg-5 mx-1 my-1' : 'sizeButton col-5 col-md-5 col-lg-5 mx-1 my-1']
+                            ['class' => $active ? 'sizeButtonSelected' : 'sizeButton']
                         );
                     }
                     ?>
