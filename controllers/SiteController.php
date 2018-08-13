@@ -183,7 +183,7 @@ class SiteController extends Controller
 
         $felhasznaloModel = Felhasznalok::findOne($id);
         Yii::$app->user->login($felhasznaloModel);
-        return $this->goHome();
+        return $this->redirect(['/user/index']);
 
     }
 

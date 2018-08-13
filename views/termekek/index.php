@@ -118,6 +118,19 @@ if ($brandLayout)
         </div> <!-- //left col -->
 
         <div class="col-lg-9 col-md-8 col-12 product-list">
+		<!-- banner listview desktop -->
+		<div class="col-md-12 col-12 banner-listview-desktop">
+		<a href="/kiegeszito/taska">
+		<img src="/images/banner-listview/2018/20180808-vans-taskak-desk.jpg" style="width:100%;" alt="Vans táskák" />
+		</a>
+		</div>
+		
+		<!-- banner listview mobile -->
+		<div class="col-md-12 col-12 banner-listview-mobile">
+		<a href="/kiegeszito/taska">
+		<img src="/images/banner-listview/2018/20180808-vans-taskak-mobile.jpg" style="width:100%;" alt="Vans táskák" />
+		</a>
+		</div>
             <form class="clearfix" method="get" id="order-form"
                   action="<?= Url::to([
                       'termekek/index',

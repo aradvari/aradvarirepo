@@ -228,6 +228,17 @@ use yii\helpers\Url;
             <li><a class="white link" href="<?= Url::to(['termekek/index', 'mainCategory' => 'outlet']) ?>" >SALE %</a></li>
           </ul>
         </div>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v3.1&appId=281370311969142&autoLogAppEvents=1';
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div class="fb-page" data-href="https://www.facebook.com/coreshop/" data-tabs="timeline" data-width="360"
+             data-height="360" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-hide-cta="true"><blockquote cite="https://www.facebook.com/coreshop/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/coreshop/">Coreshop</a></blockquote></div>
       </div>
     </div>
   </div>

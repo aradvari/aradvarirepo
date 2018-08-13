@@ -137,7 +137,7 @@ $code = Yii::$app->cart->getCouponCode();
                 <tr>
                     <td colspan="2" class="text-right align-middle">Kupon kedvezmény<br></td>
                     <td colspan="3" class="text-right align-middle">
-                        <?=ArrayHelper::getValue($code, 'name')?>
+                        <?= ArrayHelper::getValue($code, 'name') ?>
                         <br>
                         <span class="small opacity-50"><?= Yii::$app->formatter->asDecimal(Yii::$app->cart->totalCouponAmount, 0) ?> Ft</span>
                     </td>
