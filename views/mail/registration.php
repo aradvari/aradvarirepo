@@ -7,3 +7,5 @@
     <br>
     Jelszó: <?= $password ?>
 </p>
+
+<p>Kérjük, hogy bejelentkezést követően jelszavadat változtasd meg a biztonságosabb használat érdekébe!</p>
