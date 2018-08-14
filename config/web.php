@@ -85,6 +85,8 @@ $config = [
                 ['pattern' => 'adataim', 'route' => 'user/modify'],
                 ['pattern' => 'rendeleseim', 'route' => 'order/my-orders'],
                 ['pattern' => 'vegleges-torles', 'route' => 'user/delete'],
+                ['pattern' => 'hirlevel-feliratkozas', 'route' => 'user/subscribe'],
+                ['pattern' => 'hirlevel-leiratkozas', 'route' => 'user/unsubscribe'],
             ],
         ],
         'formatter' => [

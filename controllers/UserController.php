@@ -102,4 +102,60 @@ class UserController extends Controller
             'felhasznaloModel' => $felhasznaloModel,
         ]);
     }
+
+    public function actionUnsubscribe($email = null)
+    {
+
+        $model = new Felhasznalok();
+
+        if (Yii::$app->request->post()) {
+
+            $model->scenario = Felhasznalok::SCENARIO_SUBSCRIBE;
+            if ($model->load(Yii::$app->request->post())) {
+                $model = Felhasznalok::findOne(['email' => $model->email]);
+
+                if (!$model) {
+                    $model = new Felhasznalok();
+                } else {
+                    $model->hirlevel = 0;
+                    $model->save(false);
+
+                    Yii::$app->mailer->compose('/mail/unsubscribe.php', ['model' => $model])
+                        ->setTo($model->email)
+                        ->setSubject('Sikeres leiratkozás hírlevélről')
+                        ->send();
+
+                }
+
+                Yii::$app->session->addFlash('success', 'Leiratkozási kérelmed sikeres volt, a tényleges leiratkozásról e-mail üzenetet küldünk részedre!');
+
+            }
+
+        } elseif ($email) {
+            $model = Felhasznalok::find()->andWhere(['email' => $email])->andWhere(['!=', 'auth_type', 'unregistered'])->one();
+            if (!$model) {
+                $model = new Felhasznalok();
+                $model->email = $email;
+            }
+        }
+
+        return $this->render('/user/unsubscribe', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionSubscribe($email, $code)
+    {
+
+        $model = Felhasznalok::findOne(['email' => $email, 'aktivacios_kod' => $code]);
+        if ($model){
+            $model->hirlevel = 1;
+            $model->save(false);
+            Yii::$app->session->addFlash('success', 'Feliratkozási kérelmed hírlevelünkre sikeres volt, köszönjük bizalmadat!');
+        }else{
+            Yii::$app->session->addFlash('error', 'A megadott adatokkal a hírlevélre iratkozás nem hajtható végre! Kérjük lépj be a rendszerbe, és igényeld az adataid oldalon a hírlevelünket.');
+        }
+
+        $this->goHome();
+    }
 }

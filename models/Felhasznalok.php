@@ -54,6 +54,7 @@ class Felhasznalok extends ActiveRecord implements \yii\web\IdentityInterface
     const SCENARIO_PW = 'password';
     const SCENARIO_DELETE = 'delete';
     const SCENARIO_LOST_PW = 'lost_pw';
+    const SCENARIO_SUBSCRIBE = 'subscribe';
 
     public $regi_jelszo;
     public $jelszo_ismetles;
@@ -77,6 +78,7 @@ class Felhasznalok extends ActiveRecord implements \yii\web\IdentityInterface
         return [
             self::SCENARIO_LOST_PW => ['uj_jelszo'],
             self::SCENARIO_DELETE => ['contract'],
+            self::SCENARIO_SUBSCRIBE => ['email', 'contract'],
             self::SCENARIO_FACEBOOK_REGISTER => ['email', 'vezeteknev', 'keresztnev'],
             self::SCENARIO_PW => ['jelszo', 'jelszo_ismetles', 'regi_jelszo'],
             self::SCENARIO_DEFAULT => ['vezeteknev', 'keresztnev', 'cegnev', 'irszam', 'id_megye', 'megye_nev', 'id_varos', 'varos_nev', 'utcanev', 'id_kozterulet', 'kozterulet_nev', 'emelet', 'email', 'hirlevel', 'teljes_nev', 'hazszam', 'telefonszam1', 'telefonszam2', 'jelszo', 'jelszo_ismetles', 'contract', 'create_user'],
