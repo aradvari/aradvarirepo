@@ -11,8 +11,15 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\TermekekSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $mainCategoryModel->megnevezes . ' ' . $subCategoryModel->megnevezes . ' ' . $brandModel->markanev . ' ' . $sizeModel->megnevezes . ' ' . $colorModel->szinszuro . ' ' . $tipusModel->tipus;
-$description = $this->title;
+$this->title = trim($mainCategoryModel->megnevezes . ' ' . $subCategoryModel->megnevezes . ' ' . $brandModel->markanev . ' ' . $sizeModel->megnevezes . ' ' . $colorModel->szinszuro . ' ' . $tipusModel->tipus . ($params['q'] ? ' ' . $params['q'] : ''));
+$description = trim(
+    ($mainCategoryModel->megnevezes ? ', Főkategória: ' . $mainCategoryModel->megnevezes : null) .
+    ($subCategoryModel->megnevezes ? ', Alkategória: ' . $subCategoryModel->megnevezes : null) .
+    ($brandModel->markanev ? ', Gyártó: ' . $brandModel->markanev : null) .
+    ($sizeModel->megnevezes ? ', Méret: ' . $sizeModel->megnevezes : null) .
+    ($colorModel->szinszuro ? ', Szín: ' . $colorModel->szinszuro : null) .
+    ($tipusModel->tipus ? ', Típus: ' . $tipusModel->tipus : null) .
+    ($params['q'] ? ', Egyedi szűrés: ' . $params['q'] : null), ', ');
 $keywords = $this->title;
 $image = Url::to('/images/coreshop-logo-social.png', true);
 
@@ -49,8 +56,8 @@ Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827
     }
 
 // Temporary solution - changing h1 with breadcrumbs
-    var h1 = document.getElementById('title'); 
-    var tempHeader = document.getElementById('temp-header'); 
+    var h1 = document.getElementById('title');
+    var tempHeader = document.getElementById('temp-header');
     tempHeader.appendChild(h1);
 </script>-->
 
@@ -82,7 +89,7 @@ foreach ($params as $key => $param) {
                 $label = null;
 
         }
-       
+
         $bc[$key] = $param;
 
         if ($label)
@@ -118,19 +125,6 @@ if ($brandLayout)
         </div> <!-- //left col -->
 
         <div class="col-lg-9 col-md-8 col-12 product-list">
-		<!-- banner listview desktop -->
-		<div class="col-md-12 col-12 banner-listview-desktop">
-		<a href="/kiegeszito/taska">
-		<img src="/images/banner-listview/2018/20180808-vans-taskak-desk.jpg" style="width:100%;" alt="Vans táskák" />
-		</a>
-		</div>
-		
-		<!-- banner listview mobile -->
-		<div class="col-md-12 col-12 banner-listview-mobile">
-		<a href="/kiegeszito/taska">
-		<img src="/images/banner-listview/2018/20180808-vans-taskak-mobile.jpg" style="width:100%;" alt="Vans táskák" />
-		</a>
-		</div>
             <form class="clearfix" method="get" id="order-form"
                   action="<?= Url::to([
                       'termekek/index',
@@ -146,7 +140,7 @@ if ($brandLayout)
                 ?>
                 <div class="filter-topnav row justify-content-around  hidden-md-down">
                     <div class="col-md-5 col-12">
-                        <p class="text-left charcoal"><span class="blue"><?= $dataProvider->getTotalCount() ?></span> termék</p>
+                        <p class="text-left charcoal"><span class="blue" itemprop="numberOfItems"><?= $dataProvider->getTotalCount() ?></span> termék</p>
                     </div>
                     <div class="col-3 offset-3">
                         <select name="s" class="form-control custom-select">
@@ -163,7 +157,7 @@ if ($brandLayout)
             <?= ListView::widget([
                 'id' => 'product-list',
                 'dataProvider' => $dataProvider,
-                'options' => ['class' => 'list-view row'],
+                'options' => ['class' => 'list-view row', 'itemscope' => '', 'itemtype' => 'http://schema.org/ItemList'],
                 'itemOptions' => ['class' => 'item col-xl-4 col-lg-4 col-md-6 col-sm-6  col-6 text-center'],
                 'itemView' => '_item',
                 'viewParams' => ['params' => $params],
