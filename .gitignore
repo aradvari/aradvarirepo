@@ -32,4 +32,7 @@ tests/_support/_generated
 web/termek
 web/markak
 web/pictures
+web/images
+web/newsletter
+web/temp
 extensions/cib/log.txt

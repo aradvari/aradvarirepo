@@ -1,14 +1,8 @@
 <?php
 
-//$visitor = $_SERVER['REMOTE_ADDR'];
-//if ($visitor != "62.77.233.236" && $visitor != "195.70.40.125") {
-//    header('Location: https://www.coreshop.hu/dev.html?i='.$visitor);
-//die;
-//}
-
 // comment out the following two lines when deployed to production
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'dev');
+defined('YII_DEBUG') or define('YII_DEBUG', false);
+defined('YII_ENV') or define('YII_ENV', 'prod');
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';

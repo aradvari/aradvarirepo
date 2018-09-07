@@ -1,0 +1,2 @@
+﻿<p>A Powell-Peralta hatása a gördeszkázásra páratlan. Az 1978-ban alapított cég, George Powell és Stacy Peralta kiváló minőségű innovatív termékei meghatározták a Powell-Peralta sikerének alapjait. A cég gördeszkás filmjei (Bones Brigade, Animal Chin, Public Domain, Ban This, Future Primitive)  a '90-es éves években minden gördeszkásnál alapműnek számított és naponta többször is lepörgött a lejátszókban. Az ikonikus grafikákat a műfaj egyik legismertebb illusztrátorának, a Vernon Courtlandt Johnson-nak köszönhetjük.
+</p>

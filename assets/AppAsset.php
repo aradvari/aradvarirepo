@@ -20,16 +20,16 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/bootstrap.min.css?v=1',
-        'css/site.css?v=180802',
+        'css/bootstrap.min.css',
+        'css/site.css',
     ];
     public $publishOptions = [
         'forceCopy' => YII_ENV_DEV,
     ];
     public $js = [
-        'js/tether.min.js?v=1',
-        'js/bootstrap.min.js?v=1',
-        'js/site.js?v=17',
+        'js/tether.min.js',
+        'js/bootstrap.min.js',
+        'js/site.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

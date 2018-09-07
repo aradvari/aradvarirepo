@@ -1,8 +1,8 @@
 <?php
-use app\models\TermekekSearch;1;
+use app\models\TermekekSearch;
 ?>
 
-    <h2>Köszönjük! A megrendelést megkaptuk</h2>
+<h2>Köszönjük! A megrendelést megkaptuk</h2>
 
 <?php
 echo $this->render('_order_data', ['model' => $model]);
@@ -27,58 +27,48 @@ if (Yii::$app->user->id != 11039 && isset($_SESSION["anaconvgeneral"]) && isset(
     $anaconvitems = $_SESSION["anaconvitems"];
     $orderPrice = $_SESSION["google_fizetendo"];
     ?>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-17488049-1"></script>
     <script type="text/javascript">
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-17488049-1', 'auto');
-        ga('require', 'displayfeatures');
-        ga('require', 'linkid', 'linkid.js');
-        ga('send', 'pageview');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        ga('require', 'ecommerce', 'ecommerce.js');
+        gtag('config', 'UA-17488049-1');
 
-        // Initialize the transaction
-        ga('ecommerce:addTransaction', {
-            id: '<?php echo($anaconvgeneral['invoice']); ?>',     // Transaction ID*
-            affiliation: '', // Store Name
-            revenue: '<?php echo($anaconvgeneral['totalnovat']); ?>',       // Total
-            shipping: '<?php echo($anaconvgeneral['shipping']); ?>',          // Shipping
-            tax: '<?php echo($anaconvgeneral['totalvat']); ?>'         // Tax
+        gtag('event', 'purchase', {
+            "transaction_id": "<?php echo ($anaconvgeneral['invoice']); ?>",
+            "affiliation": "",
+            "value": <?php echo ($anaconvgeneral['totalnovat']); ?>,
+            "currency": "HUF",
+            "tax": <?php echo ($anaconvgeneral['totalvat']); ?>,
+            "shipping": <?php echo ($anaconvgeneral['shipping']); ?>,
+            "items": [
+
+                <?php
+                foreach($anaconvitems as $item) :
+                ?>
+
+                {
+                    "id": "<?php echo $item['SKU']; ?>",
+                    "name": "<?php echo $item['productname']; ?>",
+                    "list_name": "",
+                    "brand": "",
+                    "category": "",
+                    "variant": "",
+                    "list_position": "",
+                    "quantity": <?php echo $item['itemqty']; ?>,
+                    "price": <?php echo $item['itemprice']; ?>
+                },
+                <?php
+                endforeach;
+                ?>
+            ]
         });
-
-
-        <?php
-        if ($anaconvitems)
-        foreach($anaconvitems as $item) :
-        ?>
-
-        ga('ecommerce:addItem', {
-            id: '<?php echo($anaconvgeneral['invoice']); ?>',            // Transaction ID*
-            sku: '<?php echo $item['SKU']; ?>',         // Product SKU
-            name: '<?php echo $item['productname']; ?>',   // Product Name*
-            category: '',      // Product Category
-            price: '<?php echo $item['itemprice']; ?>',              // Price
-            quantity: '<?php echo $item['itemqty']; ?>'                   // Quantity
-        });
-
-        <?php
-        endforeach;
-        ?>
-
-        ga('ecommerce:send');
 
     </script>
-
 
     <!-- Google Code for sikeres vasarlas Conversion Page -->
     <script type="text/javascript">

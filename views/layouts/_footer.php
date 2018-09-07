@@ -77,21 +77,7 @@ use yii\helpers\Url;
             </div>
           </div>
         </div>
-        
-         <!-- <div class="social-icon-container">
-          <a href="https://www.facebook.com/coreshop"><div class="facebook-icon"></div></a>
-          <a href="https://plus.google.com/103506333733297319481"><div class="google-icon"></div></a>
-          <a href="https://www.instagram.com/coreshop.hu/"><div class="instagram-icon"></div></a>          
 
-        </div> -->
-
-        <!-- <div class="container">
-          <div class="row justify-content-center">
-            <img class="img-fluid px-1" src="images/icons/facebook_white.png" alt="facebook" style="width:20%">
-            <img class="img-fluid px-1" src="images/icons/google_white.png" alt="google" style="width:20%">
-            <img class="img-fluid px-1" src="images/icons/instagram_white.png" alt="instagram" style="width:20%">
-          </div>
-        </div> -->
 
       </div> <!-- //col-md-3 col-sm-6 -->
       <!-- //column 1 -->
@@ -99,8 +85,7 @@ use yii\helpers\Url;
       <!-- Column 2 -->
       <div class="col-md-3 col-sm-6 hidden-md-down">
         <div class="footer-pad">
-            <!--<img src="/images/cxs.svg" alt="Coreshop Express Shipping logo">
-            <img src="/images/express.svg" alt="CXS logo"> -->
+		
             <h4>Coreshop <span class="alice-blue">express shipping</span> </h4>
             <div class="clearfix"></div>
             <p class="quote">"Ma megrendeled, <br>holnap hordhatod!"</p>
@@ -114,9 +99,9 @@ use yii\helpers\Url;
                           echo GlobalisAdatok::getParam('egyedi_szallitas_idopont');
 
                       else
-                          echo Coreshop::dateToHU(Coreshop::GlsDeliveryDate()) . ' </strong><br> 8:00 - 16:00 óra';
+                          echo Coreshop::dateToHU(Coreshop::GlsDeliveryDate());
                       ?>
-                        
+                </strong><br /> 8:00 - 16:00 óra
               </span>
               <br>
             között kerül kiszállításra.
@@ -142,25 +127,11 @@ use yii\helpers\Url;
 
              <div class="row">
                <div class="col-xl-12">
-                Termékeinkre 15 napos pénzvisszafizetés garanciát adunk. <a href="/altalanos-szerzodesi-feltetelek#5">Részletek</a>
+                Termékeinkre 15 napos pénzvisszafizetés garanciát vállalunk. <a href="/altalanos-szerzodesi-feltetelek#5">Részletek</a>
                </div>               
              </div>
 			</p> 
 			 
-			 
-
-			<!--
-             <h4>Coreshop <span class="alice-blue">free shipping</span> </h4>
-
-             <div class="row">
-               <div class="col-xl-12">
-                Az ingyenes szállításhoz 
-               </div>
-               <div class="col-xl-12">
-                <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?> Ft szükséges.
-               </div>
-             </div>
-			 -->
 
             <!-- //footer-pad -->
           </div>
@@ -214,9 +185,9 @@ use yii\helpers\Url;
       </div>
 
        <!--Column 4 -->
-      <div class="col-md-3 col-sm-6 hidden-md-down">
+      <div class="col-md-3 col-sm-6 ">
         <!--Column1-->
-        <div class="footer-pad">
+        <div class="footer-pad hidden-md-down">
           <h4>Oldaltérkép</h4>
           <ul class="list-unstyled">
             <li><a class="white link" href="<?= Url::to(['termekek/index', 'mainCategory' => 'ferfi-ruhazat']) ?>">Férfi ruha</a></li>
@@ -228,6 +199,7 @@ use yii\helpers\Url;
             <li><a class="white link" href="<?= Url::to(['termekek/index', 'mainCategory' => 'outlet']) ?>" >SALE %</a></li>
           </ul>
         </div>
+		
 		<div id="fb-root"></div>
 		<script>(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
@@ -237,8 +209,9 @@ use yii\helpers\Url;
 		fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 
-		<div class="fb-page" data-href="https://www.facebook.com/coreshop/" data-tabs="timeline" data-width="360"
-             data-height="360" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-hide-cta="true"><blockquote cite="https://www.facebook.com/coreshop/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/coreshop/">Coreshop</a></blockquote></div>
+					 
+		<div class="fb-page" data-href="https://www.facebook.com/coreshop/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-hide-cta="true"><blockquote cite="https://www.facebook.com/coreshop/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/coreshop/">Coreshop</a></blockquote></div>
+		
       </div>
     </div>
   </div>
@@ -249,105 +222,3 @@ use yii\helpers\Url;
           <p>&copy; Copyright 2018 - Coreshop.hu</p>
     </div>
   </div>
-
-<!-- <footer class="footer container-fluid">
-    <div class="row">
-
-
-        <div class="col" id="block">
-
-            <img src="/images/footer-logo.svg" alt="Coreshop logo" title="Coreshop logo" class="img-responsive" style="max-width:200px;">
-
-            <br>
-
-            <a href="tel:+36706762673">+36 70 676 2673</a>&nbsp;&nbsp;<a href="tel:+36706311717">+36 70 631 1717</a>
-
-            <br>
-
-            1163 Budapest, Cziráki utca 26-32. Fsz. 24/A
-
-            <br>
-
-            <a href="mailto:info@coreshop.hu">info@coreshop.hu</a>, <a href="mailto:garancia@coreshop.hu">garancia@coreshop.hu</a>
-
-            <br>
-            <br>
-
-            <a href="https://www.facebook.com/coreshop" target="_blank"><img src="/images/social_fb-1.svg"
-                                                                             alt="Coreshop @facebook.com"
-                                                                             class="soc-icon"></a>
-            <a href="https://www.instagram.com/coreshop.hu/" target="_blank"><img src="/images/social_insta.svg"
-                                                                                  alt="Coreshop @instagram.com"
-                                                                                  class="soc-icon"></a>
-            <a href="https://plus.google.com/+coreshop" target="_blank"><img src="/images/social_g-1.svg"
-                                                                             alt="Coreshop @plus.google.com"
-                                                                             class="soc-icon"></a>
-
-            <br>
-            © 2018 Coreshop.hu
-
-        </div>
-
-
-        <div class="col">
-
-            <img src="/images/cxs.svg" alt="Coreshop Express Shipping logo">
-            <img src="/images/express.svg" alt="CXS logo">
-            <span>"Ma megrendeled, holnap már hordhatod!"</span>
-
-            <br>
-            <br>
-
-            <span>
-	Ha most rendelsz, csomagod <br><font style="color:#2a87e4;">
-                    <?php
-                    if (GlobalisAdatok::getParam('egyedi_szallitas_idopont'))
-                        echo GlobalisAdatok::getParam('egyedi_szallitas_idopont');
-                    else
-                        echo Coreshop::dateToHU(Coreshop::GlsDeliveryDate()) . ' / 8:00 - 16:00 óra';
-                    ?></font><br>
-	között kerül kiszállításra.
-	</span>
-
-            <br>
-            <br>
-
-            <img src="/images/box.svg" alt="box">
-            <img src="/images/free.svg" alt="Ingyenes kiszállítás">
-
-            <br>
-
-            <span>
-	Az ingyenes szállításhoz <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?> Ft szükséges	</span>
-
-
-        </div>
-
-
-
-        <div class="col" >
-
-            <p>A bankkártyás fizetés szolgáltatója a</p>
-
-            <a href="/kartyas-fizetes"><img src="/images/cibbank-logo.png" alt="Kártyás fizetés szolgáltatója"
-                                               title="Tájékoztató a bankkártyás fizetésről" style="margin:10px 0;"></a>
-
-            <br>
-            <br>
-
-            <p>Elfogadott bankkártya típusok</p>
-
-            <a href="/kartyas-fizetes"><img src="/images/cib-kartyalogok.png" alt="Elfogadott bankkártya típusok"
-                                               style="margin:10px 0;"></a>
-
-            <br>
-            <br>
-
-            <p><a href="/kartyas-fizetes">Tájékoztató a bankkártyás fizetésről</a></p>
-
-            <p><a href="/kerdesek-valaszok">Gyakran feltett kérdések</a></p>
-
-        </div>
-
-    </div>
-</footer> -->

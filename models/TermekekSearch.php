@@ -368,37 +368,53 @@ class TermekekSearch extends Termekek
         ['searchMainCategoryWithParams', 'mainCategory', 'url_segment'],
         ['searchSubCategoryWithParams', 'subCategory', 'url_segment'],
         ['searchBrand', 'brand', 'url_segment'],
-//        ['searchSize', 'meret', 'url_segment'],
+        ['searchSize', 'meret', 'url_segment'],
         ['searchColor', 'szin', 'szinszuro'],
-        ['searchType', 'tipus', 'tipus'],
+//        ['searchType', 'tipus', 'tipus'],
     ];
 
-    public static $a = 1;
+    public static $a = 0;
+    public static $usedParams = [];
 
-    public static function generateMap($params = [])
+    public static function generateMap($params = [], $szint = 0)
     {
 
-        static::$a++;
-        if (static::$a > 10) return;
+        $szint++;
+
+//        static::$a++;
+//        if (static::$a > 100) return;
+
         $searchModel = new TermekekSearch();
 
         foreach (static::$models as $model) {
 
+//            echo print_r($params, true).' - '.print_r([$model[1] => $item[$model[2]]], true).'<hr>';
             if (!in_array($model[1], array_keys($params))) {
 
                 $dataProvider = $searchModel->{$model[0]}($params);
-//                $dataProvider->query->limit(5);
+//                $dataProvider->query->limit(1);
                 $items = $dataProvider->getModels();
                 $route = [];
+//                echo print_r($items, true) . '<hr>';
                 foreach ($items as $item) {
 
                     if ($item[$model[2]]) {
                         $route = ArrayHelper::merge($params, [$model[1] => $item[$model[2]]]);
                         asort($route);
-//                    static::$urls[] = $route;
-                        static::$urls[serialize($route)] = Url::to(ArrayHelper::merge(['termekek/index'], $route), true);
+                        $url = Url::to(ArrayHelper::merge(['termekek/index'], $route), true);
+                        if (!strstr($url, '?')) {
+                            static::$urls[serialize($route)] = $url;
+
+//                            file_put_contents("../sitemap.xml", static::$urls[serialize($route)], FILE_APPEND | LOCK_EX);
+
+                        }
+
+//                        echo print_r($item, true) . ' - ' . $szint . ' ' . print_r($route, true) . ' - ' . count($route) . ' - ' . count(static::$models) . '<hr>';
+
+                   // if (count($route) < count(static::$models))
+                        static::generateMap($route, $szint);
+
                     }
-                    static::generateMap($route);
 
                 }
 
@@ -407,5 +423,6 @@ class TermekekSearch extends Termekek
         }
 
     }
+
 
 }

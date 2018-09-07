@@ -23,21 +23,25 @@ $termekUrl = Url::to(['termekek/view',
 
 ?>
 
-<div class="post product-thumb" onclick="window.location='<?=$termekUrl?>';">
+<div class="post product-thumb" itemprop="itemListElement" itemscope
+     itemtype="http://schema.org/Product">
+    <meta itemprop="position" content="<?= ($key + 1) ?>">
+    <a href="<?= $termekUrl ?>" itemprop="url">
     <div class="product-thumb-bg">
-       <div class="product-thumb-img-container position-relative">
+        <div class="product-thumb-img-container position-relative">
             <img src="https://coreshop.hu/pictures/termekek/<?= implode('/', str_split($model['id'])) ?>/1_small.jpg"
-                 alt="<?= Html::encode($model['markanev']) ?> - <?= Html::encode($model['termeknev']) ?>">
+                 alt="<?= Html::encode($model['markanev']) ?> - <?= Html::encode($model['termeknev']) ?>"
+                 itemprop="image">
             <div class="overlay">
-                
-             </div>
+
+            </div>
         </div>
-        
+
         <div class="product-info">
             <p class="uj text-center product-tag <?= $model['opcio'] == 'SALE %' ? Html::encode('red-color') : '' ?>" ><?//= Html::encode($model['opcio']) ?></p>
-            <h2><?= Html::encode($model['markanev']) ?> <?= Html::encode($model['termeknev']) ?></h2>
+            <h2 itemprop="name"><?= Html::encode($model['markanev']) ?> <?= Html::encode($model['termeknev']) ?></h2>
             <div class="product-color"><?= Html::encode($model['szin']) ?></div>
-            <div class="products-price-container">
+            <div class="products-price-container" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                 <?php
                 if ((int)$model['akcios_kisker_ar'] > 0):
                     ?>
@@ -45,8 +49,9 @@ $termekUrl = Url::to(['termekek/view',
                         <del><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?></del>
                         Ft</span>
                     <br>
-                    <span class="products-thumb-saleprise"><?= \Yii::$app->formatter->asDecimal($model['akcios_kisker_ar']) ?>
-                        Ft</span>
+                    <span class="products-thumb-saleprise" itemprop="price"
+                          content="<?= $model['akcios_kisker_ar'] ?>"><?= \Yii::$app->formatter->asDecimal($model['akcios_kisker_ar']) ?></span>
+                    <span itemprop="priceCurrency" content="HUF">Ft</span>
                 <?php
                 endif;
                 ?>
@@ -54,7 +59,9 @@ $termekUrl = Url::to(['termekek/view',
                 <?php
                 if (!$model['akcios_kisker_ar']):
                     ?>
-                    <span><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?> Ft</span>
+                    <span itemprop="price"
+                          content="<?= $model['kisker_ar'] ?>"><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?></span>
+                    <span itemprop="priceCurrency" content="HUF">Ft</span>
                 <?php
                 endif;
                 ?>
@@ -62,6 +69,7 @@ $termekUrl = Url::to(['termekek/view',
         </div> <!-- //product-thumb-bg -->
     </div>
     <div class="product-hover-container">
-          &nbsp; <!-- <a href="<?=$termekUrl?>" class="btn btn-primary">Megnézem</a>-->
+        &nbsp; <!-- <a href="<?= $termekUrl ?>" class="btn btn-primary">Megnézem</a>-->
     </div>
+    </a>
 </div>

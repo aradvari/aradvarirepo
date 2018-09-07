@@ -11,15 +11,21 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\TermekekSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = trim($mainCategoryModel->megnevezes . ' ' . $subCategoryModel->megnevezes . ' ' . $brandModel->markanev . ' ' . $sizeModel->megnevezes . ' ' . $colorModel->szinszuro . ' ' . $tipusModel->tipus . ($params['q'] ? ' ' . $params['q'] : ''));
-$description = trim(
-    ($mainCategoryModel->megnevezes ? ', Főkategória: ' . $mainCategoryModel->megnevezes : null) .
-    ($subCategoryModel->megnevezes ? ', Alkategória: ' . $subCategoryModel->megnevezes : null) .
-    ($brandModel->markanev ? ', Gyártó: ' . $brandModel->markanev : null) .
-    ($sizeModel->megnevezes ? ', Méret: ' . $sizeModel->megnevezes : null) .
-    ($colorModel->szinszuro ? ', Szín: ' . $colorModel->szinszuro : null) .
-    ($tipusModel->tipus ? ', Típus: ' . $tipusModel->tipus : null) .
-    ($params['q'] ? ', Egyedi szűrés: ' . $params['q'] : null), ', ');
+$this->title = 'Termékek listája: ' . trim(
+        ($subCategoryModel->megnevezes ? ', ' . $subCategoryModel->megnevezes : ', ' . $mainCategoryModel->megnevezes) .
+        ($brandModel->markanev ? ', ' . $brandModel->markanev . ' márkájú' : null) .
+        ($sizeModel->megnevezes ? ', ' . $sizeModel->megnevezes . ' méretben' : null) .
+        ($colorModel->szinszuro ? ', ' . $colorModel->szinszuro . ' színben' : null) .
+        ($tipusModel->tipus ? ', ' . $tipusModel->tipus . ' típusú' : null) .
+        ($params['q'] ? ', ' . $params['q'] : null), ', ') . ' - Coreshop';
+$description = 'Termékek listája az alábbiak szerint: ' . trim(
+        ($mainCategoryModel->megnevezes ? ', főkategória: ' . $mainCategoryModel->megnevezes : null) .
+        ($subCategoryModel->megnevezes ? ', alkategória: ' . $subCategoryModel->megnevezes : null) .
+        ($brandModel->markanev ? ', gyártó: ' . $brandModel->markanev : null) .
+        ($sizeModel->megnevezes ? ', méret: ' . $sizeModel->megnevezes : null) .
+        ($colorModel->szinszuro ? ', szín: ' . $colorModel->szinszuro : null) .
+        ($tipusModel->tipus ? ', típus: ' . $tipusModel->tipus : null) .
+        ($params['q'] ? ', egyedi szűrés: ' . $params['q'] : null), ', ');
 $keywords = $this->title;
 $image = Url::to('/images/coreshop-logo-social.png', true);
 
@@ -39,11 +45,12 @@ Yii::$app->seo->registerMetaTag(['property' => 'og:site_name', 'content' => 'Cor
 Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827275293006']);
 
 ?>
-<!--<div class="container">
-    <h1 id="title">
-        <?= Html::encode($mainCategoryModel->megnevezes) ?>
-    </h1>
-</div>-->
+
+<? if($mainCategoryModel->megnevezes)	{
+	echo '<div class="container">
+		<h1 id="title">'.Html::encode($mainCategoryModel->megnevezes.': '.$brandModel->markanev.' '.strtolower($subCategoryModel->megnevezes)).'</h1>
+	</div>';
+} ?>
 
 
 <!--<script type="text/javascript">
@@ -125,6 +132,25 @@ if ($brandLayout)
         </div> <!-- //left col -->
 
         <div class="col-lg-9 col-md-8 col-12 product-list">
+
+			<? // szezonalis banner, pl sulikezdesre
+			/*
+            <!-- banner listview desktop -->
+            <div class="col-md-12 col-12 banner-listview-desktop">
+                <a href="/kiegeszito/taska">
+                    <img src="/images/banner-listview/2018/20180808-vans-taskak-desk.jpg"
+                         style="width:100%;" alt="Vans táskák a sulikezdésre"/>
+                </a>
+            </div>
+
+            <!-- banner listview mobile -->
+            <div class="col-md-12 col-12 banner-listview-mobile">
+                <a href="/kiegeszito/taska">
+                    <img src="/images/banner-listview/2018/20180808-vans-taskak-mobile.jpg"
+                         style="width:100%;" alt="Vans táskák a sulikezdésre"/>
+                </a>
+            </div> */ ?>
+
             <form class="clearfix" method="get" id="order-form"
                   action="<?= Url::to([
                       'termekek/index',

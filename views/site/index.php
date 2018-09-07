@@ -44,8 +44,8 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
             <!--Desktop slider -->
             <div class="carousel-inner">
                 <div class="carousel-item active">                    
-					<a href="/cipo">
-                    <img class="d-block w-100" src="images/banner-carousel/2018/20180802-vans-tnt.jpg" alt="Vans TNT">
+					<a href="/termekek?q=independent">
+                    <img class="d-block w-100" src="images/banner-carousel/2018/20180904-vans-x-independent.jpg" alt="Vans x Independent">
 					</a>
                     <!-- <div class="carousel-caption d-none d-md-block">
                         <h5>Ultra <span class="blue">range</span></h5>
@@ -77,11 +77,13 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
 
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="/cipo/ferfi-cipo/vans/tnt-advanced-prototype-blackmagentawhite-7655"><img class="d-block w-100" src="images/banner-mobile/2018/20180802-vans-tnt.jpg" alt="Vans TNT"></a>
+                    <a href="/termekek?q=independent"><img class="d-block w-100" src="images/banner-mobile/2018/20180904-vans-x-independent.jpg" alt="Vans x Independent"></a>
                     <div class="carousel-caption d-md-block">
-                        <h5>Vans TNT Advanced Prototype</h5>
-                        <p>A Tony Trujillo nevével fémjelzett TNT Advanced Prototype a Vans legújabb, egyben legfejlettebb gördeszkás cipője.</p>
-                        <a href="/cipo/ferfi-cipo/vans/tnt-advanced-prototype-blackmagentawhite-7655" class="btn btn-primary">Megnézem</a>
+                        <h5>Vans x Independent</h5>
+                        <p>A Vans egyesíti erőit az Independent-tel, az egyik legkultikusabb gördeszka felfüggesztés gyártó céggel.
+						<br />
+						<br />Limitált kollekció, ne maradj le róla!</p>
+                        <a href="/termekek?q=independent" class="btn btn-primary">Megnézem</a>
                     </div>
                 </div>
 
@@ -142,14 +144,14 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
                 <a class="col-md col-3" href="neff">
                     <img class="img-fluid mx-auto brand-picker" src="images/markak/neff_logo.png" alt="Neff">
                 </a>
-                <a class="col-md col-3" href="altamont">
-                    <img class="img-fluid mx-auto brand-picker" src="images/markak/altamont_logo.png" alt="Altamont">
+                <a class="col-md col-3" href="powell-peralta">
+                    <img class="img-fluid mx-auto brand-picker" src="images/markak/powell-peralta-logo.png" alt="Powell Peralta">
                 </a>
                 <a class="col-md col-3" href="volcom">
                     <img class="img-fluid mx-auto brand-picker" src="images/markak/volcom_logo.png" alt="Volcom">
                 </a>
-               <a class="col-md col-3" href="etnies">
-                    <img class="img-fluid mx-auto brand-picker" src="images/markak/etnies_logo.png" alt="Etnies">
+               <a class="col-md col-3" href="altamont">
+                    <img class="img-fluid mx-auto brand-picker" src="images/markak/altamont_logo.png" alt="Altamont">
                 </a>
                
 
@@ -157,101 +159,68 @@ Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '5508272752
     </section>
     <!-- //brands -->
 
-    <!-- <section class="white-bg">
-        <div class="row">
-            <div class="col-md col-12 image-vans-x-peanuts" style="background-image: url(../images/photos/vans_x_peanuts.png);height: 432px;">
-            </div>
-            <div class="col-md col-12 align-self-center">
-                <h2 class="text-center">Vans x <span class="blue">peanuts</span></h2>
-                <p class="text-center">Charlie Brown és barátai ismét megszállták a legnépszerűbb Vans cipőket.</p>
-                <p class="text-center margin-top-50">
-                    <a href="" class="btn btn-primary">Megnézem</a>
-                </p>
-            </div>
-        </div>
-    </section> -->
+    
 	
+	
+	<!-- 1 -->
 	<section class="white-bg">
-        <div class="row">
-            <div class="col-md col-12" style="background-image: url(../images/banner-box/2018/20180622-vans-ultrarange.jpg); 
-			background-position:center center; 
-			background-size:100%;
-			height: 400px;">
-            </div>
+        <div class="row">			
+			<div class="col-md col-12" style="padding:0;">
+			<a href="/cipo/ferfi-cipo/vans/sk8-hi-pro-blackwhite-7132"><img src="../images/banner-box/2018/20180905-sk8-hi-pro.jpg" style="width:100%;" alt="Vans Sk8-hi Pro cipő" /></a>
+            </div>	
+            
             <div class="col-md col-12 align-self-center">
-                <h2 class="text-center">Vans <span class="blue">Ultrarange</span></h2>
-                <p class="text-center">Kényelem és lazaság! Légáteresztő felsőrész, RapidWeld (hegesztett) technológiával készült illesztések. Ugorj bele és nem fogsz hinni a lábadnak!</p>
+                <h2 class="text-center">Vans Sk8-Hi <span class="blue">Pro</span></h2>
+                <p class="text-center">
+				Az SK8-Hi Pro a klasszikus Vans SK8-Hi felturbózott változata. Jellemzői az UltraCush HD talpbetét ami extra kényelmet biztosít, továbbá a Duracap megerősítés a fokozottan igénybe vett részeken, amely a tartósságért felelős. A felsőrész hasított bőr és textil kombinációja.
+				</p>
                 <p class="text-center margin-top-50">
-                    <a href="/cipo?q=ultrarange" class="btn btn-primary">Megnézem</a>
+                    <a href="/cipo/ferfi-cipo/vans/sk8-hi-pro-blackwhite-7132" class="btn btn-primary">Megnézem</a>
                 </p>
             </div>
         </div>
     </section>
 	
 	
-	<!-- <section class="white-bg">
-        <div class="row">
-           <div class="col-md col-12 image-vans-x-peanuts" style="background-image: url(../images/banner-box/2018/vans-marvel-va3rclblk.jpg);width:800px;height:474px !important;"></div>
-           <? /*<div class="col-md col-12 image-vans-x-peanuts" style="background-image: url(https://coreshop.hu/banner_box/2018/20180608-vans-x-marvel.gif);width:450px;height:440px !important;">
-            </div> */ ;?>
-            <div class="col-md col-12 align-self-center">
-                <h2 class="text-center">Vans x <span class="blue">Marvel</span></h2>
-                <p class="text-center">A Vans egyesíti erőit a Marvel Univerzum ikonikus hőseivel!</p>
-                <p class="text-center margin-top-50">
-                    <a href="" class="btn btn-primary">Megnézem</a>
-                </p>
-            </div>
-        </div>
-    </section> -->
-	
-	
-	
-
-    <section>
+	<!-- 2 -->
+	<section>
         <div class="row blue-bg">
             <div class="col-md col-12 align-self-center order-1">
-                <h2 class="text-center inverse">Vans Rowley LX</h2>
-                <p class="text-center white">Az 1999-ben megjelent Vans Rowley Classic LX limitált darabszámban csak a CORESHOP-on. Respect to Geoff Rowley!
+                <h2 class="text-center inverse">Vans Ultrarange</h2>
+                <p class="text-center white">Kényelem és lazaság! Légáteresztő felsőrész, RapidWeld (hegesztett) technológiával készült illesztések. Ugorj bele és nem fogsz hinni a lábadnak!
+
                 <p class="text-center margin-top-50">
-                    <a href="/cipo?q=rowley" class="btn btn-transparent">Megnézem</a>
+                    <a href="/cipo?q=ultrarange" class="btn btn-transparent">Megnézem</a>
                 </p>
             </div>
-            <div class="col-md-5 order-md-2  col-12 image-vans-girls" style="
-			margin:0;padding:0;
-			background-image: url(../images/banner-box/2018/20180622-vans-rowley.jpg); 
-			background-size: cover;
-			background-position:center center;
-			background-repeat: no-repeat;
-			width: 100%;
-			min-height:500px;">
-			
-			<?/*<video controls autoplay muted loop width="100%" height="100%">
-			<source src="https://coreshop.hu/temp/repost-temp.MP4" type="video/mp4">
-			Böngésződ nem támogatja a videó lejátszását.
-			</video> */?>
+            <div class="col-md-5 order-md-2 col-12" style="padding:0;">
+			<a href="/cipo?q=ultrarange"><img src="../images/banner-box/2018/20180905-vans-ultrarange.jpg" style="width:100%;" alt="Vans Ultrarange cipő" /></a>
             </div>
         </div>
     </section>
-
+	
+	<!-- 3 -->
     <section class="white-bg">
         <div class="row">
-            <div class="col-md col-12 image-vans-old-skool" style="
-			background-image: url(../images/banner-box/2018/20180625-vans-old-skool.jpg);
-			height:370px;
-			background-position:center center;
-			background-size:100%;
-			@media (max-width:400px) {height:200px;};">
+            <div class="col-md col-12" style="padding:0;">
+			<a href="/powell-peralta"><img src="../images/banner-box/2018/20180905-powell-peralta-logo.jpg" style="width:100%;" alt="Powell Peralta" /></a>
             </div>
+			
             <div class="col-md col-12 align-self-center">
-                <h2 class="text-center">Vans <span class="blue">Old Skool</span></h2>
-                <p class="text-center">Klasszikusoktól a legújabb színekig.
+                <h2 class="text-center">Powell <span class="blue">Peralta</span></h2>
+                <p class="text-center">Pólóújdonságok Santa Barbara, Kaliforniából! Az egyik legkultikusabb gördeszka gyártótól pólók, komplett deszkák, gördeszka lapok és kerekek érkeztek kínálatunkba.
 					</p>
                 <p class="text-center margin-top-50">
-                    <a href="/cipo?q=old+skool" class="btn btn-primary">Megnézem</a>
+                    <a href="/powell-peralta" class="btn btn-primary">Megnézem</a>
                 </p>
             </div>
         </div>
     </section>
+	
+	
+	
+	
+	
 <div class="alice-blue-bg m--15">
     <div class="container">
             <div class="row justify-content-center">

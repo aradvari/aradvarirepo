@@ -4,6 +4,7 @@
 
 /* @var $content string */
 
+use app\widgets\SchemaBreadcrumbs;
 use app\widgets\Seo;
 use yii\helpers\Html;
 use luya\bootstrap4\widgets\Breadcrumbs;
@@ -37,26 +38,27 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
-    <link rel="stylesheet" type="text/css" href="/css/cookieconsent.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/cookieconsent.min.css"/>
     <script src="/js/cookieconsent.min.js"></script>
     <script>
-    window.addEventListener("load", function(){
-    window.cookieconsent.initialise({
-      "palette": {
-        "popup": {
-          "background": "#252e39"
-        },
-        "button": {
-          "background": "#0062cc"
-        }
-      },
-      "position": "bottom-right",
-      "content": {
-        "message": "Oldalunk a tartalmak könnyebb személyessé tétele, hirdetéseink személyre szabása és mérése érdekében cookie-kat használ.",
-        "dismiss": "Elfogadom",
-        "link": "Részletek"
-      }
-    })});
+        window.addEventListener("load", function () {
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#252e39"
+                    },
+                    "button": {
+                        "background": "#0062cc"
+                    }
+                },
+                "position": "bottom-right",
+                "content": {
+                    "message": "Oldalunk a tartalmak könnyebb személyessé tétele, hirdetéseink személyre szabása és mérése érdekében cookie-kat használ.",
+                    "dismiss": "Elfogadom",
+                    "link": "Részletek"
+                }
+            })
+        });
     </script>
     <!-- End Cookie Consent plugin -->
     <!-- Facebook Pixel Code -->
@@ -114,6 +116,8 @@ AppAsset::register($this);
         ga('send', 'pageview');
     </script>
     <!-- End Google Analytics Universal -->
+    <?=$this->render('/_schema/_store');?>
+    <?=$this->render('/_schema/_website');?>
 </head>
 
 <body>
@@ -153,13 +157,13 @@ AppAsset::register($this);
         ?>
 
         <div class="container" id="temp-header">
-        
+
         </div>
 
         <div class="container">
             <div class="row">
 
-                <?= Breadcrumbs::widget([
+                <?= SchemaBreadcrumbs::widget([
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ])
                 ?>
@@ -167,7 +171,6 @@ AppAsset::register($this);
             </div>
         </div>
 
-        
 
         <?= $content ?>
     </div>
@@ -184,7 +187,8 @@ AppAsset::register($this);
     <?= $this->render('_footer') ?>
 </footer>
 
-<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

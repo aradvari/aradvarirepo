@@ -1,6 +1,14 @@
 <div class="container-fluid shop-container grey my-3">
     <div class="container">
     
+	<?/*
+	<div class="alert alert-danger">
+	Kedves Vásárlónk!
+	<br />
+	<br />
+	Üzletünk 2018.08.24-én pénteken technikai okok miatt zárva tart. A kényelmetlenség miatt elnézést kérünk.
+	</div>
+	*/?>
         <div class="row justify-content-between pt-5">
             <!-- first column -->
             <div class="col-lg-7">

@@ -30,7 +30,7 @@ $this->params['breadcrumbs'] = [
         'brand' => ArrayHelper::getValue($model, 'marka.url_segment'),
     ]],
 ];
-$this->title = $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szin;
+$this->title = $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szin . ' - ' . $model->defaultSubCategory->megnevezes.' - Coreshop';
 $description = $model->leiras ? $model->leiras : $this->title;
 $keywords = $model->defaultMainCategory->megnevezes . ' ' . $model->defaultSubCategory->megnevezes . ' ' . $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szin;
 $image = Url::to($model->defaultImage->webUrl, true);
@@ -71,7 +71,7 @@ Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827
 ?>
 
 <!-- THUMB, MAINIMAGE, INFOBOX container -->
-<div class="product-container container">
+<div class="product-container container" itemscope itemtype="http://schema.org/Product">
 
 
     <div class="row">
@@ -94,7 +94,7 @@ Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827
                                 foreach ($pictures as $key => $picture) {
 
                                     echo Html::beginTag('div', ['id' => 'img-container-' . $key, 'data-high-res-src' => $picture->webUrl, 'data-src' => $picture->webUrl, 'class' => 'carousel-item ' . ($key == 0 ? 'active' : '')]);
-                                    echo Html::img($picture->webUrl, ['class' => 'c-img d-block w-100', 'alt' => $model->seo_name, 'title' => $model->seo_name]);
+                                    echo Html::img($picture->webUrl, ['class' => 'c-img d-block w-100', 'alt' => $model->seo_name, 'title' => $model->seo_name, 'itemprop' => 'image']);
                                     echo Html::endTag('div');
 
                                     if ($key == 0)
@@ -201,12 +201,15 @@ JS
 
                         <img src="https://coreshop.hu/pictures/markak/<?= $model->markaid ?>.png" alt="<?= $model->seo_name ?>"
                              title="<?= $model->seo_name ?>">
-                        <h1><?= $model->marka->markanev ?> <span class="blue"><?= $model->termeknev ?></span></h1>
+                        <h1 itemprop="brand" content="<?= $model->marka->markanev ?>"><?= $model->marka->markanev ?> <span class="blue"
+                                                                                                                           itemprop="name"><?= $model->termeknev ?></span></h1>
                         <p class="product-color"><?= $model->szin ?></p>
                         <p class="product-number"><?= $model->cikkszam ? 'Cikkszám: ' . $model->cikkszam : '' ?></p>
 
 
-                        <div class="rating">
+                        <div class="rating" itemprop="aggregateRating" itemscope
+                             itemtype="http://schema.org/AggregateRating">
+                            <span itemprop="ratingCount" style="display:none">5</span>
                             <?php
                             echo StarRating::widget([
                                 'id' => 'product-rating',
@@ -221,6 +224,7 @@ JS
                                     'showClear' => false,
                                     'showCaption' => false,
                                 ],
+                                'options' => ['itemprop' => "ratingValue"],
                                 'value' => $model->ertekelesAVG,
                             ]);
 
@@ -251,24 +255,21 @@ JS
                         </div> <!-- //rating -->
 
 
-                        <div class="product-prise">
+                        <div class="product-prise" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
                             <?php
                             if ($model->vonalkodok) {
                                 if ($model->isAkcios()) {
                                     ?>
 
-                                    <span class="eredeti_ar"><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?>
-                                        Ft</span>
-                                    <span class="ar"><?= \Yii::$app->formatter->asDecimal($model['akcios_kisker_ar']) ?>
-                                        Ft</span>
+                                    <span class="eredeti_ar"><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?> Ft</span>
+                                    <span class="ar" itemprop="price" content="<?=$model['akcios_kisker_ar']?>"><?= \Yii::$app->formatter->asDecimal($model['akcios_kisker_ar']) ?> <span itemprop="priceCurrency" content="HUF">Ft</span></span>
 
                                     <?php
                                 } else {
                                     ?>
 
-                                    <span class="ar"><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?>
-                                        Ft</span>
+                                    <span class="ar" itemprop="price" content="<?=$model['akcios_kisker_ar']?>"><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?> <span itemprop="priceCurrency" content="HUF">Ft</span></span>
 
                                     <?php
                                 }
@@ -277,7 +278,7 @@ JS
 
                         </div> <!-- //product-prise -->
 
-                        <div class="product-description">
+                        <div class="product-description" itemprop="description">
                             <?= nl2br($model->leiras) ?>
                         </div>
                     </div>
@@ -459,11 +460,11 @@ JS
             <div class="media">
                 <img src="/images/icons/moneybackguarantee.png" alt="Coreshop.hu - 15 napos pénzvisszatérítés garancia"/>
                 <div class="media-body">
-				<p>15 napos pénzvisszatérítés garancia</p>
+                    <p>15 napos pénzvisszatérítés garancia</p>
                     <!-- <p>Ingyenes
                     kiszállítás <?= Yii::$app->formatter->asDecimal(GlobalisAdatok::getParam('ingyenes_szallitas')) ?>
                     Ft felett.</p> -->
-					
+
                 </div>
             </div>
 
