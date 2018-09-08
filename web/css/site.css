@@ -1,3 +1,6 @@
+span.checked {
+    color: orange !important;
+}
 @font-face{
     font-family: proxima_nova_black;
     src: url("../fonts/ProximaNova-Black.otf");
@@ -5613,6 +5616,13 @@ h4 {
     -webkit-text-stroke: #FF9900;
 }
 
+.icon-star {
+    width: 27px;
+    height: 25px;
+    background-image: url("../images/icons/star-filled.png");
+    -webkit-text-stroke: #FF9900;
+}
+
 .theme-krajee-svg.rating-xs .krajee-icon {
     width: 27px;
     height: 25px;
@@ -7138,4 +7148,9 @@ BOOTSTRAP NAVBAR
 	.banner-listview-mobile {padding:0;margin:0 0 20px 0;}
 	.banner-listview-mobile img {width:100%;}
 	.banner-listview-desktop {display:none;}
+}
+
+span.rate{
+    color:#2a87e4 !important;
+    text-indent: 2px;
 }

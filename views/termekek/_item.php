@@ -37,6 +37,17 @@ $termekUrl = Url::to(['termekek/view',
             </div>
         </div>
 
+        <div class="tbm-rating">
+            <?php
+            for ($i = 1; $i <= 5; $i++) {
+                if ($i > $model['rating'])
+                    echo '<span class="fa fa-star-o rate"></span>';
+                else
+                    echo '<span class="fa fa-star rate"></span>';
+            }
+            ?>
+        </div>
+
         <div class="product-info">
             <p class="uj text-center product-tag <?= $model['opcio'] == 'SALE %' ? Html::encode('red-color') : '' ?>" ><?//= Html::encode($model['opcio']) ?></p>
             <h2 itemprop="name"><?= Html::encode($model['markanev']) ?> <?= Html::encode($model['termeknev']) ?></h2>

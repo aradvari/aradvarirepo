@@ -11,13 +11,29 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\TermekekSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Termékek listája: ' . trim(
-        ($subCategoryModel->megnevezes ? ', ' . $subCategoryModel->megnevezes : ', ' . $mainCategoryModel->megnevezes) .
-        ($brandModel->markanev ? ', ' . $brandModel->markanev . ' márkájú' : null) .
-        ($sizeModel->megnevezes ? ', ' . $sizeModel->megnevezes . ' méretben' : null) .
-        ($colorModel->szinszuro ? ', ' . $colorModel->szinszuro . ' színben' : null) .
-        ($tipusModel->tipus ? ', ' . $tipusModel->tipus . ' típusú' : null) .
-        ($params['q'] ? ', ' . $params['q'] : null), ', ') . ' - Coreshop';
+$this->title = ucfirst(strtolower(trim(
+        ($brandModel->markanev ? ' ' . $brandModel->markanev : null) .
+        ($subCategoryModel->megnevezes ? ' ' . $subCategoryModel->megnevezes : ' ' . $mainCategoryModel->megnevezes) .
+        ($sizeModel->megnevezes ? ' ' . $sizeModel->megnevezes . ' méret' : null) .
+        ($colorModel->szinszuro ? ' ' . ($colorModel->szinszuro) . ' szín' : null) .
+        ($tipusModel->tipus ? ' ' . ($tipusModel->tipus) . ' típus' : null) .
+        ($params['q'] ? ', ' . $params['q'] : null), ', '))) . ' - Coreshop.hu';
+
+$h1Options = (($sizeModel->megnevezes || $colorModel->szinszuro || $tipusModel->tipus || $params['q']) &&
+    (($brandModel->markanev || $subCategoryModel->megnevezes)) ? ' (' : null) .
+    trim(($sizeModel->megnevezes ? ', méret: ' . $sizeModel->megnevezes : null) .
+        ($colorModel->szinszuro ? ', szín: ' . ($colorModel->szinszuro) : null) .
+        ($tipusModel->tipus ? ', típus: ' . ($tipusModel->tipus) : null) .
+        ($params['q'] ? ', egyedi keresés: ' . $params['q'] : null), ', ') .
+    (($sizeModel->megnevezes || $colorModel->szinszuro || $tipusModel->tipus || $params['q']) &&
+    (($brandModel->markanev || $subCategoryModel->megnevezes)) ? ')' : null);
+
+$h1 = ucfirst(trim(
+        strtolower($mainCategoryModel->megnevezes ? ' ' . $mainCategoryModel->megnevezes . ':' : null) .
+        ($brandModel->markanev ? ' ' . $brandModel->markanev : null) .
+        strtolower($subCategoryModel->megnevezes ? ' ' . $subCategoryModel->megnevezes : null)
+    )) . $h1Options;
+
 $description = 'Termékek listája az alábbiak szerint: ' . trim(
         ($mainCategoryModel->megnevezes ? ', főkategória: ' . $mainCategoryModel->megnevezes : null) .
         ($subCategoryModel->megnevezes ? ', alkategória: ' . $subCategoryModel->megnevezes : null) .
@@ -25,7 +41,7 @@ $description = 'Termékek listája az alábbiak szerint: ' . trim(
         ($sizeModel->megnevezes ? ', méret: ' . $sizeModel->megnevezes : null) .
         ($colorModel->szinszuro ? ', szín: ' . $colorModel->szinszuro : null) .
         ($tipusModel->tipus ? ', típus: ' . $tipusModel->tipus : null) .
-        ($params['q'] ? ', egyedi szűrés: ' . $params['q'] : null), ', ');
+        ($params['q'] ? ', egyxedi szűrés: ' . $params['q'] : null), ', ');
 $keywords = $this->title;
 $image = Url::to('/images/coreshop-logo-social.png', true);
 
@@ -41,14 +57,14 @@ Yii::$app->seo->registerMetaTag(['property' => 'og:type', 'content' => 'product'
 Yii::$app->seo->registerMetaTag(['property' => 'og:url', 'content' => Url::current([], true)]);
 Yii::$app->seo->registerMetaTag(['property' => 'og:image', 'content' => $image]);
 Yii::$app->seo->registerMetaTag(['property' => 'og:description', 'content' => $description]);
-Yii::$app->seo->registerMetaTag(['property' => 'og:site_name', 'content' => 'Coreshop']);
+Yii::$app->seo->registerMetaTag(['property' => 'og:site_name', 'content' => 'Coreshop.hu']);
 Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827275293006']);
 
 ?>
 
-<? if($mainCategoryModel->megnevezes)	{
+<? if ($this->title) {
 	echo '<div class="container">
-		<h1 id="title">'.Html::encode($mainCategoryModel->megnevezes.': '.$brandModel->markanev.' '.strtolower($subCategoryModel->megnevezes)).'</h1>
+		<h1 id="title">' . Html::encode($h1) . '</h1>
 	</div>';
 } ?>
 
@@ -109,13 +125,13 @@ foreach ($params as $key => $param) {
     <p class="text-left charcoal"><span class="blue"><?= $dataProvider->getTotalCount() ?></span> termék</p>
 </div>
 
-
 <?php
 if ($brandLayout)
     echo $this->render('_brand', ['brandModel' => $brandModel]);
 ?>
 
 <div class="container termekek-index" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
     <div class="row">
         <div class="col-lg-3 col-md-4 col-12">
             <?php echo $this->render('_search', [
@@ -133,7 +149,27 @@ if ($brandLayout)
 
         <div class="col-lg-9 col-md-8 col-12 product-list">
 
-			<? // szezonalis banner, pl sulikezdesre
+            <?php
+
+            $dependency = [
+                'class' => '\yii\caching\FileDependency',
+                'fileName' => Yii::$app->getBasePath() . '/views/termekek/texts/' . $fileName . '.php',
+            ];
+
+            if ($this->beginCache($id, ['dependency' => $dependency])) {
+
+                try {
+                    $fileName = str_replace(['/', '-'], ['_', '_'], trim(Yii::$app->request->url, '/'));
+                    echo $this->render('/termekek/texts/_' . $fileName);
+                } catch (Exception $e) {
+
+                }
+
+                $this->endCache();
+            }
+
+            ?>
+            <? // szezonalis banner, pl sulikezdesre
 			/*
             <!-- banner listview desktop -->
             <div class="col-md-12 col-12 banner-listview-desktop">
