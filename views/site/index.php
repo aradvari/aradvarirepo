@@ -26,6 +26,10 @@ Yii::$app->seo->registerMetaTag(['name' => 'article:section', 'content' => 'fash
 Yii::$app->seo->registerMetaTag(['name' => 'article:tag', 'content' => $keywords]);
 Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '550827275293006']);
 
+//canonical
+if (trim(Yii::$app->request->url, '/'))
+    $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::home(true)]);
+
 ?>
 
 <div class="mobile-container">
