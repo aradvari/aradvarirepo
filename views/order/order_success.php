@@ -29,14 +29,7 @@ if (Yii::$app->user->id != 11039 && isset($_SESSION["anaconvgeneral"]) && isset(
     ?>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-17488049-1"></script>
     <script type="text/javascript">
-
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-17488049-1');
 
         gtag('event', 'purchase', {
             "transaction_id": "<?php echo ($anaconvgeneral['invoice']); ?>",

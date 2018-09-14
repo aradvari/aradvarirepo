@@ -168,15 +168,15 @@ class UrlManager extends \yii\web\UrlManager
              * URL REDIRECT
              */
             [
-                'pattern' => '<lang:(hu|fb)>/<ctrl:(termekek|termekek_uj|termekek_akcios)>/<categoryName>/<categoryId>/<brandName>/<brandId>',
+                'pattern' => '<lang:(hu|fb)>/<ctrl:(termekek|termekek_uj|termekek_akcios|termekek-akcios|termekek-uj)>/<categoryName>/<categoryId>/<brandName>/<brandId>',
                 'route' => 'termekek/redirect',
             ],
             [
-                'pattern' => '<lang:(hu|fb)>/<ctrl:(termekek|termekek_uj|termekek_akcios)>/<categoryName>/<categoryId>',
+                'pattern' => '<lang:(hu|fb)>/<ctrl:(termekek|termekek_uj|termekek_akcios|termekek-akcios|termekek-uj)>/<categoryName>/<categoryId>',
                 'route' => 'termekek/redirect',
             ],
             [
-                'pattern' => '<lang:(hu|fb)>/<ctrl:(termekek|termekek_uj|termekek_akcios)>',
+                'pattern' => '<lang:(hu|fb)>/<ctrl:(termekek|termekek_uj|termekek_akcios|termekek-akcios)>',
                 'route' => 'termekek/redirect',
             ],
             [

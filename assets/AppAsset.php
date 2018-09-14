@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/bootstrap.min.css',
         'css/site.css',
+        'css/font-awesome.min.css'
     ];
     public $publishOptions = [
         'forceCopy' => YII_ENV_DEV,

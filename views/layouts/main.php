@@ -88,34 +88,18 @@ AppAsset::register($this);
                    src="https://www.facebook.com/tr?id=1425657147763024&ev=PageView&noscript=1"
         /></noscript>
     <!-- End Facebook Pixel Code -->
-    <!-- Google Analytics Universal -->
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-17488049-1', 'auto');
-        ga('require', 'displayfeatures');
-        ga('require', 'linkid', 'linkid.js');
-        <?if (Yii::$app->controller->route == 'termekek/view'
-            && Yii::$app->request->getQueryParam('subCategory') == 'ferfi-cipo') {
-            echo 'ga("set","dimension1",';
-            echo json_encode($_SESSION['termek_id']);
-            echo ');';
-            echo "ga('set','dimension2','offerdetail');";
-        }
-        ?>
-        ga('send', 'pageview');
+    <!-- BEGIN Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-17488049-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-17488049-1');
     </script>
-    <!-- End Google Analytics Universal -->
+    <!-- END Global site tag (gtag.js) - Google Analytics -->
+
     <?=$this->render('/_schema/_store');?>
     <?=$this->render('/_schema/_website');?>
 </head>
