@@ -23,6 +23,9 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\DummyCache',
         ],
+        'fileCache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
         'user' => [
             'identityClass' => 'app\models\Felhasznalok',
             'enableAutoLogin' => true,
