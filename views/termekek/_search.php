@@ -1,5 +1,6 @@
 <?php
 
+use app\models\TermekekSearch;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
@@ -96,6 +97,32 @@ $show = $params['brand'] || $params['meret'] || $params['szin'];
                 </div>
             </div>
         <?php
+        elseif($params['brand']):
+            ?>
+            <div class="desktop-subcat">
+                <!--<h4 class="filter-name filter-name-first">Kategóriák</h4>-->
+                <div class="indent">
+                    <ul class="list-unstyled">
+                        <?php
+                        //FŐKATEGÓRIÁK
+                        $subModels = (new TermekekSearch())->searchSubCategoryWithParams(['brand' => $params['brand']])->getModels();
+                        $pkOldName = '';
+                        foreach ($subModels as $item) {
+
+                            echo "<li>";
+                            echo Html::a(
+                                $item['megnevezes'],
+                                ['termekek/index', 'mainCategory' => $item['pk_url_segment'], 'subCategory' => $item['url_segment'], 'brand' => $params['brand'], 'meret' => $params['meret'], 'szin' => $params['szin'], 'q' => $params['q'], 's' => $params['s']],
+                                ['class' => $params['subCategory'] == $item['url_segment'] ? 'selected' : '']
+                            );
+                            echo "</li>";
+
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        <?
         endif;
         ?>
 
