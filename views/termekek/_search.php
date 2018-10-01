@@ -105,7 +105,7 @@ $show = $params['brand'] || $params['meret'] || $params['szin'];
                     <ul class="list-unstyled">
                         <?php
                         //FŐKATEGÓRIÁK
-                        $subModels = (new TermekekSearch())->searchSubCategoryWithParams(['brand' => $params['brand']])->getModels();
+                        $subModels = (new TermekekSearch())->searchSubCategoryWithParams(['brand' => $params['brand'], 'meret' => $params['meret'], 'szin' => $params['szin'], 'q' => $params['q'], 's' => $params['s']])->getModels();
                         $pkOldName = '';
                         foreach ($subModels as $item) {
 

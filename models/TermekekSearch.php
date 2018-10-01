@@ -286,7 +286,7 @@ class TermekekSearch extends Termekek
             't.tipus' => $this->tipus,
         ]);
 
-//        $query->andFilterWhere(['like', "CONCAT(t.termeknev, ' ', t.szin, ' ', m.markanev, ' ', k.megnevezes, ' ', pk.megnevezes, ' ', v.megnevezes)", $this->q]);
+        $query->andWhere('t.kategoria = tkk.id_kategoriak');
 
         return $dataProvider;
     }
