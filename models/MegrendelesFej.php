@@ -180,7 +180,12 @@ class MegrendelesFej extends ActiveRecord
 
         //Számlázási adatok
         $felhasznaloModel = $this->felhasznalo;
-        $this->szamlazasi_nev = $felhasznaloModel->vezeteknev . ' ' . $felhasznaloModel->keresztnev;
+
+        if ($felhasznaloModel->cegnev)
+            $this->szamlazasi_nev = $felhasznaloModel->cegnev;
+        else
+            $this->szamlazasi_nev = $felhasznaloModel->vezeteknev . ' ' . $felhasznaloModel->keresztnev;
+
         $this->szamlazasi_irszam = $felhasznaloModel->irszam;
         $this->szamlazasi_utcanev = $felhasznaloModel->utcanev;
         $this->szamlazasi_id_kozterulet = $felhasznaloModel->id_kozterulet;
