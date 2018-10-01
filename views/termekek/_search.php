@@ -78,8 +78,8 @@ $show = $params['brand'] || $params['meret'] || $params['szin'];
         if ($params['mainCategory']):
             ?>
             <div class="desktop-subcat">
-                <!--<h4 class="filter-name filter-name-first">Kategóriák</h4>-->
-                <div class="indent">
+                <h4 class="filter-name filter-name-first m-0">Kategória</h4>
+                <div class="container">
                     <ul class="list-unstyled">
                         <?php
                         $models = $subCategoryDataProvider->getModels();
@@ -100,8 +100,8 @@ $show = $params['brand'] || $params['meret'] || $params['szin'];
         elseif($params['brand']):
             ?>
             <div class="desktop-subcat">
-                <!--<h4 class="filter-name filter-name-first">Kategóriák</h4>-->
-                <div class="indent">
+                <h4 class="filter-name filter-name-first m-0">Kategória</h4>
+                <div class="container">
                     <ul class="list-unstyled">
                         <?php
                         //FŐKATEGÓRIÁK
