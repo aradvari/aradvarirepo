@@ -333,10 +333,12 @@ class MegrendelesFej extends ActiveRecord
                 $termekModel->save();
 
                 //Google, Facebook követés
-                $anaconvitems[]['SKU'] = $tetel->vonalkod;
-                $anaconvitems[]['productname'] = $tetel->marka->markanev . ' ' . $tetel->termek_nev;
-                $anaconvitems[]['itemprice'] = (int)$tetel->termek_ar;
-                $anaconvitems[]['itemqty'] = 1;
+                $anaconvitems[] = [
+                    'SKU' => $tetel->vonalkod,
+                    'productname' => $tetel->marka->markanev . ' ' . $tetel->termek_nev,
+                    'itemprice' => (int)$tetel->termek_ar,
+                    'itemqty' => 1,
+                ];
 
             }
 
