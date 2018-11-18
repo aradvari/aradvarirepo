@@ -12,6 +12,7 @@ use app\models\LoginForm;
 use app\models\MegrendelesFej;
 use app\models\MegrendelesTetel;
 use app\models\SzallitasiMod;
+use app\models\SzavazasSzavazat;
 use Yii;
 use app\components\web\Controller;
 use yii\db\Expression;
@@ -48,7 +49,7 @@ class OrderController extends Controller
 
             if ($felhasznaloModel->load(Yii::$app->request->post()) && $megrendelesModel->load(Yii::$app->request->post())) {
 
-                if (!$megrendelesModel->eltero_szallitasi_adatok){
+                if (!$megrendelesModel->eltero_szallitasi_adatok) {
                     $megrendelesModel->szallitasi_nev = trim($felhasznaloModel->vezeteknev . ' ' . $felhasznaloModel->keresztnev);
                     $megrendelesModel->szallitasi_irszam = $felhasznaloModel->irszam;
                     $megrendelesModel->szallitasi_utcanev = $felhasznaloModel->utcanev;
@@ -57,7 +58,7 @@ class OrderController extends Controller
                     $megrendelesModel->szallitasi_id_megye = $felhasznaloModel->id_megye;
                     $megrendelesModel->szallitasi_id_varos = $felhasznaloModel->id_varos;
                     $megrendelesModel->szallitasi_varos = $felhasznaloModel->varos_nev;
-                }elseif (!$megrendelesModel->szallitasi_nev) {
+                } elseif (!$megrendelesModel->szallitasi_nev) {
                     $megrendelesModel->szallitasi_nev = trim($felhasznaloModel->vezeteknev . ' ' . $felhasznaloModel->keresztnev);
                 }
 
@@ -337,7 +338,7 @@ class OrderController extends Controller
                         'msg33' => iconv('UTF-8', 'UTF-8', $res),
                     ];
 
-                }else{//SIKERTELEN TRANZAKCIÓ
+                } else {//SIKERTELEN TRANZAKCIÓ
 
                     $model->rc = $msg["RC"];
                     $model->rt = iconv("ISO-8859-2", "UTF-8", $msg["RT"]);
@@ -422,6 +423,25 @@ class OrderController extends Controller
     public function actionMyOrders()
     {
         return $this->render('my_orders');
+    }
+
+    public function actionAjaxVote()
+    {
+        $parentId = Yii::$app->request->post('parentId');
+        $id = Yii::$app->request->post('id');
+        if ($id) {
+            Yii::$app->session->set('userVote', true);
+            Yii::$app->db->createCommand()->upsert('szavazas_szavazat', [
+                'kerdes_id' => $parentId,
+                'valasz_id' => $id,
+                'szavazat' => 1,
+            ], [
+                'szavazat' => new \yii\db\Expression('szavazat + 1'),
+            ], [
+            ])->execute();
+        }
+
+        return $this->renderAjax( 'vote');
     }
 
     public function actionAjaxGetOrder()

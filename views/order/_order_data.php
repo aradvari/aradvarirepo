@@ -1,45 +1,60 @@
 <?php
 
+use app\models\SzavazasKerdes;
+use app\models\SzavazasValasz;
 use yii\helpers\Html;
 
 ?>
 
 <div class="row">
-    <div class="col">
+    <div class="col-md-6">
 
-        <table class="table table-striped">
-            <tbody>
-            <tr>
-                <td>Rendelés szám:</td>
-                <td class="font-weight-bold"><?= $model->megrendeles_szama ?></td>
-            </tr>
-            <tr>
-                <td>Rendelés dátuma:</td>
-                <td class="font-weight-bold"><?= Yii::$app->formatter->asDate($model->datum) ?></td>
-            </tr>
-            <tr>
-                <td>Fizetendő végösszeg:</td>
-                <td class="font-weight-bold"><?= Yii::$app->formatter->asDecimal($model->fizetendo + $model->szallitasi_dij) ?>
-                    Ft
-                </td>
-            </tr>
-            <tr>
-                <td>Fizetési mód:</td>
-                <td class="font-weight-bold"><?= $model->fizetesiMod->nev ?></td>
-            </tr>
-            <tr>
-                <td>Szállítási mód:</td>
-                <td class="font-weight-bold"><?= $model->szallitasiMod->nev ?></td>
-            </tr>
-            </tbody>
-        </table>
+        <h2>Köszönjük!<br>A megrendelést megkaptuk</h2>
+
+        <div class="row">
+            <div class="col">
+
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>Rendelés szám:</td>
+                        <td class="font-weight-bold"><?= $model->megrendeles_szama ?></td>
+                    </tr>
+                    <tr>
+                        <td>Rendelés dátuma:</td>
+                        <td class="font-weight-bold"><?= Yii::$app->formatter->asDate($model->datum) ?></td>
+                    </tr>
+                    <tr>
+                        <td>Fizetendő végösszeg:</td>
+                        <td class="font-weight-bold"><?= Yii::$app->formatter->asDecimal($model->fizetendo + $model->szallitasi_dij) ?>
+                            Ft
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fizetési mód:</td>
+                        <td class="font-weight-bold"><?= $model->fizetesiMod->nev ?></td>
+                    </tr>
+                    <tr>
+                        <td>Szállítási mód:</td>
+                        <td class="font-weight-bold"><?= $model->szallitasiMod->nev ?></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <?php if ($model->bankTranzakcio): ?>
+                <div class="col">
+                    <?= $this->render('cib_success', ['model' => $model->bankTranzakcio]); ?>
+                </div>
+            <?php endif; ?>
+        </div>
 
     </div>
-    <?php if ($model->bankTranzakcio): ?>
-        <div class="col">
-            <?= $this->render('cib_success', ['model' => $model->bankTranzakcio]); ?>
-        </div>
-    <?php endif; ?>
+    <div class="col-md-6 vote-container">
+        <?php
+            echo $this->renderAjax('vote');
+        ?>
+    </div>
 </div>
 
 <h2>Rendelés részletei</h2>

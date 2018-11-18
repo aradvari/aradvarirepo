@@ -34,13 +34,13 @@ class ActiveRecord extends \yii\db\ActiveRecord
 
     }
 
-    public static function getData($idKey = null, $valueKey = 'nev')
+    public static function getData($idKey = null, $valueKey = 'nev', $condition = null)
     {
 
         if (!$idKey)
             $idKey = static::getTableSchema()->primaryKey;
 
-        $query = static::find();
+        $query = static::find()->andWhere($condition);
         $sorrend = static::getTableSchema()->getColumn('sorrend');
 
         if ($sorrend)
