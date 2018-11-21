@@ -118,6 +118,33 @@ class TermekekSearch extends Termekek
         return $dataProvider;
     }
 
+    public function searchGlami()
+    {
+
+        $query = static::getSearchQuery()
+            ->select([
+                't.*',
+                'ROUND( (select (((IFNULL(ertek1, 0) * 1) + (IFNULL(ertek2, 0) * 2) + (IFNULL(ertek3, 0) * 3) + (IFNULL(ertek4, 0) * 4) + (IFNULL(ertek5, 0) * 5)) / ((IFNULL(ertek1, 0) + IFNULL(ertek2, 0) + IFNULL(ertek3, 0) + IFNULL(ertek4, 0) + IFNULL(ertek5, 0)))) from termek_ertekeles where id_termek=t.id) ) rating',
+                '(case when t.akcios_kisker_ar > 0 THEN t.akcios_kisker_ar ELSE t.kisker_ar END) vegleges_ar',
+                'pk.megnevezes main_category_name',
+                'pk.url_segment main_category_url_segment',
+                'k.megnevezes sub_category_name',
+                'k.url_segment sub_category_url_segment',
+                'm.markanev markanev',
+                'm.url_segment marka_url_segment',
+                'v.megnevezes',
+                'v.url_segment meret',
+                'v.vonalkod',
+            ])
+            ->groupBy(['t.id']);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+    }
+
     public function searchBrand($params)
     {
         $query = $this->getSearchQuery()

@@ -1,0 +1,3 @@
+﻿<p>
+Vans rövidnadrágaink minden korosztály számára beváltak már! Ugyanúgy kényelmes viselet egy nyári fesztiválra, akárcsak egy családi kertipartira. Térd fölé, térdig és térd alá érő fazonjainkkal igyekeztünk lefedni a férfitársadalom ízlésvilágát. Kialakításuk nem véletlen, az összes Vans cipő mellé tökéletesen passzolnak, így nem kell sokat meditálnod, mit válassz szeretet skate lépőd mellé. 
+</p>

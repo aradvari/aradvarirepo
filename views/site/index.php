@@ -4,7 +4,7 @@
 use app\models\TermekekSearch;
 use yii\helpers\Url;
 
-$this->title = 'Coreshop - Vans, éS Footwear, Etnies, Emerica, Volcom, Bones, Powell Peralta';
+$this->title = 'Coreshop - Vans, éS Footwear, Etnies, Emerica, Volcom, DC, Powell Peralta';
 $description = 'Coreshop online gördeszkás ruházati webshop, a Vans, Etnies, éS Footwear, Emerica, Volcom, Bones, Powell Peralta, DC Shoes, magyarországi forgalmazója, gördeszka hardware-ek.';
 $keywords = 'Coreshop, Vans, Vans off The Wall, DC Shoes, Etnies, éS Footwear, Emerica, Volcom, Bones, Powell Peralta, baseball sapka, kiegészítők, gördeszka hardware, skateboard';
 $image = Url::to('/images/coreshop-logo-social.png', true);
@@ -26,53 +26,12 @@ Yii::$app->seo->registerMetaTag(['name' => 'article:section', 'content' => 'fash
 Yii::$app->seo->registerMetaTag(['name' => 'article:tag', 'content' => $keywords]);
 Yii::$app->seo->registerMetaTag(['name' => 'fb:app_id', 'content' => '550827275293006']);
 //CANONICAL
-if (trim(Yii::$app->request->url, '/'))
-    $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::home(true)]);
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Url::home(true)]);
 
 ?>
 
 <div class="mobile-container">
-    <!-- Slider -->
-    <div class="row d-none d-sm-block">
-        <div id="coreshopCarousel" class="alice-blue-bg carousel slide" data-ride="carousel">
-
-            <!-- //carousel-indicators
-            <ol class="carousel-indicators">
-                <li data-target="#coreshopCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#coreshopCarousel" data-slide-to="1"></li>
-                <li data-target="#coreshopCarousel" data-slide-to="2"></li>
-            </ol>
-            //endof carousel-indicators -->
-
-            <!--Desktop slider -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a href="/termekek?q=independent">
-                        <img class="d-block w-100" src="images/banner-carousel/2018/20180904-vans-x-independent.jpg" alt="Vans x Independent">
-                    </a>
-                    <!-- <div class="carousel-caption d-none d-md-block">
-                        <h5>Ultra <span class="blue">range</span></h5>
-                        <p>Kényelem és lazaság</p>
-                    </div> -->
-                </div>
-
-            </div> <!-- //carousel-inner -->
-
-
-            <!-- <a class="carousel-control-prev" href="#coreshopCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Előző</span>
-            </a>
-            <a class="carousel-control-next" href="#coreshopCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Következő</span>
-            </a> -->
-
-        </div> <!-- //coreshopCarousel carousel-->
-    </div> <!-- //row -->
-    <!-- //slider -->
-
-
+    
 
     <!--Mobile slider -->
     <div class="row d-block d-sm-none">
@@ -80,13 +39,11 @@ if (trim(Yii::$app->request->url, '/'))
 
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="/termekek?q=independent"><img class="d-block w-100" src="images/banner-mobile/2018/20180904-vans-x-independent.jpg" alt="Vans x Independent"></a>
+                    <a href="/termekek?q=Nasa"><img class="d-block w-100" src="images/banner-mobile/2018/20181106-vans-nasa-mobile.jpg" alt="Vans x Nasa"></a>
                     <div class="carousel-caption d-md-block">
-                        <h5>Vans x Independent</h5>
-                        <p>A Vans egyesíti erőit az Independent-tel, az egyik legkultikusabb gördeszka felfüggesztés gyártó céggel.
-                            <br />
-                            <br />Limitált kollekció, ne maradj le róla!</p>
-                        <a href="/termekek?q=independent" class="btn btn-primary">Megnézem</a>
+                        <h5>Vans x Nasa</h5>
+                        <p>Kilövésre felkészülni! A Vans egy igazi galaktikus kollekcióval tiszteleg a NASA előtt, így ünnepelve 60 évnyi felfedezést és innovációt.</p>
+                        <a href="/termekek?q=nasa" class="btn btn-primary">Megnézem</a>
                     </div>
                 </div>
 
@@ -124,6 +81,50 @@ if (trim(Yii::$app->request->url, '/'))
         </div> <!-- //coreshopCarousel carousel-->
     </div> <!-- //row -->
 
+    
+    <!-- Slider -->
+    <div class="row d-none d-sm-block">
+        <div id="coreshopCarousel" class="alice-blue-bg carousel slide" data-ride="carousel">
+
+            <!-- //carousel-indicators
+            <ol class="carousel-indicators">
+                <li data-target="#coreshopCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#coreshopCarousel" data-slide-to="1"></li>
+                <li data-target="#coreshopCarousel" data-slide-to="2"></li>
+            </ol>
+            //endof carousel-indicators -->
+
+            <!--Desktop slider -->
+			
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="/termekek?q=Nasa">
+                        <img class="d-block w-100" src="images/banner-carousel/2018/20181106-vans-nasa-desktop.jpg" alt="Vans x Nasa">
+                    </a>
+                    <!-- <div class="carousel-caption d-none d-md-block">
+                        <h5>Ultra <span class="blue">range</span></h5>
+                        <p>Kényelem és lazaság</p>
+                    </div> -->
+                </div> 
+
+            </div> <!-- //carousel-inner -->
+
+
+            <!-- <a class="carousel-control-prev" href="#coreshopCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Előző</span>
+            </a>
+            <a class="carousel-control-next" href="#coreshopCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Következő</span>
+            </a> -->
+
+        </div> <!-- //coreshopCarousel carousel-->
+    </div> <!-- //row -->
+    <!-- //slider -->
+
+
+
     <!-- //slider -->
 
     <!-- Brands -->
@@ -144,8 +145,8 @@ if (trim(Yii::$app->request->url, '/'))
                 <img class="img-fluid mx-auto brand-picker" src="images/markak/es_logo.png" alt="és">
             </a>
 
-            <a class="col-md col-3" href="neff">
-                <img class="img-fluid mx-auto brand-picker" src="images/markak/neff_logo.png" alt="Neff">
+            <a class="col-md col-3" href="dc">
+                <img class="img-fluid mx-auto brand-picker" src="images/markak/dc_logo.png" alt="Neff">
             </a>
             <a class="col-md col-3" href="powell-peralta">
                 <img class="img-fluid mx-auto brand-picker" src="images/markak/powell-peralta-logo.png" alt="Powell Peralta">
@@ -162,9 +163,28 @@ if (trim(Yii::$app->request->url, '/'))
     </section>
     <!-- //brands -->
 
+	<? /*
+	<!-- 1 -->
+    <section class="white-bg">
+        <div class="row">
+            <div class="col-md col-12" style="padding:0;">
+                <a href="/cipo/ferfi-cipo/"><img src="../images/banner-box/2018/20181108-sale20.jpg" style="width:100%;" alt="20% akció november 11-ig!" /></a>
+            </div>
 
+            <div class="col-md col-12 align-self-center">
+                <h2 class="text-center">Ó, IÓ, CIÓ, KCIÓ, <span class="blue">AKCIÓ!</span></h2>
+                <p class="text-center">
+                    Négy napig vakációra mennek az eredeti árak.<br />Vásárolj november 11. éjfélig 20% kedvezménnyel legkedveltebb márkáidból!
+                </p>
+                <p class="text-center margin-top-50">
+                    <a href="/cipo/ferfi-cipo/" class="btn btn-primary">Tovább az akciós cipőkhöz</a>
+                </p>
+            </div>
+        </div>
+    </section>
+	*/ ?>
 
-
+	
     <!-- 1 -->
     <section class="white-bg">
         <div class="row">
@@ -186,21 +206,22 @@ if (trim(Yii::$app->request->url, '/'))
 
 
     <!-- 2 -->
-    <section>
-        <div class="row blue-bg">
-            <div class="col-md col-12 align-self-center order-1">
-                <h2 class="text-center inverse">Vans Ultrarange</h2>
-                <p class="text-center white">Kényelem és lazaság! Légáteresztő felsőrész, RapidWeld (hegesztett) technológiával készült illesztések. Ugorj bele és nem fogsz hinni a lábadnak!
+	<section>
+        <div class="row blue-bg" style="background-color:#000;">
+            <div class="col-md col-12 align-self-center order-1 hidden-md-up">
+                <h2 class="text-center inverse">DCSHOES: E. Tribeka</h2>
+                <p class="text-center white">Igazi felsőkategóriás „after skate” cipő, a DC jelenlegi csúcsmodellje. A kényelemről az OrthoLite talpbetét és az Unilite™ talpszerkezet gondoskodik.
 
                 <p class="text-center margin-top-50">
-                    <a href="/cipo?q=ultrarange" class="btn btn-transparent">Megnézem</a>
+                    <a href="/cipo/dc" class="btn btn-transparent">Megnézem</a>
                 </p>
             </div>
-            <div class="col-md-5 order-md-2 col-12" style="padding:0;">
-                <a href="/cipo?q=ultrarange"><img src="../images/banner-box/2018/20180905-vans-ultrarange.jpg" style="width:100%;" alt="Vans Ultrarange cipő" /></a>
+            <div class="order-md-2 col-12" style="padding:0;">
+			<a href="/cipo/dc"><img src="../images/banner-box/2018/20181009-dc-tribeka.jpg" style="width:100%;" alt="DC E. Tribeka cipő" /></a>
             </div>
         </div>
     </section>
+	
 
     <!-- 3 -->
     <section class="white-bg">
@@ -219,6 +240,8 @@ if (trim(Yii::$app->request->url, '/'))
             </div>
         </div>
     </section>
+	
+	
 
 
 
@@ -232,7 +255,6 @@ if (trim(Yii::$app->request->url, '/'))
         </div>
 
         <?php
-        // echo '<h2 class="mt-5 my-5 text-center"> Legújabb <span class="blue">termékek</span> </h2>';
         $dataProvider = (new TermekekSearch())->search(['subCategory' => ['ferfi-cipo', 'noi-cipo']]);
         $dataProvider->pagination = false;
         $dataProvider->query->andWhere(['opcio' => 'UJ']);
@@ -245,7 +267,7 @@ if (trim(Yii::$app->request->url, '/'))
     </div>
 
     <div class="alice-blue-bg m--15">
-        <div class="container" style="padding-bottom:50px;">
+        <div class="container about-us">
             <div class="row justify-content-center">
                 <h2 class="mt-5 my-5 text-center">Rólunk</h2>
             </div>
@@ -260,6 +282,9 @@ if (trim(Yii::$app->request->url, '/'))
             <br />
             <br />
             Az elmúlt közel tíz év alatt több ezer elégedett vásárló visszajelzése igazolja, hogy jó úton haladunk.
+			
+			<h1 class="h1 h1-index row">Coreshop.hu - Vans, Etnies, éS, Emerica, DC webshop - <br><span class="sub-slogen">"Ma megrendeled, holnap hordhatod!"</span></h1>
+			
         </div>
     </div>
 

@@ -1,0 +1,3 @@
+﻿<p>
+Ha egy kicsit másra vágynál, nézz körül a DC Univerzumban. Az extrémsportok lábbelije gördeszkára és snowboardra specializálódott az összes többi vad élménymozgás mellett. 1994 óta öltözteti az adrenalin szerelmeseit, egyesítve a skate stílusjegyeket. A megtermett strapabíró darabok mellett a szolidabb DC-ket is megtalálod, amit boldogan kapsz fel a nap elején. Találd meg az igazit széles kínálatunkban!
+</p>

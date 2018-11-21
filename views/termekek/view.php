@@ -30,9 +30,12 @@ $this->params['breadcrumbs'] = [
         'brand' => ArrayHelper::getValue($model, 'marka.url_segment'),
     ]],
 ];
-$this->title = $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szin . ' - ' . $model->defaultSubCategory->megnevezes.' - Coreshop';
+//$this->title = $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szin . ' - ' . $model->defaultSubCategory->megnevezes.' - Coreshop';
+
+$this->title = $model->marka->markanev . ' ' . strtolower($model->defaultSubCategory->megnevezes). ' - ' . $model->termeknev . ' ' . $model->szin.' '. $model->cikkszam .'- Coreshop.hu';
+
 $description = $model->leiras ? $model->leiras : $this->title;
-$keywords = $model->defaultMainCategory->megnevezes . ' ' . $model->defaultSubCategory->megnevezes . ' ' . $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szin;
+$keywords = $model->defaultMainCategory->megnevezes . ' ' . $model->defaultSubCategory->megnevezes . ' ' . $model->marka->markanev . ' ' . $model->termeknev . ' ' . $model->szin .' '. $model->cikkszam;
 $image = Url::to($model->defaultImage->webUrl, true);
 
 //SEO DEFAULT
@@ -201,10 +204,16 @@ JS
 
                         <img src="https://coreshop.hu/pictures/markak/<?= $model->markaid ?>.png" alt="<?= $model->seo_name ?>"
                              title="<?= $model->seo_name ?>">
-                        <h1 itemprop="brand" content="<?= $model->marka->markanev ?>"><?= $model->marka->markanev ?> <span class="blue"
-                                                                                                                           itemprop="name"><?= $model->termeknev ?></span></h1>
-                        <p class="product-color"><?= $model->szin ?></p>
-                        <p class="product-number"><?= $model->cikkszam ? 'Cikkszám: ' . $model->cikkszam : '' ?></p>
+                       
+					
+						<h1 itemprop="brand" content="<?= $model->marka->markanev ?>">
+						<span class="blue"><?= $model->marka->markanev ?></span> <?= $model->defaultSubCategory->megnevezes ?>
+						<br />
+						<span class="blue"><?= $model->termeknev ?><span class="blue">
+						<div class="product-color"><?= $model->szin ?></div>
+						</h1>
+						
+                        <h2 class="product-number"><?= $model->cikkszam ? 'Cikkszám: ' . $model->cikkszam : '' ?></h2>
 
 
                         <div class="rating" itemprop="aggregateRating" itemscope
@@ -340,6 +349,7 @@ JS
                                 foreach ($model->vonalkodok as $vonalkod) {
                                     ?>
                                     <input type="radio"
+                                           class="size-button"
                                            name="meret_radio"
                                            style="display:none"
                                            id="v_<?= $vonalkod->vonalkod ?>"

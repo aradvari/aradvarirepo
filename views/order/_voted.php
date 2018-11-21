@@ -1,17 +1,14 @@
 <?php
 
 use app\models\SzavazasSzavazat;
-use app\models\SzavazasValasz;
-use yii\helpers\Html;
-use yii\helpers\Url;
 
 ?>
 
 <p class="font-weight-bold">Köszönjük szavazatod!</p>
 
-<table class="table-cart">
+<table class="w-100">
     <?php
-    $sum = SzavazasSzavazat::find(['kerdes_id' => $szavazasKerdes->primaryKey])->sum('szavazat');
+    $sum = SzavazasSzavazat::find()->andWhere(['kerdes_id' => $szavazasKerdes->primaryKey])->sum('szavazat');
     $max = 100;
     foreach ($szavazasKerdes->szavazasValasz as $key => $item):
         $percent = round(($item->szavazasSzavazat->szavazat / $sum) * 100);

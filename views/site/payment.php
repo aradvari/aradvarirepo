@@ -1,9 +1,45 @@
+<?
+//use kop\y2sp\ScrollPager;
+use yii\helpers\Html;
+use yii\helpers\Url;
+//use yii\widgets\ListView;
+use app\widgets\Seo;
+//use yii\helpers\ArrayHelper;
+
+
+$this->title = 'Tájékoztató a bankkártyás fizetésről - Coreshop.hu';
+
+$h1 = 'Tájékoztató a bankkártyás fizetésről';
+
+$description = 'A CIB Bank tájékoztatója a bankkártyás fizetésről.';
+		
+$keywords = $this->title;
+
+$image = Url::to('/images/coreshop-logo-social.png', true);
+
+//SEO DEFAULT
+Yii::$app->seo->registerMetaTag(['name' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'name', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'image', 'content' => $image]);
+//SEO OPEN GRAPH
+Yii::$app->seo->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:type', 'content' => 'product']);
+Yii::$app->seo->registerMetaTag(['property' => 'og:url', 'content' => Url::current([], true)]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:image', 'content' => $image]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:site_name', 'content' => 'Coreshop.hu']);
+Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827275293006']);
+
+?>
+
 <div class="container-fluid shop-container grey my-3">
     <div class="container">
         <div class="row justify-content-between pt-5">
             <!-- first column -->
             <div class="col-lg-5">
-                <div class="row title pb-5">TÁJÉKOZTATÓ A BANKKÁRTYÁS FIZETÉSRŐL</div>
+                <div class="row title pb-5"><?= '<h1 id="title" class="row title mb-5">' . Html::encode($h1) . '</h1>'; ?></div>
 				
                 <div class="row static-content">
 				<?echo nl2br('Webáruházunk a CIB Bank által biztosított biztonságos bankkártyás fizetési megoldást nyújtja vásárlóinak. A biztonságot az adatok szétválasztása alapozza meg. A Webáruház a megrendeléssel kapcsolatos információkat kapja meg a vásárlótól, a CIB Bank pedig kizárólag a fizetési tranzakcióhoz szükséges kártyaadatokat a 128 bites SSL titkosítással ellátott fizetőoldalon. A fizetőoldal adattartalmáról a Webáruház nem értesül, azokat csak a CIB Bank érheti el. A tranzakció eredményéről a fizetést követően a Webáruház oldala tájékoztatja. A kártyás fizetéshez az Ön internet böngésző programjának támogatnia kell az SSL titkosítást. 

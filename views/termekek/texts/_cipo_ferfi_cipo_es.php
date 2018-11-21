@@ -1,0 +1,4 @@
+﻿<p>
+éS ezt vágod? 
+A legendás kaliforniai brand, a Sole Technology adja a lábadra a skate cipők és a deszkás footwear legjobbját. Az éS igazi márka ínyencség a deszkások körében. Az Accel Slim a korábbi ikonikus modelljének az újragondolása. Férfiasan fekete és elegánsan natúr színei multifunkcionálissá varázsolják a darabot, míg piros és fehér verziója vagány árnyalatokban harsog trend frekvenciáján. ÉS még mindig nincs vége... A tökéletes átmenet a Swift 1.5 lábbeliben egyesül, ami pont olyan kényelmes, amennyire design-os. Nézz körül széles kínálatunkban, ha pedig valami megtetszik ne habozz: rendeld meg, és holnap már hordhatod is.
+</p>

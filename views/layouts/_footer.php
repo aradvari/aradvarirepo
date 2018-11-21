@@ -185,7 +185,7 @@ use yii\helpers\Url;
       </div>
 
        <!--Column 4 -->
-      <div class="col-md-3 col-sm-6 ">
+      <div class="col-md-3 col-sm-6 hidden-md-down">
         <!--Column1-->
         <div class="footer-pad hidden-md-down">
           <h4>Oldaltérkép</h4>
@@ -208,11 +208,14 @@ use yii\helpers\Url;
 		js.src = 'https://connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v3.1&appId=281370311969142&autoLogAppEvents=1';
 		fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
-
 					 
-		<div class="fb-page" data-href="https://www.facebook.com/coreshop/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-hide-cta="true"><blockquote cite="https://www.facebook.com/coreshop/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/coreshop/">Coreshop</a></blockquote></div>
-		
-      </div>
+    <div class="fb-page facebook-box" data-href="https://www.facebook.com/coreshop/" data-small-header="false"
+    data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-hide-cta="true"  data-width="450">
+    <blockquote cite="https://www.facebook.com/coreshop/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/coreshop/">Coreshop</a></blockquote>
+    </div>
+
+    </div>
+	
     </div>
   </div>
   </div>

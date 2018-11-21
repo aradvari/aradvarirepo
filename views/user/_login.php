@@ -63,11 +63,20 @@ use yii\helpers\Html;
                     <?= $form->field($model, 'password')->passwordInput() ?>
                 </div>
 
-                <div class="col-6 col-md-3">
+                <div class="col-5 col-md-3">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-login', 'name' => 'login-button']) ?>
                 </div>
-                <div class="col-6 col-md-3 align-self-center">
-                    <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <div class="col-7 col-md-3 align-self-center">
+                     <div class="radio-container">
+                        <!-- <?= $form->field($model, 'rememberMe')->checkbox() ?>-->
+                        <ul>
+                            <li>
+                                <input type="radio" id="loginform-rememberme" name="LoginForm[rememberMe]" value checked>
+                                <label for="loginform-rememberme" style="padding: 0px 25px 0px 30px;"> Bejelentkezés megjegyzése</label>
+                                <div class="check"></div>
+                            </li>
+                        </ul> 
+                    </div>
                     <a href="<?= Url::to(['/site/lost-password']) ?>">Elfelejtetted a jelszavadat?</a>
                 </div>
             </div>

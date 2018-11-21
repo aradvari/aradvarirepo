@@ -1,0 +1,3 @@
+﻿<p>
+Nehezen találod meg a harmóniát a skate-stílus és a nőiesség vonalán? Akkor vess egy pillantást az Etnies női cipőinkre, amik hűvös színekkel és feminin vonalakkal vonzza a tekintetet a lábad irányába. Speciális kialakításának hála hordhatod a hétköznapokon, de akár könnyű sportokban is hű társad lehet. Nem csak a gördeszkás energia járja át, de ha ezt a cipőt választod a bolygón is segíthetsz, ugyanis a "Buy a shoe, plant a tree" mozgalomnak hála, minden megvásárolt darab után ültetnek egy fát az Amazonas egyre fogyó őserdeiben. 
+</p>

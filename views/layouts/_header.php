@@ -75,10 +75,11 @@ use yii\helpers\Url;
             <span> </span>
             <span> </span>
         </button>
-
+		
         <a class="navbar-brand" href="/">
-            <img src="/images/coreshop_logo_w_icon.svg" alt="Coreshop.hu" class="logo">
-        </a>
+			<img src="/images/coreshop_logo_w_icon.svg" alt="Coreshop.hu" class="logo" />
+		</a>
+		
         <a class="hidden-md-up nav-link cart-icon-container cart-link" href="#" data-href="<?= Url::to(['cart/view']) ?>">
             <div class="cart-icon-mobile"></div>
             <span class="cart-count"></span>

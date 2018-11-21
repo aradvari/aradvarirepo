@@ -91,6 +91,7 @@ $config = [
                 ['pattern' => 'hirlevel-feliratkozas', 'route' => 'user/subscribe'],
                 ['pattern' => 'hirlevel-leiratkozas', 'route' => 'user/unsubscribe'],
                 ['pattern' => 'index.html', 'route' => 'site/index'],
+                ['pattern' => 'vans-akcios-cipok', 'route' => 'site/content', 'defaults' => ['page' => 'vans-akcios-cipok'],],
             ],
         ],
         'formatter' => [

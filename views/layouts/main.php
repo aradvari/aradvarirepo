@@ -22,7 +22,7 @@ AppAsset::register($this);
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="HandheldFriendly" content="true">
-    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
     <meta name="robots" content="all">
 
     <meta http-equiv="cache-control" content="max-age=0">
@@ -39,7 +39,7 @@ AppAsset::register($this);
     <?php $this->head() ?>
     <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
     <link rel="stylesheet" type="text/css" href="/css/cookieconsent.min.css"/>
-    <script src="/js/cookieconsent.min.js"></script>
+    <script async src="/js/cookieconsent.min.js"></script>
     <script>
         window.addEventListener("load", function () {
             window.cookieconsent.initialise({

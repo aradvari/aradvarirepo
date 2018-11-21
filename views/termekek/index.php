@@ -17,7 +17,9 @@ $this->title = ucfirst(strtolower(trim(
         ($sizeModel->megnevezes ? ' ' . $sizeModel->megnevezes . ' méret' : null) .
         ($colorModel->szinszuro ? ' ' . ($colorModel->szinszuro) . ' szín' : null) .
         ($tipusModel->tipus ? ' ' . ($tipusModel->tipus) . ' típus' : null) .
+        ($mainCategoryModel->megnevezes ? ' a ' . ($mainCategoryModel->megnevezes) . ' kategóriában' : null) .		
         ($params['q'] ? ', ' . $params['q'] : null), ', '))) . ' - Coreshop.hu';
+		
 
 $h1Options = (($sizeModel->megnevezes || $colorModel->szinszuro || $tipusModel->tipus || $params['q']) &&
     (($brandModel->markanev || $subCategoryModel->megnevezes)) ? ' (' : null) .
@@ -33,15 +35,19 @@ $h1 = ucfirst(trim(
         ($brandModel->markanev ? ' ' . $brandModel->markanev : null) .
         strtolower($subCategoryModel->megnevezes ? ' ' . $subCategoryModel->megnevezes : null)
     )) . $h1Options;
+	
 
-$description = 'Termékek listája az alábbiak szerint: ' . trim(
-        ($mainCategoryModel->megnevezes ? ', főkategória: ' . $mainCategoryModel->megnevezes : null) .
-        ($subCategoryModel->megnevezes ? ', alkategória: ' . $subCategoryModel->megnevezes : null) .
+$description = trim(
+        /*($mainCategoryModel->megnevezes ? ', főkategória: ' . $mainCategoryModel->megnevezes : null) .
+        ($subCategoryModel->megnevezes ? ', alkategória: ' . $subCategoryModel->megnevezes : null) .*/
+		($mainCategoryModel->megnevezes ? $mainCategoryModel->megnevezes : null) .
+        ($subCategoryModel->megnevezes ? ', ' . $subCategoryModel->megnevezes : null) .
         ($brandModel->markanev ? ', gyártó: ' . $brandModel->markanev : null) .
         ($sizeModel->megnevezes ? ', méret: ' . $sizeModel->megnevezes : null) .
         ($colorModel->szinszuro ? ', szín: ' . $colorModel->szinszuro : null) .
         ($tipusModel->tipus ? ', típus: ' . $tipusModel->tipus : null) .
-        ($params['q'] ? ', egyxedi szűrés: ' . $params['q'] : null), ', ');
+        ($params['q'] ? ', egyedi szűrés: ' . $params['q'] : null), ', ')
+		. '. Garantált 1 munkanapos szállítással és 15 napos pénzvisszatérítés garanciával. Ma megrendeled, holnap hordhatod!.';
 $keywords = $this->title;
 $image = Url::to('/images/coreshop-logo-social.png', true);
 
@@ -169,23 +175,24 @@ if ($brandLayout)
             }
 
             ?>
-            <? // szezonalis banner, pl sulikezdesre
+            <? // szezonalis banner, pl sulikezdes, glamour, joy 
 			/*
             <!-- banner listview desktop -->
             <div class="col-md-12 col-12 banner-listview-desktop">
-                <a href="/kiegeszito/taska">
-                    <img src="/images/banner-listview/2018/20180808-vans-taskak-desk.jpg"
-                         style="width:100%;" alt="Vans táskák a sulikezdésre"/>
+                <a href="/vans">
+                    <img src="/images/banner-listview/2018/20181011-vansglamour18-desktop.jpg"
+                         style="width:100%;" alt="Vans Glamour-napok!"/>
                 </a>
             </div>
 
             <!-- banner listview mobile -->
             <div class="col-md-12 col-12 banner-listview-mobile">
-                <a href="/kiegeszito/taska">
-                    <img src="/images/banner-listview/2018/20180808-vans-taskak-mobile.jpg"
-                         style="width:100%;" alt="Vans táskák a sulikezdésre"/>
+                <a href="/vans">
+                    <img src="/images/banner-listview/2018/20181011-vansglamour18-mobile.jpg"
+                         style="width:100%;" alt="Vans Glamour-napok!"/>
                 </a>
-            </div> */ ?>
+            </div>
+			*/ ?>
 
             <form class="clearfix" method="get" id="order-form"
                   action="<?= Url::to([

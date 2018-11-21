@@ -9,7 +9,8 @@ use yii\helpers\Url;
 <p class="">Szavazatoddal segíted munkánkat, kérjük válassz az alábbi lehetőségek közül:</p>
 
 <?php
-echo Html::radioList('vote', null, SzavazasValasz::getData('valasz_id', 'valasz', ['kerdes_id' => $szavazasKerdes->primaryKey]));
+echo Html::radioList('vote', null, SzavazasValasz::getData('valasz_id', 'valasz', ['kerdes_id' => $szavazasKerdes->primaryKey]),
+    ['separator'=>'<br>']);
 ?>
 
 <?php

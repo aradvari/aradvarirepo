@@ -1,6 +1,45 @@
+<?
+//use kop\y2sp\ScrollPager;
+use yii\helpers\Html;
+use yii\helpers\Url;
+//use yii\widgets\ListView;
+use app\widgets\Seo;
+//use yii\helpers\ArrayHelper;
+
+
+$this->title = 'Garancia - Coreshop.hu';
+
+$h1 = 'Garancia';
+
+$description = 'Tájékoztató a garanciális feltételekről. 15 napos pénzvisszatérítés garancia. További tájékoztató nyomtatható formában az Általános szerződési feltételekben.';
+		
+$keywords = $this->title;
+
+$image = Url::to('/images/coreshop-logo-social.png', true);
+
+//SEO DEFAULT
+Yii::$app->seo->registerMetaTag(['name' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'name', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'image', 'content' => $image]);
+//SEO OPEN GRAPH
+Yii::$app->seo->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:type', 'content' => 'product']);
+Yii::$app->seo->registerMetaTag(['property' => 'og:url', 'content' => Url::current([], true)]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:image', 'content' => $image]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:site_name', 'content' => 'Coreshop.hu']);
+Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827275293006']);
+
+?>
+
 <div class="container-fluid shipping-container grey my-3">
     <div class="container">
-        <div class="row justify-content-between py-5">
+	
+	<?= '<h1 id="title" class="row title mb-5">' . Html::encode($h1) . '</h1>'; ?>
+	
+	    <div class="row justify-content-between py-5">		
             <div class="nav flex-column nav-pills col-lg-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="shipping-button nav-link active" id="v-pills-warranty-tab" data-toggle="pill" href="#v-pills-warranty" role="tab" aria-controls="v-pills-warranty" aria-selected="true">
                     Jótállás szavatosság

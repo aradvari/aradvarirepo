@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
         <div class="col-lg-3 col-md-4 col-12 align-self-center">
             <div class="brand-site-logo">
                 <p class="text-center">
-                    <img src="https://coreshop.hu/pictures/markak/<?= ArrayHelper::getValue($brandModel, 'id') ?>.png"
+                    <img src="https://coreshop.hu/pictures/markak/<?= ArrayHelper::getValue($brandModel, 'id') ?>.png" alt="<?= ArrayHelper::getValue($brandModel, 'markanev') ?>"
                      class="img-fluid">
                 </p>
             </div>

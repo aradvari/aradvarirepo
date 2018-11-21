@@ -13,7 +13,7 @@ $dataProvider->pagination = false;
 if ($dataProvider->getCount() > 1):
     ?>
 
-    <p class="text-uppercase font-weight-bold mt-3">MÉG TÖBB <?= $model->marka->markanev ?> <?= $model->termeknev ?></p>
+    <p class="text-uppercase font-weight-bold mt-3">MÉG TÖBB <?= $model->marka->markanev ?> <?= $model->termeknev ?> <?= $model->defaultSubCategory->megnevezes ?></p>
 
     <?= ListView::widget([
     'dataProvider' => $dataProvider,

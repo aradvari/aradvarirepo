@@ -1,3 +1,39 @@
+<?
+//use kop\y2sp\ScrollPager;
+use yii\helpers\Html;
+use yii\helpers\Url;
+//use yii\widgets\ListView;
+use app\widgets\Seo;
+//use yii\helpers\ArrayHelper;
+
+
+$this->title = 'Kérdések és válaszok internetes kártyás fizetésről - Coreshop.hu';
+
+$h1 = 'Kérdések és válaszok internetes kártyás fizetésről';
+
+$description = 'CIB Bank tájékoztató. Kérdések és válaszok internetes kártyás fizetésről.';
+		
+$keywords = $this->title;
+
+$image = Url::to('/images/coreshop-logo-social.png', true);
+
+//SEO DEFAULT
+Yii::$app->seo->registerMetaTag(['name' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'name', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['itemprop' => 'image', 'content' => $image]);
+//SEO OPEN GRAPH
+Yii::$app->seo->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:type', 'content' => 'product']);
+Yii::$app->seo->registerMetaTag(['property' => 'og:url', 'content' => Url::current([], true)]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:image', 'content' => $image]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:description', 'content' => $description]);
+Yii::$app->seo->registerMetaTag(['property' => 'og:site_name', 'content' => 'Coreshop.hu']);
+Yii::$app->seo->registerMetaTag(['property' => 'fb:app_id', 'content' => '550827275293006']);
+
+?>
+
 <div class="container-fluid shop-container grey my-3">
 
     <div class="container">
@@ -5,7 +41,7 @@
         <div class="row justify-content-between pt-5">
             <!-- first column -->
             <div class="col-lg-5">
-                <div class="row title pb-5">Kérdések és válaszok internetes kártyás fizetésről</div>
+                <div class="row title pb-5"><?= '<h1 id="title" class="row title mb-5">' . Html::encode($h1) . '</h1>'; ?></div>
 				
 				<div class="row approach-title">KÁRTYAELFOGADÁS</div>
 				<div class="row approach-title">MILYEN TÍPUSÚ KÁRTYÁKKAL LEHET FIZETNI?</div>

@@ -3,9 +3,12 @@
 namespace app\controllers;
 
 use app\components\helpers\Coreshop;
+use app\extensions\SimpleXML;
 use app\models\FelhasznaloElfJelszo;
 use app\models\Felhasznalok;
+use app\models\GlobalisAdatok;
 use app\models\LostPwForm;
+use app\models\Termekek;
 use app\models\TermekekSearch;
 use Yii;
 use yii\db\Expression;
@@ -179,7 +182,8 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionServiceLogin($id){
+    public function actionServiceLogin($id)
+    {
 
         $felhasznaloModel = Felhasznalok::findOne($id);
         Yii::$app->user->login($felhasznaloModel);
@@ -291,7 +295,7 @@ class SiteController extends Controller
 
     }
 
-   /**
+    /**
      * Displays about page.
      *
      * @return string
@@ -300,7 +304,7 @@ class SiteController extends Controller
     {
         set_time_limit(9600);
         ini_set('memory_limit', '2048M');
-       file_put_contents(Yii::getAlias('@webroot').'/sitemap-write.txt', 'start: '.date('Y.m.d H:i:s')."\r\n", FILE_APPEND | LOCK_EX);
+        file_put_contents(Yii::getAlias('@webroot') . '/sitemap-write.txt', 'start: ' . date('Y.m.d H:i:s') . "\r\n", FILE_APPEND | LOCK_EX);
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
 
@@ -310,29 +314,29 @@ class SiteController extends Controller
         $xml->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
 
         $urls = TermekekSearch::$urls;
-        foreach ($urls as $u){
+        foreach ($urls as $u) {
             $url = $xml->addChild('url');
             $loc = $url->addChild('loc', $u);
         }
 
-       file_put_contents(Yii::getAlias('@webroot').'/sitemap-write.txt', 'end: '.date('Y.m.d H:i:s')."\r\n", FILE_APPEND | LOCK_EX);
+        file_put_contents(Yii::getAlias('@webroot') . '/sitemap-write.txt', 'end: ' . date('Y.m.d H:i:s') . "\r\n", FILE_APPEND | LOCK_EX);
 
-        return $xml->saveXML(Yii::getAlias('@webroot').'/sitemap-categories.xml');
+        return $xml->saveXML(Yii::getAlias('@webroot') . '/sitemap-categories.xml');
 
     }
 
-public function actionSitemap2()
+    public function actionSitemap2()
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
 
-               $searchModel = new TermekekSearch();
+        $searchModel = new TermekekSearch();
         $dataProvider = $searchModel->search([]);
         $dataProvider->pagination = false;
 
         $xml = new \SimpleXMLElement('<urlset/>');
         $xml->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
 
-        foreach ($dataProvider->getModels() as $model){
+        foreach ($dataProvider->getModels() as $model) {
 
             $termekUrl = Url::to(['termekek/view',
                 'mainCategory' => $model['main_category_url_segment'],
@@ -344,9 +348,109 @@ public function actionSitemap2()
             $loc = $url->addChild('loc', $termekUrl);
 
         }
-        return $xml->saveXML(Yii::getAlias('@webroot').'/sitemap-products.xml');
+        return $xml->saveXML(Yii::getAlias('@webroot') . '/sitemap-products.xml');
 
     }
 
+    public function actionGlami()
+    {
+
+        set_time_limit(9600);
+        ini_set('memory_limit', '2048M');
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
+
+        $xml = new SimpleXML('<SHOP/>');
+
+        $searchModel = new TermekekSearch();
+        $dataProvider = $searchModel->searchGlami();
+        $dataProvider->query->andWhere(['m.url_segment' => 'vans']);
+        $dataProvider->query->groupBy(['t.id', 'v.vonalkod']);
+        $dataProvider->pagination = false;
+
+        foreach ($dataProvider->getModels() as $item) {
+            $shopItem = $xml->addChild('SHOPITEM');
+            $shopItem->addChild('ITEM_ID', $item['id'] . '-' . $item['vonalkod']);
+            $shopItem->addChild('ITEM_GORUP', $item['id']);
+            $shopItem->addChild('PRODUCTNAME')->addCData($item['markanev'] . ' ' . $item['termeknev'] . ' ' . $item['szin']);
+            $shopItem->addChild('DESCRIPTION')->addCData($item['leiras']);
+
+            //URL
+            $termekUrl = Url::to(['termekek/view',
+                'mainCategory' => $item['main_category_url_segment'],
+                'subCategory' => $item['sub_category_url_segment'],
+                'brand' => $item['marka_url_segment'],
+                'termek' => $item['url_segment'],
+            ], true);
+            $shopItem->addChild('URL', $termekUrl);
+
+            if ($item['megnevezes'] != '-' && $item['megnevezes'] != '') {
+                $termekMeretUrl = Url::to(['termekek/view',
+                    'mainCategory' => $item['main_category_url_segment'],
+                    'subCategory' => $item['sub_category_url_segment'],
+                    'brand' => $item['marka_url_segment'],
+                    'termek' => $item['url_segment'],
+                    'size' => $item['meret'],
+                ], true);
+                $shopItem->addChild('URL_SIZE', $termekMeretUrl);
+            }
+
+            $kepek = Termekek::findOne($item['id'])->getImages('large');
+            if ($kepek)
+                foreach ($kepek as $key => $kep) {
+                    if ($key == 0)
+                        $shopItem->addChild('IMGURL', 'https://coreshop.hu' . $kep['webUrl']);
+                    else
+                        $shopItem->addChild('IMGURL_ALTERNATIVE', 'https://coreshop.hu' . $kep['webUrl']);
+                }
+
+            $shopItem->addChild('PRICE_VAT', $item['vegleges_ar'] . ' HUF');
+            $shopItem->addChild('MANUFACTURER')->addCData($item['markanev']);
+            $shopItem->addChild('CATEGORYTEXT')->addCData('Coreshop.hu | ' . $item['main_category_name'] . ' | ' . $item['sub_category_name']);
+            $shopItem->addChild('CATEGORY_ID', $item['kategoria']);
+
+            //PARAMS
+            if ($item['szin']) {
+                $param = $shopItem->addChild('PARAMS');
+                $param->addChild('PARAM_NAME')->addCData('szín');
+                $param->addChild('VAL')->addCData($item['szinszuro']);
+            }
+
+            if ($item['tipus']) {
+                $param = $shopItem->addChild('PARAMS');
+                $param->addChild('PARAM_NAME')->addCData('típus');
+                $param->addChild('VAL')->addCData($item['tipus']);
+            }
+
+            if ($item['megnevezes'] != '-' && $item['megnevezes'] != '') {
+                $param = $shopItem->addChild('PARAMS');
+                $param->addChild('PARAM_NAME')->addCData('méret');
+                $param->addChild('VAL')->addCData($item['megnevezes']);
+
+                $param = $shopItem->addChild('PARAMS');
+                $param->addChild('PARAM_NAME', 'size_system');
+                $param->addChild('VAL', 'EU');
+            }
+
+            //delivery
+            $shopItem->addChild('DELIVERY_DATE', 0);
+
+            $param = $shopItem->addChild('DELIVERY');
+            $param->addChild('DELIVERY_ID')->addCData('Személyes átvétel');
+            $param->addChild('DELIVERY_PRICE', 0);
+
+            $param = $shopItem->addChild('DELIVERY');
+            $param->addChild('DELIVERY_ID')->addCData('GLS');
+            $param->addChild('DELIVERY_PRICE', ($item['vegleges_ar'] >= GlobalisAdatok::getParam('ingyenes_szallitas') ? 0 : GlobalisAdatok::getParam('szallitasi_dij')));
+
+            $param = $shopItem->addChild('DELIVERY');
+            $param->addChild('DELIVERY_ID')->addCData('GLS csomagpont');
+            $param->addChild('DELIVERY_PRICE', ($item['vegleges_ar'] >= GlobalisAdatok::getParam('ingyenes_szallitas') ? 0 : GlobalisAdatok::getParam('szallitasi_dij')));
+
+        }
+
+        return $xml->saveXML(Yii::getAlias('@webroot') . '/glami-vans.xml');
+
+    }
 
 }

@@ -5,7 +5,7 @@ use yii\widgets\ListView;
 ?>
 
 <!-- Brands -->
-<section class="white-bg pt-3 product-list-container">
+<section class="white-bg pt-3 mb-4 product-list-container">
     <div class="container">
         <div id="productList">
             <!--            <div class="carousel-inner row w-100 mx-auto" role="listbox">-->

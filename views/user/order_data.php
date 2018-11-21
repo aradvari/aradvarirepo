@@ -110,14 +110,30 @@ OrderAsset::register($this);
             ?>
 
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 radio-container">
 
             <h2 class="text-left" style="margin-bottom: 1.89em">Szállítási adatok</h2>
 
-            <?= $form->field($megrendelesModel, 'eltero_szallitasi_adatok')->radioList([
+            <!--<?= $form->field($megrendelesModel, 'eltero_szallitasi_adatok')->radioList([
                 '' => 'A szállítási cím megegyezik a számlázási címmel',
                 '1' => 'Másik címre kérem a szállítást',
-            ])->label(false) ?>
+            ])->label(false) ?>-->
+
+            <ul>
+                <li>
+                    <input type="radio" id="111" name="MegrendelesFej[eltero_szallitasi_adatok]" value checked>
+                    <label for="111">A szállítási cím megegyezik a számlázási címmel</label>
+                    <div class="check"></div>
+                </li>
+                
+                <li>
+                    <input type="radio" id="222" name="MegrendelesFej[eltero_szallitasi_adatok]" value="1"> 
+                    <label for="222">Másik címre kérem a szállítást</label>
+                    <div class="check"><div class="inside"></div>
+                </li>
+            
+            </ul>
+
 
             <!--            --><? //= $form->field($megrendelesModel, 'eltero_szallitasi_adatok')->checkbox() ?>
 
@@ -160,20 +176,49 @@ OrderAsset::register($this);
             </div>
 
         </div>
-    </div>
 
-    <div id="transfer-type-container">
-        <div class="row">
-            <div class="col-md-6" id="transfer-type">
-                <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList(SzallitasiMod::getData()) ?>
+
+        <div class="col-md-6 radio-container" id="transfer-type">
+                <!-- <?= $form->field($megrendelesModel, 'id_szallitasi_mod')->radioList(SzallitasiMod::getData()) ?>  -->
+            <ul>
+                <li>
+                    <input type="radio" id="1" name="MegrendelesFej[id_szallitasi_mod]" value="1" checked="">
+                    <label for="1">Csomagküldő szolgálattal</label>
+                    <div class="check"></div>
+                </li>
+                
+                <li>
+                <input type="radio" id="2" name="MegrendelesFej[id_szallitasi_mod]" value="3"> 
+                    <label for="2">GLS csomagpontba</label>
+                    <div class="check"><div class="inside"></div>
+                </li>
+                
+                <li>
+                    <input type="radio" id="3" name="MegrendelesFej[id_szallitasi_mod]" value="2"> 
+                    <label for="3">Személyes átvétel irodánkban</label>
+                    <div class="check"><div class="inside"></div>
+                </li>
+            </ul>
             </div>
             
-           <div class="col-md-6">
-                <?= $form->field($megrendelesModel, 'id_fizetesi_mod')->radioList(FizetesiMod::getData()) ?>           
+           <div class="col-md-6 radio-container">
+                <ul>
+                    <li>
+                        <input type="radio" id="11" name="MegrendelesFej[id_fizetesi_mod]" value="1" checked="">
+                        <label for="11"> Átvételkor készpénzben vagy bankkártyával</label>
+                        <div class="check"></div>
+                    </li>
+                    
+                    <li>
+                    <input type="radio" id="22" name="MegrendelesFej[id_fizetesi_mod]" value="2"> 
+                        <label for="22">Bankártya (CIB)</label>
+                        <div class="check"><div class="inside"></div>
+                    </li>
+                
+                </ul>
+                <!--<?= $form->field($megrendelesModel, 'id_fizetesi_mod')->radioList(FizetesiMod::getData()) ?> -->    
             </div>
-    
-      
-        </div>
+    </div>
    <div class="gls-container" style="display: none;">
                     <?php
                     echo GlsWidget::widget();
@@ -185,9 +230,33 @@ OrderAsset::register($this);
                   <?= $form->field($megrendelesModel, 'megjegyzes')->textarea(['placeholder' => '']) ?>
             </div>
             <div class="col-12 col-md"> 
-                <?= $form->field($felhasznaloModel, 'hirlevel')->checkbox() ?>
+                <!-- <?= $form->field($felhasznaloModel, 'hirlevel')->checkbox() ?> -->
+                <!--<div class="form-group field-felhasznalok-hirlevel required validating">
 
-                <?= $form->field($felhasznaloModel, 'contract')->checkbox(['class' => '']) ?>
+                <input type="hidden" name="Felhasznalok[hirlevel]" value="0"><label><input type="checkbox" id="felhasznalok-hirlevel" name="Felhasznalok[hirlevel]" value="1" aria-required="true" aria-invalid="false" class="is-valid"> Feliratkozom a hírlevélre</label>
+
+                <div class="invalid-feedback"></div>
+                </div>-->
+
+                <label class="checkbox-container"> Feliratkozom a hírlevélre
+                    <input type="hidden" name="Felhasznalok[hirlevel]" value="0">
+                    <input type="checkbox" id="felhasznalok-hirlevel" name="Felhasznalok[hirlevel]" value="1" aria-required="true" aria-invalid="false" class="is-valid">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="checkbox-container">  Elfogadom az általános szerződési feltételeket
+                    <input type="hidden" name="Felhasznalok[contract]" value="0">
+                    <input type="checkbox" id="felhasznalok-contract" class="" name="Felhasznalok[contract]" value="1" checked="" aria-required="true"> 
+                    <span class="checkmark"></span>
+                </label>
+
+                <!--<div class="form-group field-felhasznalok-contract required">
+
+                <input type="hidden" name="Felhasznalok[contract]" value="0"><label><input type="checkbox" id="felhasznalok-contract" class="" name="Felhasznalok[contract]" value="1" checked="" aria-required="true"> Elfogadom az általános szerződési feltételeket</label>
+
+                <div class="invalid-feedback"></div>
+                </div>-->
+                <!--<?= $form->field($felhasznaloModel, 'contract')->checkbox(['class' => '']) ?>-->
 
                 <?= Html::submitButton('Megrendelés elküldése', ['class' => 'arrow_box', 'name' => 'order-button', 'id' => 'send-order-button']) ?>
             </div>

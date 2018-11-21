@@ -383,15 +383,8 @@ use app\models\SzallitasiMod;
             </p>
         </div>
 
-        <div class="instabox">
-            <a href="https://www.instagram.com/coreshop.hu/" target="_blank">
-                <h1>Extra márka élmények várnak az Instán! Kövess minket!</h1>
-                <img src="https://coreshop.hu/newsletter/2018/23/insta.jpg" alt="Instagram @coreshop.hu"/>
-            </a>
-        </div>
 
-
-        <div class="footer">
+        <div class="footer" style="background-color:#000;">
 
             <img src="https://coreshop.hu/newsletter/2017/coreshop-logo-footer.png" alt="Coreshop logo"
                  title="Coreshop logo" style="width:50%;max-width:260px;margin:0 auto 10px auto;"/>

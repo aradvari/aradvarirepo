@@ -70,8 +70,6 @@ class TermekekController extends Controller
             'q' => Yii::$app->request->get('q'),
             's' => Yii::$app->request->get('s'),
         ];
-
-        var_dump(Kategoriak::find()->joinWith('parentCategory')->andWhere(['kategoriak.url_segment' => $params['subCategory'], 'parent_kategoriak.url_segment' => $params['mainCategoryLogin.']])->all());
         $fParams = [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

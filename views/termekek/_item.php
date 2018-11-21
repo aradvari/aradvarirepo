@@ -26,8 +26,12 @@ $termekUrl = Url::to(['termekek/view',
 <div class="post product-thumb" itemprop="itemListElement" itemscope
      itemtype="http://schema.org/Product">
     <meta itemprop="position" content="<?= ($key + 1) ?>">
-    <a href="<?= $termekUrl ?>" itemprop="url">
+	
+	<a href="<?= $termekUrl ?>" itemprop="url">
     <div class="product-thumb-bg">
+	
+	<? if( $model['akcios_kisker_ar'] >0) echo '<div class="products-thumb-label">sale %</div>' ?>
+	
         <div class="product-thumb-img-container position-relative">
             <img src="https://coreshop.hu/pictures/termekek/<?= implode('/', str_split($model['id'])) ?>/1_small.jpg"
                  alt="<?= Html::encode($model['markanev']) ?> - <?= Html::encode($model['termeknev']) ?>"
@@ -49,7 +53,11 @@ $termekUrl = Url::to(['termekek/view',
         </div>
 
         <div class="product-info">
-            <p class="uj text-center product-tag <?= $model['opcio'] == 'SALE %' ? Html::encode('red-color') : '' ?>" ><?//= Html::encode($model['opcio']) ?></p>
+		
+            <!-- <p class="uj text-center product-tag <?= $model['opcio'] == 'SALE %' ? Html::encode('red-color') : '' ?>" ><?//= Html::encode($model['opcio']) ?></p> -->
+			
+			
+			
             <h2 itemprop="name"><?= Html::encode($model['markanev']) ?> <?= Html::encode($model['termeknev']) ?></h2>
             <div class="product-color"><?= Html::encode($model['szin']) ?></div>
             <div class="products-price-container" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -60,9 +68,9 @@ $termekUrl = Url::to(['termekek/view',
                         <del><?= \Yii::$app->formatter->asDecimal($model['kisker_ar']) ?></del>
                         Ft</span>
                     <br>
-                    <span class="products-thumb-saleprise" itemprop="price"
+                    <span class="products-thumb-saleprise" style="color:#d51920;font-size:17px;" itemprop="price"
                           content="<?= $model['akcios_kisker_ar'] ?>"><?= \Yii::$app->formatter->asDecimal($model['akcios_kisker_ar']) ?></span>
-                    <span itemprop="priceCurrency" content="HUF">Ft</span>
+                    <span itemprop="priceCurrency" style="color:#d51920;font-size:17px;" content="HUF">Ft</span>
                 <?php
                 endif;
                 ?>
