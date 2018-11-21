@@ -364,7 +364,9 @@ class SiteController extends Controller
 
         $searchModel = new TermekekSearch();
         $dataProvider = $searchModel->searchGlami();
-        $dataProvider->query->andWhere(['m.url_segment' => 'vans']);
+        $dataProvider->query->andWhere(['t.kategoria' => [94, 95]]);
+        $dataProvider->query->andWhere(['t.markaid' => 41]);
+        $dataProvider->query->andWhere(['>', 'v.keszlet_1', 2]);
         $dataProvider->query->groupBy(['t.id', 'v.vonalkod']);
         $dataProvider->pagination = false;
 
@@ -409,25 +411,25 @@ class SiteController extends Controller
             $shopItem->addChild('CATEGORYTEXT')->addCData('Coreshop.hu | ' . $item['main_category_name'] . ' | ' . $item['sub_category_name']);
             $shopItem->addChild('CATEGORY_ID', $item['kategoria']);
 
-            //PARAMS
+            //PARAM
             if ($item['szin']) {
-                $param = $shopItem->addChild('PARAMS');
+                $param = $shopItem->addChild('PARAM');
                 $param->addChild('PARAM_NAME')->addCData('szín');
                 $param->addChild('VAL')->addCData($item['szinszuro']);
             }
 
             if ($item['tipus']) {
-                $param = $shopItem->addChild('PARAMS');
+                $param = $shopItem->addChild('PARAM');
                 $param->addChild('PARAM_NAME')->addCData('típus');
                 $param->addChild('VAL')->addCData($item['tipus']);
             }
 
             if ($item['megnevezes'] != '-' && $item['megnevezes'] != '') {
-                $param = $shopItem->addChild('PARAMS');
+                $param = $shopItem->addChild('PARAM');
                 $param->addChild('PARAM_NAME')->addCData('méret');
                 $param->addChild('VAL')->addCData($item['megnevezes']);
 
-                $param = $shopItem->addChild('PARAMS');
+                $param = $shopItem->addChild('PARAM');
                 $param->addChild('PARAM_NAME', 'size_system');
                 $param->addChild('VAL', 'EU');
             }
@@ -435,20 +437,21 @@ class SiteController extends Controller
             //delivery
             $shopItem->addChild('DELIVERY_DATE', 0);
 
-            $param = $shopItem->addChild('DELIVERY');
+            /* $param = $shopItem->addChild('DELIVERY');
             $param->addChild('DELIVERY_ID')->addCData('Személyes átvétel');
-            $param->addChild('DELIVERY_PRICE', 0);
+            $param->addChild('DELIVERY_PRICE', 0); */
 
             $param = $shopItem->addChild('DELIVERY');
             $param->addChild('DELIVERY_ID')->addCData('GLS');
             $param->addChild('DELIVERY_PRICE', ($item['vegleges_ar'] >= GlobalisAdatok::getParam('ingyenes_szallitas') ? 0 : GlobalisAdatok::getParam('szallitasi_dij')));
 
-            $param = $shopItem->addChild('DELIVERY');
+            /* $param = $shopItem->addChild('DELIVERY');
             $param->addChild('DELIVERY_ID')->addCData('GLS csomagpont');
-            $param->addChild('DELIVERY_PRICE', ($item['vegleges_ar'] >= GlobalisAdatok::getParam('ingyenes_szallitas') ? 0 : GlobalisAdatok::getParam('szallitasi_dij')));
+            $param->addChild('DELIVERY_PRICE', ($item['vegleges_ar'] >= GlobalisAdatok::getParam('ingyenes_szallitas') ? 0 : GlobalisAdatok::getParam('szallitasi_dij'))); */
 
         }
 
+//        return $xml->saveXML();
         return $xml->saveXML(Yii::getAlias('@webroot') . '/glami-vans.xml');
 
     }
