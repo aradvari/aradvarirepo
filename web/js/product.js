@@ -68,10 +68,19 @@ $('.cart-form').submit(function (event) {
         data: $('.cart-form').serialize()
     }).done(function (result) {
 
-        if (result.mennyiseg > 0)
+        if (result.mennyiseg > 0) {
             addNotice('A termék a kosárba került. <br /><b>' + result.termek.ar + ' Ft</b>', '/kosar');
-        else
+
+            glami('track', 'AddToCart', {
+                item_ids: [result.meret], // product ID currently added to a cart. Use the same ID as you use in the feed (ITEM_ID).
+                product_names: [result.termek.megnevezes], // product name currently added to a cart. Use the same names as you use in the feed (PRODUCTNAME).
+                value: result.termek.megnevezes.replace(' ', ''), // product price
+                currency: 'HUF' // product price currency
+            });
+
+        }else {
             addNotice('A termékből nincs elegendő mennyiség, hogy a kosaradba helyezd!', '/kosar');
+        }
 
         if ($('input[name="meret_radio"]').length > 1) {
 

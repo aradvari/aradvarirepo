@@ -1,5 +1,9 @@
 <?php
+
 use app\models\TermekekSearch;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
+
 ?>
 
 <?php
@@ -30,12 +34,12 @@ if (Yii::$app->user->id != 11039 && isset($_SESSION["anaconvgeneral"]) && isset(
     <script type="text/javascript">
 
         gtag('event', 'purchase', {
-            "transaction_id": "<?php echo ($anaconvgeneral['invoice']); ?>",
+            "transaction_id": "<?php echo($anaconvgeneral['invoice']); ?>",
             "affiliation": "",
-            "value": <?php echo ($anaconvgeneral['totalnovat']); ?>,
+            "value": <?php echo($anaconvgeneral['totalnovat']); ?>,
             "currency": "HUF",
-            "tax": <?php echo ($anaconvgeneral['totalvat']); ?>,
-            "shipping": <?php echo ($anaconvgeneral['shipping']); ?>,
+            "tax": <?php echo($anaconvgeneral['totalvat']); ?>,
+            "shipping": <?php echo($anaconvgeneral['shipping']); ?>,
             "items": [
 
                 <?php
@@ -109,13 +113,23 @@ if (Yii::$app->user->id != 11039 && isset($_SESSION["anaconvgeneral"]) && isset(
     <noscript><img height="1" width="1" alt="" style="display:none"
                    src="https://www.facebook.com/tr?ev=6018444862384&amp;cd[value]=<?= $orderPrice ?>&amp;cd[currency]=HUF&amp;noscript=1"/>
     </noscript>
-
-
     <!-- facebook konverzio_2017 -->
+
     <script>
         fbq('track', 'Purchase', {value: '<?=$orderPrice?>.00', currency: 'HUF'});
     </script>
 
+    <!-- Glami piXel for Coreshop.hu -->
+    <script>
+        glami('track', 'Purchase', {
+            item_ids: <?=Json::encode(ArrayHelper::getColumn($anaconvitems, 'SKU'))?>, // bought product IDs. Use the same IDs as you use in the feed (ITEM_ID).
+            product_names: <?=Json::encode(ArrayHelper::getColumn($anaconvitems, 'productname'))?>, // bought product names. Use the same names as you use in the feed (PRODUCTNAME).
+            value: <?=$orderPrice?>, // order value
+            currency: 'HUF', // order value currency
+            transaction_id: '<?=ArrayHelper::getValue($anaconvgeneral, 'invoice')?>' // order ID
+        });
+    </script>
+    <!-- End Glami piXel -->
 
     <?php
     unset($_SESSION["anaconvgeneral"]);

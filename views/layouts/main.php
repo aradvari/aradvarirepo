@@ -88,7 +88,6 @@ AppAsset::register($this);
                    src="https://www.facebook.com/tr?id=1425657147763024&ev=PageView&noscript=1"
         /></noscript>
     <!-- End Facebook Pixel Code -->
-
     <!-- BEGIN Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-17488049-1"></script>
     <script>
@@ -99,6 +98,17 @@ AppAsset::register($this);
         gtag('config', 'UA-17488049-1');
     </script>
     <!-- END Global site tag (gtag.js) - Google Analytics -->
+    <!-- Glami piXel for Coreshop.hu -->
+    <script>
+        (function(f, a, s, h, i, o, n) {f['GlamiTrackerObject'] = i;
+            f[i]=f[i]||function(){(f[i].q=f[i].q||[]).push(arguments)};o=a.createElement(s),
+                n=a.getElementsByTagName(s)[0];o.async=1;o.src=h;n.parentNode.insertBefore(o,n)
+        })(window, document, 'script', '//www.glami.hu/js/compiled/pt.js', 'glami');
+
+        glami('create', '9572989E02F1FD7487BB1BB9CC5E1DAB', 'hu');
+        glami('track', 'PageView');
+    </script>
+    <!-- End Glami piXel -->
 
     <?=$this->render('/_schema/_store');?>
     <?=$this->render('/_schema/_website');?>
