@@ -72,7 +72,7 @@ $('.cart-form').submit(function (event) {
             addNotice('A termék a kosárba került. <br /><b>' + result.termek.ar + ' Ft</b>', '/kosar');
 
             glami('track', 'AddToCart', {
-                item_ids: [result.meret], // product ID currently added to a cart. Use the same ID as you use in the feed (ITEM_ID).
+                item_ids: [result.termek.id + '-' + result.meret], // product ID currently added to a cart. Use the same ID as you use in the feed (ITEM_ID).
                 product_names: [result.termek.megnevezes], // product name currently added to a cart. Use the same names as you use in the feed (PRODUCTNAME).
                 value: result.termek.megnevezes.replace(' ', ''), // product price
                 currency: 'HUF' // product price currency

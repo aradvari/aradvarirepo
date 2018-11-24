@@ -55,6 +55,7 @@ class CartController extends Controller
             'b' => $mennyiseg,
             'c' => $vonalkodModel->keszlet_1,
             'termek' => [
+                'id' => $termekModel->primaryKey,
                 'megnevezes' => $termekModel->termeknev,
                 'ar' => \Yii::$app->formatter->asDecimal($termekModel->vegleges_ar * (int)$mennyiseg),
             ],

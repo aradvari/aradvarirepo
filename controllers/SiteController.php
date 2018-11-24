@@ -366,7 +366,8 @@ class SiteController extends Controller
         $dataProvider = $searchModel->searchGlami();
         $dataProvider->query->andWhere(['t.kategoria' => [94, 95]]);
         $dataProvider->query->andWhere(['t.markaid' => 41]);
-        $dataProvider->query->andWhere(['>', 'v.keszlet_1', 2]);
+//        $dataProvider->query->andWhere(['>', 'v.keszlet_1', 2]);
+        $dataProvider->query->andHaving(['>', 'termek_keszlet', 2]);
         $dataProvider->query->groupBy(['t.id', 'v.vonalkod']);
         $dataProvider->pagination = false;
 

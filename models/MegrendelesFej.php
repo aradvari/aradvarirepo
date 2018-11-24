@@ -334,6 +334,7 @@ class MegrendelesFej extends ActiveRecord
 
                 //Google, Facebook követés
                 $anaconvitems[] = [
+                    'glumiId' => $tetel->id_termek . '-' . $tetel->vonalkod,
                     'SKU' => $tetel->vonalkod,
                     'productname' => $tetel->marka->markanev . ' ' . $tetel->termek_nev,
                     'itemprice' => (int)$tetel->termek_ar,

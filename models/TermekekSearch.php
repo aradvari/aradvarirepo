@@ -135,6 +135,7 @@ class TermekekSearch extends Termekek
                 'v.megnevezes',
                 'v.url_segment meret',
                 'v.vonalkod',
+                '(select sum(keszlet_1) from vonalkodok where aktiv=1 and id_termek=t.id) termek_keszlet',
             ])
             ->groupBy(['t.id']);
 

@@ -122,7 +122,7 @@ if (Yii::$app->user->id != 11039 && isset($_SESSION["anaconvgeneral"]) && isset(
     <!-- Glami piXel for Coreshop.hu -->
     <script>
         glami('track', 'Purchase', {
-            item_ids: <?=Json::encode(ArrayHelper::getColumn($anaconvitems, 'SKU'))?>, // bought product IDs. Use the same IDs as you use in the feed (ITEM_ID).
+            item_ids: <?=Json::encode(ArrayHelper::getColumn($anaconvitems, 'glumiId'))?>, // bought product IDs. Use the same IDs as you use in the feed (ITEM_ID).
             product_names: <?=Json::encode(ArrayHelper::getColumn($anaconvitems, 'productname'))?>, // bought product names. Use the same names as you use in the feed (PRODUCTNAME).
             value: <?=$orderPrice?>, // order value
             currency: 'HUF', // order value currency
