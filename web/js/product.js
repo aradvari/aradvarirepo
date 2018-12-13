@@ -78,6 +78,15 @@ $('.cart-form').submit(function (event) {
                 currency: 'HUF' // product price currency
             });
 
+            fbq('track', 'AddToCart', {
+                content_name: result.termek.megnevezes,
+                content_category: result.termek.kategoria,
+                content_ids: [result.termek.id],
+                content_type: 'product',
+                value: result.termek.megnevezes.replace(' ', ''),
+                currency: 'HUF'
+            });
+
         }else {
             addNotice('A termékből nincs elegendő mennyiség, hogy a kosaradba helyezd!', '/kosar');
         }
